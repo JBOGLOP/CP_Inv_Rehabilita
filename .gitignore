@@ -1,0 +1,52 @@
+# ---------------------------------------------------------------------------
+# ⚠️ Este repositorio es PÚBLICO en GitHub. Todo lo que se versione queda visible
+# en internet de forma permanente. Las reglas de abajo protegen dos cosas:
+#   1. los datos personales de los estudiantes (habeas data, Ley 1581 de 2012);
+#   2. los derechos de autor de los artículos científicos del curso.
+# ---------------------------------------------------------------------------
+
+# Evidencias y productos entregados por estudiantes: NUNCA se versionan
+clases/**/evidencias-estudiantes/*
+!clases/**/evidencias-estudiantes/.gitkeep
+evidencias/
+entregas/
+
+# Notas, listados y consolidados con datos personales
+**/consolidado-notas.*
+**/notas-*.xlsx
+**/listado*.xlsx
+**/*asistencia*.xlsx
+
+# Artículos a texto completo: se distribuyen por el aula virtual / SINAB, no por GitHub.
+# Se versionan solo las guías, fichas y metadatos en Markdown.
+clases/**/lecturas/*.pdf
+clases/**/lecturas/*.epub
+recursos/articulos/
+
+# Biblioteca personal de PDF descargados (capítulos y artículos con derechos de autor).
+# Se queda en Google Drive, no en GitHub. Ojo: la barra inicial limita la regla a la raíz,
+# de modo que `recursos/referencias/referencias.bib` SÍ se versiona.
+/referencias/
+
+# Material pesado del docente (súbelo al aula virtual, no al repositorio)
+*.mp4
+*.mov
+*.zip
+
+# Temporales de Microsoft Office
+~$*
+*.tmp
+
+# Windows / Google Drive / macOS
+desktop.ini
+Thumbs.db
+.DS_Store
+*.gdoc
+*.gsheet
+*.gslides
+*[Cc]onflicted copy*
+
+# Python
+__pycache__/
+*.pyc
+.venv/

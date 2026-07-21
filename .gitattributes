@@ -1,0 +1,10 @@
+* text=auto eol=lf
+
+*.md   text diff=markdown
+*.bib  text
+*.py   text
+
+*.docx binary
+*.pdf  binary
+*.pptx binary
+*.xlsx binary
