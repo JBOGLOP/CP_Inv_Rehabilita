@@ -55,6 +55,24 @@ Las referencias completas están en [`recursos/referencias/referencias.bib`](../
 
 Criterios e instrumento en [`rubrica.md`](rubrica.md).
 
+## Material de la sesión
+
+**[`diapositivas/sesion-01.html`](diapositivas/sesion-01.html)** — clase completa en HTML autocontenido,
+con dos modos:
+
+- **Aula** — 16 diapositivas a pantalla completa. Navega con `←` `→`, temporizador de los cinco
+  bloques (20 / 60 / 15 / 60 / 25 min) y rail superior cuyos escalones marcan los cambios de bloque.
+- **Estudio** — la misma sustancia en una sola página con scroll, para que el estudiante la recorra
+  antes de clase. Se abre directamente con `sesion-01.html?modo=estudio`.
+
+Elementos interactivos: las cuatro trayectorias de Lunney como paneles independientes con la ventana
+de rehabilitación resaltada; los 20 estudios de Minosso filtrables por nivel de evidencia;
+autoevaluación de ocho preguntas con retroalimentación razonada y fuente; y el taller del mapa de
+trayectoria, que se descarga como PNG para adjuntar a la entrega del grupo.
+
+Enlaces útiles: `sesion-01.html#10` abre directamente la diapositiva de trayectorias;
+`?tema=oscuro` fuerza el tema oscuro para proyectar en sala a oscuras.
+
 ## Recursos de la sesión
 
 | Carpeta | Uso |

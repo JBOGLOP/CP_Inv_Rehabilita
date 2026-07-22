@@ -1,0 +1,1265 @@
+<title>Sesión 01 · Rehabilitación paliativa y declinación funcional</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+/* ============================================================ tokens */
+:root {
+  color-scheme: light;
+  --ground:      #F4F7FA;
+  --surface:     #FFFFFF;
+  --surface-2:   #EDF2F7;
+  --ink:         #14202B;
+  --ink-2:       #4E6274;
+  --ink-3:       #74879A;
+  --rule:        #D9E3EC;
+  --rule-strong: #B9CADA;
+  --accent:      #1C5CAB;
+  --accent-soft: #E4EDF8;
+  --accent-line: #2A78D6;
+  /* rampa ordinal validada (light, superficie #F4F7FA) */
+  --lvl-1: #104281;
+  --lvl-2: #256abf;
+  --lvl-3: #3987e5;
+  --lvl-4: #6da7ec;
+  --shadow: 0 1px 2px rgba(20,32,43,.06), 0 8px 24px rgba(20,32,43,.06);
+
+  --font-display: 'Iowan Old Style', 'Palatino Linotype', Palatino, 'Book Antiqua', Georgia, serif;
+  --font-body: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-data: ui-monospace, 'Cascadia Mono', 'Segoe UI Mono', Consolas, 'Liberation Mono', monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) {
+    color-scheme: dark;
+    --ground:      #0D141C;
+    --surface:     #131C26;
+    --surface-2:   #1B2733;
+    --ink:         #DCE7F0;
+    --ink-2:       #9DB0C2;
+    --ink-3:       #7A8DA0;
+    --rule:        #23303E;
+    --rule-strong: #33455670;
+    --accent:      #6DA7EC;
+    --accent-soft: #17273A;
+    --accent-line: #5598E7;
+    --lvl-1: #cde2fb;
+    --lvl-2: #86b6ef;
+    --lvl-3: #3987e5;
+    --lvl-4: #1c5cab;
+    --shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px rgba(0,0,0,.35);
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --ground:      #0D141C;
+  --surface:     #131C26;
+  --surface-2:   #1B2733;
+  --ink:         #DCE7F0;
+  --ink-2:       #9DB0C2;
+  --ink-3:       #7A8DA0;
+  --rule:        #23303E;
+  --rule-strong: #334556;
+  --accent:      #6DA7EC;
+  --accent-soft: #17273A;
+  --accent-line: #5598E7;
+  --lvl-1: #cde2fb;
+  --lvl-2: #86b6ef;
+  --lvl-3: #3987e5;
+  --lvl-4: #1c5cab;
+  --shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px rgba(0,0,0,.35);
+}
+:root[data-theme="light"] {
+  color-scheme: light;
+  --ground: #F4F7FA; --surface: #FFFFFF; --surface-2: #EDF2F7;
+  --ink: #14202B; --ink-2: #4E6274; --ink-3: #74879A;
+  --rule: #D9E3EC; --rule-strong: #B9CADA;
+  --accent: #1C5CAB; --accent-soft: #E4EDF8; --accent-line: #2A78D6;
+  --lvl-1: #104281; --lvl-2: #256abf; --lvl-3: #3987e5; --lvl-4: #6da7ec;
+}
+
+/* ============================================================ base */
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--ground);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3 { font-family: var(--font-display); font-weight: 600; text-wrap: balance; margin: 0; line-height: 1.15; }
+p { margin: 0; }
+a { color: var(--accent); }
+:focus-visible { outline: 2px solid var(--accent-line); outline-offset: 3px; border-radius: 2px; }
+
+.eyebrow {
+  font-family: var(--font-data);
+  font-size: .7rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.lede { font-size: 1.12rem; color: var(--ink-2); max-width: 62ch; }
+.src {
+  font-family: var(--font-data); font-size: .72rem; color: var(--ink-3);
+  letter-spacing: .02em;
+}
+
+/* ============================================================ topbar */
+#top {
+  position: sticky; top: 0; z-index: 40;
+  display: flex; align-items: center; gap: 16px;
+  padding: 10px 20px;
+  background: color-mix(in srgb, var(--ground) 88%, transparent);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--rule);
+}
+#top .id { font-family: var(--font-data); font-size: .72rem; color: var(--ink-3); letter-spacing: .08em; white-space: nowrap; }
+#top .id b { color: var(--ink); font-weight: 600; }
+.spacer { flex: 1 1 auto; }
+
+.seg { display: inline-flex; border: 1px solid var(--rule-strong); border-radius: 999px; padding: 2px; background: var(--surface); }
+.seg button {
+  font: inherit; font-size: .8rem; font-family: var(--font-data); letter-spacing: .04em;
+  border: 0; background: transparent; color: var(--ink-2);
+  padding: 5px 13px; border-radius: 999px; cursor: pointer;
+}
+.seg button[aria-pressed="true"] { background: var(--accent); color: #fff; }
+
+.tbtn {
+  font: inherit; font-size: .8rem; font-family: var(--font-data);
+  border: 1px solid var(--rule-strong); background: var(--surface); color: var(--ink-2);
+  padding: 6px 12px; border-radius: 999px; cursor: pointer;
+}
+.tbtn:hover { border-color: var(--accent); color: var(--accent); }
+
+/* timer */
+#timer { display: flex; align-items: center; gap: 10px; }
+#timer .clock {
+  font-family: var(--font-data); font-variant-numeric: tabular-nums;
+  font-size: 1rem; font-weight: 600; color: var(--ink); min-width: 5.4ch; text-align: right;
+}
+#timer .blk { font-family: var(--font-data); font-size: .68rem; color: var(--ink-3); max-width: 15ch; line-height: 1.25; }
+#timer.run .clock { color: var(--accent); }
+
+/* progress rail — la trayectoria de la sesión */
+#rail { position: relative; height: 26px; padding: 0 20px; border-bottom: 1px solid var(--rule); background: var(--ground); }
+#rail svg { width: 100%; height: 26px; display: block; overflow: visible; }
+#rail .rail-line { fill: none; stroke: var(--rule-strong); stroke-width: 1.5; }
+#rail .dot { cursor: pointer; fill: var(--rule-strong); stroke: var(--ground); stroke-width: 2; }
+#rail .dot:hover { fill: var(--accent-line); }
+#rail .dot.on { fill: var(--accent); }
+body.mode-study #rail { display: none; }
+
+/* ============================================================ deck / study */
+main { position: relative; }
+.s {
+  --pad: clamp(20px, 4vw, 56px);
+}
+body.mode-deck main { max-width: 1180px; margin: 0 auto; }
+body.mode-deck .s {
+  display: none;
+  min-height: calc(100vh - 120px);
+  padding: clamp(24px, 4vh, 48px) var(--pad) 96px;
+  flex-direction: column; justify-content: center;
+}
+body.mode-deck .s.on { display: flex; animation: rise .28s ease both; }
+@keyframes rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { body.mode-deck .s.on { animation: none; } }
+
+body.mode-study main { max-width: 820px; margin: 0 auto; padding: 0 20px 120px; }
+body.mode-study .s { padding: 44px 0; border-bottom: 1px solid var(--rule); }
+body.mode-study .s:last-of-type { border-bottom: 0; }
+body.mode-study .deck-only { display: none; }
+body.mode-deck .study-only { display: none; }
+
+.s > * + * { margin-top: 20px; }
+.s h2 { font-size: clamp(1.7rem, 3.4vw, 2.5rem); }
+body.mode-study .s h2 { font-size: clamp(1.5rem, 3vw, 1.9rem); }
+.s h3 { font-size: 1.05rem; font-family: var(--font-body); font-weight: 650; letter-spacing: -.01em; }
+
+/* deck nav */
+#nav {
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 30;
+  display: flex; align-items: center; justify-content: center; gap: 14px;
+  padding: 10px; background: color-mix(in srgb, var(--ground) 90%, transparent);
+  backdrop-filter: blur(10px); border-top: 1px solid var(--rule);
+}
+body.mode-study #nav { display: none; }
+#nav .count { font-family: var(--font-data); font-size: .78rem; color: var(--ink-3); font-variant-numeric: tabular-nums; }
+
+/* ============================================================ pieces */
+.card {
+  background: var(--surface); border: 1px solid var(--rule);
+  border-radius: 10px; padding: 20px; box-shadow: var(--shadow);
+}
+.grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+.grid4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 14px; }
+
+blockquote.q {
+  margin: 0; padding: 18px 22px;
+  border-left: 3px solid var(--accent);
+  background: var(--accent-soft);
+  border-radius: 0 8px 8px 0;
+  font-family: var(--font-display); font-size: clamp(1.1rem, 2.2vw, 1.45rem);
+  line-height: 1.4; color: var(--ink);
+}
+blockquote.q footer { margin-top: 10px; font-family: var(--font-data); font-size: .72rem; color: var(--ink-3); letter-spacing: .02em; }
+
+ul.tick { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+ul.tick li { display: grid; grid-template-columns: 18px 1fr; gap: 10px; align-items: start; }
+ul.tick li::before {
+  content: ""; width: 8px; height: 8px; margin-top: .55em; border-radius: 50%;
+  background: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+table.data { width: 100%; border-collapse: collapse; font-size: .9rem; }
+table.data th, table.data td { text-align: left; padding: 9px 12px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+table.data th { font-family: var(--font-data); font-size: .7rem; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); font-weight: 500; }
+.scroll-x { overflow-x: auto; }
+
+.pill {
+  display: inline-block; font-family: var(--font-data); font-size: .68rem; letter-spacing: .08em;
+  padding: 3px 9px; border-radius: 999px; border: 1px solid var(--rule-strong); color: var(--ink-2);
+  white-space: nowrap;
+}
+
+/* is / is not */
+.isnot { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid var(--rule); border-radius: 10px; overflow: hidden; background: var(--surface); }
+.isnot > div { padding: 16px 18px; }
+.isnot .yes { background: var(--accent-soft); }
+.isnot .no { border-left: 1px solid var(--rule); }
+.isnot h3 { font-family: var(--font-data); font-size: .7rem; letter-spacing: .12em; text-transform: uppercase; margin-bottom: 12px; }
+.isnot .yes h3 { color: var(--accent); }
+.isnot .no h3 { color: var(--ink-3); }
+.isnot ul { margin: 0; padding-left: 18px; display: grid; gap: 8px; font-size: .92rem; }
+@media (max-width: 640px) { .isnot { grid-template-columns: 1fr; } .isnot .no { border-left: 0; border-top: 1px solid var(--rule); } }
+
+/* practices */
+.prac { display: grid; grid-template-columns: repeat(auto-fit, minmax(215px, 1fr)); gap: 14px; }
+.prac article { background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; padding: 16px; position: relative; }
+.prac .n {
+  font-family: var(--font-data); font-size: .68rem; color: var(--accent);
+  letter-spacing: .1em; display: block; margin-bottom: 8px;
+}
+.prac h3 { margin-bottom: 6px; }
+.prac p { font-size: .9rem; color: var(--ink-2); }
+
+/* ============================================================ trayectorias */
+.traj { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
+.traj figure {
+  margin: 0; background: var(--surface); border: 1px solid var(--rule); border-radius: 10px;
+  padding: 14px; cursor: pointer; transition: border-color .18s, box-shadow .18s;
+}
+.traj figure:hover, .traj figure.sel { border-color: var(--accent); box-shadow: var(--shadow); }
+.traj figcaption { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; margin-bottom: 8px; }
+.traj figcaption b { font-size: .95rem; font-weight: 650; }
+.traj figcaption .pct { font-family: var(--font-data); font-size: .68rem; color: var(--ink-3); }
+.traj svg { width: 100%; height: auto; display: block; }
+.traj .axl { font-family: var(--font-data); font-size: 8.5px; fill: var(--ink-3); letter-spacing: .06em; }
+.traj .tgrid { stroke: var(--rule); stroke-width: 1; }
+.traj .taxis { stroke: var(--rule-strong); stroke-width: 1; }
+.traj .tband { fill: var(--accent); opacity: .12; }
+.traj .tline { fill: none; stroke: var(--accent-line); stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }
+#trajNote {
+  border: 1px solid var(--rule); border-left: 3px solid var(--accent);
+  background: var(--surface); border-radius: 0 10px 10px 0; padding: 16px 18px; min-height: 96px;
+}
+#trajNote h3 { margin-bottom: 6px; }
+#trajNote p { font-size: .95rem; color: var(--ink-2); }
+#trajNote .rehab { margin-top: 10px; font-size: .92rem; color: var(--ink); }
+#trajNote .rehab b { color: var(--accent); }
+
+/* ============================================================ evidencia */
+.ev-wrap { display: grid; grid-template-columns: minmax(240px, 340px) 1fr; gap: 18px; align-items: start; }
+@media (max-width: 780px) { .ev-wrap { grid-template-columns: 1fr; } }
+.ev-bars { display: grid; gap: 10px; }
+.ev-row { display: grid; grid-template-columns: 7.5ch 1fr 8.5ch; gap: 10px; align-items: center; background: none; border: 0; padding: 0; cursor: pointer; font: inherit; text-align: left; }
+.ev-row .lab { font-family: var(--font-data); font-size: .8rem; color: var(--ink-2); white-space: nowrap; }
+.ev-row .track { position: relative; height: 26px; background: var(--surface-2); border-radius: 4px; overflow: hidden; }
+.ev-row .fill { position: absolute; inset: 0 auto 0 0; border-radius: 4px 0 0 4px; }
+.ev-row .val {
+  font-family: var(--font-data); font-size: .76rem; color: var(--ink-2);
+  font-variant-numeric: tabular-nums; white-space: nowrap; text-align: right;
+}
+.ev-row[aria-pressed="true"] .track { outline: 2px solid var(--accent); outline-offset: 1px; }
+.ev-list { max-height: 320px; overflow-y: auto; border: 1px solid var(--rule); border-radius: 10px; background: var(--surface); }
+.ev-item { padding: 11px 14px; border-bottom: 1px solid var(--rule); font-size: .87rem; }
+.ev-item:last-child { border-bottom: 0; }
+.ev-item .hd { display: flex; gap: 8px; align-items: baseline; justify-content: space-between; }
+.ev-item .who { font-weight: 650; }
+.ev-item .iv { color: var(--ink-2); }
+.ev-item .out { color: var(--ink-3); font-size: .84rem; margin-top: 3px; }
+.lvl-chip { font-family: var(--font-data); font-size: .66rem; letter-spacing: .06em; padding: 2px 7px; border-radius: 4px; color: #fff; white-space: nowrap; }
+:root[data-theme="dark"] .lvl-chip, :root:where(:not([data-theme="light"])) .lvl-chip { color: #0D141C; }
+@media (prefers-color-scheme: light) { :root:where(:not([data-theme="dark"])) .lvl-chip { color: #fff; } }
+
+/* ============================================================ quiz */
+.quiz { display: grid; gap: 16px; }
+.qz { background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; padding: 18px; }
+.qz .qh { display: flex; gap: 10px; align-items: baseline; }
+.qz .qn { font-family: var(--font-data); font-size: .72rem; color: var(--accent); }
+.qz .qt { font-weight: 600; }
+.qz .opts { display: grid; gap: 8px; margin-top: 14px; }
+.qz .opt {
+  display: grid; grid-template-columns: 22px 1fr; gap: 10px; align-items: start;
+  padding: 10px 12px; border: 1px solid var(--rule); border-radius: 8px;
+  background: var(--ground); cursor: pointer; font: inherit; text-align: left; color: var(--ink);
+  font-size: .92rem;
+}
+.qz .opt:hover:not(:disabled) { border-color: var(--accent); }
+.qz .opt .k { font-family: var(--font-data); font-size: .75rem; color: var(--ink-3); }
+.qz .opt.ok { border-color: #0ca30c; background: color-mix(in srgb, #0ca30c 9%, var(--ground)); }
+.qz .opt.no { border-color: #d03b3b; background: color-mix(in srgb, #d03b3b 9%, var(--ground)); }
+.qz .opt.ok .k::after { content: " ✓"; color: #0ca30c; }
+.qz .opt.no .k::after { content: " ✕"; color: #d03b3b; }
+.qz .fb { margin-top: 12px; padding: 12px 14px; border-radius: 8px; background: var(--accent-soft); font-size: .9rem; display: none; }
+.qz .fb.show { display: block; }
+.qz .fb .src { display: block; margin-top: 7px; }
+#quizScore { font-family: var(--font-data); font-size: .82rem; color: var(--ink-2); }
+
+/* ============================================================ taller */
+.tw-controls { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+select, input[type="text"] {
+  font: inherit; font-size: .88rem; padding: 7px 10px; border-radius: 7px;
+  border: 1px solid var(--rule-strong); background: var(--surface); color: var(--ink);
+}
+.tw-board { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 4px; }
+@media (max-width: 700px) { .tw-board { grid-template-columns: 1fr; } }
+.zone {
+  background: var(--surface); border: 1.5px dashed var(--rule-strong); border-radius: 10px;
+  padding: 12px; min-height: 132px;
+}
+.zone.over { border-color: var(--accent); background: var(--accent-soft); }
+.zone h4 { margin: 0 0 4px; font-size: .92rem; font-family: var(--font-body); font-weight: 650; }
+.zone .hint { font-family: var(--font-data); font-size: .66rem; color: var(--ink-3); letter-spacing: .04em; display: block; margin-bottom: 10px; }
+.chips { display: flex; flex-wrap: wrap; gap: 7px; }
+.chip {
+  font-size: .8rem; padding: 6px 11px; border-radius: 999px;
+  border: 1px solid var(--rule-strong); background: var(--surface-2); color: var(--ink);
+  cursor: grab; user-select: none;
+}
+.chip:active { cursor: grabbing; }
+.chip.placed { background: var(--accent); border-color: var(--accent); color: #fff; }
+:root[data-theme="dark"] .chip.placed { color: #0D141C; }
+#twPool { border: 1px solid var(--rule); border-radius: 10px; padding: 12px; background: var(--surface); }
+
+/* ============================================================ refs */
+ol.refs { padding-left: 22px; margin: 0; display: grid; gap: 10px; font-size: .88rem; color: var(--ink-2); }
+ol.refs b { color: var(--ink); font-weight: 600; }
+
+.kbdhint { font-family: var(--font-data); font-size: .68rem; color: var(--ink-3); }
+kbd {
+  font-family: var(--font-data); font-size: .68rem; border: 1px solid var(--rule-strong);
+  border-bottom-width: 2px; border-radius: 4px; padding: 1px 5px; background: var(--surface); color: var(--ink-2);
+}
+@media print { #top, #rail, #nav { display: none; } body.mode-deck .s { display: block !important; } }
+</style>
+
+<div id="top">
+  <span class="id"><b>Sesión 01</b> · U1 · Investigación en CP y Rehabilitación</span>
+  <span class="spacer"></span>
+  <div id="timer">
+    <span class="blk" id="tBlock">Bloque 1 · Apertura</span>
+    <span class="clock" id="tClock">20:00</span>
+    <button class="tbtn" id="tToggle" aria-label="Iniciar o pausar el temporizador">Iniciar</button>
+    <button class="tbtn" id="tNext" aria-label="Siguiente bloque">Bloque →</button>
+  </div>
+  <div class="seg" role="group" aria-label="Modo de visualización">
+    <button id="mDeck" aria-pressed="true">Aula</button>
+    <button id="mStudy" aria-pressed="false">Estudio</button>
+  </div>
+  <button class="tbtn" id="themeBtn" aria-label="Cambiar entre tema claro y oscuro">Tema</button>
+</div>
+
+<div id="rail"><svg id="railSvg" aria-hidden="true"></svg></div>
+
+<main id="deck">
+
+  <!-- 1 ---------------------------------------------------------------- -->
+  <section class="s on" data-t="Portada">
+    <p class="eyebrow">Maestría en Cuidados Paliativos · Universidad Antonio Nariño</p>
+    <h2 style="font-size: clamp(2.1rem, 5.5vw, 3.4rem); margin-top: 8px;">Rehabilitación paliativa y declinación funcional</h2>
+    <p class="lede">Sesión 01 de 16 · Unidad 1: Abordajes de investigaciones en rehabilitación paliativa. Encuadre del espacio académico, el concepto de rehabilitación paliativa y las trayectorias de enfermedad como mapa de la intervención.</p>
+    <div class="grid4" style="margin-top: 8px;">
+      <div class="card"><p class="eyebrow">Duración</p><p style="font-family: var(--font-display); font-size: 1.5rem;">3 h</p><p class="src">+ 6 h de trabajo independiente</p></div>
+      <div class="card"><p class="eyebrow">Corte</p><p style="font-family: var(--font-display); font-size: 1.5rem;">Primero</p><p class="src">35 % de la nota final</p></div>
+      <div class="card"><p class="eyebrow">Estrategia</p><p style="font-family: var(--font-display); font-size: 1.5rem;">Aula invertida</p><p class="src">y lectura crítica</p></div>
+      <div class="card"><p class="eyebrow">Docente</p><p style="font-family: var(--font-display); font-size: 1.5rem;">J. W. Bogoya</p><p class="src">Jorge Wilhem Bogoya López</p></div>
+    </div>
+    <p class="kbdhint deck-only" style="margin-top: 18px;">Navega con <kbd>←</kbd> <kbd>→</kbd> · <kbd>S</kbd> alterna modo estudio · <kbd>T</kbd> inicia el temporizador</p>
+  </section>
+
+  <!-- 2 ---------------------------------------------------------------- -->
+  <section class="s" data-t="Encuadre">
+    <p class="eyebrow">Bloque 1 · Encuadre</p>
+    <h2>De qué se trata este espacio académico</h2>
+    <p class="lede">El objetivo general del curso es <b>reconocer el enfoque de rehabilitación paliativa, de acuerdo con las trayectorias clínicas de enfermedades tributarias de cuidados paliativos, desde la investigación.</b></p>
+    <div class="scroll-x">
+      <table class="data">
+        <thead><tr><th>Unidad</th><th>Sesiones</th><th>Lo que vamos a poder hacer al terminarla</th></tr></thead>
+        <tbody>
+          <tr><td><b>U1</b> · Abordajes en rehabilitación paliativa</td><td>S01–S03</td><td>Identificar el enfoque de rehabilitación según la trayectoria de la enfermedad.</td></tr>
+          <tr><td><b>U2</b> · Cáncer</td><td>S04–S06</td><td>Incorporar evidencia y avances tecnológicos a la rehabilitación en cáncer.</td></tr>
+          <tr><td><b>U3</b> · Falla de órgano</td><td>S07–S08</td><td>Analizar evidencia en segunda lengua sobre falla de órgano.</td></tr>
+          <tr><td><b>U4</b> · Trastornos neurodegenerativos <span class="pill">en inglés</span></td><td>S09–S10</td><td>Asumir un rol activo en el cuidado de estas personas y su familia.</td></tr>
+          <tr><td><b>U5</b> · Demencia y fragilidad</td><td>S11–S12</td><td>Analizar evidencia en segunda lengua sobre demencia y fragilidad.</td></tr>
+          <tr><td><b>U6</b> · Eventos catastróficos</td><td>S13–S15</td><td>Analizar evidencia sobre ictus severo y fractura de cadera.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="grid2">
+      <div class="card">
+        <p class="eyebrow">Cómo se evalúa</p>
+        <ul class="tick" style="margin-top: 10px;">
+          <li><span><b>Primer corte · 35 %</b> — sesiones 01 a 06. Fichas de lectura crítica, informe de tecnología, análisis de caso y taller de resultados funcionales.</span></li>
+          <li><span><b>Segundo corte · 35 %</b> — sesiones 07 a 11. Lectura crítica CASPe en inglés, <i>journal club</i> y ensayo.</span></li>
+          <li><span><b>Tercer corte · 30 %</b> — sesiones 12 a 16. Producto final: ensayo o protocolo de investigación, con sustentación.</span></li>
+        </ul>
+      </div>
+      <div class="card">
+        <p class="eyebrow">Las 144 horas</p>
+        <ul class="tick" style="margin-top: 10px;">
+          <li><span><b>48 h presenciales</b> — 16 sesiones de 3 horas.</span></li>
+          <li><span><b>96 h de trabajo independiente</b> — 6 horas por sesión: lectura crítica, búsqueda en las bases de datos UAN–SINAB y preparación de productos.</span></li>
+          <li><span>El trabajo independiente <b>no es opcional</b>: la clase presencial supone que la lectura previa ya se hizo.</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 ---------------------------------------------------------------- -->
+  <section class="s" data-t="Acuerdos">
+    <p class="eyebrow">Bloque 1 · Acuerdos pedagógicos</p>
+    <h2>Cómo vamos a trabajar</h2>
+    <div class="grid2">
+      <div class="card">
+        <h3>Aula invertida</h3>
+        <p style="margin-top: 8px; color: var(--ink-2); font-size: .95rem;">La lectura llega leída. El tiempo presencial se usa para discutir, criticar y aplicar, no para resumir lo que ya está escrito. Cada sesión abre con una pregunta que solo se puede responder habiendo leído.</p>
+      </div>
+      <div class="card">
+        <h3>Toda afirmación se sostiene en evidencia</h3>
+        <p style="margin-top: 8px; color: var(--ink-2); font-size: .95rem;">En una maestría de investigación no basta con la opinión clínica. Cada intervención que propongas debe venir con su fuente, su diseño de estudio y su nivel de evidencia. Citación en estilo Vancouver.</p>
+      </div>
+      <div class="card">
+        <h3>El inglés es herramienta de trabajo</h3>
+        <p style="margin-top: 8px; color: var(--ink-2); font-size: .95rem;">La mayor parte de la evidencia en rehabilitación paliativa está en inglés. La Unidad 4 se desarrolla completamente en ese idioma y las unidades 3, 5 y 6 exigen leer y analizar en segunda lengua.</p>
+      </div>
+      <div class="card">
+        <h3>La IA generativa se declara</h3>
+        <p style="margin-top: 8px; color: var(--ink-2); font-size: .95rem;">Puedes usarla. Debes declarar cuál herramienta, con qué propósito y con qué alcance. No declararla se trata como ausencia de reconocimiento de fuentes, según el reglamento estudiantil. En la sesión 03 la usaremos como <i>objeto de estudio</i>.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 ---------------------------------------------------------------- -->
+  <section class="s" data-t="Pregunta">
+    <p class="eyebrow">Bloque 2 · Activación</p>
+    <h2 style="font-size: clamp(1.9rem, 4.6vw, 3rem);">¿Tiene sentido rehabilitar a alguien que se va a morir?</h2>
+    <p class="lede">Tómate un minuto. Escribe tu respuesta antes de seguir. Volveremos a esta pregunta al cierre de la sesión.</p>
+    <blockquote class="q">
+      Para quien llega nuevo al concepto, «rehabilitación» y «cuidados paliativos» parecen contradictorios: la primera se asocia a recuperación y funcionalidad plena; los segundos, a enfermedad limitante de la vida y a morir.
+      <footer>Tiberini, Talbot-Rice y Turner, 2024 · cap. 35, <i>Textbook of Palliative Care</i>, 2.ª ed.</footer>
+    </blockquote>
+    <p class="lede">Esa lectura reduccionista es, precisamente, la barrera que esta sesión busca desmontar — y la razón por la que se necesita investigación que aclare el concepto.</p>
+  </section>
+
+  <!-- 5 ---------------------------------------------------------------- -->
+  <section class="s" data-t="Definir">
+    <p class="eyebrow">Bloque 2 · Concepto</p>
+    <h2>Dos definiciones que hay que tener presentes</h2>
+    <div class="grid2">
+      <div class="card">
+        <p class="eyebrow">Rehabilitación · OMS</p>
+        <p style="margin-top: 10px; font-family: var(--font-display); font-size: 1.15rem; line-height: 1.4;">Un proceso dirigido a permitir que las personas con discapacidad alcancen y mantengan sus niveles funcionales óptimos —físico, sensorial, intelectual, psicológico y social—, dándoles las herramientas para alcanzar independencia y autodeterminación.</p>
+        <p class="src" style="margin-top: 12px;">OMS (2017), citada en Tiberini et al., 2024 · Fig. 1</p>
+      </div>
+      <div class="card" style="border-color: var(--accent);">
+        <p class="eyebrow" style="color: var(--accent);">Rehabilitación paliativa</p>
+        <p style="margin-top: 10px; font-family: var(--font-display); font-size: 1.15rem; line-height: 1.4;">Optimizar la función y el bienestar de las personas y permitirles vivir tan independiente y plenamente como sea posible, con elección y autonomía, <b>dentro de las limitaciones de la enfermedad avanzada</b>. Un enfoque que las empodera para adaptarse a su nuevo estado con dignidad y les ofrece un sistema activo de soporte para anticipar y afrontar constructivamente las pérdidas.</p>
+        <p class="src" style="margin-top: 12px;">Tiberini y Richardson, 2015 · reproducida en Tiberini et al., 2024</p>
+      </div>
+    </div>
+    <blockquote class="q">
+      El trabajo de todo el equipo profesional es permitir que la persona que muere viva hasta que muera, en su máximo potencial, actuando al límite de su capacidad física y mental, con control e independencia siempre que sea posible.
+      <footer>Dame Cicely Saunders · citada en Tiberini et al., 2024, § 1</footer>
+    </blockquote>
+    <p class="lede study-only">Nótese que la idea no es nueva: los principios de rehabilitación estaban ya en la filosofía fundacional de los cuidados paliativos. Lo nuevo es el intento de sistematizarla, medirla e investigarla.</p>
+  </section>
+
+  <!-- 6 ---------------------------------------------------------------- -->
+  <section class="s" data-t="Es / No es">
+    <p class="eyebrow">Bloque 2 · Delimitación conceptual</p>
+    <h2>Qué es y qué no es la rehabilitación paliativa</h2>
+    <div class="isnot">
+      <div class="yes">
+        <h3>Sí es</h3>
+        <ul>
+          <li>Centrada en la persona: se organiza alrededor de sus metas y prioridades.</li>
+          <li>Interdisciplinaria: <b>todos</b> los miembros del equipo contribuyen.</li>
+          <li>Optimizar la función en sentido amplio: moverse, comer y disfrutar la comida, comunicarse, gestionar las AVD, participar en actividades con sentido.</li>
+          <li>Un enfoque habilitante: dar el apoyo justo para que la persona pueda manejarse por sí misma.</li>
+          <li>Vivir <i>con</i> el morir.</li>
+        </ul>
+      </div>
+      <div class="no">
+        <h3>No es</h3>
+        <ul>
+          <li>Dominio exclusivo de fisioterapia y terapia ocupacional.</li>
+          <li>El choque de dos paradigmas contradictorios.</li>
+          <li>Prometer falsas esperanzas de recuperar una función previa cuando eso es irreal.</li>
+          <li>Solo movilidad y marcha.</li>
+          <li>Ser menos cuidadoso, ni alejarse de los valores del cuidado paliativo.</li>
+          <li>Ignorar la muerte o fingir que no está ocurriendo.</li>
+        </ul>
+      </div>
+    </div>
+    <p class="src">Adaptado de la Tabla 1 de Tiberini et al., 2024, basada en Tiberini y Richardson (2015).</p>
+  </section>
+
+  <!-- 7 ---------------------------------------------------------------- -->
+  <section class="s" data-t="4 prácticas">
+    <p class="eyebrow">Bloque 2 · El modelo</p>
+    <h2>Las cuatro prácticas clave</h2>
+    <p class="lede">El corazón operativo del modelo. No son tareas de un profesional: son prácticas que todo el equipo interdisciplinario adopta.</p>
+    <div class="prac">
+      <article><span class="n">PRÁCTICA 1</span><h3>Metas centradas en la persona</h3><p>Trabajar en alianza con la persona para identificar sus prioridades y metas significativas, y ajustar el apoyo interdisciplinario a ellas.</p></article>
+      <article><span class="n">PRÁCTICA 2</span><h3>Foco en la función</h3><p>Que todo el equipo considere el impacto de los síntomas sobre la capacidad de funcionar, reconozca los cambios y actúe para optimizar el potencial funcional y la participación.</p></article>
+      <article><span class="n">PRÁCTICA 3</span><h3>Autogestión apoyada</h3><p>Permitir que la persona siga al mando de su salud y su bienestar, con «justo el apoyo suficiente» de los profesionales para sostener su autoeficacia.</p></article>
+      <article><span class="n">PRÁCTICA 4</span><h3>Habilitación</h3><p>Empoderar a la persona para elegir qué quiere hacer, hacer por sí misma lo que pueda y tomar decisiones —y riesgos positivos— en pos de sus metas.</p></article>
+    </div>
+    <p class="src">Tiberini et al., 2024 · Recuadro 4, basado en Tiberini y Richardson (2015).</p>
+  </section>
+
+  <!-- 8 ---------------------------------------------------------------- -->
+  <section class="s" data-t="Qué te importa">
+    <p class="eyebrow">Bloque 2 · El giro de la pregunta</p>
+    <h2 style="font-size: clamp(1.8rem, 4.4vw, 2.9rem);">«¿Qué te importa?» en vez de «¿qué te pasa?»</h2>
+    <p class="lede">El estudio de casos comparativo de Boa y colaboradores observó a diez profesionales de <i>hospice</i> fijando metas. Encontró que los profesionales enfatizaban resolver problemas y aliviar síntomas —lo que ellos pueden arreglar—, mientras los pacientes hablaban de lo que querían <b>hacer</b>.</p>
+    <blockquote class="q">
+      Me gustaría lavarme yo mismo, cosa que puedo hacer en la cama, pero ellos insisten en lavarme.
+      <footer>Paciente participante · Boa et al., 2018, citado en Tiberini et al., 2024, § 4.1.1</footer>
+    </blockquote>
+    <div class="card">
+      <h3>El ejemplo de Ali</h3>
+      <p style="margin-top: 8px; color: var(--ink-2); font-size: .95rem;">Una de las metas de Ali —el caso que recorre el capítulo— es <b>ir al parque con sus nietos</b>. Para lograrlo: el médico optimiza el manejo farmacológico de la disnea; el fisioterapeuta, la movilidad y el control respiratorio; el terapeuta ocupacional, el manejo de la fatiga; la enfermera, el manejo de la incontinencia; el trabajador social, las estrategias frente a la ansiedad. Cada aporte converge con el esfuerzo del propio Ali.</p>
+      <p class="src" style="margin-top: 10px;">Tiberini et al., 2024 · § 4.1.1</p>
+    </div>
+    <p class="lede"><b>Implicación para la investigación:</b> si las metas del paciente son el desenlace que importa, ¿qué instrumento las mide? Volveremos sobre esto en la sesión 06.</p>
+  </section>
+
+  <!-- 9 ---------------------------------------------------------------- -->
+  <section class="s" data-t="Declinación">
+    <p class="eyebrow">Bloque 4 · Declinación funcional</p>
+    <h2>De dónde viene la pérdida de función</h2>
+    <p class="lede">La discapacidad en la enfermedad avanzada rara vez tiene una sola causa. Distinguir el mecanismo importa porque <b>algunos son reversibles y otros no</b>, y de eso depende qué se puede ofrecer.</p>
+    <div class="grid4">
+      <div class="card"><p class="eyebrow">Mecanismo</p><h3 style="margin-top: 6px;">Reposo en cama</h3><p style="margin-top: 6px; font-size: .9rem; color: var(--ink-2);">Potencialmente reversible con movilización temprana.</p></div>
+      <div class="card"><p class="eyebrow">Mecanismo</p><h3 style="margin-top: 6px;">Desacondicionamiento</h3><p style="margin-top: 6px; font-size: .9rem; color: var(--ink-2);">Responde a ejercicio graduado: «si no lo usas, lo pierdes».</p></div>
+      <div class="card"><p class="eyebrow">Mecanismo</p><h3 style="margin-top: 6px;">Complicaciones neurológicas</h3><p style="margin-top: 6px; font-size: .9rem; color: var(--ink-2);">De la enfermedad o del tratamiento. Reversibilidad variable.</p></div>
+      <div class="card"><p class="eyebrow">Mecanismo</p><h3 style="margin-top: 6px;">Complicaciones musculoesqueléticas</h3><p style="margin-top: 6px; font-size: .9rem; color: var(--ink-2);">Requieren adaptación del entorno y ayudas técnicas.</p></div>
+    </div>
+    <p class="lede">A esto se suma una alta prevalencia de <b>debilidad, dolor, fatiga, ansiedad, depresión y disnea</b>. Es el mismo párrafo que abre la justificación de nuestro contenido programático.</p>
+    <p class="src">Santiago-Palma J, Payne R. Palliative care and rehabilitation. <i>Cancer</i>. 2001;92(4 Suppl):1049-52.</p>
+    <div class="card study-only">
+      <h3>Un matiz que conviene tener claro</h3>
+      <p style="margin-top: 8px; color: var(--ink-2); font-size: .95rem;">La independencia está ligada a la función física, pero no está determinada por ella. Una persona puede perder función y necesitar ayuda para las actividades diarias, y aun así recibir ese apoyo de una forma que le permita <b>mantener su independencia y el control de su vida</b>. Ahí está la diferencia entre cuidar y habilitar.</p>
+      <p class="src" style="margin-top: 10px;">Cotterell (2008), citado en Tiberini et al., 2024, § 3.1.2</p>
+    </div>
+  </section>
+
+  <!-- 10 --------------------------------------------------------------- -->
+  <section class="s" data-t="Trayectorias">
+    <p class="eyebrow">Bloque 4 · El mapa</p>
+    <h2>Cuatro trayectorias, cuatro momentos para rehabilitar</h2>
+    <p class="lede">Cada panel muestra la función a lo largo del tiempo hasta la muerte. Las escalas de tiempo son distintas en cada uno —de minutos a años—, por eso se leen por separado y no superpuestos. <span class="deck-only">Haz clic en un panel.</span><span class="study-only">Selecciona un panel para ver dónde entra la rehabilitación.</span></p>
+    <div class="traj" id="trajGrid"></div>
+    <div id="trajNote" role="status" aria-live="polite"></div>
+    <p class="src">Trayectorias según Lunney et al. (2002) y Murray et al. (2005), reproducidas en <i>Textbook of Palliative Care</i>, 2.ª ed., cap. 40 «Prognostication in Palliative Care», Fig. 1. Las anotaciones sobre el momento de rehabilitar son de esta sesión.</p>
+  </section>
+
+  <!-- 11 --------------------------------------------------------------- -->
+  <section class="s" data-t="Evidencia">
+    <p class="eyebrow">Bloque 4 · Qué tan firme es el piso</p>
+    <h2>Veinte estudios, y no todos pesan lo mismo</h2>
+    <p class="lede">Minosso, Souza y Oliveira revisaron la producción sobre rehabilitación funcional en cuidados paliativos: 597 artículos tamizados, 20 incluidos. Clasificaron cada uno según los niveles de evidencia del <i>National Cancer Institute</i> (PDQ®). <span class="deck-only">Haz clic en una barra para filtrar.</span></p>
+    <div class="ev-wrap">
+      <div>
+        <div class="ev-bars" id="evBars" role="group" aria-label="Estudios por nivel de evidencia"></div>
+        <p class="src" style="margin-top: 12px;">Nivel I es el más fuerte (ensayos aleatorizados con desenlaces duros); IV, el más débil. <b>Solo el 35 % alcanzó nivel I.</b></p>
+        <button class="tbtn" id="evAll" style="margin-top: 12px;">Ver los 20</button>
+      </div>
+      <div class="ev-list" id="evList"></div>
+    </div>
+    <div class="card" style="border-left: 3px solid var(--accent);">
+      <h3>Lo que la revisión concluye — y lo que deja abierto</h3>
+      <p style="margin-top: 8px; color: var(--ink-2); font-size: .95rem;">La rehabilitación es una <b>estrategia viable</b> para combatir la declinación funcional y mejorar la calidad de vida. Pero las autoras advierten que los diseños son de impacto medio y bajo, que las muestras son pequeñas (entre 1 y 572 participantes) y <b>no siempre coherentes con el diseño declarado</b>, y que el 70 % de los estudios viene de Europa y el resto de Estados Unidos.</p>
+      <p style="margin-top: 10px; color: var(--ink); font-size: .95rem;"><b>La pregunta que nos deja:</b> ¿qué significa para Colombia que la base de evidencia se haya construido casi enteramente en países de altos ingresos?</p>
+      <p class="src" style="margin-top: 10px;">Minosso JS, Souza LJ, Oliveira MAC. Rehabilitation in palliative care. <i>Texto Contexto Enferm</i>. 2016;25(3):e1470015.</p>
+    </div>
+  </section>
+
+  <!-- 12 --------------------------------------------------------------- -->
+  <section class="s" data-t="Ensayos">
+    <p class="eyebrow">Bloque 4 · Evidencia de mayor peso</p>
+    <h2>Tres resultados que conviene tener en la cabeza</h2>
+    <div class="grid2">
+      <div class="card">
+        <p class="eyebrow">Ensayo aleatorizado · cáncer avanzado</p>
+        <h3 style="margin-top: 8px;">Nottelmann et al., 2021</h3>
+        <p style="margin-top: 8px; font-size: .93rem; color: var(--ink-2);">288 pacientes con cáncer avanzado recién diagnosticado. Programa ambulatorio interdisciplinario de 12 semanas (1 h de educación + 1 h de ejercicio personalizado por semana) frente a cuidado habitual. Desenlace principal: el cambio en el «problema principal» que el propio paciente eligió al inicio.</p>
+        <p style="margin-top: 10px; font-family: var(--font-data); font-size: .84rem; color: var(--ink);">Mejoría de <b>3,0</b> (IC 95 % 0,0–6,0; p = 0,047) a favor de la intervención.</p>
+        <p class="src" style="margin-top: 8px;">Nótese el límite inferior del intervalo de confianza. Discutiremos qué implica en la sesión 06.</p>
+      </div>
+      <div class="card">
+        <p class="eyebrow">Revisión Cochrane · EPOC</p>
+        <h3 style="margin-top: 8px;">McCarthy et al., 2015</h3>
+        <p style="margin-top: 8px; font-size: .93rem; color: var(--ink-2);">65 ensayos, 3 822 participantes. La rehabilitación pulmonar alivia la disnea y la fatiga, mejora la función física y emocional y la sensación de control, y reduce la frecuencia de hospitalizaciones — <b>independientemente de la gravedad de la enfermedad</b>.</p>
+        <p class="src" style="margin-top: 10px;">Citado en Tiberini et al., 2024, § 5.5.1</p>
+      </div>
+      <div class="card">
+        <p class="eyebrow">Revisión sistemática · ejercicio en cáncer avanzado</p>
+        <h3 style="margin-top: 8px;">Dittus et al., 2017</h3>
+        <p style="margin-top: 8px; font-size: .93rem; color: var(--ink-2);">82 estudios. Beneficios claros en capacidad aeróbica, fuerza y función física; la fatiga y la calidad de vida mejoraron en la mitad de los estudios.</p>
+        <p class="src" style="margin-top: 10px;">Citado en Tiberini et al., 2024, § 5.5.1</p>
+      </div>
+      <div class="card" style="border-color: var(--accent);">
+        <p class="eyebrow" style="color: var(--accent);">Lo que todavía no sabemos</p>
+        <h3 style="margin-top: 8px;">La agenda pendiente</h3>
+        <p style="margin-top: 8px; font-size: .93rem; color: var(--ink-2);">Se necesitan más ensayos para establecer <b>cuáles son los componentes efectivos</b>, cuál es el <b>momento óptimo</b> de la intervención y <b>qué instrumentos de desenlace</b> son los adecuados.</p>
+        <p style="margin-top: 10px; font-size: .93rem; color: var(--ink);">Ese vacío es, literalmente, el espacio de trabajo de esta asignatura.</p>
+        <p class="src" style="margin-top: 8px;">Tiberini et al., 2024, § 3.2</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 13 --------------------------------------------------------------- -->
+  <section class="s" data-t="Control de lectura">
+    <p class="eyebrow">Bloque 4 · Verificación de comprensión</p>
+    <h2>Ocho preguntas</h2>
+    <p class="lede">Responde sin volver al texto. La retroalimentación indica la fuente exacta para que puedas verificarla. <span class="study-only">Si estás preparando la sesión, resuélvelas <b>antes</b> de la clase: son el control de la lectura previa.</span> <span id="quizScore"></span></p>
+    <div class="quiz" id="quiz"></div>
+    <button class="tbtn" id="quizReset" style="width: fit-content;">Reiniciar</button>
+  </section>
+
+  <!-- 14 --------------------------------------------------------------- -->
+  <section class="s" data-t="Taller">
+    <p class="eyebrow">Bloque 4 · Taller grupal · 60 minutos</p>
+    <h2>Mapa de trayectoria con puntos de intervención</h2>
+    <p class="lede">En grupos: elijan una trayectoria, ubiquen cada intervención en la fase donde tenga mayor sentido y <b>justifiquen la ubicación con evidencia</b>. Descarguen el mapa y añádanlo a la ficha del grupo.</p>
+    <div class="tw-controls">
+      <label class="src" for="twTraj">Trayectoria</label>
+      <select id="twTraj"></select>
+      <label class="src" for="twGroup">Grupo</label>
+      <input type="text" id="twGroup" placeholder="Nombres del grupo" size="26">
+      <button class="tbtn" id="twExport">Descargar mapa (PNG)</button>
+      <button class="tbtn" id="twReset">Vaciar</button>
+    </div>
+    <div id="twPool">
+      <p class="eyebrow" style="margin-bottom: 10px;">Intervenciones disponibles — arrástralas a una fase</p>
+      <div class="chips" id="twChips"></div>
+    </div>
+    <div class="tw-board" id="twBoard">
+      <div class="zone" data-zone="0"><h4>Fase temprana</h4><span class="hint">FUNCIÓN CONSERVADA</span><div class="chips"></div></div>
+      <div class="zone" data-zone="1"><h4>Fase intermedia</h4><span class="hint">DECLINACIÓN INSTALADA</span><div class="chips"></div></div>
+      <div class="zone" data-zone="2"><h4>Fase avanzada / final</h4><span class="hint">ÚLTIMAS SEMANAS</span><div class="chips"></div></div>
+    </div>
+    <p class="src">Con teclado: selecciona una intervención con <kbd>Enter</kbd> y luego elige la fase con <kbd>1</kbd> <kbd>2</kbd> <kbd>3</kbd>.</p>
+  </section>
+
+  <!-- 15 --------------------------------------------------------------- -->
+  <section class="s" data-t="Cierre">
+    <p class="eyebrow">Bloque 5 · Cierre</p>
+    <h2>Volvamos a la pregunta del inicio</h2>
+    <blockquote class="q">
+      En su sentido más simple, la rehabilitación en cuidados paliativos consiste en permitir que las personas vivan plenamente hasta que mueran.
+      <footer>Tiberini y Richardson, 2015 · reproducida en Tiberini et al., 2024, resumen</footer>
+    </blockquote>
+    <div class="grid2">
+      <div class="card">
+        <h3>Lo que nos llevamos</h3>
+        <ul class="tick" style="margin-top: 10px;">
+          <li><span>Rehabilitación y cuidados paliativos no se oponen: comparten el objetivo de calidad de vida y un modelo holístico e interdisciplinario.</span></li>
+          <li><span>La declinación funcional tiene mecanismos identificables, y varios son modificables.</span></li>
+          <li><span>La trayectoria de la enfermedad indica <i>cuándo</i> y <i>cómo</i> rehabilitar.</span></li>
+          <li><span>La evidencia es prometedora pero desigual: solo un tercio de los estudios alcanza nivel I.</span></li>
+        </ul>
+      </div>
+      <div class="card" style="border-color: var(--accent);">
+        <p class="eyebrow" style="color: var(--accent);">Trabajo independiente · 6 horas</p>
+        <ul class="tick" style="margin-top: 10px;">
+          <li><span><b>Leer</b> el capítulo 35 de Tiberini, Talbot-Rice y Turner (2024), secciones 1 a 4.</span></li>
+          <li><span><b>Diligenciar</b> la ficha de lectura crítica sobre Minosso et al. (2016).</span></li>
+          <li><span><b>Buscar</b> en UAN–SINAB un artículo adicional sobre rehabilitación paliativa publicado en América Latina y traerlo a la sesión 02.</span></li>
+          <li><span><b>Preparar</b> para la sesión 02: modelos de intervención en rehabilitación paliativa.</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 16 --------------------------------------------------------------- -->
+  <section class="s" data-t="Referencias">
+    <p class="eyebrow">Fuentes de esta sesión</p>
+    <h2>Referencias</h2>
+    <ol class="refs">
+      <li><b>Tiberini R, Talbot-Rice H, Turner K.</b> Rehabilitation in Palliative Care: Principles in the Context of Life-Limiting Illness, Practices for the Interdisciplinary Team, and the Specialist Contribution of Physiotherapy and Occupational Therapy. En: MacLeod RD, Van den Block L, eds. <i>Textbook of Palliative Care</i>. 2.ª ed. Cham: Springer; 2024. p. 605-639.</li>
+      <li><b>Minosso JS, Souza LJ, Oliveira MAC.</b> Rehabilitation in palliative care. <i>Texto Contexto Enferm</i>. 2016;25(3):e1470015.</li>
+      <li><b>Santiago-Palma J, Payne R.</b> Palliative care and rehabilitation. <i>Cancer</i>. 2001;92(4 Suppl):1049-52.</li>
+      <li><b>Bickenbach J.</b> The world report on disability. <i>Disability and Society</i>. 2011;26(5).</li>
+      <li><b>Lunney JR, Lynn J, Hogan C.</b> Profiles of older Medicare decedents. Reproducido en: <i>Textbook of Palliative Care</i>. 2.ª ed. Cap. 40, «Prognostication in Palliative Care», Fig. 1.</li>
+      <li><b>Tiberini R, Richardson H.</b> Rehabilitative Palliative Care: Enabling people to live fully until they die. Hospice UK; 2015.</li>
+      <li><b>Eva G, Payne C.</b> Developing research capital in palliative rehabilitation: A ten point manifesto. <i>Progress in Palliative Care</i>. 2014;22.</li>
+    </ol>
+    <p class="src">Las referencias completas del espacio académico están en <code>recursos/referencias/referencias.bib</code>.</p>
+  </section>
+
+</main>
+
+<div id="nav">
+  <button class="tbtn" id="prev">← Anterior</button>
+  <span class="count" id="count"></span>
+  <button class="tbtn" id="next">Siguiente →</button>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  /* ============================================================ modo */
+  var body = document.body;
+  var slides = Array.prototype.slice.call(document.querySelectorAll(".s"));
+  var idx = 0;
+
+  function setMode(m) {
+    body.classList.toggle("mode-deck", m === "deck");
+    body.classList.toggle("mode-study", m === "study");
+    document.getElementById("mDeck").setAttribute("aria-pressed", String(m === "deck"));
+    document.getElementById("mStudy").setAttribute("aria-pressed", String(m === "study"));
+    if (m === "deck") show(idx);
+  }
+  document.getElementById("mDeck").onclick = function () { setMode("deck"); };
+  document.getElementById("mStudy").onclick = function () { setMode("study"); };
+  // El arranque va al final del script, cuando todos los nodos ya están resueltos.
+
+  function show(i) {
+    idx = Math.max(0, Math.min(slides.length - 1, i));
+    slides.forEach(function (s, k) { s.classList.toggle("on", k === idx); });
+    document.getElementById("count").textContent = (idx + 1) + " / " + slides.length;
+    drawRail();
+    if (history.replaceState) history.replaceState(null, "", "#" + (idx + 1));
+    if (body.classList.contains("mode-deck")) window.scrollTo(0, 0);
+  }
+  document.getElementById("prev").onclick = function () { show(idx - 1); };
+  document.getElementById("next").onclick = function () { show(idx + 1); };
+
+  document.addEventListener("keydown", function (e) {
+    var t = e.target.tagName;
+    if (t === "INPUT" || t === "SELECT" || t === "TEXTAREA") return;
+    if (e.key === "ArrowRight" || e.key === "PageDown") { show(idx + 1); }
+    else if (e.key === "ArrowLeft" || e.key === "PageUp") { show(idx - 1); }
+    else if (e.key === "s" || e.key === "S") { setMode(body.classList.contains("mode-deck") ? "study" : "deck"); }
+    else if (e.key === "t" || e.key === "T") { toggleTimer(); }
+  });
+
+  /* rail: la sesión dibujada como una trayectoria.
+     La altura de cada punto codifica el bloque horario al que pertenece la
+     diapositiva, así que los escalones marcan los cambios de bloque. */
+  var BLOCK_OF = [1, 1, 1, 2, 2, 2, 2, 2, 2, 4, 4, 4, 4, 4, 5, 5];
+  var BLOCK_Y = { 1: 20, 2: 15.5, 4: 11, 5: 6.5 };
+  var railSvg = document.getElementById("railSvg");
+  function drawRail() {
+    var n = slides.length, w = railSvg.clientWidth || 900;
+    var pts = slides.map(function (s, i) {
+      return {
+        x: 10 + (w - 20) * (n === 1 ? 0 : i / (n - 1)),
+        y: BLOCK_Y[BLOCK_OF[i] || 1],
+        t: "Bloque " + (BLOCK_OF[i] || 1) + " · " + s.dataset.t
+      };
+    });
+    var d = pts.map(function (p, i) { return (i ? "L" : "M") + p.x.toFixed(1) + " " + p.y.toFixed(1); }).join(" ");
+    var out = '<path class="rail-line" d="' + d + '"/>';
+    pts.forEach(function (p, i) {
+      out += '<circle class="dot' + (i === idx ? " on" : "") + '" data-i="' + i + '"'
+        + ' cx="' + p.x.toFixed(1) + '" cy="' + p.y.toFixed(1) + '" r="' + (i === idx ? 5.5 : 3.2) + '">'
+        + '<title>' + p.t + '</title></circle>';
+    });
+    railSvg.innerHTML = out;
+  }
+  railSvg.addEventListener("click", function (e) {
+    var c = e.target.closest(".dot");
+    if (c) show(parseInt(c.dataset.i, 10));
+  });
+  window.addEventListener("resize", drawRail);
+
+  /* ============================================================ temporizador */
+  var BLOCKS = [
+    { n: "Bloque 1 · Apertura y encuadre", s: 20 * 60 },
+    { n: "Bloque 2 · Desarrollo conceptual", s: 60 * 60 },
+    { n: "Bloque 3 · Receso", s: 15 * 60 },
+    { n: "Bloque 4 · Taller y evidencia", s: 60 * 60 },
+    { n: "Bloque 5 · Cierre", s: 25 * 60 }
+  ];
+  var bi = 0, left = BLOCKS[0].s, running = false, tick = null;
+  var elClock = document.getElementById("tClock"), elBlock = document.getElementById("tBlock"),
+      elToggle = document.getElementById("tToggle"), elTimer = document.getElementById("timer");
+
+  function paint() {
+    var m = Math.floor(Math.abs(left) / 60), s = Math.abs(left) % 60;
+    elClock.textContent = (left < 0 ? "−" : "") + m + ":" + (s < 10 ? "0" : "") + s;
+    elBlock.textContent = BLOCKS[bi].n;
+    elToggle.textContent = running ? "Pausar" : "Iniciar";
+    elTimer.classList.toggle("run", running);
+  }
+  function toggleTimer() {
+    running = !running;
+    if (running) { tick = setInterval(function () { left--; paint(); }, 1000); }
+    else { clearInterval(tick); }
+    paint();
+  }
+  elToggle.onclick = toggleTimer;
+  document.getElementById("tNext").onclick = function () {
+    bi = (bi + 1) % BLOCKS.length; left = BLOCKS[bi].s; paint();
+  };
+  paint();
+
+  /* ============================================================ trayectorias */
+  var TRAJ = [
+    {
+      k: "sudden", name: "Muerte súbita", sub: "Función alta hasta el final",
+      pts: [[0, .93], [.35, .93], [.6, .92], [.8, .91], [.815, .04]],
+      bands: [],
+      desc: "Función conservada, con muerte inesperada. No hay una fase de declinación que anticipar.",
+      rehab: "No hay ventana de rehabilitación anticipatoria. El aporte del equipo se desplaza hacia la prevención y hacia el acompañamiento del duelo de la familia."
+    },
+    {
+      k: "cancer", name: "Enfermedad terminal", sub: "Típica del cáncer",
+      pts: [[0, .90], [.3, .87], [.5, .83], [.65, .75], [.75, .60], [.84, .38], [.91, .17], [.96, .03]],
+      bands: [[.28, .78]],
+      desc: "Declinación global lenta del estado funcional, seguida de una caída relativamente rápida. La mayor parte de la pérdida de peso y de función ocurre en los últimos meses.",
+      rehab: "La ventana está <b>antes</b> de la caída rápida: prehabilitación, mantenimiento de la función y anticipación de ayudas técnicas. Esperar a la fase terminal desperdicia el mejor momento."
+    },
+    {
+      k: "organ", name: "Falla de órgano", sub: "Entrada y reentrada",
+      pts: [[0, .78], [.10, .76], [.16, .40], [.25, .64], [.36, .60], [.43, .26], [.52, .53], [.63, .48], [.70, .18], [.79, .40], [.88, .34], [.95, .04]],
+      bands: [[.16, .27], [.43, .54], [.70, .81]],
+      desc: "Exacerbaciones agudas con recuperación parcial. Tras cada episodio que la persona sobrevive, queda un deterioro acumulado. El momento de la muerte permanece incierto.",
+      rehab: "La ventana se repite: <b>después de cada exacerbación</b>, para recuperar la función perdida antes de que el deterioro se consolide. Es el fundamento de la rehabilitación cardiopulmonar."
+    },
+    {
+      k: "frailty", name: "Fragilidad y demencia", sub: "Declinación prolongada",
+      pts: [[0, .44], [.2, .40], [.4, .35], [.55, .30], [.7, .24], [.85, .15], [1, .04]],
+      bands: [[0, .9]],
+      desc: "Discapacidad progresiva desde una línea de base ya baja, sea por deterioro cognitivo o por fragilidad de múltiples sistemas. Pérdida lenta de peso y de capacidad funcional.",
+      rehab: "La ventana es <b>toda la trayectoria</b>, con intervención continua y de baja intensidad: mantener las actividades de la vida diaria, prevenir el desacondicionamiento y adaptar el entorno."
+    }
+  ];
+
+  var grid = document.getElementById("trajGrid"), note = document.getElementById("trajNote");
+  var W = 260, H = 118, PADL = 24, PADR = 8, PADT = 10, PADB = 22;
+
+  function curve(pts) {
+    var iw = W - PADL - PADR, ih = H - PADT - PADB;
+    return pts.map(function (p, i) {
+      var x = PADL + p[0] * iw, y = PADT + (1 - p[1]) * ih;
+      return (i ? "L" : "M") + x.toFixed(1) + " " + y.toFixed(1);
+    }).join(" ");
+  }
+
+  TRAJ.forEach(function (t, i) {
+    var iw = W - PADL - PADR, ih = H - PADT - PADB;
+    var g = "";
+    for (var k = 0; k <= 3; k++) {
+      var y = PADT + ih * k / 3;
+      g += '<line class="tgrid" x1="' + PADL + '" y1="' + y.toFixed(1) + '" x2="' + (W - PADR) + '" y2="' + y.toFixed(1) + '"/>';
+    }
+    var bandSvg = t.bands.map(function (b) {
+      return '<rect class="tband" x="' + (PADL + b[0] * iw).toFixed(1) + '" y="' + PADT + '" width="'
+        + ((b[1] - b[0]) * iw).toFixed(1) + '" height="' + ih + '"/>';
+    }).join("");
+    var fig = document.createElement("figure");
+    fig.tabIndex = 0;
+    fig.setAttribute("role", "button");
+    fig.dataset.i = String(i);
+    fig.setAttribute("aria-label", t.name + ". " + t.desc);
+    fig.innerHTML =
+      '<figcaption><b>' + t.name + '</b><span class="pct">' + t.sub + '</span></figcaption>'
+      + '<svg viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-hidden="true">'
+      + g + bandSvg
+      + '<line class="taxis" x1="' + PADL + '" y1="' + PADT + '" x2="' + PADL + '" y2="' + (H - PADB) + '"/>'
+      + '<line class="taxis" x1="' + PADL + '" y1="' + (H - PADB) + '" x2="' + (W - PADR) + '" y2="' + (H - PADB) + '"/>'
+      + '<path class="tline" d="' + curve(t.pts) + '"/>'
+      + '<text class="axl" x="2" y="' + (PADT + 6) + '">ALTA</text>'
+      + '<text class="axl" x="2" y="' + (H - PADB) + '">BAJA</text>'
+      + '<text class="axl" x="' + PADL + '" y="' + (H - 6) + '">FUNCIÓN / TIEMPO →</text>'
+      + '<text class="axl" x="' + (W - PADR) + '" y="' + (H - 6) + '" text-anchor="end">MUERTE</text>'
+      + '</svg>';
+    grid.appendChild(fig);
+  });
+
+  function selectTraj(i) {
+    Array.prototype.forEach.call(grid.children, function (f, k) { f.classList.toggle("sel", k === i); });
+    var t = TRAJ[i];
+    note.innerHTML = '<h3>' + t.name + '</h3><p>' + t.desc + '</p>'
+      + '<p class="rehab"><b>Dónde entra la rehabilitación · </b>' + t.rehab + '</p>';
+  }
+  grid.addEventListener("click", function (e) {
+    var f = e.target.closest("figure"); if (f) selectTraj(parseInt(f.dataset.i, 10));
+  });
+  grid.addEventListener("keydown", function (e) {
+    if (e.key !== "Enter" && e.key !== " ") return;
+    var f = e.target.closest("figure");
+    if (f) { e.preventDefault(); selectTraj(parseInt(f.dataset.i, 10)); }
+  });
+  selectTraj(1);
+
+  /* ============================================================ evidencia */
+  var STUDIES = [
+    { a: "Buss T (2009)", c: "Polonia", iv: "Kinesioterapia", o: "Reduce la intensidad de la fatiga.", l: 2 },
+    { a: "Cheville AL (2013)", c: "EE. UU.", iv: "Programa domiciliario de caminata y entrenamiento de fuerza", o: "Mejora movilidad, fatiga y calidad del sueño en cáncer de pulmón y colorrectal estadio IV.", l: 1 },
+    { a: "Clemens KE (2010)", c: "Alemania", iv: "Drenaje linfático manual", o: "Mejora la intensidad del dolor y la disnea en la mayoría de los pacientes.", l: 3 },
+    { a: "Granda-Cameron C (2010)", c: "EE. UU.", iv: "Programa multidisciplinario", o: "Ganancia de peso, aumento de masa celular corporal y menor carga sintomática.", l: 2 },
+    { a: "Gulde I (2011)", c: "Suecia", iv: "Ejercicio físico guiado por fisioterapeuta", o: "Estructura la rutina, reduce la fatiga, aumenta la sensación de control corporal y la esperanza.", l: 3 },
+    { a: "Guo Y (2011)", c: "EE. UU.", iv: "Fisioterapia, TO, fonoaudiología y enfermería de rehabilitación", o: "Pacientes asténicos hospitalizados con tumores sólidos o hematológicos logran ganancia funcional significativa.", l: 3 },
+    { a: "Henke CC (2013)", c: "Alemania", iv: "Entrenamiento adicional de fuerza y resistencia", o: "Mejora funcionalidad, resistencia y fuerza incluso durante quimioterapia paliativa.", l: 1 },
+    { a: "Javier NS (2011)", c: "EE. UU.", iv: "Intervenciones de rehabilitación variadas", o: "Beneficios en capacidad funcional, calidad de vida, movilidad, fatiga, dolor, bienestar, disnea, estado emocional y función cognitiva.", l: 4 },
+    { a: "Jensen W (2014a)", c: "Alemania", iv: "Entrenamiento aeróbico o de resistencia en grupo", o: "Factible en cáncer gastrointestinal con quimioterapia paliativa; mejora síntomas y actividades de la vida diaria.", l: 1 },
+    { a: "Jensen W (2014b)", c: "Alemania", iv: "Ejercicio físico o fisioterapia", o: "Factible en más del 90 % de pacientes con cáncer terminal; faltan ensayos prospectivos de eficacia.", l: 3 },
+    { a: "Jones L (2013)", c: "Inglaterra", iv: "Ejercicios de rehabilitación en el domicilio", o: "Reduce significativamente las necesidades no atendidas de sobrevivientes, con probable buena relación costo-efectividad.", l: 1 },
+    { a: "Kasven-Gonzalez N (2010)", c: "EE. UU.", iv: "Fisioterapia y terapia ocupacional", o: "Mejora la calidad de vida percibida, el equilibrio, la fuerza, la movilidad y la sociabilidad.", l: 3 },
+    { a: "Litterini AJ (2013)", c: "EE. UU.", iv: "Ejercicio de resistencia o cardiovascular", o: "Los pacientes con cáncer avanzado parecen mejorar su movilidad funcional.", l: 1 },
+    { a: "Maddocks M (2013)", c: "Inglaterra", iv: "Estimulación eléctrica neuromuscular", o: "Medio efectivo para reducir la debilidad muscular en EPOC, cardiopatía crónica y cáncer.", l: 1 },
+    { a: "Oechsle K (2011)", c: "Alemania", iv: "Ejercicio físico", o: "Correlación positiva y estadísticamente significativa con calidad de vida; dos tercios de los pacientes críticos se interesan en participar.", l: 2 },
+    { a: "Oldervoll LM (2011)", c: "Noruega", iv: "Grupo de ejercicio físico", o: "No redujo la fatiga, pero mejoró significativamente el desempeño físico tras ocho semanas.", l: 1 },
+    { a: "Saarik J (2010)", c: "Inglaterra", iv: "Programa de manejo de la fatiga", o: "Reduce la intensidad de la fatiga.", l: 2 },
+    { a: "Selman LE (2011)", c: "Inglaterra", iv: "Yoga y danzaterapia", o: "Pueden beneficiar a pacientes en cuidados paliativos.", l: 2 },
+    { a: "Sturm I (2014)", c: "Alemania", iv: "Clases de danza", o: "Abordaje apropiado y efectivo para la fatiga relacionada con el cáncer.", l: 2 },
+    { a: "van Dam van Isselt EF (2013)", c: "Países Bajos", iv: "Programa de rehabilitación geriátrica", o: "Beneficios sustanciales en EPOC como parte de la rehabilitación en cuidados paliativos.", l: 3 }
+  ];
+  var LVLCOL = ["var(--lvl-1)", "var(--lvl-2)", "var(--lvl-3)", "var(--lvl-4)"];
+  var LVLNAME = ["I", "II", "III", "IV"];
+  var evBars = document.getElementById("evBars"), evList = document.getElementById("evList");
+  var counts = [0, 0, 0, 0];
+  STUDIES.forEach(function (s) { counts[s.l - 1]++; });
+  var maxc = Math.max.apply(null, counts);
+  var evFilter = 0;
+
+  counts.forEach(function (c, i) {
+    var b = document.createElement("button");
+    b.className = "ev-row";
+    b.setAttribute("aria-pressed", "false");
+    b.dataset.l = String(i + 1);
+    b.innerHTML = '<span class="lab">Nivel ' + LVLNAME[i] + '</span>'
+      + '<span class="track"><span class="fill" style="width:' + (c / maxc * 100) + '%; background:' + LVLCOL[i] + '"></span></span>'
+      + '<span class="val">' + c + ' · ' + Math.round(c / STUDIES.length * 100) + ' %</span>';
+    evBars.appendChild(b);
+  });
+
+  function renderEv() {
+    var list = evFilter ? STUDIES.filter(function (s) { return s.l === evFilter; }) : STUDIES;
+    evList.innerHTML = list.map(function (s) {
+      return '<div class="ev-item"><div class="hd"><span class="who">' + s.a + ' <span class="src">· ' + s.c + '</span></span>'
+        + '<span class="lvl-chip" style="background:' + LVLCOL[s.l - 1] + '">NIVEL ' + LVLNAME[s.l - 1] + '</span></div>'
+        + '<div class="iv">' + s.iv + '</div><div class="out">' + s.o + '</div></div>';
+    }).join("");
+    Array.prototype.forEach.call(evBars.children, function (b) {
+      b.setAttribute("aria-pressed", String(parseInt(b.dataset.l, 10) === evFilter));
+    });
+  }
+  evBars.addEventListener("click", function (e) {
+    var b = e.target.closest(".ev-row"); if (!b) return;
+    var l = parseInt(b.dataset.l, 10);
+    evFilter = (evFilter === l) ? 0 : l;
+    renderEv();
+  });
+  document.getElementById("evAll").onclick = function () { evFilter = 0; renderEv(); };
+  renderEv();
+
+  /* ============================================================ quiz */
+  var QUIZ = [
+    {
+      q: "Según Tiberini y Richardson, ¿cuál es el objetivo de la rehabilitación paliativa?",
+      o: ["Recuperar el nivel funcional previo a la enfermedad.",
+          "Optimizar la función y el bienestar dentro de las limitaciones de la enfermedad avanzada.",
+          "Prolongar la supervivencia mediante ejercicio estructurado.",
+          "Sustituir el control de síntomas por intervención física."],
+      c: 1,
+      f: "El objetivo no es revertir la enfermedad ni recuperar el estado previo, sino optimizar función y bienestar <i>dentro de las limitaciones</i> de la enfermedad avanzada, con elección y autonomía. Prometer recuperación de la función previa cuando es irreal aparece explícitamente en la columna «no es» de la Tabla 1.",
+      s: "Tiberini et al., 2024 · Recuadro 2 y Tabla 1"
+    },
+    {
+      q: "¿Cuál de estas afirmaciones describe correctamente de quién es responsabilidad la rehabilitación paliativa?",
+      o: ["De fisioterapia y terapia ocupacional, que son las disciplinas formadas para ello.",
+          "Del médico tratante, que decide cuándo derivar.",
+          "De todo el equipo interdisciplinario, con aporte especializado de fisioterapia y terapia ocupacional.",
+          "Del cuidador principal, con supervisión profesional."],
+      c: 2,
+      f: "El capítulo insiste en que considerar la rehabilitación dominio exclusivo de los profesionales aliados de la salud es una de las principales barreras conceptuales, y que corregir esa idea es crítico para no privar a los pacientes de oportunidades de mejorar su calidad de vida. Es «asunto de todos».",
+      s: "Tiberini et al., 2024 · § 2.2 y Tabla 1"
+    },
+    {
+      q: "En la trayectoria de falla de órgano, ¿cuándo aporta más la rehabilitación?",
+      o: ["Al inicio, antes de la primera exacerbación.",
+          "Después de cada exacerbación, para recuperar la función perdida.",
+          "Solo en las últimas semanas de vida.",
+          "No aporta, porque el deterioro es irreversible."],
+      c: 1,
+      f: "La trayectoria de falla de órgano se describe como de «entrada y reentrada»: exacerbaciones agudas con recuperación parcial, donde cada episodio deja un deterioro acumulado. La ventana se repite tras cada episodio, y ese es el fundamento de los programas de rehabilitación cardiopulmonar.",
+      s: "Textbook of Palliative Care, 2.ª ed., cap. 40 · Murray et al., 2005"
+    },
+    {
+      q: "En la revisión de Minosso et al. (2016), ¿qué proporción de los 20 estudios alcanzó nivel I de evidencia?",
+      o: ["El 70 %.", "El 50 %.", "El 35 %.", "El 5 %."],
+      c: 2,
+      f: "El 35 % alcanzó nivel I; el 30 % nivel II, el 30 % nivel III y el 5 % nivel IV. Es un dato importante: la conclusión de que la rehabilitación «es viable» descansa mayoritariamente en diseños de impacto medio y bajo.",
+      s: "Minosso et al., 2016 · Tabla 3 y Resultados"
+    },
+    {
+      q: "¿Cuál NO es uno de los mecanismos de discapacidad descritos en la enfermedad avanzada?",
+      o: ["Reposo en cama.",
+          "Desacondicionamiento.",
+          "Complicaciones neurológicas y musculoesqueléticas de la enfermedad o su tratamiento.",
+          "Rechazo voluntario del paciente a la terapia física."],
+      c: 3,
+      f: "Los tres primeros son los mecanismos descritos por Santiago-Palma y Payne, y son el mismo texto que abre la justificación de nuestro contenido programático. El rechazo a la terapia es un problema de adherencia, no un mecanismo fisiopatológico de discapacidad.",
+      s: "Santiago-Palma J, Payne R. Cancer. 2001;92(4 Suppl):1049-52"
+    },
+    {
+      q: "«¿Qué te importa?» en lugar de «¿qué te pasa?» apunta a un hallazgo concreto de la investigación. ¿Cuál?",
+      o: ["Que los pacientes prefieren no hablar de sus síntomas.",
+          "Que los profesionales tienden a fijar metas sobre problemas y síntomas, mientras los pacientes las fijan sobre lo que quieren hacer.",
+          "Que las metas funcionales no son medibles.",
+          "Que la comunicación empática mejora la supervivencia."],
+      c: 1,
+      f: "En el estudio de casos comparativo de Boa et al., los profesionales enfatizaban resolver problemas y aliviar síntomas —lo que ellos pueden manejar—, mientras las metas de los pacientes se referían a actividades cotidianas y a preservar la independencia. Cuando esas metas no se reconocen, se pierden oportunidades de intervención.",
+      s: "Boa et al. (2014, 2018), citado en Tiberini et al., 2024 · § 4.1.1"
+    },
+    {
+      q: "En el ensayo de Nottelmann et al. (2021) el resultado fue una mejoría de 3,0 (IC 95 % 0,0–6,0; p = 0,047). ¿Cómo se interpreta ese intervalo?",
+      o: ["El efecto es grande y clínicamente relevante sin ninguna duda.",
+          "El resultado es estadísticamente significativo, pero el límite inferior toca el cero: el efecto podría ser nulo.",
+          "El resultado no es estadísticamente significativo.",
+          "El intervalo indica que el estudio tuvo un error de cálculo."],
+      c: 1,
+      f: "Con p = 0,047 el resultado es estadísticamente significativo por convención, pero el límite inferior del intervalo de confianza llega hasta 0,0: la estimación es compatible con un efecto muy pequeño o nulo. Significancia estadística y relevancia clínica no son lo mismo — es la distinción central de la sesión 06.",
+      s: "Nottelmann et al., 2021, citado en Tiberini et al., 2024 · § 3.2"
+    },
+    {
+      q: "La revisión de Minosso señala que el 70 % de los estudios provino de Europa y el resto de Estados Unidos. ¿Qué implica para nosotros?",
+      o: ["Nada: la evidencia biomédica es universal.",
+          "Que los resultados no son válidos.",
+          "Que la transferibilidad al contexto colombiano debe argumentarse, no asumirse.",
+          "Que solo debemos usar estudios latinoamericanos."],
+      c: 2,
+      f: "La validez interna de un estudio no garantiza su aplicabilidad a otro contexto. Diferencias en sistema de salud, disponibilidad de talento humano rehabilitador, condiciones socioeconómicas y acceso domiciliario afectan la transferibilidad. Descartar la evidencia tampoco es la respuesta: hay que argumentar explícitamente la extrapolación.",
+      s: "Minosso et al., 2016 · Resultados. Ver también Sampedro Pilegaard et al., 2021"
+    }
+  ];
+
+  var quizEl = document.getElementById("quiz"), scoreEl = document.getElementById("quizScore");
+  var answered = {}, correct = 0;
+
+  function buildQuiz() {
+    answered = {}; correct = 0;
+    quizEl.innerHTML = QUIZ.map(function (q, i) {
+      return '<div class="qz" data-q="' + i + '">'
+        + '<div class="qh"><span class="qn">' + (i + 1 < 10 ? "0" : "") + (i + 1) + '</span><span class="qt">' + q.q + '</span></div>'
+        + '<div class="opts">' + q.o.map(function (o, k) {
+            return '<button class="opt" data-k="' + k + '"><span class="k">' + "ABCD"[k] + '</span><span>' + o + '</span></button>';
+          }).join("") + '</div>'
+        + '<div class="fb"><span></span><span class="src"></span></div></div>';
+    }).join("");
+    updateScore();
+  }
+  function updateScore() {
+    var n = Object.keys(answered).length;
+    scoreEl.textContent = n ? ("Respondidas " + n + " de " + QUIZ.length + " · aciertos: " + correct) : "";
+  }
+  quizEl.addEventListener("click", function (e) {
+    var btn = e.target.closest(".opt"); if (!btn) return;
+    var card = btn.closest(".qz"), qi = parseInt(card.dataset.q, 10);
+    if (answered[qi]) return;
+    answered[qi] = true;
+    var q = QUIZ[qi], k = parseInt(btn.dataset.k, 10);
+    if (k === q.c) correct++;
+    Array.prototype.forEach.call(card.querySelectorAll(".opt"), function (o) {
+      var ok = parseInt(o.dataset.k, 10) === q.c;
+      if (ok) o.classList.add("ok");
+      else if (o === btn) o.classList.add("no");
+      o.disabled = true;
+    });
+    var fb = card.querySelector(".fb");
+    fb.firstElementChild.innerHTML = q.f;
+    fb.lastElementChild.textContent = q.s;
+    fb.classList.add("show");
+    updateScore();
+  });
+  document.getElementById("quizReset").onclick = buildQuiz;
+  buildQuiz();
+
+  /* ============================================================ taller */
+  var IVS = [
+    "Prehabilitación antes del tratamiento", "Ejercicio aeróbico graduado",
+    "Entrenamiento de fuerza", "Rehabilitación cardiopulmonar",
+    "Manejo de la fatiga", "Adaptación del domicilio",
+    "Prescripción de ayudas técnicas", "Entrenamiento del cuidador",
+    "Drenaje linfático manual", "Manejo de la disfagia",
+    "Estimulación eléctrica neuromuscular", "Establecimiento de metas con la persona",
+    "Posicionamiento y prevención de úlceras", "Terapia ocupacional en AVD"
+  ];
+  var twSel = document.getElementById("twTraj"), twChips = document.getElementById("twChips"),
+      twBoard = document.getElementById("twBoard");
+  TRAJ.forEach(function (t, i) {
+    var o = document.createElement("option"); o.value = String(i); o.textContent = t.name; twSel.appendChild(o);
+  });
+  twSel.value = "1";
+
+  var picked = null;
+  function makeChip(label) {
+    var c = document.createElement("button");
+    c.className = "chip"; c.type = "button"; c.draggable = true; c.textContent = label;
+    c.addEventListener("dragstart", function (e) {
+      e.dataTransfer.setData("text/plain", label); e.dataTransfer.effectAllowed = "move";
+    });
+    c.addEventListener("click", function () {
+      if (picked) picked.style.outline = "";
+      picked = (picked === c) ? null : c;
+      if (picked) picked.style.outline = "2px solid var(--accent)";
+    });
+    return c;
+  }
+  function resetTaller() {
+    twChips.innerHTML = "";
+    IVS.forEach(function (l) { twChips.appendChild(makeChip(l)); });
+    Array.prototype.forEach.call(twBoard.querySelectorAll(".zone .chips"), function (z) { z.innerHTML = ""; });
+    picked = null;
+  }
+  function place(chip, zoneChips) {
+    chip.classList.add("placed");
+    chip.style.outline = "";
+    zoneChips.appendChild(chip);
+    picked = null;
+  }
+  Array.prototype.forEach.call(twBoard.querySelectorAll(".zone"), function (z, zi) {
+    var holder = z.querySelector(".chips");
+    z.addEventListener("dragover", function (e) { e.preventDefault(); z.classList.add("over"); });
+    z.addEventListener("dragleave", function () { z.classList.remove("over"); });
+    z.addEventListener("drop", function (e) {
+      e.preventDefault(); z.classList.remove("over");
+      var label = e.dataTransfer.getData("text/plain");
+      var all = Array.prototype.slice.call(document.querySelectorAll(".chip"));
+      var chip = all.filter(function (c) { return c.textContent === label; })[0];
+      if (chip) place(chip, holder);
+    });
+    z.addEventListener("click", function () { if (picked) place(picked, holder); });
+  });
+  document.addEventListener("keydown", function (e) {
+    if (!picked) return;
+    var n = "123".indexOf(e.key);
+    if (n >= 0) {
+      e.preventDefault();
+      place(picked, twBoard.querySelectorAll(".zone .chips")[n]);
+    }
+  });
+  document.getElementById("twReset").onclick = resetTaller;
+  resetTaller();
+
+  /* export PNG — se dibuja directamente en canvas para no depender de CSS externo */
+  document.getElementById("twExport").onclick = function () {
+    var t = TRAJ[parseInt(twSel.value, 10)];
+    var group = document.getElementById("twGroup").value.trim();
+    var zones = Array.prototype.map.call(twBoard.querySelectorAll(".zone"), function (z) {
+      return Array.prototype.map.call(z.querySelectorAll(".chip"), function (c) { return c.textContent; });
+    });
+    var Wc = 1400, Hc = 900, cv = document.createElement("canvas");
+    cv.width = Wc; cv.height = Hc;
+    var x = cv.getContext("2d");
+    x.fillStyle = "#FFFFFF"; x.fillRect(0, 0, Wc, Hc);
+
+    x.fillStyle = "#74879A"; x.font = "500 18px Consolas, monospace";
+    x.fillText("SESIÓN 01 · MAPA DE TRAYECTORIA CON PUNTOS DE INTERVENCIÓN", 60, 62);
+    x.fillStyle = "#14202B"; x.font = "600 44px Georgia, serif";
+    x.fillText(t.name, 60, 118);
+    x.fillStyle = "#4E6274"; x.font = "20px system-ui, sans-serif";
+    x.fillText(group ? "Grupo: " + group : "Grupo: ______________________", 60, 152);
+
+    // curva
+    var gx = 60, gy = 190, gw = Wc - 120, gh = 230;
+    x.strokeStyle = "#D9E3EC"; x.lineWidth = 1;
+    for (var i = 0; i <= 3; i++) {
+      var yy = gy + gh * i / 3;
+      x.beginPath(); x.moveTo(gx, yy); x.lineTo(gx + gw, yy); x.stroke();
+    }
+    if (t.band) {
+      x.fillStyle = "rgba(28,92,171,.10)";
+      x.fillRect(gx + t.band[0] * gw, gy, (t.band[1] - t.band[0]) * gw, gh);
+    }
+    x.strokeStyle = "#2A78D6"; x.lineWidth = 3; x.lineJoin = "round"; x.beginPath();
+    t.pts.forEach(function (p, i) {
+      var px = gx + p[0] * gw, py = gy + (1 - p[1]) * gh;
+      if (i) x.lineTo(px, py); else x.moveTo(px, py);
+    });
+    x.stroke();
+    x.fillStyle = "#74879A"; x.font = "13px Consolas, monospace";
+    x.fillText("FUNCIÓN ALTA", gx, gy - 8);
+    x.fillText("BAJA", gx, gy + gh + 20);
+    x.fillText("MUERTE", gx + gw - 60, gy + gh + 20);
+
+    // columnas
+    var titles = ["FASE TEMPRANA", "FASE INTERMEDIA", "FASE AVANZADA / FINAL"];
+    var cw = (gw - 40) / 3;
+    for (var z = 0; z < 3; z++) {
+      var cx = gx + z * (cw + 20), cy = gy + gh + 60;
+      x.strokeStyle = "#B9CADA"; x.lineWidth = 1.5;
+      x.strokeRect(cx, cy, cw, 300);
+      x.fillStyle = "#1C5CAB"; x.font = "600 15px Consolas, monospace";
+      x.fillText(titles[z], cx + 16, cy + 30);
+      x.fillStyle = "#14202B"; x.font = "17px system-ui, sans-serif";
+      var ly = cy + 62;
+      zones[z].forEach(function (label) {
+        var words = label.split(" "), line = "", first = true;
+        function flush() {
+          x.fillText((first ? "• " : "   ") + line, cx + 16, ly);
+          ly += 24; first = false; line = "";
+        }
+        words.forEach(function (w) {
+          var test = line ? line + " " + w : w;
+          if (line && x.measureText((first ? "• " : "   ") + test).width > cw - 32) { flush(); line = w; }
+          else { line = test; }
+        });
+        if (line) flush();
+        ly += 8;
+      });
+    }
+    x.fillStyle = "#74879A"; x.font = "13px Consolas, monospace";
+    x.fillText("Trayectorias según Lunney et al. (2002) y Murray et al. (2005) · Maestría en Cuidados Paliativos, UAN", 60, Hc - 30);
+
+    var a = document.createElement("a");
+    a.download = "mapa-trayectoria-" + t.k + (group ? "-" + group.replace(/[^\wáéíóúñ ]/gi, "").replace(/\s+/g, "-") : "") + ".png";
+    a.href = cv.toDataURL("image/png");
+    a.click();
+  };
+
+  /* ============================================================ tema
+     Cuando la página se abre dentro de un visor que ya gestiona el tema, este
+     botón simplemente coopera: ambos escriben el mismo atributo data-theme. */
+  var themeBtn = document.getElementById("themeBtn");
+  function applyTheme(t) {
+    if (t === "claro") document.documentElement.setAttribute("data-theme", "light");
+    else if (t === "oscuro") document.documentElement.setAttribute("data-theme", "dark");
+    else document.documentElement.removeAttribute("data-theme");
+    themeBtn.textContent = t === "claro" ? "Claro" : (t === "oscuro" ? "Oscuro" : "Tema");
+    drawRail();
+  }
+  var themes = ["auto", "claro", "oscuro"], ti = 0;
+  themeBtn.onclick = function () { ti = (ti + 1) % 3; applyTheme(themes[ti]); };
+  var qTheme = /tema=(claro|oscuro)/.exec(location.search);
+  if (qTheme) { ti = themes.indexOf(qTheme[1]); }
+
+  /* ============================================================ arranque */
+  // #7 abre la diapositiva 7; ?modo=estudio abre en modo lectura.
+  var wanted = parseInt((location.hash || "").replace("#", ""), 10);
+  if (wanted > 0) idx = wanted - 1;
+  setMode(/modo=estudio/.test(location.search) ? "study" : "deck");
+  show(idx);
+  applyTheme(themes[ti]);
+})();
+</script>
