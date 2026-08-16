@@ -36,22 +36,26 @@ evaluacion/                consolidados por corte (sin datos personales)
 scripts/                   verificar.js y nueva-sesion.js (Node)
 ```
 
-Las carpetas de `sesiones/` se nombran por contenido (`s03-realidad-virtual-y-tecnologias`), no por
-fecha, porque el calendario es provisional: reprogramar mueve texto, no rutas. El orden cronológico
-vive en el manifiesto y en la portada.
+Las carpetas de `sesiones/` se nombran por contenido (`s03-falla-de-organo`), no por fecha: si
+cambia el calendario, reprograma mueve texto, no rutas. El orden cronológico vive en el manifiesto
+y en la portada.
 
 ## Mapa del semestre
 
-| Unidad | Sesiones | Color | Tema |
-|---|---|---|---|
-| U1 | S01–S03 | azul | Abordajes de investigaciones en rehabilitación paliativa |
-| U2 | S04–S06 | pizarra | Rehabilitación paliativa en cáncer |
-| U3 | S07–S08 | índigo | Rehabilitación paliativa en falla de órgano |
-| U4 | S09–S10 | cielo | Trastornos neurodegenerativos *(unidad en inglés)* |
-| U5 | S11–S12 | teal | Demencia y fragilidad |
-| U6 | S13–S16 | glicina | Eventos catastróficos e integración final |
+Siete sesiones, los viernes de 2:00 a 5:00 p. m., del 21 de agosto al 20 de noviembre de 2026
+(calendario oficial de la Maestría). Una unidad por sesión más el integrador.
 
-Detalle en [docs/calendario.md](docs/calendario.md). La **sesión 01** ya tiene clase construida:
+| Sesión | Fecha | Unidad · color | Tema |
+|---|---|---|---|
+| S01 | vie 21 ago | U1 · azul | Presentación + trayectorias, modelos y tecnologías |
+| S02 | vie 4 sep | U2 · pizarra | Rehabilitación paliativa en cáncer *(cierre 1.er corte)* |
+| S03 | vie 18 sep | U3 · índigo | Rehabilitación paliativa en falla de órgano |
+| S04 | vie 2 oct | U4 · cielo | Trastornos neurodegenerativos *(en inglés)* |
+| S05 | vie 16 oct | U5 · teal | Demencia y fragilidad *(cierre 2.º corte)* |
+| S06 | vie 30 oct | U6 · glicina | Eventos catastróficos |
+| S07 | vie 20 nov | integrador | Socialización y cierre *(producto final)* |
+
+Detalle en [docs/PROGRAMADOR-2026-II.md](docs/PROGRAMADOR-2026-II.md). La **sesión 01** ya tiene clase construida:
 [sesiones/s01-declinacion-funcional/clase.html](sesiones/s01-declinacion-funcional/clase.html).
 
 ## Flujo de trabajo

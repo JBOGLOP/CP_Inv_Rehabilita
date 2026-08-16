@@ -15,21 +15,18 @@
 
 ## 0 · Dos cosas que hay que mirar antes de construir nada
 
-### 0.1 · 🔴 Hay 16 fichas para un semestre de 7 sesiones
+### 0.1 · 🟢 RESUELTO — el sitio ya son 7 sesiones
 
-El manifiesto `sesiones/_sesiones.json` declara **16 sesiones, los jueves desde el 6 de agosto**.
-El último commit del proyecto (`54dc34e`) dice: *«Corrige la franja del programador: viernes 2-5
-pm, **7 sesiones**»*.
+**Estaba así:** el manifiesto declaraba 16 sesiones (jueves desde el 6 de agosto) mientras el
+programador decía 7 (viernes 2-5 pm). Nueve fichas correspondían a encuentros que no existen.
 
-**Las dos cosas no pueden ser ciertas.** Nueve de las dieciséis fichas publicadas corresponden a
-encuentros que no existen, y sus fechas —jueves— tampoco son la franja real.
+**Resuelto el 16 de agosto de 2026.** El manifiesto `sesiones/_sesiones.json`, la portada y las
+fichas se reconciliaron a **7 sesiones**, sincronizadas con el programador: una unidad por sesión
+más el integrador, los viernes reales. Las carpetas están por contenido, así que el cambio no
+renombró ninguna ruta. `node scripts/verificar.js` cruza portada ↔ manifiesto y da 7 = 7.
 
-Esto no lo detecta el verificador: su comprobación 5 cruza **portada ↔ manifiesto**, y las dos
-dicen 16. La incoherencia está entre el **manifiesto y el programador**, que nadie cruza.
-
-> **Resuélvalo antes de escribir un solo entregable.** Construir material de aula invertida para
-> nueve sesiones fantasma es la forma más cara de perder una semana. Y el número cambia el
-> tamaño de cada entregable — ver §5.1.
+> Ya se puede escribir el entregable con el tamaño correcto: **7 sesiones**, ≈ 13,7 h de trabajo
+> independiente por sesión (ver §5.1), lo que admite las cinco preguntas del modelo del Seminario.
 
 ### 0.2 · El grupo de aquí **no** es el del Seminario
 

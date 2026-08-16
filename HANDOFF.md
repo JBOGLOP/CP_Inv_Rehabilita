@@ -28,8 +28,10 @@ El hilo, que sale del propio contenido programático y del capítulo de Tiberini
 > **Lo que cambia con cada trayectoria es cuándo y cómo rehabilitar** — y esa respuesta hay que
 > buscarla en la evidencia, que en varias trayectorias todavía es escasa.
 
-144 horas (48 presenciales en 16 sesiones de 3 h + 96 de trabajo independiente). Tres cortes
-(35 / 35 / 30 %). La Unidad 4 se desarrolla en inglés.
+144 horas declaradas (48 presenciales + 96 de trabajo independiente). En el calendario real son
+**7 sesiones** de 3 h, los viernes de 2:00 a 5:00 p. m., del 21 de agosto al 20 de noviembre de
+2026 (21 h efectivas; ver el programador). Tres cortes (35 / 35 / 30 %). La Unidad 4 se desarrolla
+en inglés.
 
 ---
 
@@ -47,11 +49,14 @@ cosa.
 
 ---
 
-> 🔴 **Antes de construir la sesión 02, lea
+> 🟢 **Antes de construir la sesión 02, lea
 > [`HANDOFF-AULA-INVERTIDA.md`](HANDOFF-AULA-INVERTIDA.md).** Trae el método con el que se está
 > trabajando en el *Seminario de fundamentación* —aula invertida con entregable previo, backend
-> propio y tablero de conducción— y cómo adoptarlo aquí. Su §0 señala **una incoherencia que
-> bloquea**: este documento y el manifiesto dicen 16 sesiones, y el programador dice 7.
+> propio y tablero de conducción— y cómo adoptarlo aquí.
+>
+> La incoherencia que señalaba su §0 (manifiesto 16 vs programador 7) **ya está resuelta**: el
+> sitio se reconcilió a **7 sesiones** el 16 de agosto de 2026, sincronizado con el programador.
+> Falta el motor de aula invertida (§4 de ese documento) y convertir la sesión 01.
 
 ---
 
@@ -61,13 +66,13 @@ cosa.
 
 - **Andamiaje completo**, al nivel del estándar de la maestría:
   - `index.html` — portada del curso (Pages sirve esto, no el README).
-  - `sesiones/_sesiones.json` — lista canónica de las 16 sesiones.
+  - `sesiones/_sesiones.json` — lista canónica de las 7 sesiones.
   - `_shared/tokens.css` + `_shared/plantilla-sesion.html` — sistema de diseño.
   - `scripts/verificar.js` (5 comprobaciones) y `scripts/nueva-sesion.js` (generador que nunca
     sobrescribe), en Node.
   - `.nojekyll` + `.github/workflows/pages.yml` — despliegue por Actions.
   - `.gitignore` endurecido y `config.example.js` (patrón de secretos, aún sin uso).
-- **Las 16 fichas de sesión** publicadas, con su fecha, temas y lecturas, en orden cronológico.
+- **Las 7 fichas de sesión** publicadas, con su fecha, temas y lecturas, en orden cronológico.
 - **La sesión 01 construida y verificada** como ejemplar: deck HTML interactivo de doble modo
   (aula / estudio), con temporizador de bloques, paneles de trayectoria, autoevaluación de 8
   preguntas con fuente, y taller exportable a PNG. Vive en
@@ -79,10 +84,10 @@ cosa.
 
 | Qué | Detalle |
 |---|---|
-| **Construir S02–S16** | 15 decks. La ficha ya existe y dice «en preparación»; el material se hace uno a uno |
-| **Confirmar el calendario** | Las fechas son un supuesto (§5). Sale gratis cambiarlas: se editan en el manifiesto y la portada, no se renombra nada |
+| **Motor de aula invertida** | Entregable previo + backend + tablero. Plan y motor portable en [`HANDOFF-AULA-INVERTIDA.md`](HANDOFF-AULA-INVERTIDA.md) |
+| **Convertir S02–S07** | 6 sesiones. La ficha ya existe y dice «en preparación»; el material se hace uno a uno |
 | **Corregir el syllabus** | Cinco inconsistencias detectadas en el documento oficial (§5) |
-| **Bibliografía en la portada** | Hoy la portada no tiene sección «qué leer» general; cada ficha sí lista sus lecturas |
+| **Rúbricas de los tres cortes** | La columna «Método de evaluación» del syllabus está vacía |
 
 ---
 
@@ -107,7 +112,7 @@ Para construir un deck nuevo, el de la sesión 01 es la referencia: un archivo H
 
 | # | Asunto | Por qué importa |
 |---|---|---|
-| 1 | **Calendario real de 2026-II** | Las 16 fechas son un supuesto (jueves desde el 6 de agosto). Cambiarlas es editar el manifiesto y la portada; con slugs de contenido no se renombra ninguna carpeta |
+| 1 | **48 horas presenciales vs. 21 reales** | El calendario ya está confirmado (7 viernes, 2-5 pm). El syllabus declara 48 h presenciales; el calendario da 21 (7 × 3). Misma convención «la mitad» que el Seminario. Ver `docs/PROGRAMADOR-2026-II.md` §2 |
 | 2 | **Peso del tercer corte** | El syllabus dice 30 % en una columna y 35 % en otra. Aquí se usa 30 %, que completa el 100 %. Ver `docs/plan-de-evaluacion.md` |
 | 3 | **Columnas vacías de evaluación** | La tabla de criterios del syllabus deja en blanco «Resultado de aprendizaje» y «Método». Se propusieron valores; falta validarlos |
 | 4 | **Referencia truncada** | «Enguell H, Harwood RH. What palliative care can learn…» (texto guía 14) está incompleta en el documento oficial |
@@ -128,12 +133,12 @@ README.md                  cara pública del repositorio en GitHub
 index.html                 portada del curso · se mantiene a mano
 
 sesiones/
-  _sesiones.json           ← LISTA CANÓNICA de las 16 sesiones
+  _sesiones.json           ← LISTA CANÓNICA de las 7 sesiones
   sNN-slug/
     index.html             ficha pública (generada)
     README.md              nota de trabajo del docente
-    rubrica.md             instrumento de evaluación
     clase.html             el deck (por ahora solo la sesión 01)
+    preparacion.html       entregable previo de aula invertida (cuando exista)
 
 _shared/
   tokens.css               paleta y tipografía · se copia en línea, no se enlaza

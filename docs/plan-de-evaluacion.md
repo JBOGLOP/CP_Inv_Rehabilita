@@ -4,11 +4,13 @@ Espacio académico: **Investigación en Cuidados Paliativos y Rehabilitación** 
 
 ## Cortes
 
+Sobre las **7 sesiones reales** (viernes 2-5 pm, ver [PROGRAMADOR-2026-II.md](PROGRAMADOR-2026-II.md)):
+
 | Corte | Peso | Sesiones que cubre | Unidades | Cierre |
 |---|---|---|---|---|
-| Primer corte | 35 % | S01 – S06 | U1, U2 | Sesión 06 |
-| Segundo corte | 35 % | S07 – S11 | U3, U4, U5 (tema 1) | Sesión 11 |
-| Tercer corte | 30 % | S12 – S16 | U5 (temas 2-3), U6 | Sesión 16 |
+| Primer corte | 35 % | S01 – S02 | U1, U2 | Sesión 02 · 4 sep |
+| Segundo corte | 35 % | S03 – S05 | U3, U4, U5 | Sesión 05 · 16 oct |
+| Tercer corte | 30 % | S06 – S07 | U6 e integrador | Sesión 07 · 20 nov |
 
 > ⚠️ **Inconsistencia detectada en el contenido programático.** La tabla de criterios de
 > evaluación del documento oficial asigna al tercer corte un peso del **30 %** en la columna

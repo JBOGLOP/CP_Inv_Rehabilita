@@ -11,10 +11,10 @@
 > (presencial), 2 oct (sincrónico), 16 oct (presencial), 30 oct (sincrónico) y 20 nov (presencial).
 > El 13 de noviembre es de sustentaciones de tesis II, ajeno a este curso.
 >
-> ⚠️ **El sitio (`index.html` y `sesiones/`) sigue con la estructura provisional de 16 sesiones**,
-> anterior al calendario. Queda **pendiente reconciliarlo a 7** contra la programación real. La
-> distribución de horas de abajo son las **declaradas** en el contenido programático (48
-> presenciales), no las reales (21 = 7 × 3 h); ver §2 del programador.
+> ✅ **El sitio ya está reconciliado a 7 sesiones** (16 de agosto de 2026): el manifiesto, la
+> portada y las fichas coinciden con el programador. La distribución de horas de abajo son las
+> **declaradas** en el contenido programático (48 presenciales), no las reales (21 = 7 × 3 h);
+> ver §2 del programador.
 
 ## Distribución
 
