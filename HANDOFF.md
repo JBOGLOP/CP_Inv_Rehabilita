@@ -47,6 +47,14 @@ cosa.
 
 ---
 
+> 🔴 **Antes de construir la sesión 02, lea
+> [`HANDOFF-AULA-INVERTIDA.md`](HANDOFF-AULA-INVERTIDA.md).** Trae el método con el que se está
+> trabajando en el *Seminario de fundamentación* —aula invertida con entregable previo, backend
+> propio y tablero de conducción— y cómo adoptarlo aquí. Su §0 señala **una incoherencia que
+> bloquea**: este documento y el manifiesto dicen 16 sesiones, y el programador dice 7.
+
+---
+
 ## 3. Estado actual
 
 ### Hecho
