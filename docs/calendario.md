@@ -1,21 +1,19 @@
 # Calendario de sesiones — 2026-II
 
-> ⚠️ **Las fechas son PROVISIONALES.** Se generaron con el supuesto de 16 sesiones
-> semanales de 3 horas los **jueves**, iniciando el **6 de agosto de 2026**
-> (48 h presenciales = 16 × 3 h; 96 h de trabajo independiente = 16 × 6 h).
+> ✅ **Ya llegó el calendario oficial** (`HORARIOS 2026 - II.pdf`, Dirección de la Maestría).
+> El análisis y la programación autoritativa están en
+> **[`PROGRAMADOR-2026-II.md`](PROGRAMADOR-2026-II.md)**; el entregable firmable es
+> [`Programador_2026-II.docx`](Programador_2026-II.docx).
 >
-> **La lista canónica de sesiones vive en [`sesiones/_sesiones.json`](../sesiones/_sesiones.json)**,
-> no aquí. Este documento solo describe la distribución de horas y la cobertura por unidad, para
-> no tener la lista en dos sitios que puedan desincronizarse (fue un problema real en cursos
-> anteriores). El cronograma con las 16 sesiones está en la [portada del curso](../index.html).
+> **Cambio importante frente a lo que se supuso.** El calendario real no da 16 sesiones semanales,
+> sino **8 encuentros de sábado** (asumiendo la franja sábado 8:00–11:00, por confirmar): 8 y 22 de
+> agosto; 5 y 19 de septiembre; 3, 17 y 31 de octubre; 21 de noviembre.
 >
-> Cuando la dirección confirme el calendario institucional:
-> 1. Corrige la fecha en cada sesión de `sesiones/_sesiones.json`.
-> 2. Corrige la fecha correspondiente en el cronograma de `index.html`.
-> 3. Ejecuta `node scripts/verificar.js` para confirmar que portada y manifiesto siguen coherentes.
->
-> **No hay que renombrar ninguna carpeta:** los slugs son de contenido (`s03-realidad-virtual-y-tecnologias`),
-> no de fecha, justamente para que reprogramar mueva texto y no rutas.
+> ⚠️ **El sitio (`index.html` y `sesiones/`) sigue con la estructura provisional de 16 sesiones**,
+> anterior al calendario. Queda **pendiente reconciliarlo a 8** una vez confirmada la franja
+> (§2.1 del programador), para no rehacerlo dos veces. La distribución de horas de abajo se mantiene
+> porque son las horas **declaradas** en el contenido programático (48 presenciales), no las reales
+> (24 = 8 × 3 h); ver §2.2 del programador.
 
 ## Distribución
 
