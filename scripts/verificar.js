@@ -107,9 +107,11 @@ titulo('3 · Rastros de datos personales');
     [/app\.tactiq\.io|otter\.ai|fireflies\.ai/gi, 'enlace a transcripción',  'duro'],
     [/Meeting started:|Participants:/g,        'cabecera de transcripción',  'duro'],
     // El correo institucional del docente es público y debe aparecer. Lo que no
-    // puede aparecer es el de ningún estudiante. Se excluyen los dominios de
-    // relleno de los placeholder de formulario para no entrenar a ignorar avisos.
-    [/\b(?!jbogoya63@uan\.edu\.co)[\w.%-]+@(?!ejemplo|example|correo\.|dominio|tucorreo|midominio|test\.|mail\.com\b)[\w.-]+\.[a-z]{2,}\b/gi,
+    // puede aparecer es el de ningún estudiante. Se excluyen (a) el del docente,
+    // (b) los marcadores de formulario cuya parte local es genérica —nombre@,
+    // correo@, usuario@…—, y (c) los dominios de relleno. Un correo estudiantil
+    // real (p. ej. sbarreto846@uan.edu.co) sí muerde. Ver la lección §8.4.
+    [/\b(?!(?:jbogoya63|nombre|correo|usuario|tucorreo|tu\.correo|midominio|ejemplo|example)@)[\w.%-]+@(?!ejemplo|example|correo\.|dominio|tucorreo|midominio|test\.|mail\.com\b)[\w.-]+\.[a-z]{2,}\b/gi,
      'correo electrónico', 'duro'],
     // El código del curso (37543013) y el del plan (2377) son identificadores
     // PÚBLICOS y deben aparecer; se excluyen para que el aviso solo suene ante un

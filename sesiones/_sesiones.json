@@ -45,7 +45,8 @@
         "Realidad virtual, tecnología móvil, objetos virtuales de aprendizaje e inteligencia artificial generativa (Wysa)"
       ],
       "lecturas": ["Tiberini, Talbot-Rice y Turner (2024)", "Minosso, Souza y Oliveira (2016)", "Santiago-Palma y Payne (2001)"],
-      "material": { "tipo": "deck", "archivo": "clase.html", "etiqueta": "Abrir la clase interactiva" }
+      "material": { "tipo": "deck", "archivo": "clase.html", "etiqueta": "Abrir la clase interactiva" },
+      "preparacion": { "archivo": "preparacion.html", "cierra": "viernes 21 de agosto, 1:00 p. m.", "sesionToken": "S01" }
     },
     {
       "num": 2, "slug": "s02-cancer",

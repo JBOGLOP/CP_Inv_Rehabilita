@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="es">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tablero del curso · uso docente</title>
+<meta name="robots" content="noindex,nofollow">
+
+<!-- ===========================================================================
+     TABLERO DOCENTE — se abre en clase y la clase se construye con él.
+
+     Sirve para las siete sesiones: se elige arriba. Lee las entregas del
+     Apps Script y las muestra pregunta por pregunta, que es como se conduce
+     la sesión: se proyecta lo que el grupo escribió y se contrasta.
+
+     ⚠️ ESTA PÁGINA NECESITA EL TOKEN DE LECTURA (DASH_TOKEN), que NO está
+     aquí ni puede estarlo: esto vive en un repositorio público. Se pone en
+     `config.js`, que está en .gitignore, o se teclea al abrir y no se guarda.
+
+     MODO PROYECCIÓN. Oculta nombres y correos y deja solo el seudónimo. Es lo
+     que se enchufa al proyector. Enciéndalo ANTES de compartir pantalla.
+     =========================================================================== -->
+
+<style>
+:root{
+  --marca:#22415C; --marca-dark:#163049; --marca-soft:#E3EAF0;
+  --u1:#2360A6; --u1-dark:#164A87; --u1-soft:#DBE6F4;
+  --ok:#0E8A80; --ok-soft:#D2EAE7; --alerta:#C0392B; --alerta-soft:#F7DDD9; --alerta-dark:#8E2A20;
+  --tinta:#14202B; --gris:#4E6274; --gris-claro:#94A5B5;
+  --linea:#D9E3EC; --blanco:#FFFFFF; --nieve:#F4F7FA;
+  --shadow-soft:0 1px 2px rgba(20,32,43,.06), 0 6px 18px rgba(20,32,43,.06);
+  --shadow-medium:0 6px 20px rgba(20,32,43,.10);
+  --radius:12px; --radius-sm:8px;
+  --sans:system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  --mono:ui-monospace,'Cascadia Mono','Segoe UI Mono',Consolas,monospace;
+  --serif:'Iowan Old Style','Palatino Linotype',Palatino,Georgia,serif;
+
+  --acento:var(--marca); --acento-dark:var(--marca-dark); --acento-soft:var(--marca-soft);
+  --escala:1;
+}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;font-family:var(--sans);color:var(--tinta);background:var(--nieve);line-height:1.6}
+:focus-visible{outline:3px solid var(--acento);outline-offset:2px}
+.envoltura{max-width:74rem;margin:0 auto;padding:0 1.1rem}
+
+/* ── Barra superior ─────────────────────────────────────────────── */
+.barra{background:var(--tinta);color:var(--nieve);padding:.6rem 0;position:sticky;top:0;z-index:30;box-shadow:var(--shadow-medium)}
+.barra .envoltura{display:flex;flex-wrap:wrap;align-items:center;gap:.55rem}
+.barra__t{font-weight:700;font-size:.92rem;margin-right:auto}
+.barra__t small{display:block;font-weight:400;font-size:.74rem;color:var(--gris-claro)}
+select,.barra button,.barra input{font:inherit;font-size:.82rem;border-radius:999px;padding:.32rem .85rem;
+  border:1px solid rgba(255,255,255,.3);background:transparent;color:var(--nieve);cursor:pointer}
+select option{color:var(--tinta)}
+.barra button:hover{background:rgba(255,255,255,.14)}
+.barra button.on{background:var(--u1);color:var(--blanco);border-color:var(--u1);font-weight:700}
+.cuentas{font-family:var(--mono);font-size:.8rem;color:var(--gris-claro);white-space:nowrap}
+
+/* ── Aviso de conexión / token ──────────────────────────────────── */
+.aviso{border-radius:var(--radius);padding:1rem 1.2rem;margin:1.2rem 0;background:var(--blanco);
+  box-shadow:var(--shadow-soft);border-left:4px solid var(--gris-claro);max-width:60ch}
+.aviso--malo{border-left-color:var(--alerta);background:var(--alerta-soft);color:var(--alerta-dark)}
+.aviso--ok{border-left-color:var(--ok);background:var(--ok-soft)}
+.aviso strong{display:block;margin-bottom:.25rem;color:var(--tinta)}
+.aviso input{width:100%;font:inherit;padding:.5rem .7rem;border:1px solid #B9CADA;border-radius:var(--radius-sm);
+  margin-top:.6rem;background:var(--blanco);color:var(--tinta)}
+.aviso button{font:inherit;font-weight:600;margin-top:.6rem;cursor:pointer;border-radius:999px;
+  padding:.45rem 1.2rem;border:1px solid var(--acento-dark);background:var(--acento-dark);color:var(--blanco)}
+
+/* ── Navegador de preguntas ─────────────────────────────────────── */
+.preguntas{display:flex;flex-wrap:wrap;gap:.5rem;margin:1.3rem 0 .4rem}
+.preguntas button{font:inherit;font-weight:700;cursor:pointer;border-radius:999px;padding:.45rem 1.1rem;
+  border:1px solid var(--acento);background:var(--blanco);color:var(--acento-dark);font-size:.9rem}
+.preguntas button:hover{background:var(--acento-soft)}
+.preguntas button.activa{background:var(--acento-dark);color:var(--blanco);border-color:var(--acento-dark)}
+.preguntas button .n{font-family:var(--mono);font-size:.72rem;opacity:.75;margin-left:.35rem}
+
+.titulo-pregunta{font-family:var(--serif);font-size:calc(1.3rem * var(--escala));margin:.8rem 0 .2rem;line-height:1.25}
+.sub{color:var(--gris);font-size:.88rem;margin:0 0 1rem}
+
+/* ── Respuestas ─────────────────────────────────────────────────── */
+.respuestas{display:grid;gap:.9rem;grid-template-columns:repeat(auto-fill,minmax(min(100%,26rem),1fr));padding-bottom:3rem}
+.tarjeta{background:var(--blanco);border-radius:var(--radius);padding:1rem 1.15rem;
+  box-shadow:var(--shadow-soft);border-left:4px solid var(--acento);display:flex;flex-direction:column}
+.tarjeta.leida{border-left-color:var(--gris-claro);opacity:.62}
+.tarjeta__cab{display:flex;align-items:center;gap:.6rem;margin-bottom:.55rem;flex-wrap:wrap}
+.seudo{font-family:var(--mono);font-weight:700;font-size:1rem;background:var(--acento-soft);
+  color:var(--acento-dark);border-radius:var(--radius-sm);padding:.1rem .6rem;flex-shrink:0}
+.quien{font-size:.82rem;color:var(--gris);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.marca{font:inherit;font-size:.74rem;cursor:pointer;border-radius:999px;padding:.15rem .65rem;
+  border:1px solid var(--gris-claro);background:transparent;color:var(--gris);flex-shrink:0}
+.marca:hover{background:var(--nieve)}
+.tarjeta__txt{font-size:calc(.95rem * var(--escala));white-space:pre-wrap;word-wrap:break-word;margin:0;font-family:var(--serif);line-height:1.55}
+.tarjeta__pie{font-family:var(--mono);font-size:.72rem;color:var(--gris-claro);margin:.7rem 0 0}
+.vacia{color:var(--gris-claro);font-style:italic;font-family:var(--sans)}
+
+/* ── Panel: quién falta (solo modo docente) ─────────────────────── */
+.faltantes{background:var(--blanco);border-radius:var(--radius);padding:1rem 1.2rem;
+  box-shadow:var(--shadow-soft);border-left:4px solid var(--marca);margin:1.2rem 0;max-width:60ch}
+.faltantes h2{font-size:1rem;margin:0 0 .5rem;color:var(--marca-dark)}
+.faltantes ul{margin:0;padding-left:1.1rem;font-size:.88rem;color:var(--gris);columns:2;column-gap:1.5rem}
+.faltantes li{margin-bottom:.2rem;break-inside:avoid}
+
+/* En proyección desaparece todo lo que identifica. */
+body.proyeccion .quien,
+body.proyeccion .faltantes,
+body.proyeccion .tarjeta__pie,
+body.proyeccion .marca{display:none}
+body.proyeccion{background:var(--nieve)}
+body.proyeccion .tarjeta{box-shadow:var(--shadow-medium)}
+
+.pie{color:var(--gris-claro);font-size:.8rem;padding:1.5rem 0 2.5rem;max-width:60ch}
+@media print{.barra,.preguntas,.marca{display:none}}
+</style>
+
+<div class="barra">
+  <div class="envoltura">
+    <p class="barra__t">Tablero del curso<small>Investigación en CP y Rehabilitación · 2026-II</small></p>
+    <select id="sesion" aria-label="Sesión">
+      <option value="S01">S01 · Presentación y Unidad 1</option>
+      <option value="S02">S02 · Cáncer</option>
+      <option value="S03">S03 · Falla de órgano</option>
+      <option value="S04">S04 · Neurodegenerativos</option>
+      <option value="S05">S05 · Demencia y fragilidad</option>
+      <option value="S06">S06 · Eventos catastróficos</option>
+      <option value="S07">S07 · Seminario integrador</option>
+    </select>
+    <span class="cuentas" id="cuentas">—</span>
+    <button type="button" id="recargar" title="Volver a leer las entregas">Recargar</button>
+    <button type="button" id="menos" title="Letra más pequeña">A−</button>
+    <button type="button" id="mas" title="Letra más grande">A+</button>
+    <button type="button" id="proyeccion" title="Oculta nombres y correos">Modo proyección</button>
+  </div>
+</div>
+
+<div class="envoltura">
+  <div id="aviso" class="aviso" style="display:none"></div>
+  <div id="faltantes" class="faltantes" style="display:none"></div>
+  <div class="preguntas" id="preguntas"></div>
+  <h1 class="titulo-pregunta" id="titulo">—</h1>
+  <p class="sub" id="subtitulo"></p>
+  <div class="respuestas" id="respuestas"></div>
+  <p class="pie">
+    Uso docente. Las respuestas contienen datos personales: no proyectes esta página sin activar
+    el <strong>modo proyección</strong>, y no la compartas por pantalla sin comprobarlo antes.
+  </p>
+</div>
+
+<!-- config.js NO está en el repositorio (.gitignore): lleva el token de
+     lectura. Si falta, el tablero lo pide por teclado y no lo guarda. -->
+<script src="../config.js" onerror="void 0"></script>
+<script>
+(function () {
+  'use strict';
+
+  var $ = function (id) { return document.getElementById(id); };
+  var CFG = (window.CONFIG || {});
+  var ENDPOINT = CFG.appsScriptURL || '';
+  var DASH = CFG.dashToken || '';
+
+  // Títulos legibles de cada pregunta. El servidor devuelve solo los ids
+  // (p1, p2…), porque no sabe —ni tiene por qué— cómo se llaman.
+  var TITULOS = {
+    S01: {
+      p1: '¿Qué rehabilitación se ofrece hoy en tu servicio, en esta trayectoria?',
+      p2: '¿Con qué criterio se decide a quién se rehabilita, y a quién deja fuera?',
+      p3: '¿Con qué desenlace se mide el éxito? ¿Se registra? Función frente a supervivencia',
+      p4: 'Un desenlace de la lectura: qué captura y qué deja invisible',
+      p5: 'Convierte una afirmación del material en una pregunta investigable'
+    }
+  };
+
+  var datos = null, preguntaActiva = null;
+  var sesion = (new URLSearchParams(location.search).get('sesion') || 'S01').toUpperCase();
+  $('sesion').value = sesion;
+
+  /* ── Marcas de «ya discutida» — solo en este navegador ──────────── */
+  function claveMarca() { return 'INV_REHAB_tablero_leidas_' + sesion; }
+  function leidas() {
+    try { return JSON.parse(localStorage.getItem(claveMarca()) || '{}'); }
+    catch (err) { return {}; }
+  }
+  function alternarMarca(id) {
+    var m = leidas();
+    m[id] ? delete m[id] : m[id] = 1;
+    try { localStorage.setItem(claveMarca(), JSON.stringify(m)); } catch (err) { /* sin persistencia */ }
+    pintarRespuestas();
+  }
+
+  /* ── Aviso ──────────────────────────────────────────────────────── */
+  function aviso(clase, titulo, texto, conCampo) {
+    var el = $('aviso');
+    el.style.display = 'block';
+    el.className = 'aviso ' + (clase || '');
+    el.textContent = '';
+    var s = document.createElement('strong'); s.textContent = titulo; el.appendChild(s);
+    el.appendChild(document.createTextNode(texto));
+    if (!conCampo) return;
+
+    var campoUrl = document.createElement('input');
+    campoUrl.placeholder = 'URL /exec del Apps Script';
+    campoUrl.value = ENDPOINT;
+    var campoTok = document.createElement('input');
+    campoTok.placeholder = 'DASH_TOKEN';
+    campoTok.value = DASH;
+    campoTok.type = 'password';
+    var boton = document.createElement('button');
+    boton.textContent = 'Conectar';
+    boton.onclick = function () {
+      ENDPOINT = campoUrl.value.trim();
+      DASH = campoTok.value.trim();
+      if (ENDPOINT && DASH) cargar();
+    };
+    el.appendChild(campoUrl);
+    el.appendChild(campoTok);
+    el.appendChild(boton);
+  }
+
+  /* ── Carga ──────────────────────────────────────────────────────── */
+  function cargar() {
+    if (!ENDPOINT || !DASH) {
+      aviso('', 'Falta la conexión.',
+        ' No se encontró config.js con la URL y el token de lectura. Escríbelos aquí — no se guardan.',
+        true);
+      return;
+    }
+    $('aviso').style.display = 'none';
+    $('cuentas').textContent = 'cargando…';
+
+    var url = ENDPOINT + '?action=tablero&dash=' + encodeURIComponent(DASH) +
+              '&sesion=' + encodeURIComponent(sesion) + '&t=' + Date.now();
+    fetch(url)
+      .then(function (r) { return r.json(); })
+      .then(function (d) {
+        if (!d.ok) {
+          datos = null;
+          $('cuentas').textContent = '—';
+          aviso('aviso--malo', 'El servidor rechazó la consulta.',
+            d.error === 'no_autorizado'
+              ? ' El DASH_TOKEN no es correcto. Está en Apps Script → Configuración del proyecto → Propiedades del script.'
+              : ' ' + (d.error || 'error desconocido') + '.',
+            d.error === 'no_autorizado');
+          pintarPreguntas(); pintarRespuestas();
+          return;
+        }
+        datos = d;
+        if (d.preguntas.length && (!preguntaActiva || d.preguntas.indexOf(preguntaActiva) === -1)) {
+          preguntaActiva = d.preguntas[0];
+        }
+        $('cuentas').textContent = d.entregas + '/' + d.inscritos + ' entregas';
+        pintarFaltantes(); pintarPreguntas(); pintarRespuestas();
+      })
+      .catch(function () {
+        $('cuentas').textContent = '—';
+        aviso('aviso--malo', 'No se pudo conectar.', ' Revisa la conexión y la URL del despliegue.', true);
+      });
+  }
+
+  /* ── Pintado ────────────────────────────────────────────────────── */
+  function pintarFaltantes() {
+    var el = $('faltantes');
+    if (!datos || !datos.faltantes || !datos.faltantes.length) { el.style.display = 'none'; return; }
+    el.style.display = 'block';
+    el.textContent = '';
+    var h = document.createElement('h2');
+    h.textContent = 'Sin entregar · ' + datos.faltantes.length;
+    el.appendChild(h);
+    var ul = document.createElement('ul');
+    datos.faltantes.forEach(function (p) {
+      var li = document.createElement('li');
+      li.textContent = p.nombre || p.correo;
+      ul.appendChild(li);
+    });
+    el.appendChild(ul);
+  }
+
+  function pintarPreguntas() {
+    var cont = $('preguntas');
+    cont.textContent = '';
+    if (!datos || !datos.preguntas.length) return;
+
+    datos.preguntas.forEach(function (id) {
+      var conCuantas = datos.respuestas.filter(function (r) {
+        return String(r.respuestas[id] || '').trim();
+      }).length;
+      var b = document.createElement('button');
+      b.textContent = id.toUpperCase();
+      var n = document.createElement('span');
+      n.className = 'n';
+      n.textContent = conCuantas;
+      b.appendChild(n);
+      if (id === preguntaActiva) b.className = 'activa';
+      b.onclick = function () { preguntaActiva = id; pintarPreguntas(); pintarRespuestas(); };
+      cont.appendChild(b);
+    });
+  }
+
+  function pintarRespuestas() {
+    var cont = $('respuestas');
+    cont.textContent = '';
+
+    if (!datos) { $('titulo').textContent = '—'; $('subtitulo').textContent = ''; return; }
+    if (!datos.entregas) {
+      $('titulo').textContent = 'Todavía no hay entregas';
+      $('subtitulo').textContent = datos.inscritos + ' estudiante(s) en el roster de ' + datos.sesion + '.';
+      return;
+    }
+
+    var titulos = TITULOS[datos.sesion] || {};
+    $('titulo').textContent = titulos[preguntaActiva] || preguntaActiva.toUpperCase();
+    var marcadas = leidas();
+    var conTexto = datos.respuestas.filter(function (r) { return String(r.respuestas[preguntaActiva] || '').trim(); });
+    $('subtitulo').textContent =
+      conTexto.length + ' de ' + datos.entregas + ' respondieron esta pregunta · ' +
+      datos.sesion + ' · ' + datos.titulo;
+
+    datos.respuestas.forEach(function (r) {
+      var texto = String(r.respuestas[preguntaActiva] || '').trim();
+      var idMarca = r.seudonimo + '|' + preguntaActiva;
+
+      var t = document.createElement('article');
+      t.className = 'tarjeta' + (marcadas[idMarca] ? ' leida' : '');
+
+      var cab = document.createElement('div');
+      cab.className = 'tarjeta__cab';
+      var s = document.createElement('span');
+      s.className = 'seudo';
+      s.textContent = r.seudonimo;
+      cab.appendChild(s);
+      var q = document.createElement('span');
+      q.className = 'quien';
+      q.textContent = r.nombre + ' · ' + r.correo;
+      cab.appendChild(q);
+      var m = document.createElement('button');
+      m.className = 'marca';
+      m.textContent = marcadas[idMarca] ? 'discutida' : 'marcar';
+      m.onclick = function () { alternarMarca(idMarca); };
+      cab.appendChild(m);
+      t.appendChild(cab);
+
+      var p = document.createElement('p');
+      p.className = 'tarjeta__txt' + (texto ? '' : ' vacia');
+      p.textContent = texto || 'Sin responder';
+      t.appendChild(p);
+
+      var pie = document.createElement('p');
+      pie.className = 'tarjeta__pie';
+      pie.textContent = 'v' + r.version + ' · ' + r.timestamp +
+        (r.minutos ? ' · ' + r.minutos + ' min' : '') +
+        (r.declaracionIA ? ' · declaró IA' : '');
+      t.appendChild(pie);
+
+      cont.appendChild(t);
+    });
+  }
+
+  /* ── Controles ──────────────────────────────────────────────────── */
+  var escala = 1;
+  function aplicarEscala() { document.documentElement.style.setProperty('--escala', escala.toFixed(2)); }
+  $('mas').onclick   = function () { escala = Math.min(2.4, escala + 0.12); aplicarEscala(); };
+  $('menos').onclick = function () { escala = Math.max(0.8, escala - 0.12); aplicarEscala(); };
+  $('recargar').onclick = cargar;
+  $('proyeccion').onclick = function () {
+    var on = document.body.classList.toggle('proyeccion');
+    this.classList.toggle('on', on);
+    this.textContent = on ? 'Proyección ACTIVA' : 'Modo proyección';
+  };
+  $('sesion').onchange = function () {
+    sesion = this.value;
+    preguntaActiva = null;
+    history.replaceState(null, '', '?sesion=' + sesion);
+    cargar();
+  };
+
+  // Flechas para pasar de pregunta sin soltar el puntero del proyector.
+  document.addEventListener('keydown', function (e) {
+    if (!datos || !datos.preguntas.length) return;
+    if (/^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName)) return;
+    var i = datos.preguntas.indexOf(preguntaActiva);
+    if (e.key === 'ArrowRight' && i < datos.preguntas.length - 1) { preguntaActiva = datos.preguntas[i + 1]; pintarPreguntas(); pintarRespuestas(); }
+    if (e.key === 'ArrowLeft'  && i > 0)                          { preguntaActiva = datos.preguntas[i - 1]; pintarPreguntas(); pintarRespuestas(); }
+  });
+
+  cargar();
+})();
+</script>
+</html>
