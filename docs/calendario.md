@@ -5,15 +5,16 @@
 > **[`PROGRAMADOR-2026-II.md`](PROGRAMADOR-2026-II.md)**; el entregable firmable es
 > [`Programador_2026-II.docx`](Programador_2026-II.docx).
 >
-> **Cambio importante frente a lo que se supuso.** El calendario real no da 16 sesiones semanales,
-> sino **8 encuentros de sábado** (asumiendo la franja sábado 8:00–11:00, por confirmar): 8 y 22 de
-> agosto; 5 y 19 de septiembre; 3, 17 y 31 de octubre; 21 de noviembre.
+> **Cambio importante frente a lo que se supuso.** El calendario real no da 16 sesiones semanales.
+> La franja de este curso, confirmada por el docente, es **viernes de 2:00 a 5:00 p. m. a partir del
+> 21 de agosto**, lo que da **7 sesiones**: 21 ago (presencial), 4 sep (sincrónico), 18 sep
+> (presencial), 2 oct (sincrónico), 16 oct (presencial), 30 oct (sincrónico) y 20 nov (presencial).
+> El 13 de noviembre es de sustentaciones de tesis II, ajeno a este curso.
 >
 > ⚠️ **El sitio (`index.html` y `sesiones/`) sigue con la estructura provisional de 16 sesiones**,
-> anterior al calendario. Queda **pendiente reconciliarlo a 8** una vez confirmada la franja
-> (§2.1 del programador), para no rehacerlo dos veces. La distribución de horas de abajo se mantiene
-> porque son las horas **declaradas** en el contenido programático (48 presenciales), no las reales
-> (24 = 8 × 3 h); ver §2.2 del programador.
+> anterior al calendario. Queda **pendiente reconciliarlo a 7** contra la programación real. La
+> distribución de horas de abajo son las **declaradas** en el contenido programático (48
+> presenciales), no las reales (21 = 7 × 3 h); ver §2 del programador.
 
 ## Distribución
 

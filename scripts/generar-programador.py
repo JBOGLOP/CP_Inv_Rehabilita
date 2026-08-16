@@ -45,104 +45,100 @@ DATOS = {
 
 # ── Contenidos ────────────────────────────────────────────────────────
 # Un renglón por bloque horario, como en el programador del Seminario.
-# Franja de este espacio académico: sábados de 8:00 a 11:00 (supuesto a
-# confirmar, ver nota). Ocho sesiones. Semanas contadas desde la inducción
-# del 31 de julio (semana 1).
+# Franja de este espacio académico: VIERNES de 2:00 a 5:00 p. m., a partir
+# del 21 de agosto de 2026 (HORARIOS 2026-II). Siete sesiones. La modalidad
+# —presencial o sincrónica— es la que fija el calendario para cada fin de
+# semana. Semanas contadas desde la inducción del 31 de julio (semana 1).
 # (semana, fecha, bloque, tema, responsable)
 FILAS = [
-    # ── Sesión 1 · sáb 8 ago · sincrónico · Unidad 1 · Tema 1 ─────────
-    ('2', '08/08/2026', '8:00-9:00 am',
-     'Encuentro sincrónico\n'
+    # ── Sesión 1 · vie 21 ago · Presencial · Presentación + Unidad 1 ──
+    ('4', '21/08/2026', '2:00-3:00 pm',
+     'Encuentro presencial\n'
      'Presentación del espacio académico y del hilo del curso\n'
      'Unidad 1. Abordajes de investigaciones en rehabilitación paliativa\n'
-     'Tema 1. Declinación funcional y trayectorias de enfermedad en cuidados paliativos', DOCENTE),
-    ('', '08/08/2026', '9:00-10:00 am',
-     'Tema 1. Concepto de rehabilitación (OMS) y de rehabilitación paliativa '
-     '(Tiberini y Richardson)', ''),
-    ('', '08/08/2026', '10:00-11:00 am',
-     'Tema 1. Trayectorias clínicas de enfermedad y ventanas de intervención rehabilitadora', ''),
+     'Tema 1. Declinación funcional, trayectorias de enfermedad y concepto de '
+     'rehabilitación paliativa', DOCENTE),
+    ('', '21/08/2026', '3:00-4:00 pm',
+     'Tema 2. Modelos de intervenciones en rehabilitación paliativa', ''),
+    ('', '21/08/2026', '4:00-5:00 pm',
+     'Tema 3. Realidad virtual, tecnología móvil, aplicaciones en salud, objetos '
+     'virtuales de aprendizaje e inteligencia artificial generativa (Wysa)', ''),
 
-    # ── Sesión 2 · sáb 22 ago · presencial · Unidad 1 · Temas 2 y 3 ───
-    ('4', '22/08/2026', '8:00-9:00 am',
-     'Encuentro presencial\n'
-     'Tema 2. Modelos de intervenciones en rehabilitación paliativa', DOCENTE),
-    ('', '22/08/2026', '9:00-10:00 am',
-     'Tema 3. Realidad virtual durante la rehabilitación de personas que requieren '
-     'cuidados paliativos', ''),
-    ('', '22/08/2026', '10:00-11:00 am',
-     'Tema 3. Tecnología móvil, aplicaciones en salud, objetos virtuales de aprendizaje '
-     'e inteligencia artificial generativa (Wysa)', ''),
-
-    # ── Sesión 3 · sáb 5 sep · sincrónico · Unidad 2 · cierre C1 ──────
-    ('6', '05/09/2026', '8:00-9:00 am',
+    # ── Sesión 2 · vie 4 sep · Sincrónico · Unidad 2 · cierre C1 ──────
+    ('6', '04/09/2026', '2:00-3:00 pm',
      'Encuentro sincrónico\n'
      'Unidad 2. Abordajes de investigaciones en rehabilitación paliativa en cáncer\n'
      'Tema 1. Rehabilitación física y psicosocial: dolor, complicaciones neuromusculares '
      'y musculoesqueléticas, edema y linfedema', DOCENTE),
-    ('', '05/09/2026', '9:00-10:00 am',
+    ('', '04/09/2026', '3:00-4:00 pm',
      'Tema 2. Ámbitos de rehabilitación: unidades paliativas y entornos hospitalarios, '
      'centros día, programas comunitarios y rehabilitación infantil', ''),
-    ('', '05/09/2026', '10:00-11:00 am',
+    ('', '04/09/2026', '4:00-5:00 pm',
      'Tema 3. Medición de resultados funcionales\n'
      'Entrega Primer Producto 35 %', ''),
 
-    # ── Sesión 4 · sáb 19 sep · presencial · Unidad 3 ────────────────
-    ('8', '19/09/2026', '8:00-9:00 am',
+    # ── Sesión 3 · vie 18 sep · Presencial · Unidad 3 ────────────────
+    ('8', '18/09/2026', '2:00-3:00 pm',
      'Encuentro presencial\n'
      'Unidad 3. Abordajes de investigaciones en rehabilitación paliativa en falla de órgano\n'
      'Tema 1. Rehabilitación física, funcional y social: rehabilitación cardiovascular '
      'e indicaciones para el control de síntomas', DOCENTE),
-    ('', '19/09/2026', '9:00-10:00 am',
+    ('', '18/09/2026', '3:00-4:00 pm',
      'Tema 1. Manejo de la disfagia orofaríngea y trastornos de la deglución\n'
      'Tema 2. Ámbitos de rehabilitación (institucional, domiciliaria, comunitaria)', ''),
-    ('', '19/09/2026', '10:00-11:00 am',
+    ('', '18/09/2026', '4:00-5:00 pm',
      'Tema 2. Programas de rehabilitación cardiopulmonar y rehabilitación domiciliaria\n'
      'Tema 3. Medición de resultados funcionales', ''),
 
-    # ── Sesión 5 · sáb 3 oct · sincrónico · Unidad 4 (en inglés) ─────
-    ('10', '03/10/2026', '8:00-9:00 am',
+    # ── Sesión 4 · vie 2 oct · Sincrónico · Unidad 4 (en inglés) ─────
+    ('10', '02/10/2026', '2:00-3:00 pm',
      'Encuentro sincrónico (unidad desarrollada en inglés)\n'
      'Unidad 4. Abordajes de investigaciones en rehabilitación paliativa en trastornos '
      'neurodegenerativos\n'
      'Tema 1. Rehabilitación en esclerosis múltiple y esclerosis lateral amiotrófica', DOCENTE),
-    ('', '03/10/2026', '9:00-10:00 am',
+    ('', '02/10/2026', '3:00-4:00 pm',
      'Tema 1. Parálisis cerebral\n'
      'Tema 2. Ámbitos de rehabilitación: unidades de larga duración y programas de '
      'rehabilitación integral', ''),
-    ('', '03/10/2026', '10:00-11:00 am',
+    ('', '02/10/2026', '4:00-5:00 pm',
      'Tema 3. Medición de resultados funcionales en enfermedad neurodegenerativa', ''),
 
-    # ── Sesión 6 · sáb 17 oct · presencial · Unidad 5 · cierre C2 ────
-    ('12', '17/10/2026', '8:00-9:00 am',
+    # ── Sesión 5 · vie 16 oct · Presencial · Unidad 5 · cierre C2 ────
+    ('12', '16/10/2026', '2:00-3:00 pm',
      'Encuentro presencial\n'
      'Unidad 5. Abordajes de investigaciones en rehabilitación paliativa en demencia y '
      'fragilidad\n'
      'Tema 1. Rehabilitación física y psicosocial: rehabilitación en demencias', DOCENTE),
-    ('', '17/10/2026', '9:00-10:00 am',
+    ('', '16/10/2026', '3:00-4:00 pm',
      'Tema 2. Ámbitos de rehabilitación: unidades de larga duración y programas de '
      'rehabilitación integral', ''),
-    ('', '17/10/2026', '10:00-11:00 am',
+    ('', '16/10/2026', '4:00-5:00 pm',
      'Tema 3. Medición de resultados en demencia y fragilidad: cambio mínimo importante\n'
      'Entrega Segundo Producto 35 %', ''),
 
-    # ── Sesión 7 · sáb 31 oct · sincrónico · Unidad 6 ────────────────
-    ('14', '31/10/2026', '8:00-9:00 am',
+    # ── Sesión 6 · vie 30 oct · Sincrónico · Unidad 6 ────────────────
+    ('14', '30/10/2026', '2:00-3:00 pm',
      'Encuentro sincrónico\n'
      'Unidad 6. Abordajes de investigaciones en rehabilitación paliativa en eventos '
      'catastróficos (ictus severo, fractura de cadera del adulto mayor)\n'
      'Tema 1. Rehabilitación física y psicosocial: rehabilitación en geriatría y espasticidad', DOCENTE),
-    ('', '31/10/2026', '9:00-10:00 am',
+    ('', '30/10/2026', '3:00-4:00 pm',
      'Tema 2. Ámbitos de rehabilitación (institucional, domiciliaria, comunitaria)', ''),
-    ('', '31/10/2026', '10:00-11:00 am',
+    ('', '30/10/2026', '4:00-5:00 pm',
      'Tema 3. Medición de resultados en rehabilitación del adulto mayor', ''),
 
-    # ── Sesión 8 · sáb 21 nov · presencial · integrador · cierre C3 ──
-    ('17', '21/11/2026', '8:00-9:00 am',
+    # ── Encuentro institucional, ajeno a este espacio académico ──────
+    ('16', '13/11/2026', '',
+     'Encuentro de investigación — sustentaciones de tesis\n'
+     '(Solo para estudiantes de Tesis II. No corresponde a este espacio académico)', ''),
+
+    # ── Sesión 7 · vie 20 nov · Presencial · integrador · cierre C3 ──
+    ('17', '20/11/2026', '2:00-3:00 pm',
      'Encuentro presencial\n'
      'Seminario integrador de las seis unidades del espacio académico', DOCENTE),
-    ('', '21/11/2026', '9:00-10:00 am',
+    ('', '20/11/2026', '3:00-4:00 pm',
      'Socialización de los productos finales de investigación en rehabilitación paliativa', ''),
-    ('', '21/11/2026', '10:00-11:00 am',
+    ('', '20/11/2026', '4:00-5:00 pm',
      'Coevaluación, autoevaluación y cierre del espacio académico\n'
      'Entrega Producto Final 30 %', ''),
 ]
@@ -150,16 +146,16 @@ FILAS = [
 NOTA = (
     'Nota. La programación sigue el calendario oficial de encuentros académicos 2026-II de la '
     'Maestría (comunicación de la Dirección, «HORARIOS 2026 - II») y la franja de este espacio '
-    'académico, sábados de 8:00 a 11:00, con ocho sesiones (8 y 22 de agosto; 5 y 19 de '
-    'septiembre; 3, 17 y 31 de octubre; 21 de noviembre). Puntos por confirmar con la Dirección: '
-    '(1) la franja de sábado de 8:00 a 11:00 y la inclusión del sábado 8 de agosto son un supuesto '
-    'de esta programación, pues el calendario oficial fija los fines de semana de encuentro para '
-    'toda la Maestría pero no la franja de cada asignatura; si la franja fuera otra, cambian las '
-    'fechas y el número de sesiones. (2) Las 48 horas presenciales declaradas en el contenido '
-    'programático corresponden a 24 horas de encuentro efectivas (8 × 3 h); se registran las '
-    'declaradas por coherencia con el contenido programático aprobado. (3) El encuentro del 13 de '
-    'noviembre es de sustentaciones de tesis II y no corresponde a este espacio académico. '
-    'Evaluación por productos de corte: primer corte 35 %, segundo corte 35 %, producto final 30 %.'
+    'académico, viernes de 2:00 a 5:00 p. m. a partir del 21 de agosto de 2026, con siete sesiones '
+    '(21 de agosto; 4 y 18 de septiembre; 2, 16 y 30 de octubre; 20 de noviembre). La modalidad de '
+    'cada sesión —presencial o sincrónica— corresponde a la fijada por el calendario para ese fin '
+    'de semana: presencial el 21 de agosto, 18 de septiembre, 16 de octubre y 20 de noviembre; '
+    'sincrónica (asistida por tecnología) el 4 de septiembre, 2 y 30 de octubre. El encuentro del '
+    '13 de noviembre es de sustentaciones de tesis II y no corresponde a este espacio académico. '
+    'Las 48 horas presenciales declaradas en el contenido programático corresponden a 21 horas de '
+    'encuentro efectivas (7 × 3 h); se registran las declaradas por coherencia con el contenido '
+    'programático aprobado. Evaluación por productos de corte: primer corte 35 %, segundo corte '
+    '35 %, producto final 30 %.'
 )
 
 
