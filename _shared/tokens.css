@@ -1,0 +1,83 @@
+/* ============================================================================
+   tokens.css — Sistema de diseño · Investigación en Cuidados Paliativos y
+   Rehabilitación (37543013) · Maestría en Cuidados Paliativos · UAN
+   ----------------------------------------------------------------------------
+   ⚠️ FUENTE CANÓNICA, NO ENLACE.
+   Por la regla de portabilidad de CLAUDE.md, cada HTML del curso es un archivo
+   autocontenido que abre sin servidor y sin conexión. Este archivo NO se
+   enlaza con <link rel="stylesheet">: se COPIA EN LÍNEA dentro del <style> de
+   cada página. Si cambias un valor aquí, propágalo a los archivos que lo usan.
+
+   ⚠️ NO INVENTES COLORES NUEVOS NI CAMBIES LOS HEX.
+   La paleta es fría —azules y grises— por decisión del docente. Los seis
+   acentos de unidad se eligieron por búsqueda exhaustiva sobre las 720
+   asignaciones posibles, maximizando la separación del par de unidades
+   CONTIGUAS más débil, y validando cada par contra deuteranopía y protanopía
+   (OKLab ΔE + simulación Viénot). Los seis tonos fríos no pueden separarse por
+   completo bajo daltonismo —es un límite del espacio de color, no un descuido—;
+   por eso el color NUNCA es el único canal de identidad: la etiqueta «Unidad N»
+   y el número de sesión acompañan siempre al color. Resultado: pares en
+   secuencia ≥10 ΔE a plena vista y ≥9 en deuteranopía; contrastes ≥3.7:1.
+   ============================================================================ */
+
+:root{
+  /* --- Acentos por unidad · el color señala la unidad, no decora -----------
+     U1 azul · U2 pizarra · U3 índigo · U4 cielo · U5 teal · U6 glicina.
+     Cada uno: base (relleno/borde), -dark (texto/títulos), -soft (fondos). */
+  --u1:#2360A6; --u1-dark:#164A87; --u1-soft:#DBE6F4;   /* Rehabilitación paliativa (abordajes) */
+  --u2:#5E7488; --u2-dark:#3F5468; --u2-soft:#E0E6EC;   /* Cáncer */
+  --u3:#4A3E9C; --u3-dark:#352B78; --u3-soft:#E4E1F3;   /* Falla de órgano */
+  --u4:#2E86BC; --u4-dark:#1C6493; --u4-soft:#D8EBF7;   /* Trastornos neurodegenerativos (en inglés) */
+  --u5:#0E8A80; --u5-dark:#0A655D; --u5-soft:#D2EAE7;   /* Demencia y fragilidad */
+  --u6:#7A5FC0; --u6-dark:#574097; --u6-soft:#E9E3F7;   /* Eventos catastróficos */
+
+  /* --- Transversal · portada, avisos y evaluación -------------------------
+     Un azul-acero profundo, distinto de los seis acentos de unidad, que hace
+     de identidad del curso donde no manda ninguna unidad concreta. */
+  --marca:#22415C; --marca-dark:#163049; --marca-soft:#E3EAF0;
+
+  /* --- Neutros fríos ------------------------------------------------------ */
+  --tinta:#14202B;      /* casi-negro azulado · texto principal */
+  --tinta-2:#33475A;
+  --gris:#4E6274;       /* texto secundario */
+  --gris-2:#6B7E8F;
+  --gris-claro:#94A5B5; /* bordes suaves, metadatos */
+  --linea:#D9E3EC;      /* reglas */
+  --linea-fuerte:#BCCBD9;
+  --blanco:#FFFFFF;
+  --superficie:#FFFFFF; /* tarjetas */
+  --nieve:#F4F7FA;      /* fondo de página, blanco frío */
+
+  /* --- Estado (semántico, reservado — nunca se usa como acento) ----------- */
+  --ok:#0CA30C; --aviso:#B7791F; --alerta:#C0392B;
+
+  /* --- Elevación y forma -------------------------------------------------- */
+  --shadow-soft:0 1px 2px rgba(20,32,43,.06), 0 6px 18px rgba(20,32,43,.06);
+  --shadow-medium:0 6px 20px rgba(20,32,43,.10);
+  --shadow-strong:0 12px 40px rgba(20,32,43,.14);
+  --radius:12px; --radius-sm:8px;
+
+  /* --- Tipografía · fuentes del sistema, nunca webfonts (regla 1) ---------
+     El serif de display usa Iowan/Palatino, presentes en macOS y Windows;
+     degradan a Georgia. Es el mismo par que el deck de la sesión 01. */
+  --sans:system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  --serif:'Iowan Old Style','Palatino Linotype',Palatino,'Book Antiqua',Georgia,serif;
+  --mono:ui-monospace,'Cascadia Mono','Segoe UI Mono',Consolas,'Liberation Mono',monospace;
+
+  /* --- ACENTO DE LA PÁGINA -----------------------------------------------
+     Cada ficha de sesión redefine estas tres variables según su unidad; la
+     portada usa el transversal. El resto del CSS usa siempre var(--acento*),
+     nunca el color concreto, para que cambiar de unidad sea una sola edición.
+     Valor por defecto: transversal. */
+  --acento:      var(--marca);
+  --acento-dark: var(--marca-dark);
+  --acento-soft: var(--marca-soft);
+}
+
+/* ============================================================================
+   Modo oscuro — SOLO para decks que lo declaran (p. ej. sesión 01).
+   Las fichas y la portada son de tema claro único, como el molde del curso.
+   Un deck que quiera modo oscuro copia también este bloque y sus tokens.
+   Acentos de unidad, escalonados para superficie oscura #131C26:
+     --u1:#5B93D8 --u2:#93AAC2 --u3:#8A83E0 --u4:#5FB4E4 --u5:#3FB3A6 --u6:#A594EA
+   ============================================================================ */

@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="es">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>04 · Cáncer: dolor y complicaciones neuromusculares — Investigación en CP y Rehabilitación</title>
+<meta name="description" content="Sesión 4 de Investigación en Cuidados Paliativos y Rehabilitación (37543013), Maestría en Cuidados Paliativos, Universidad Antonio Nariño. Cáncer: dolor y complicaciones neuromusculares.">
+
+<!-- ===========================================================================
+     PLANTILLA DE SESIÓN — no se edita para una sesión concreta.
+
+     La usa scripts/nueva-sesion.js para crear cada ficha sesiones/<slug>/index.html.
+     Los marcadores van en formato llave-con-dólar (mismo que las plantillas JS);
+     scripts/verificar.js ya omite esa forma en la comprobación de enlaces, así que
+     la plantilla convive con el verificador sin excepciones. No se escribe ningún
+     marcador de ejemplo: el generador lo leería como un marcador de verdad y lo
+     daría por huérfano.
+
+     Portabilidad (regla 1): tokens en línea, cero recursos externos, cero
+     JavaScript. Abre con doble clic y sin conexión. Tema claro único.
+     =========================================================================== -->
+
+<style>
+/* --- tokens.css en línea · FUENTE CANÓNICA: _shared/tokens.css ------------- */
+:root{
+  --u1:#2360A6; --u1-dark:#164A87; --u1-soft:#DBE6F4;
+  --u2:#5E7488; --u2-dark:#3F5468; --u2-soft:#E0E6EC;
+  --u3:#4A3E9C; --u3-dark:#352B78; --u3-soft:#E4E1F3;
+  --u4:#2E86BC; --u4-dark:#1C6493; --u4-soft:#D8EBF7;
+  --u5:#0E8A80; --u5-dark:#0A655D; --u5-soft:#D2EAE7;
+  --u6:#7A5FC0; --u6-dark:#574097; --u6-soft:#E9E3F7;
+  --marca:#22415C; --marca-dark:#163049; --marca-soft:#E3EAF0;
+  --tinta:#14202B; --gris:#4E6274; --gris-claro:#94A5B5;
+  --linea:#D9E3EC; --blanco:#FFFFFF; --superficie:#FFFFFF; --nieve:#F4F7FA;
+  --shadow-soft:0 1px 2px rgba(20,32,43,.06), 0 6px 18px rgba(20,32,43,.06);
+  --radius:12px; --radius-sm:8px;
+  --sans:system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  --serif:'Iowan Old Style','Palatino Linotype',Palatino,'Book Antiqua',Georgia,serif;
+  --mono:ui-monospace,'Cascadia Mono','Segoe UI Mono',Consolas,monospace;
+  /* Acento de la unidad. El color significa la unidad, no decora. */
+  --acento:var(--u2); --acento-dark:var(--u2-dark); --acento-soft:var(--u2-soft);
+}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0; font-family:var(--sans); color:var(--tinta); background:var(--nieve); line-height:1.55}
+.envoltura{max-width:64rem; margin:0 auto; padding:0 clamp(1rem,4vw,2.5rem)}
+.saltar{position:absolute; left:-9999px; top:0; background:var(--tinta); color:var(--blanco);
+  padding:.6rem 1rem; z-index:100; border-radius:0 0 var(--radius-sm) 0}
+.saltar:focus{left:0}
+:focus-visible{outline:3px solid var(--acento); outline-offset:2px}
+
+.cabecera{background:linear-gradient(160deg,var(--nieve) 0%,var(--acento-soft) 100%);
+  border-bottom:4px solid var(--acento); padding:clamp(2rem,6vw,3.5rem) 0 clamp(1.5rem,4vw,2.5rem)}
+.migas{font-size:.85rem; color:var(--gris); margin-bottom:1.2rem}
+.migas a{color:var(--acento-dark)}
+.eyebrow{font-size:.75rem; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--acento-dark); font-weight:700; margin-bottom:.4rem}
+h1{font-family:var(--serif); font-size:clamp(1.7rem,4vw,2.6rem); line-height:1.15;
+  letter-spacing:-.01em; margin:0 0 .6rem; max-width:24ch}
+.numero{font-family:var(--mono); font-size:.9rem; color:var(--gris); display:block; margin-bottom:.3rem}
+.chips{display:flex; flex-wrap:wrap; gap:.5rem; margin-top:1.2rem; padding:0; list-style:none}
+.chip{background:var(--blanco); border:1px solid var(--acento-soft); color:var(--tinta);
+  border-radius:999px; padding:.32rem .9rem; font-size:.85rem; box-shadow:var(--shadow-soft)}
+.chip--entrega{background:var(--marca-soft); border-color:var(--marca); color:var(--marca-dark); font-weight:600}
+
+main{padding:clamp(2rem,5vw,3rem) 0}
+section{margin-bottom:clamp(2rem,5vw,3rem)}
+h2{font-family:var(--serif); font-size:clamp(1.2rem,2.4vw,1.6rem); color:var(--acento-dark);
+  margin:0 0 .8rem; line-height:1.25}
+p{margin:0 0 1em; max-width:68ch}
+a{color:var(--acento-dark)}
+
+.temas,.lecturas{list-style:none; padding:0; max-width:68ch; margin:0}
+.temas li{background:var(--blanco); border-radius:var(--radius-sm); box-shadow:var(--shadow-soft);
+  border-left:3px solid var(--acento); padding:.75rem 1rem; margin-bottom:.6rem}
+.lecturas li{padding:.35rem 0 .35rem 1.4rem; position:relative; color:var(--gris); font-size:.95rem}
+.lecturas li::before{content:""; position:absolute; left:.2rem; top:.9em; width:.5rem; height:.5rem;
+  border-radius:50%; background:var(--acento)}
+
+.estado{background:var(--blanco); border-radius:var(--radius); box-shadow:var(--shadow-soft);
+  border-top:3px solid var(--gris-claro); padding:1.1rem 1.25rem; max-width:68ch}
+.estado__etq{display:inline-block; font-size:.7rem; font-weight:700; letter-spacing:.06em;
+  text-transform:uppercase; padding:.15em .55em; border-radius:4px;
+  background:var(--marca-soft); color:var(--marca-dark); margin-bottom:.6rem}
+.estado p:last-child{margin-bottom:0}
+.material{background:var(--acento-soft); border-radius:var(--radius); padding:1.2rem 1.4rem; max-width:68ch}
+.material__cta{display:inline-block; margin-top:.4rem; background:var(--acento); color:var(--blanco);
+  text-decoration:none; font-weight:600; padding:.6rem 1.2rem; border-radius:999px; box-shadow:var(--shadow-soft)}
+.material__cta:hover,.material__cta:focus{background:var(--acento-dark)}
+
+footer{border-top:1px solid var(--linea); background:var(--blanco); padding:2rem 0; font-size:.88rem; color:var(--gris)}
+footer p{max-width:68ch}
+footer a{color:var(--acento-dark)}
+@media print{.saltar,.migas{display:none} body{background:var(--blanco)}}
+</style>
+
+<a class="saltar" href="#contenido">Saltar al contenido</a>
+
+<header class="cabecera">
+  <div class="envoltura">
+    <nav class="migas" aria-label="Ruta de navegación">
+      <a href="../../index.html">Investigación en CP y Rehabilitación</a> · Sesión 4
+    </nav>
+    <p class="eyebrow">Unidad 2 · Rehabilitación paliativa en cáncer</p>
+    <span class="numero">Sesión 04 de 16</span>
+    <h1>Cáncer: dolor y complicaciones neuromusculares</h1>
+    <ul class="chips">
+      <li class="chip">jueves 27 de agosto de 2026</li>
+      <li class="chip">Presencial</li>
+      <li class="chip">3 h presenciales</li>
+      <li class="chip">Primer corte</li>
+      
+    </ul>
+  </div>
+</header>
+
+<main id="contenido">
+  <div class="envoltura">
+
+    <section aria-labelledby="h-temas">
+      <h2 id="h-temas">Qué se trabaja</h2>
+      <ul class="temas">
+        <li>Rehabilitación en el manejo del dolor oncológico</li>
+        <li>Complicaciones neuromusculares del cáncer y su tratamiento</li>
+        <li>Evaluación funcional de la persona con cáncer avanzado</li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="h-material">
+      <h2 id="h-material">Material de la sesión</h2>
+      <div class="estado">
+        <p class="estado__etq">En preparación</p>
+        <p>
+          Todavía no hay material publicado para esta sesión. Cuando lo haya, aparecerá aquí y
+          en la <a href="../../index.html">portada del curso</a>.
+        </p>
+        <p>
+          Mientras tanto, esta ficha existe para que el recorrido del semestre esté completo desde
+          el primer día: se sabe qué se va a trabajar y cuándo, aunque la clase no esté construida.
+        </p>
+      </div>
+    </section>
+
+    <section aria-labelledby="h-lecturas">
+      <h2 id="h-lecturas">Lecturas previas</h2>
+      <ul class="lecturas">
+        <li>Chowdhury, Brennan y Gardiner (2020)</li>
+        <li>Sampedro Pilegaard et al. (2021)</li>
+      </ul>
+      <p style="font-size:.85rem;color:var(--gris)">
+        Referencias completas en
+        <a href="../../recursos/referencias/referencias.bib">recursos/referencias/referencias.bib</a>.
+        El material de terceros se referencia, no se reproduce.
+      </p>
+    </section>
+
+  </div>
+</main>
+
+<footer>
+  <div class="envoltura">
+    <p>
+      <strong>Investigación en Cuidados Paliativos y Rehabilitación</strong> ·
+      código 37543013 · plan 2377 · 3 créditos<br>
+      Maestría en Cuidados Paliativos · Facultad de Enfermería ·
+      Universidad Antonio Nariño · 2026-II
+    </p>
+    <p>
+      Docente: Jorge Wilhem Bogoya López.
+      Material docente de acceso abierto; el material de terceros se referencia en APA 7, no se
+      reproduce. Este sitio no publica datos de estudiantes.
+      <a href="../../index.html">Volver a la portada</a>.
+    </p>
+  </div>
+</footer>
+</html>

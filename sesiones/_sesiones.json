@@ -1,0 +1,245 @@
+{
+  "_comentario": [
+    "FUENTE CANÓNICA de la lista de sesiones.",
+    "",
+    "Quién la lee:",
+    "  · scripts/nueva-sesion.js  — crea la ficha (index.html) de cada sesión que falte.",
+    "  · scripts/verificar.js     — comprobación 5: la portada index.html debe enlazar",
+    "                               exactamente estas sesiones, ni una más ni una menos.",
+    "",
+    "Las carpetas se nombran por CONTENIDO, no por fecha. Las fechas de 2026-II son",
+    "PROVISIONALES (16 jueves desde el 6 de agosto de 2026); el calendario institucional",
+    "aún no se confirma. Si cambian las fechas, se editan aquí y en la portada — no se",
+    "renombra ninguna carpeta y ningún enlace compartido se rompe.",
+    "",
+    "El color de cada unidad vive en _shared/tokens.css (var --uN). El campo acento",
+    "de abajo es solo el nombre del token que la ficha activa."
+  ],
+
+  "asignatura": "Investigación en Cuidados Paliativos y Rehabilitación",
+  "codigo": "37543013",
+  "plan": "2377",
+  "creditos": 3,
+  "semestre": "2026-II",
+  "modalidadCurso": "Presencial teórico · 144 h (48 presenciales + 96 de trabajo independiente)",
+
+  "unidades": {
+    "U1": { "nombre": "Abordajes de investigaciones en rehabilitación paliativa", "acento": "u1" },
+    "U2": { "nombre": "Rehabilitación paliativa en cáncer", "acento": "u2" },
+    "U3": { "nombre": "Rehabilitación paliativa en falla de órgano", "acento": "u3" },
+    "U4": { "nombre": "Rehabilitación paliativa en trastornos neurodegenerativos", "acento": "u4" },
+    "U5": { "nombre": "Rehabilitación paliativa en demencia y fragilidad", "acento": "u5" },
+    "U6": { "nombre": "Rehabilitación paliativa en eventos catastróficos", "acento": "u6" }
+  },
+
+  "sesiones": [
+    {
+      "num": 1, "slug": "s01-declinacion-funcional",
+      "titulo": "Presentación del curso y declinación funcional",
+      "fecha": "jueves 6 de agosto de 2026", "fechaCorta": "6 ago",
+      "modalidad": "Presencial", "unidad": "U1", "corte": "Primer corte", "entrega": null,
+      "temas": [
+        "Encuadre del espacio académico y del hilo que lo atraviesa",
+        "Concepto de rehabilitación (OMS) y de rehabilitación paliativa (Tiberini y Richardson)",
+        "Declinación funcional: mecanismos, reversibilidad y trayectorias de enfermedad"
+      ],
+      "lecturas": ["Tiberini, Talbot-Rice y Turner (2024)", "Minosso, Souza y Oliveira (2016)", "Santiago-Palma y Payne (2001)"],
+      "material": { "tipo": "deck", "archivo": "clase.html", "etiqueta": "Abrir la clase interactiva" }
+    },
+    {
+      "num": 2, "slug": "s02-modelos-de-intervencion",
+      "titulo": "Modelos de intervención en rehabilitación paliativa",
+      "fecha": "jueves 13 de agosto de 2026", "fechaCorta": "13 ago",
+      "modalidad": "Presencial", "unidad": "U1", "corte": "Primer corte", "entrega": null,
+      "temas": [
+        "Modelos de rehabilitación paliativa: integración temprana, autogestión y autocuidado",
+        "El modelo de Nottelmann y las sinergias con la oncología",
+        "Barreras y facilitadores para la implementación de programas"
+      ],
+      "lecturas": ["Nottelmann et al. (2019)", "Chowdhury, Brennan y Gardiner (2020)", "Barawid et al. (2015)"],
+      "material": null
+    },
+    {
+      "num": 3, "slug": "s03-realidad-virtual-y-tecnologias",
+      "titulo": "Realidad virtual, TIC e inteligencia artificial generativa",
+      "fecha": "jueves 20 de agosto de 2026", "fechaCorta": "20 ago",
+      "modalidad": "Presencial", "unidad": "U1", "corte": "Primer corte", "entrega": null,
+      "temas": [
+        "Realidad virtual en el control de síntomas y la rehabilitación paliativa",
+        "Tecnología móvil, apps en salud y objetos virtuales de aprendizaje",
+        "IA generativa en salud: exploración de Wysa como objeto de estudio"
+      ],
+      "lecturas": ["Timm, Thuesen y Clark (2021)", "Eva y Payne (2014)"],
+      "material": null
+    },
+    {
+      "num": 4, "slug": "s04-cancer-dolor-y-neuromuscular",
+      "titulo": "Cáncer: dolor y complicaciones neuromusculares",
+      "fecha": "jueves 27 de agosto de 2026", "fechaCorta": "27 ago",
+      "modalidad": "Presencial", "unidad": "U2", "corte": "Primer corte", "entrega": null,
+      "temas": [
+        "Rehabilitación en el manejo del dolor oncológico",
+        "Complicaciones neuromusculares del cáncer y su tratamiento",
+        "Evaluación funcional de la persona con cáncer avanzado"
+      ],
+      "lecturas": ["Chowdhury, Brennan y Gardiner (2020)", "Sampedro Pilegaard et al. (2021)"],
+      "material": null
+    },
+    {
+      "num": 5, "slug": "s05-cancer-musculoesqueletico-y-linfedema",
+      "titulo": "Cáncer: musculoesquelético, linfedema y sobrevivientes",
+      "fecha": "jueves 3 de septiembre de 2026", "fechaCorta": "3 sep",
+      "modalidad": "Presencial", "unidad": "U2", "corte": "Primer corte", "entrega": null,
+      "temas": [
+        "Rehabilitación musculoesquelética en cáncer avanzado",
+        "Edema y linfedema: abordaje y evidencia",
+        "Rehabilitación funcional y en sobrevivientes de cáncer"
+      ],
+      "lecturas": ["Tiep et al. (2015)", "Sampedro Pilegaard et al. (2021)", "Tiberini et al. (2024)"],
+      "material": null
+    },
+    {
+      "num": 6, "slug": "s06-cancer-ambitos-y-medicion",
+      "titulo": "Cáncer: ámbitos de rehabilitación y medición de resultados",
+      "fecha": "jueves 10 de septiembre de 2026", "fechaCorta": "10 sep",
+      "modalidad": "Presencial", "unidad": "U2", "corte": "Primer corte", "entrega": "Entrega del primer corte · 35 %",
+      "temas": [
+        "Ámbitos: unidades paliativas, centros día, comunidad y rehabilitación infantil",
+        "Medición de resultados funcionales e interpretación estadística",
+        "Cierre y evaluación del primer corte"
+      ],
+      "lecturas": ["Sampedro Pilegaard et al. (2021)", "Eva y Payne (2014)"],
+      "material": null
+    },
+    {
+      "num": 7, "slug": "s07-falla-de-organo-abordaje",
+      "titulo": "Falla de órgano: rehabilitación física, funcional y social",
+      "fecha": "jueves 17 de septiembre de 2026", "fechaCorta": "17 sep",
+      "modalidad": "Presencial", "unidad": "U3", "corte": "Segundo corte", "entrega": null,
+      "temas": [
+        "Rehabilitación cardiovascular en enfermedad avanzada",
+        "Control de síntomas: indicaciones ante disnea y fatiga",
+        "Disfagia orofaríngea y trastornos de la deglución"
+      ],
+      "lecturas": ["Tiep et al. (2015)", "Cecatto y Battistella (2021)", "Oxford Handbook of Palliative Care (2019)"],
+      "material": null
+    },
+    {
+      "num": 8, "slug": "s08-falla-de-organo-ambitos-y-medicion",
+      "titulo": "Falla de órgano: ámbitos de rehabilitación y medición",
+      "fecha": "jueves 24 de septiembre de 2026", "fechaCorta": "24 sep",
+      "modalidad": "Presencial", "unidad": "U3", "corte": "Segundo corte", "entrega": null,
+      "temas": [
+        "Programas de rehabilitación cardiopulmonar en cuidados paliativos",
+        "Rehabilitación domiciliaria",
+        "Medición de resultados y lectura crítica en segunda lengua (CASPe)"
+      ],
+      "lecturas": ["Tiep et al. (2015)", "OMS (2018)"],
+      "material": null
+    },
+    {
+      "num": 9, "slug": "s09-neurodegenerativos-abordaje",
+      "titulo": "Trastornos neurodegenerativos: rehabilitación (sesión en inglés)",
+      "fecha": "jueves 1 de octubre de 2026", "fechaCorta": "1 oct",
+      "modalidad": "Presencial", "unidad": "U4", "corte": "Segundo corte", "entrega": null,
+      "temas": [
+        "Rehabilitation in multiple sclerosis and amyotrophic lateral sclerosis",
+        "Cerebral palsy: rehabilitation across the life course",
+        "Journal club en inglés — la unidad se desarrolla en segunda lengua"
+      ],
+      "lecturas": ["Cecatto y Battistella (2021)", "Tiberini et al. (2024)"],
+      "material": null
+    },
+    {
+      "num": 10, "slug": "s10-neurodegenerativos-ambitos-y-medicion",
+      "titulo": "Trastornos neurodegenerativos: ámbitos y medición",
+      "fecha": "jueves 8 de octubre de 2026", "fechaCorta": "8 oct",
+      "modalidad": "Presencial", "unidad": "U4", "corte": "Segundo corte", "entrega": null,
+      "temas": [
+        "Rehabilitación en unidades de larga duración",
+        "Programas de rehabilitación integral",
+        "Medición de resultados funcionales en enfermedad neurodegenerativa"
+      ],
+      "lecturas": ["Cecatto y Battistella (2021)", "Eva y Payne (2014)"],
+      "material": null
+    },
+    {
+      "num": 11, "slug": "s11-demencia-y-fragilidad-abordaje",
+      "titulo": "Demencia y fragilidad: rehabilitación física y psicosocial",
+      "fecha": "jueves 15 de octubre de 2026", "fechaCorta": "15 oct",
+      "modalidad": "Presencial", "unidad": "U5", "corte": "Segundo corte", "entrega": "Entrega del segundo corte · 35 %",
+      "temas": [
+        "Rehabilitación en demencias: metas realistas y adaptación de objetivos",
+        "Fragilidad del adulto mayor y final de vida",
+        "Cierre y evaluación del segundo corte"
+      ],
+      "lecturas": ["Harwood y Enguell (2019)", "Jones y Bunnell (2014)"],
+      "material": null
+    },
+    {
+      "num": 12, "slug": "s12-demencia-y-fragilidad-cambio-minimo",
+      "titulo": "Demencia y fragilidad: ámbitos y cambio mínimo importante",
+      "fecha": "jueves 22 de octubre de 2026", "fechaCorta": "22 oct",
+      "modalidad": "Presencial", "unidad": "U5", "corte": "Tercer corte", "entrega": null,
+      "temas": [
+        "Ámbitos: unidades de larga duración y rehabilitación integral",
+        "Medición de resultados: cambio mínimo importante (MCID)",
+        "Taller de interpretación estadística"
+      ],
+      "lecturas": ["Harwood y Enguell (2019)", "Eva y Payne (2014)"],
+      "material": null
+    },
+    {
+      "num": 13, "slug": "s13-eventos-catastroficos-geriatria",
+      "titulo": "Eventos catastróficos: geriatría y espasticidad",
+      "fecha": "jueves 29 de octubre de 2026", "fechaCorta": "29 oct",
+      "modalidad": "Presencial", "unidad": "U6", "corte": "Tercer corte", "entrega": null,
+      "temas": [
+        "Ictus severo y fractura de cadera del adulto mayor: pronóstico funcional",
+        "Rehabilitación en geriatría",
+        "Espasticidad: evaluación y manejo"
+      ],
+      "lecturas": ["Tapper y Curseen (2021)", "Cecatto y Battistella (2021)"],
+      "material": null
+    },
+    {
+      "num": 14, "slug": "s14-eventos-catastroficos-ambitos",
+      "titulo": "Eventos catastróficos: ámbitos de rehabilitación",
+      "fecha": "jueves 5 de noviembre de 2026", "fechaCorta": "5 nov",
+      "modalidad": "Presencial", "unidad": "U6", "corte": "Tercer corte", "entrega": null,
+      "temas": [
+        "Continuidad asistencial hospital–domicilio–comunidad",
+        "Rehabilitación domiciliaria del adulto mayor",
+        "Integración con la atención primaria en salud"
+      ],
+      "lecturas": ["OMS (2018)", "Sangermano et al. (2017)", "Tapper y Curseen (2021)"],
+      "material": null
+    },
+    {
+      "num": 15, "slug": "s15-eventos-catastroficos-medicion",
+      "titulo": "Eventos catastróficos: medición de resultados en el adulto mayor",
+      "fecha": "jueves 12 de noviembre de 2026", "fechaCorta": "12 nov",
+      "modalidad": "Presencial", "unidad": "U6", "corte": "Tercer corte", "entrega": null,
+      "temas": [
+        "Instrumentos de medición funcional en el adulto mayor",
+        "Resultados reportados por el paciente (PROM) y por el observador",
+        "Interpretación estadística en investigación geriátrica"
+      ],
+      "lecturas": ["Tapper y Curseen (2021)", "Harwood y Enguell (2019)"],
+      "material": null
+    },
+    {
+      "num": 16, "slug": "s16-seminario-integrador",
+      "titulo": "Seminario integrador y socialización de productos finales",
+      "fecha": "jueves 19 de noviembre de 2026", "fechaCorta": "19 nov",
+      "modalidad": "Presencial", "unidad": "U6", "corte": "Tercer corte", "entrega": "Producto final · 30 %",
+      "temas": [
+        "Socialización de los productos finales de investigación en rehabilitación paliativa",
+        "Coevaluación y autoevaluación del proceso",
+        "Cierre: manifiesto de capital investigativo (Eva y Payne)"
+      ],
+      "lecturas": ["Eva y Payne (2014)", "Timm, Thuesen y Clark (2021)", "Astudillo y Wilson (2021)"],
+      "material": null
+    }
+  ]
+}

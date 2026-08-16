@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="es">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Investigación en Cuidados Paliativos y Rehabilitación · Maestría en Cuidados Paliativos · UAN</title>
+<meta name="description" content="Investigación en Cuidados Paliativos y Rehabilitación (37543013), Maestría en Cuidados Paliativos, Facultad de Enfermería, Universidad Antonio Nariño. Semestre 2026-II: seis unidades y dieciséis sesiones sobre rehabilitación paliativa desde la investigación.">
+
+<!-- ===========================================================================
+     PORTADA DEL CURSO — hub. GitHub Pages sirve este archivo por estar en la
+     raíz; si se borrara, el sitio volvería a renderizar README.md, que es otra
+     cosa. Portabilidad (regla 1): tokens en línea, cero recursos externos, cero
+     JavaScript. La lista de sesiones se mantiene A MANO y debe coincidir con
+     sesiones/_sesiones.json — la comprobación 5 de verificar.js lo vigila.
+     =========================================================================== -->
+
+<style>
+/* --- tokens.css en línea · FUENTE CANÓNICA: _shared/tokens.css ------------- */
+:root{
+  --u1:#2360A6; --u1-dark:#164A87; --u1-soft:#DBE6F4;
+  --u2:#5E7488; --u2-dark:#3F5468; --u2-soft:#E0E6EC;
+  --u3:#4A3E9C; --u3-dark:#352B78; --u3-soft:#E4E1F3;
+  --u4:#2E86BC; --u4-dark:#1C6493; --u4-soft:#D8EBF7;
+  --u5:#0E8A80; --u5-dark:#0A655D; --u5-soft:#D2EAE7;
+  --u6:#7A5FC0; --u6-dark:#574097; --u6-soft:#E9E3F7;
+  --marca:#22415C; --marca-dark:#163049; --marca-soft:#E3EAF0;
+  --tinta:#14202B; --gris:#4E6274; --gris-claro:#94A5B5;
+  --linea:#D9E3EC; --blanco:#FFFFFF; --superficie:#FFFFFF; --nieve:#F4F7FA;
+  --shadow-soft:0 1px 2px rgba(20,32,43,.06), 0 6px 18px rgba(20,32,43,.06);
+  --shadow-medium:0 6px 20px rgba(20,32,43,.10);
+  --radius:12px; --radius-sm:8px;
+  --sans:system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  --serif:'Iowan Old Style','Palatino Linotype',Palatino,'Book Antiqua',Georgia,serif;
+  --mono:ui-monospace,'Cascadia Mono','Segoe UI Mono',Consolas,monospace;
+}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0; font-family:var(--sans); color:var(--tinta); background:var(--nieve); line-height:1.55}
+.envoltura{max-width:70rem; margin:0 auto; padding:0 clamp(1rem,4vw,2.5rem)}
+.saltar{position:absolute; left:-9999px; top:0; background:var(--tinta); color:var(--blanco);
+  padding:.6rem 1rem; z-index:100; border-radius:0 0 var(--radius-sm) 0}
+.saltar:focus{left:0}
+:focus-visible{outline:3px solid var(--marca); outline-offset:2px}
+
+/* --- Cabecera ----------------------------------------------------------- */
+.cabecera{background:linear-gradient(155deg,#14202B 0%,#22415C 55%,#2E5A7E 100%);
+  color:var(--blanco); padding:clamp(2.5rem,7vw,4.5rem) 0 clamp(4rem,9vw,6rem)}
+.cabecera .eyebrow{font-size:.78rem; letter-spacing:.14em; text-transform:uppercase;
+  font-weight:700; opacity:.85; margin:0 0 .6rem}
+.cabecera h1{font-family:var(--serif); font-size:clamp(1.9rem,5vw,3.2rem); line-height:1.1;
+  letter-spacing:-.01em; margin:0 0 .8rem; max-width:24ch}
+.cabecera__sub{margin:0; max-width:56ch; opacity:.92; font-size:clamp(.95rem,1.6vw,1.1rem)}
+.cabecera__datos{font-family:var(--mono); font-size:.82rem; opacity:.8; margin:1.2rem 0 0}
+
+/* --- Tarjetas prácticas, montadas sobre la cabecera --------------------- */
+.practicos{display:grid; gap:1rem; grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+  margin-top:clamp(-3rem,-6vw,-4.5rem); position:relative; z-index:2}
+.practico{background:var(--superficie); border-radius:var(--radius); padding:1rem 1.15rem;
+  box-shadow:var(--shadow-medium); border-top:3px solid var(--marca)}
+.practico__etq{font-size:.7rem; letter-spacing:.09em; text-transform:uppercase;
+  color:var(--gris); font-weight:700; margin:0 0 .3rem}
+.practico__val{margin:0; font-weight:600; font-size:1.02rem; line-height:1.35}
+.practico__val a{color:var(--marca-dark); word-break:break-word}
+
+.aviso{background:var(--marca-soft); border-left:4px solid var(--marca);
+  border-radius:var(--radius-sm); padding:.9rem 1.1rem; margin:2rem 0 0;
+  font-size:.92rem; color:var(--marca-dark); max-width:74ch}
+.aviso strong{color:var(--tinta)}
+
+/* --- Secciones ---------------------------------------------------------- */
+main{padding:clamp(2.5rem,6vw,4rem) 0}
+section{margin-bottom:clamp(2.5rem,6vw,4rem)}
+h2{font-family:var(--serif); font-size:clamp(1.35rem,2.8vw,1.9rem); color:var(--marca-dark);
+  margin:0 0 .3rem; line-height:1.2; letter-spacing:-.01em}
+.seccion__intro{color:var(--gris); max-width:66ch; margin:0 0 1.4rem}
+p{margin:0 0 1em; max-width:70ch}
+a{color:var(--marca-dark)}
+
+.tesis{font-family:var(--serif); font-size:clamp(1.05rem,2.2vw,1.35rem); font-style:italic;
+  color:var(--u1-dark); border-left:4px solid var(--u1); padding:.5em 0 .5em 1.1em;
+  max-width:60ch; margin:1.2rem 0}
+.tesis strong{font-style:normal; color:var(--tinta)}
+
+/* --- Unidades ----------------------------------------------------------- */
+.unidades{display:grid; gap:1rem; grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+.unidad{background:var(--superficie); border-radius:var(--radius); padding:1.2rem 1.3rem;
+  box-shadow:var(--shadow-soft); border-top:4px solid var(--gris-claro)}
+.unidad--u1{border-top-color:var(--u1)} .unidad--u2{border-top-color:var(--u2)}
+.unidad--u3{border-top-color:var(--u3)} .unidad--u4{border-top-color:var(--u4)}
+.unidad--u5{border-top-color:var(--u5)} .unidad--u6{border-top-color:var(--u6)}
+.unidad__num{font-family:var(--mono); font-size:.75rem; letter-spacing:.08em;
+  text-transform:uppercase; color:var(--gris); margin:0 0 .35rem}
+.unidad h3{margin:0 0 .5rem; font-size:1.05rem; line-height:1.3}
+.unidad--u1 h3{color:var(--u1-dark)} .unidad--u2 h3{color:var(--u2-dark)}
+.unidad--u3 h3{color:var(--u3-dark)} .unidad--u4 h3{color:var(--u4-dark)}
+.unidad--u5 h3{color:var(--u5-dark)} .unidad--u6 h3{color:var(--u6-dark)}
+.unidad p{margin:0; font-size:.9rem; color:var(--gris)}
+
+/* --- Cronograma --------------------------------------------------------- */
+.sesiones{list-style:none; margin:0; padding:0}
+.sesion{background:var(--superficie); border-radius:var(--radius); box-shadow:var(--shadow-soft);
+  border-left:4px solid var(--gris-claro); margin-bottom:.7rem;
+  display:grid; gap:.2rem .9rem; padding:.95rem 1.15rem;
+  grid-template-columns:auto 1fr auto; align-items:baseline}
+.sesion--u1{border-left-color:var(--u1)} .sesion--u2{border-left-color:var(--u2)}
+.sesion--u3{border-left-color:var(--u3)} .sesion--u4{border-left-color:var(--u4)}
+.sesion--u5{border-left-color:var(--u5)} .sesion--u6{border-left-color:var(--u6)}
+.sesion__num{font-family:var(--mono); font-size:.9rem; font-weight:700; color:var(--gris); grid-row:1 / span 2}
+.sesion__titulo{margin:0; font-size:1.02rem; font-weight:600; line-height:1.3}
+.sesion__titulo a{text-decoration:none; color:var(--tinta)}
+.sesion__titulo a:hover,.sesion__titulo a:focus{text-decoration:underline}
+.sesion--u1 .sesion__titulo a{color:var(--u1-dark)} .sesion--u2 .sesion__titulo a{color:var(--u2-dark)}
+.sesion--u3 .sesion__titulo a{color:var(--u3-dark)} .sesion--u4 .sesion__titulo a{color:var(--u4-dark)}
+.sesion--u5 .sesion__titulo a{color:var(--u5-dark)} .sesion--u6 .sesion__titulo a{color:var(--u6-dark)}
+.sesion__meta{grid-column:2; font-size:.85rem; color:var(--gris); margin:0}
+.sesion__estado{grid-column:3; grid-row:1 / span 2; font-size:.7rem; font-weight:700;
+  letter-spacing:.06em; text-transform:uppercase; white-space:nowrap;
+  padding:.2em .6em; border-radius:4px; background:var(--marca-soft); color:var(--marca-dark)}
+.sesion__estado--lista{background:var(--u1-soft); color:var(--u1-dark)}
+.sesion__entrega{grid-column:2; font-size:.8rem; font-weight:700; color:var(--u6-dark); margin:.25rem 0 0}
+@media (max-width:600px){
+  .sesion{grid-template-columns:auto 1fr}
+  .sesion__estado{grid-column:1 / -1; grid-row:auto; justify-self:start; margin-top:.4rem}
+}
+
+/* --- Evaluación --------------------------------------------------------- */
+.cortes{display:grid; gap:1rem; grid-template-columns:repeat(auto-fit,minmax(190px,1fr))}
+.corte{background:var(--superficie); border-radius:var(--radius); padding:1.1rem 1.2rem;
+  box-shadow:var(--shadow-soft); border-top:3px solid var(--marca)}
+.corte__peso{font-family:var(--mono); font-size:1.9rem; font-weight:700; color:var(--marca-dark); margin:0; line-height:1}
+.corte__etq{margin:.3rem 0 0; font-weight:600}
+.corte__det{margin:.35rem 0 0; font-size:.88rem; color:var(--gris)}
+
+footer{border-top:1px solid var(--linea); background:var(--superficie); padding:2.5rem 0; font-size:.88rem; color:var(--gris)}
+footer p{max-width:72ch}
+footer a{color:var(--marca-dark)}
+@media print{.saltar{display:none} body{background:var(--blanco)} .cabecera{background:none; color:var(--tinta)} .practicos{margin-top:1rem}}
+</style>
+
+<a class="saltar" href="#contenido">Saltar al contenido</a>
+
+<header class="cabecera">
+  <div class="envoltura">
+    <p class="eyebrow">Maestría en Cuidados Paliativos · Universidad Antonio Nariño</p>
+    <h1>Investigación en Cuidados Paliativos y Rehabilitación</h1>
+    <p class="cabecera__sub">
+      Seis trayectorias de enfermedad, una sola pregunta: qué dice la evidencia sobre rehabilitar
+      cuando la enfermedad avanza, y qué falta por investigar.
+    </p>
+    <p class="cabecera__datos">Código 37543013 · Plan 2377 · 3 créditos · Semestre 2026-II</p>
+  </div>
+</header>
+
+<div class="envoltura">
+  <div class="practicos">
+    <div class="practico"><p class="practico__etq">Dedicación</p><p class="practico__val">144 h · 48 presenciales + 96 independientes</p></div>
+    <div class="practico"><p class="practico__etq">Encuentros</p><p class="practico__val">16 sesiones de 3 h</p></div>
+    <div class="practico"><p class="practico__etq">Modalidad</p><p class="practico__val">Presencial teórico</p></div>
+    <div class="practico"><p class="practico__etq">Docente</p><p class="practico__val">Jorge Wilhem Bogoya López<br><a href="mailto:jbogoya63@uan.edu.co">jbogoya63@uan.edu.co</a></p></div>
+  </div>
+
+  <p class="aviso">
+    <strong>Curso en construcción.</strong> Las fichas de las dieciséis sesiones ya están
+    publicadas, con su fecha y su contenido, para que el recorrido se vea completo desde el
+    principio. El material de cada clase se irá publicando a lo largo del semestre. Las fechas
+    son <strong>provisionales</strong> (dieciséis jueves desde el 6 de agosto de 2026) y se
+    ajustarán al calendario institucional cuando se confirme.
+  </p>
+</div>
+
+<main id="contenido">
+  <div class="envoltura">
+
+    <section aria-labelledby="h-tesis">
+      <h2 id="h-tesis">De qué se trata este espacio académico</h2>
+      <p class="seccion__intro">
+        El objetivo del curso es reconocer el enfoque de rehabilitación paliativa de acuerdo con
+        las trayectorias clínicas de las enfermedades tributarias de cuidados paliativos, desde la
+        investigación. No es una asignatura de técnicas: es una asignatura de <em>evidencia</em>.
+      </p>
+      <p class="tesis">
+        La rehabilitación no se opone al cuidado paliativo: comparten el objetivo de calidad de
+        vida.<br><strong>Lo que cambia con cada trayectoria es cuándo y cómo rehabilitar.</strong>
+      </p>
+      <p>
+        Cada unidad toma una trayectoria —cáncer, falla de órgano, enfermedad neurodegenerativa,
+        demencia y fragilidad, eventos catastróficos— y pregunta qué evidencia sostiene la
+        intervención, cómo se mide el resultado y qué vacíos quedan por investigar. Se habla de
+        personas con enfermedad avanzada, no de diagnósticos: el curso no las nombra por su
+        pronóstico y espera lo mismo de los trabajos que se entreguen.
+      </p>
+    </section>
+
+    <section aria-labelledby="h-unidades">
+      <h2 id="h-unidades">Las seis unidades</h2>
+      <p class="seccion__intro">
+        Cada unidad tiene su color, y el color se mantiene en las fichas de sesión. No es
+        decoración: es la forma de saber en qué trayectoria se está. Junto al color va siempre la
+        etiqueta de la unidad, que es lo que da la identidad.
+      </p>
+      <div class="unidades">
+        <article class="unidad unidad--u1"><p class="unidad__num">Unidad 1 · sesiones 1 a 3</p><h3>Abordajes de investigaciones en rehabilitación paliativa</h3><p>Concepto, declinación funcional, trayectorias, modelos de intervención y tecnologías.</p></article>
+        <article class="unidad unidad--u2"><p class="unidad__num">Unidad 2 · sesiones 4 a 6</p><h3>Rehabilitación paliativa en cáncer</h3><p>Dolor, complicaciones neuromusculares, linfedema, ámbitos y medición de resultados.</p></article>
+        <article class="unidad unidad--u3"><p class="unidad__num">Unidad 3 · sesiones 7 y 8</p><h3>Rehabilitación paliativa en falla de órgano</h3><p>Rehabilitación cardiopulmonar, disfagia, ámbitos y lectura de evidencia en inglés.</p></article>
+        <article class="unidad unidad--u4"><p class="unidad__num">Unidad 4 · sesiones 9 y 10 · en inglés</p><h3>Rehabilitación paliativa en trastornos neurodegenerativos</h3><p>Esclerosis múltiple, ELA, parálisis cerebral; unidad desarrollada en segunda lengua.</p></article>
+        <article class="unidad unidad--u5"><p class="unidad__num">Unidad 5 · sesiones 11 y 12</p><h3>Rehabilitación paliativa en demencia y fragilidad</h3><p>Metas realistas, fragilidad del adulto mayor y cambio mínimo importante.</p></article>
+        <article class="unidad unidad--u6"><p class="unidad__num">Unidad 6 · sesiones 13 a 16</p><h3>Rehabilitación paliativa en eventos catastróficos</h3><p>Ictus severo, fractura de cadera, geriatría, continuidad asistencial y cierre integrador.</p></article>
+      </div>
+    </section>
+
+    <section aria-labelledby="h-sesiones">
+      <h2 id="h-sesiones">Las dieciséis sesiones</h2>
+      <p class="seccion__intro">
+        Dieciséis encuentros de tres horas. Cada ficha dice qué se trabaja ese día y qué leer
+        antes; el material aparece en la misma ficha cuando está listo.
+      </p>
+      <ol class="sesiones">
+        <li class="sesion sesion--u1"><span class="sesion__num">01</span><p class="sesion__titulo"><a href="sesiones/s01-declinacion-funcional/">Presentación del curso y declinación funcional</a></p><p class="sesion__meta">jueves 6 de agosto · Unidad 1</p><span class="sesion__estado sesion__estado--lista">Clase publicada</span></li>
+        <li class="sesion sesion--u1"><span class="sesion__num">02</span><p class="sesion__titulo"><a href="sesiones/s02-modelos-de-intervencion/">Modelos de intervención en rehabilitación paliativa</a></p><p class="sesion__meta">jueves 13 de agosto · Unidad 1</p><span class="sesion__estado">En preparación</span></li>
+        <li class="sesion sesion--u1"><span class="sesion__num">03</span><p class="sesion__titulo"><a href="sesiones/s03-realidad-virtual-y-tecnologias/">Realidad virtual, TIC e inteligencia artificial generativa</a></p><p class="sesion__meta">jueves 20 de agosto · Unidad 1</p><span class="sesion__estado">En preparación</span></li>
+        <li class="sesion sesion--u2"><span class="sesion__num">04</span><p class="sesion__titulo"><a href="sesiones/s04-cancer-dolor-y-neuromuscular/">Cáncer: dolor y complicaciones neuromusculares</a></p><p class="sesion__meta">jueves 27 de agosto · Unidad 2</p><span class="sesion__estado">En preparación</span></li>
+        <li class="sesion sesion--u2"><span class="sesion__num">05</span><p class="sesion__titulo"><a href="sesiones/s05-cancer-musculoesqueletico-y-linfedema/">Cáncer: musculoesquelético, linfedema y sobrevivientes</a></p><p class="sesion__meta">jueves 3 de septiembre · Unidad 2</p><span class="sesion__estado">En preparación</span></li>
+        <li class="sesion sesion--u2"><span class="sesion__num">06</span><p class="sesion__titulo"><a href="sesiones/s06-cancer-ambitos-y-medicion/">Cáncer: ámbitos de rehabilitación y medición de resultados</a></p><p class="sesion__meta">jueves 10 de septiembre · Unidad 2</p><p class="sesion__entrega">Entrega del primer corte · 35 %</p><span class="sesion__estado">En preparación</span></li>
+        <li class="sesion sesion--u3"><span class="sesion__num">07</span><p class="sesion__titulo"><a href="sesiones/s07-falla-de-organo-abordaje/">Falla de órgano: rehabilitación física, funcional y social</a></p><p class="sesion__meta">jueves 17 de septiembre · Unidad 3</p><span class="sesion__estado">En preparación</span></li>
+        <li class="sesion sesion--u3"><span class="sesion__num">08</span><p class="sesion__titulo"><a href="sesiones/s08-falla-de-organo-ambitos-y-medicion/">Falla de órgano: ámbitos de rehabilitación y medición</a></p><p class="sesion__meta">jueves 24 de septiembre · Unidad 3</p><span class="sesion__estado">En preparación</span></li>
+        <li class="sesion sesion--u4"><span class="sesion__num">09</span><p class="sesion__titulo"><a href="sesiones/s09-neurodegenerativos-abordaje/">Trastornos neurodegenerativos: rehabilitación (en inglés)</a></p><p class="sesion__meta">jueves 1 de octubre · Unidad 4</p><span class="sesion__estado">En preparación</span></li>
+        <li class="sesion sesion--u4"><span class="sesion__num">10</span><p class="sesion__titulo"><a href="sesiones/s10-neurodegenerativos-ambitos-y-medicion/">Trastornos neurodegenerativos: ámbitos y medición</a></p><p class="sesion__meta">jueves 8 de octubre · Unidad 4</p><span class="sesion__estado">En preparación</span></li>
+        <li class="sesion sesion--u5"><span class="sesion__num">11</span><p class="sesion__titulo"><a href="sesiones/s11-demencia-y-fragilidad-abordaje/">Demencia y fragilidad: rehabilitación física y psicosocial</a></p><p class="sesion__meta">jueves 15 de octubre · Unidad 5</p><p class="sesion__entrega">Entrega del segundo corte · 35 %</p><span class="sesion__estado">En preparación</span></li>
+        <li class="sesion sesion--u5"><span class="sesion__num">12</span><p class="sesion__titulo"><a href="sesiones/s12-demencia-y-fragilidad-cambio-minimo/">Demencia y fragilidad: ámbitos y cambio mínimo importante</a></p><p class="sesion__meta">jueves 22 de octubre · Unidad 5</p><span class="sesion__estado">En preparación</span></li>
+        <li class="sesion sesion--u6"><span class="sesion__num">13</span><p class="sesion__titulo"><a href="sesiones/s13-eventos-catastroficos-geriatria/">Eventos catastróficos: geriatría y espasticidad</a></p><p class="sesion__meta">jueves 29 de octubre · Unidad 6</p><span class="sesion__estado">En preparación</span></li>
+        <li class="sesion sesion--u6"><span class="sesion__num">14</span><p class="sesion__titulo"><a href="sesiones/s14-eventos-catastroficos-ambitos/">Eventos catastróficos: ámbitos de rehabilitación</a></p><p class="sesion__meta">jueves 5 de noviembre · Unidad 6</p><span class="sesion__estado">En preparación</span></li>
+        <li class="sesion sesion--u6"><span class="sesion__num">15</span><p class="sesion__titulo"><a href="sesiones/s15-eventos-catastroficos-medicion/">Eventos catastróficos: medición de resultados en el adulto mayor</a></p><p class="sesion__meta">jueves 12 de noviembre · Unidad 6</p><span class="sesion__estado">En preparación</span></li>
+        <li class="sesion sesion--u6"><span class="sesion__num">16</span><p class="sesion__titulo"><a href="sesiones/s16-seminario-integrador/">Seminario integrador y socialización de productos finales</a></p><p class="sesion__meta">jueves 19 de noviembre · Unidad 6</p><p class="sesion__entrega">Producto final · 30 %</p><span class="sesion__estado">En preparación</span></li>
+      </ol>
+    </section>
+
+    <section aria-labelledby="h-evaluacion">
+      <h2 id="h-evaluacion">Cómo se evalúa</h2>
+      <p class="seccion__intro">Tres cortes. Cada uno cierra con la última sesión de su tramo.</p>
+      <div class="cortes">
+        <div class="corte"><p class="corte__peso">35 %</p><p class="corte__etq">Primer corte</p><p class="corte__det">Sesiones 1 a 6 · unidades 1 y 2. Cierra el 10 de septiembre.</p></div>
+        <div class="corte"><p class="corte__peso">35 %</p><p class="corte__etq">Segundo corte</p><p class="corte__det">Sesiones 7 a 11 · unidades 3, 4 y 5. Cierra el 15 de octubre.</p></div>
+        <div class="corte"><p class="corte__peso">30 %</p><p class="corte__etq">Producto final</p><p class="corte__det">Sesiones 12 a 16 · unidad 6. Se entrega el 19 de noviembre.</p></div>
+      </div>
+      <p style="margin-top:1.2rem;font-size:.9rem;color:var(--gris)">
+        Detalle en <a href="docs/plan-de-evaluacion.md">docs/plan-de-evaluacion.md</a>.
+        El uso de inteligencia artificial generativa debe declararse en todos los productos.
+      </p>
+    </section>
+
+  </div>
+</main>
+
+<footer>
+  <div class="envoltura">
+    <p>
+      <strong>Investigación en Cuidados Paliativos y Rehabilitación</strong> ·
+      código 37543013 · plan 2377 · 3 créditos<br>
+      Maestría en Cuidados Paliativos · Facultad de Enfermería ·
+      Universidad Antonio Nariño · Semestre 2026-II
+    </p>
+    <p>Docente: Jorge Wilhem Bogoya López · <a href="mailto:jbogoya63@uan.edu.co">jbogoya63@uan.edu.co</a></p>
+    <p>
+      Material docente de acceso abierto, preparado para abrirse sin conexión: cada página funciona
+      descargada, sin servidor y sin internet. El material de terceros se referencia en APA 7, no se
+      reproduce. Este sitio no publica datos de estudiantes.
+    </p>
+    <p>¿Va a trabajar sobre este repositorio? <a href="HANDOFF.md">HANDOFF.md</a> es el punto de entrada.</p>
+  </div>
+</footer>
+</html>

@@ -5,106 +5,82 @@ Universidad Antonio Nariño.
 
 | Campo | Valor |
 |---|---|
-| Código | 37543013 |
-| Plan de estudios | 2377 |
+| Código | 37543013 · Plan 2377 |
 | Créditos | 3 (144 h: 48 presenciales + 96 de trabajo independiente) |
 | Modalidad | Presencial teórico |
-| Periodo | 2026-2 |
-| Docente | Jorge Wilhem Bogoya López |
-| Última actualización del contenido programático | Julio de 2026 |
+| Periodo | 2026-II |
+| Docente | Jorge Wilhem Bogoya López · jbogoya63@uan.edu.co |
+
+> **Sitio del curso:** https://jboglop.github.io/CP_Inv_Rehabilita/
+> **¿Va a trabajar sobre el repositorio?** Empiece por **[HANDOFF.md](HANDOFF.md)**; las reglas
+> ejecutables están en **[CLAUDE.md](CLAUDE.md)**.
 
 > **Objetivo general.** Reconocer el enfoque de rehabilitación paliativa, de acuerdo con las
-> trayectorias clínicas de enfermedades tributarias de cuidados paliativos desde la investigación.
+> trayectorias clínicas de enfermedades tributarias de cuidados paliativos, desde la investigación.
 
-## Estructura del repositorio
+## Cómo está organizado
 
 ```
-.
-├── docs/                        Documentación del espacio académico
-│   ├── syllabus/                Contenido programático oficial (.docx) y su transcripción .md
-│   ├── calendario.md            16 sesiones con fechas ⚠️ provisionales
-│   ├── plan-de-evaluacion.md    Cortes, instrumentos y pesos
-│   ├── metodologia.md           Modelo pedagógico, estrategias y TIC
-│   └── competencias.md          Competencias institucionales y del programa
-├── clases/                      Una carpeta por sesión, en orden cronológico
-│   └── AAAA-MM-DD_SNN_UX_tema/
-│       ├── README.md            Plan de clase (objetivos, agenda, lecturas, trabajo independiente)
-│       ├── rubrica.md           Instrumento de evaluación de la sesión
-│       ├── diapositivas/        Material del docente
-│       ├── lecturas/            Guías de lectura (los PDF no se versionan)
-│       ├── talleres/            Guías de taller
-│       └── evidencias-estudiantes/   Entregas — no se versionan
-├── evaluacion/                  Consolidados por corte (1, 2 y 3)
-├── recursos/
-│   ├── referencias/referencias.bib   23 referencias del contenido programático
-│   ├── plantillas/              Plan de clase, rúbrica, ficha de lectura crítica, producto final
-│   └── herramientas-tic/        Wysa, realidad virtual, apps y OVA
-└── herramientas/
-    └── renombrar_clases.py      Re-fecha las carpetas de clase desde docs/calendario.md
+index.html                 portada del curso (GitHub Pages sirve esto)
+HANDOFF.md · CLAUDE.md      punto de entrada y reglas de trabajo
+sesiones/
+  _sesiones.json           ← lista canónica de las 16 sesiones
+  sNN-slug/                una carpeta por sesión, nombrada por contenido
+    index.html             ficha pública (generada desde el manifiesto)
+    README.md · rubrica.md nota de trabajo e instrumento de evaluación
+    clase.html             el deck interactivo (por ahora, solo la sesión 01)
+_shared/                   tokens.css y plantilla-sesion.html (sistema de diseño)
+docs/                      syllabus, calendario, evaluación, metodología, competencias
+recursos/                  referencias.bib, plantillas, herramientas TIC
+evaluacion/                consolidados por corte (sin datos personales)
+scripts/                   verificar.js y nueva-sesion.js (Node)
 ```
 
-Las carpetas de `clases/` empiezan por la fecha (`AAAA-MM-DD`), así que el orden alfabético
-del explorador y de GitHub **es** el orden cronológico del semestre.
+Las carpetas de `sesiones/` se nombran por contenido (`s03-realidad-virtual-y-tecnologias`), no por
+fecha, porque el calendario es provisional: reprogramar mueve texto, no rutas. El orden cronológico
+vive en el manifiesto y en la portada.
 
 ## Mapa del semestre
 
-| Unidad | Sesiones | Tema |
-|---|---|---|
-| U1 | S01–S03 | Abordajes de investigaciones en rehabilitación paliativa |
-| U2 | S04–S06 | Rehabilitación paliativa en cáncer |
-| U3 | S07–S08 | Rehabilitación paliativa en falla de órgano |
-| U4 | S09–S10 | Trastornos neurodegenerativos *(unidad en inglés)* |
-| U5 | S11–S12 | Demencia y fragilidad |
-| U6 | S13–S15 | Eventos catastróficos (ictus severo, fractura de cadera) |
-| — | S16 | Seminario integrador y socialización final |
+| Unidad | Sesiones | Color | Tema |
+|---|---|---|---|
+| U1 | S01–S03 | azul | Abordajes de investigaciones en rehabilitación paliativa |
+| U2 | S04–S06 | pizarra | Rehabilitación paliativa en cáncer |
+| U3 | S07–S08 | índigo | Rehabilitación paliativa en falla de órgano |
+| U4 | S09–S10 | cielo | Trastornos neurodegenerativos *(unidad en inglés)* |
+| U5 | S11–S12 | teal | Demencia y fragilidad |
+| U6 | S13–S16 | glicina | Eventos catastróficos e integración final |
 
-Detalle completo en [`docs/calendario.md`](docs/calendario.md).
+Detalle en [docs/calendario.md](docs/calendario.md). La **sesión 01** ya tiene clase construida:
+[sesiones/s01-declinacion-funcional/clase.html](sesiones/s01-declinacion-funcional/clase.html).
 
-## ⚠️ Las fechas son provisionales
-
-El calendario se generó suponiendo **16 sesiones semanales de 3 h, los jueves, desde el
-6 de agosto de 2026**. Cuando tengas el calendario institucional:
+## Flujo de trabajo
 
 ```bash
-# 1. corrige la columna Fecha en docs/calendario.md
-# 2. simula el cambio
-python herramientas/renombrar_clases.py
-# 3. aplícalo (renombra carpetas con git mv y actualiza los README)
-python herramientas/renombrar_clases.py --aplicar
+# 1. editar la sesión en el manifiesto
+#    sesiones/_sesiones.json
+# 2. crear las fichas que falten (nunca sobrescribe)
+node scripts/nueva-sesion.js
+# 3. comprobar antes de publicar
+node scripts/verificar.js
 ```
 
-## Uso diario
-
-- **Preparar una clase:** edita el `README.md` de la sesión y deja el material en
-  `diapositivas/` y `talleres/`.
-- **Añadir una sesión:** copia [`recursos/plantillas/plan-de-clase.md`](recursos/plantillas/plan-de-clase.md)
-  y registra la sesión en `docs/calendario.md`.
-- **Cambiar el contenido programático:** actualiza el `.docx` en `docs/syllabus/` **y** la
-  transcripción [`contenido-programatico.md`](docs/syllabus/contenido-programatico.md), para que
-  el diff de Git muestre qué cambió.
+`verificar.js` corre cinco comprobaciones —enlaces rotos, recursos externos, datos personales,
+lenguaje del curso y coherencia portada ↔ manifiesto— y se ejecuta también en el workflow de Pages
+antes de desplegar. Lo que no comprueba es que la página se vea bien: eso hay que verlo en el
+navegador, con el wifi apagado.
 
 ## Privacidad y derechos de autor
 
-Este repositorio es **público**. Por eso:
+Este repositorio es **público** y GitHub Pages lo indexa. Por eso:
 
-- Las **evidencias de los estudiantes** y cualquier consolidado de notas están excluidos en
-  [`.gitignore`](.gitignore) y no deben subirse (Ley 1581 de 2012, habeas data).
-- Los **artículos científicos a texto completo** no se versionan: se distribuyen por el aula
-  virtual o mediante el acceso institucional UAN–SINAB. En `lecturas/` van las guías y las
-  fichas, no los PDF.
+- No entra ningún dato de estudiantes (nombres, códigos, calificaciones). Ver
+  [`.gitignore`](.gitignore) y la regla 2 de [CLAUDE.md](CLAUDE.md).
+- Los **artículos y capítulos a texto completo** no se versionan: viven en Google Drive
+  (`referencias/`, ignorada) y se citan en APA 7. En las lecturas van las citas, no los PDF.
 
-Si prefieres trabajar sin estas restricciones, cambia el repositorio a privado en GitHub
-(Settings → Danger Zone → Change visibility).
+## Pendientes del contenido programático
 
-## Pendientes detectados en el contenido programático
-
-1. **Peso del tercer corte:** el documento dice 30 % en una columna y 35 % en otra.
-   Ver [`docs/plan-de-evaluacion.md`](docs/plan-de-evaluacion.md).
-2. **Columnas vacías** en la tabla de criterios de evaluación («Resultado de aprendizaje» y
-   «Método de evaluación»): se propusieron valores en el plan de evaluación; falta validarlos.
-3. **Referencia truncada:** «Enguell H, Harwood RH. What palliative care can learn…» (texto guía
-   n.º 14) está incompleta en el documento oficial.
-4. **Referencia duplicada:** Timm, Thuesen y Clark (2021) aparece como texto guía n.º 2 y como
-   complementario n.º 7.
-5. **Secciones vacías:** «Referencias directas de las bases de datos UAN–SINAB» y «Referencias de
-   material producido por la UAN» no tienen contenido.
+El syllabus oficial tiene cinco inconsistencias detectadas (peso del tercer corte, columnas de
+evaluación vacías, una referencia truncada, una duplicada y una atribución errónea en la
+justificación). Están listadas en [HANDOFF.md §5](HANDOFF.md) para corregirlas contra la fuente.

@@ -1,52 +1,107 @@
-# ---------------------------------------------------------------------------
-# ⚠️ Este repositorio es PÚBLICO en GitHub. Todo lo que se versione queda visible
-# en internet de forma permanente. Las reglas de abajo protegen dos cosas:
-#   1. los datos personales de los estudiantes (habeas data, Ley 1581 de 2012);
-#   2. los derechos de autor de los artículos científicos del curso.
-# ---------------------------------------------------------------------------
+# ═══════════════════════════════════════════════════════════════════
+#  .gitignore — REPOSITORIO PÚBLICO
+#  Investigación en Cuidados Paliativos y Rehabilitación (37543013) · UAN
+#
+#  ⚠️  REGLA DE ORO: este repo es PÚBLICO y GitHub Pages lo indexa.
+#  Aquí solo va material de enseñanza sin datos personales.
+#
+#  ⚠️  Esto NO es la única línea de defensa. Al repositorio se añade
+#  archivo por archivo, nunca carpetas enteras. El .gitignore es la
+#  red de seguridad, no el procedimiento.
+# ═══════════════════════════════════════════════════════════════════
 
-# Evidencias y productos entregados por estudiantes: NUNCA se versionan
-clases/**/evidencias-estudiantes/*
-!clases/**/evidencias-estudiantes/.gitkeep
+# ── SECRETOS Y CONFIGURACIÓN (nunca versionar) ─────────────────────
+config.js
+config.local.js
+*.secret.js
+.env
+.env.*
+secrets/
+*clave_respuestas*
+answer_key*
+apps_script_url*
+
+# ── DATOS PERSONALES DE ESTUDIANTES (Ley 1581/2012 — Habeas Data) ──
+# Evidencias y productos entregados
+sesiones/**/evidencias-estudiantes/
 evidencias/
+Evidencias/
 entregas/
+Entregas/
+tareas_estudiantes/
+trabajos_estudiantes/
 
-# Notas, listados y consolidados con datos personales
+# Calificaciones, listados y consolidados
 **/consolidado-notas.*
-**/notas-*.xlsx
-**/listado*.xlsx
-**/*asistencia*.xlsx
+*alificacion*.xlsx
+*alificacion*.csv
+notas_*.xlsx
+listado*estudiantes*
+codigos_estudiantes*
+roster*
+*asistencia*.xlsx
 
-# Artículos a texto completo: se distribuyen por el aula virtual / SINAB, no por GitHub.
-# Se versionan solo las guías, fichas y metadatos en Markdown.
-clases/**/lecturas/*.pdf
-clases/**/lecturas/*.epub
-recursos/articulos/
+# Exámenes con clave / resultados recibidos
+examenes/
+resultados_*.csv
+resultados_*.xlsx
+respuestas_recibidas*
 
-# Biblioteca personal de PDF descargados (capítulos y artículos con derechos de autor).
-# Se queda en Google Drive, no en GitHub. Ojo: la barra inicial limita la regla a la raíz,
-# de modo que `recursos/referencias/referencias.bib` SÍ se versiona.
+# Transcripciones de clase (Tactiq, Meet, Zoom): nombre e intervención
+# atribuida de cada participante. Lo más sensible de todo el material.
+*transcript*
+*Transcript*
+*transcripcion*
+*Transcripción*
+*.vtt
+*.srt
+
+# Prefijo PRIVADO_ reservado: nada que lo lleve sale del disco.
+PRIVADO_*
+privado_*
+
+# ── MATERIAL DE TERCEROS CON DERECHOS DE AUTOR ─────────────────────
+# Se sustituye por su cita en APA 7 (regla 4). La barra inicial limita
+# la regla a la raíz: recursos/referencias/referencias.bib SÍ se versiona.
 /referencias/
+recursos/articulos/
+sesiones/**/lecturas/*.pdf
+sesiones/**/lecturas/*.epub
+*_libro.pdf
+*ATLAS*.pdf
+*atlas*.pdf
 
-# Material pesado del docente (súbelo al aula virtual, no al repositorio)
+# Material pesado (va al aula virtual, no al repositorio)
 *.mp4
 *.mov
 *.zip
+*.rar
+*.7z
 
-# Temporales de Microsoft Office
-~$*
-*.tmp
-
-# Windows / Google Drive / macOS
-desktop.ini
-Thumbs.db
-.DS_Store
+# ── PUNTEROS DE GOOGLE DRIVE Y SISTEMA ─────────────────────────────
 *.gdoc
 *.gsheet
 *.gslides
+*.gdraw
 *[Cc]onflicted copy*
+desktop.ini
+Thumbs.db
+.DS_Store
+._*
+~$*
+*.tmp
+*.bak
 
-# Python
+# ── EDITOR / ENTORNO ───────────────────────────────────────────────
+.vscode/
+.idea/
+node_modules/
 __pycache__/
 *.pyc
 .venv/
+# Configuración local de Claude Code (permisos de una máquina concreta).
+.claude/settings.local.json
+
+# El contenido programático oficial vive en docs/syllabus/.
+# Esta regla evita que se cuele un duplicado en la raíz.
+/Investigación en Cuidados Paliativos y Rehabilitación.*
