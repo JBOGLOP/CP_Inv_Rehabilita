@@ -47,9 +47,14 @@ Pestaña **`Roster`**, una fila por estudiante:
   `asignarSeudonimos()` lo rellena (barajando, no en orden alfabético).
 - Para dar de baja a alguien sin borrar su historial: `Activo` = `No`. **No borre filas.**
 
-> **Para 2026-II ya está preparado.** El grupo son 7 estudiantes y el roster está en
-> `PRIVADO_roster.csv` — listo para pegar desde la celda **A2** (las columnas coinciden salvo el
-> seudónimo, que puedes dejar vacío para que lo asigne `asignarSeudonimos()`).
+> **Para 2026-II ya está preparado.** El grupo son 7 estudiantes. Usa **`PRIVADO_roster.tsv`**
+> (no el `.csv`): sus columnas ya están en el orden de la hoja —Correo · Nombre · Codigo ·
+> Seudonimo(vacío) · Activo=Sí— y está separado por tabuladores, así que al pegarlo en la celda
+> **A2** Google Sheets lo reparte solo en columnas. El seudónimo va vacío a propósito: lo asigna
+> `asignarSeudonimos()` en el paso siguiente.
+>
+> (El `PRIVADO_roster.csv` tiene otro orden de columnas y es para el Apps Script del roster, no
+> para pegar directo en esta hoja.)
 
 > ⚠️ **Las letras no siguen el alfabeto, y es deliberado.** Si «A» fuera el primer apellido del
 > curso, cualquiera del grupo desharía el anonimato ordenando la lista de clase.
