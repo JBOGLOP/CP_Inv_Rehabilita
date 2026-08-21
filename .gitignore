@@ -83,6 +83,7 @@ sesiones/**/lecturas/*.epub
 *.gsheet
 *.gslides
 *.gdraw
+*.gform
 *[Cc]onflicted copy*
 desktop.ini
 Thumbs.db
