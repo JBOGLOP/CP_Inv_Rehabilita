@@ -18,6 +18,21 @@
 
      MODO PROYECCIÓN. Oculta nombres y correos y deja solo el seudónimo. Es lo
      que se enchufa al proyector. Enciéndalo ANTES de compartir pantalla.
+
+     CONFRONTAR. La fila de letras (A B C…) bajo las preguntas filtra: pulsa una
+     o varias y solo se ven esas, para poner dos o tres respuestas cara a cara.
+     «Ver todas» las devuelve. Funciona también en proyección.
+
+     RESUMEN IA. Cada tarjeta tiene «resumen IA»: llama a Ollama en local y pega
+     una síntesis de máquina (borrador de lectura, NO se proyecta — se oculta en
+     modo proyección). Requiere DOS cosas, y por eso solo sirve con el tablero
+     abierto como ARCHIVO LOCAL, no por HTTPS:
+       1. Ollama corriendo con el modelo (por defecto qwen2.5:7b).
+       2. Lanzarlo permitiendo la llamada del navegador. En Windows PowerShell:
+            $env:OLLAMA_ORIGINS = "*"; ollama serve
+          (o el origen de esta página en vez de *). Sin esto, Ollama responde
+          403 y la tarjeta muestra un aviso en rojo con esta misma instrucción.
+     La URL y el modelo se pueden afinar en config.js (ollamaURL, ollamaModelo).
      =========================================================================== -->
 
 <style>
@@ -107,8 +122,36 @@ body.proyeccion .marca{display:none}
 body.proyeccion{background:var(--nieve)}
 body.proyeccion .tarjeta{box-shadow:var(--shadow-medium)}
 
+/* ── Selector de participantes (confrontar respuestas) ──────────── */
+.participantes{display:flex;flex-wrap:wrap;gap:.4rem;align-items:center;margin:.2rem 0 .7rem}
+.participantes .et{font-size:.8rem;color:var(--gris);margin-right:.15rem}
+.participantes button{font:inherit;font-weight:700;font-family:var(--mono);cursor:pointer;border-radius:999px;
+  padding:.28rem .72rem;border:1px solid var(--acento);background:var(--blanco);color:var(--acento-dark);font-size:.84rem}
+.participantes button:hover{background:var(--acento-soft)}
+.participantes button.sel{background:var(--acento-dark);color:var(--blanco);border-color:var(--acento-dark)}
+.participantes button.limpiar{font-family:var(--sans);font-weight:600;border-color:var(--gris-claro);color:var(--gris)}
+.participantes button.ia{font-family:var(--sans);font-weight:600;border-color:var(--ok);color:var(--ok);margin-left:auto}
+.participantes button.ia:hover{background:var(--ok-soft)}
+
+/* ── Resumen IA por respuesta — ayuda docente, nunca a proyección ── */
+.tarjeta__ia{font:inherit;font-size:.74rem;cursor:pointer;border-radius:999px;padding:.15rem .65rem;
+  border:1px solid var(--ok);background:transparent;color:var(--ok);flex-shrink:0}
+.tarjeta__ia:hover{background:var(--ok-soft)}
+.resumen-ia{margin:.7rem 0 0;padding:.55rem .75rem;border-radius:var(--radius-sm);background:var(--ok-soft);
+  border-left:3px solid var(--ok);font-size:calc(.86rem * var(--escala));line-height:1.5;font-family:var(--sans)}
+.resumen-ia .et{font-family:var(--mono);font-size:.66rem;text-transform:uppercase;letter-spacing:.04em;
+  color:var(--ok);display:block;margin-bottom:.2rem}
+.resumen-ia .datos{color:var(--gris);font-size:.82rem;margin-top:.35rem}
+.resumen-ia.malo{background:var(--alerta-soft);border-left-color:var(--alerta);color:var(--alerta-dark)}
+.resumen-ia.malo .et{color:var(--alerta-dark)}
+
+/* En proyección desaparece el resumen de máquina y sus botones. */
+body.proyeccion .tarjeta__ia,
+body.proyeccion .resumen-ia,
+body.proyeccion .participantes .ia{display:none}
+
 .pie{color:var(--gris-claro);font-size:.8rem;padding:1.5rem 0 2.5rem;max-width:60ch}
-@media print{.barra,.preguntas,.marca{display:none}}
+@media print{.barra,.preguntas,.participantes,.marca,.tarjeta__ia,.resumen-ia{display:none}}
 </style>
 
 <div class="barra">
@@ -135,6 +178,7 @@ body.proyeccion .tarjeta{box-shadow:var(--shadow-medium)}
   <div id="aviso" class="aviso" style="display:none"></div>
   <div id="faltantes" class="faltantes" style="display:none"></div>
   <div class="preguntas" id="preguntas"></div>
+  <div class="participantes" id="participantes"></div>
   <h1 class="titulo-pregunta" id="titulo">—</h1>
   <p class="sub" id="subtitulo"></p>
   <div class="respuestas" id="respuestas"></div>
@@ -156,6 +200,12 @@ body.proyeccion .tarjeta{box-shadow:var(--shadow-medium)}
   var ENDPOINT = CFG.appsScriptURL || '';
   var DASH = CFG.dashToken || '';
 
+  // Ollama local, para el resumen IA. Solo funciona con el tablero abierto
+  // como ARCHIVO LOCAL y con Ollama lanzado con OLLAMA_ORIGINS abierto (ver
+  // la cabecera de este archivo). Se puede afinar desde config.js.
+  var OLLAMA = (CFG.ollamaURL || 'http://localhost:11434').replace(/\/+$/, '');
+  var MODELO_IA = CFG.ollamaModelo || 'qwen2.5:7b';
+
   // Títulos legibles de cada pregunta. El servidor devuelve solo los ids
   // (p1, p2…), porque no sabe —ni tiene por qué— cómo se llaman.
   var TITULOS = {
@@ -168,7 +218,27 @@ body.proyeccion .tarjeta{box-shadow:var(--shadow-medium)}
     }
   };
 
+  // Mismo prompt que scripts/resumir-entregas.js, para que el resumen en vivo
+  // y el guion de preparación digan lo mismo.
+  function PROMPT(texto) {
+    return 'Eres un asistente que prepara material docente. Analiza la respuesta de un estudiante y devuelve EXACTAMENTE tres bloques, sin añadir nada más y sin repetir estas instrucciones.\n\n' +
+      'SINTESIS: una sola frase de máximo 25 palabras que diga qué sostiene la respuesta.\n' +
+      'DATOS: hasta tres datos concretos del texto (cifras, desenlaces, instrumentos, servicios, fuentes), separados por " · ". Si no hay ninguno, escribe: ninguno\n' +
+      'CITA: una frase COPIADA LITERALMENTE del texto, sin cambiar ni una palabra ni una tilde, que sea la más discutible o la más reveladora.\n\n' +
+      'No inventes nada. No interpretes. Si algo no está en el texto, no lo pongas.\n\n' +
+      'TEXTO DEL ESTUDIANTE:\n"""\n' + texto + '\n"""';
+  }
+  function parsearIA(salida) {
+    function saca(etq, sig) {
+      var re = new RegExp('(?:' + etq + ')\\s*:?\\s*([\\s\\S]*?)(?=\\n\\s*(?:' + sig + ')\\s*:|$)', 'i');
+      var m = salida.match(re);
+      return m && m[1] ? m[1].trim().replace(/^\d\.\s*/, '').trim() : '';
+    }
+    return { sintesis: saca('SINTESIS|SÍNTESIS', 'DATOS|CITA'), datos: saca('DATOS', 'CITA') };
+  }
+
   var datos = null, preguntaActiva = null;
+  var seleccion = {}, cacheIA = {};
   var sesion = (new URLSearchParams(location.search).get('sesion') || 'S01').toUpperCase();
   $('sesion').value = sesion;
 
@@ -224,6 +294,7 @@ body.proyeccion .tarjeta{box-shadow:var(--shadow-medium)}
     }
     $('aviso').style.display = 'none';
     $('cuentas').textContent = 'cargando…';
+    cacheIA = {};  // las entregas se releen; los resúmenes viejos podrían estar caducos
 
     var url = ENDPOINT + '?action=tablero&dash=' + encodeURIComponent(DASH) +
               '&sesion=' + encodeURIComponent(sesion) + '&t=' + Date.now();
@@ -246,7 +317,7 @@ body.proyeccion .tarjeta{box-shadow:var(--shadow-medium)}
           preguntaActiva = d.preguntas[0];
         }
         $('cuentas').textContent = d.entregas + '/' + d.inscritos + ' entregas';
-        pintarFaltantes(); pintarPreguntas(); pintarRespuestas();
+        pintarFaltantes(); pintarPreguntas(); pintarParticipantes(); pintarRespuestas();
       })
       .catch(function () {
         $('cuentas').textContent = '—';
@@ -293,6 +364,119 @@ body.proyeccion .tarjeta{box-shadow:var(--shadow-medium)}
     });
   }
 
+  /* ── Selector de participantes: elegir 1-3 para confrontarlas ───── */
+  function pintarParticipantes() {
+    var cont = $('participantes');
+    cont.textContent = '';
+    if (!datos || !datos.respuestas || !datos.respuestas.length) return;
+
+    var et = document.createElement('span');
+    et.className = 'et';
+    et.textContent = 'Confrontar:';
+    cont.appendChild(et);
+
+    datos.respuestas.forEach(function (r) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.textContent = r.seudonimo;
+      if (seleccion[r.seudonimo]) b.className = 'sel';
+      b.onclick = function () {
+        if (seleccion[r.seudonimo]) delete seleccion[r.seudonimo]; else seleccion[r.seudonimo] = 1;
+        pintarParticipantes(); pintarRespuestas();
+      };
+      cont.appendChild(b);
+    });
+
+    var elegidas = Object.keys(seleccion).length;
+    if (elegidas) {
+      var limpiar = document.createElement('button');
+      limpiar.type = 'button';
+      limpiar.className = 'limpiar';
+      limpiar.textContent = 'Ver todas';
+      limpiar.onclick = function () { seleccion = {}; pintarParticipantes(); pintarRespuestas(); };
+      cont.appendChild(limpiar);
+    }
+
+    var ia = document.createElement('button');
+    ia.type = 'button';
+    ia.className = 'ia';
+    ia.textContent = 'Resumen IA de las visibles';
+    ia.onclick = resumirVisibles;
+    cont.appendChild(ia);
+  }
+
+  /* ── Resumen con Ollama (borrador de máquina, ayuda de lectura) ─── */
+  function nodoResumen(res) {
+    var div = document.createElement('div');
+    div.className = 'resumen-ia' + (res.estado === 'error' ? ' malo' : '');
+    var et = document.createElement('span');
+    et.className = 'et';
+    if (res.estado === 'cargando') {
+      et.textContent = 'Resumen IA';
+      div.appendChild(et);
+      div.appendChild(document.createTextNode('Consultando a ' + MODELO_IA + '…'));
+      return div;
+    }
+    if (res.estado === 'error') {
+      et.textContent = 'Resumen IA — sin conexión';
+      div.appendChild(et);
+      div.appendChild(document.createTextNode(res.msg));
+      return div;
+    }
+    et.textContent = 'Resumen IA · ' + MODELO_IA + ' · borrador, revísalo';
+    div.appendChild(et);
+    div.appendChild(document.createTextNode(res.sintesis || '(el modelo no devolvió síntesis)'));
+    if (res.datos && !/^ninguno$/i.test(res.datos)) {
+      var d = document.createElement('div');
+      d.className = 'datos';
+      d.textContent = 'Datos: ' + res.datos;
+      div.appendChild(d);
+    }
+    return div;
+  }
+
+  function resumirIA(r, texto) {
+    if (!texto) return;
+    var clave = r.seudonimo + '|' + preguntaActiva;
+    cacheIA[clave] = { estado: 'cargando' };
+    pintarRespuestas();
+    fetch(OLLAMA + '/api/generate', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: MODELO_IA, prompt: PROMPT(texto), stream: false,
+        options: { temperature: 0.1, num_predict: 300 }
+      })
+    })
+      .then(function (resp) {
+        if (!resp.ok) throw new Error('estado ' + resp.status);
+        return resp.json();
+      })
+      .then(function (j) {
+        var res = parsearIA(j.response || '');
+        cacheIA[clave] = { estado: 'ok', sintesis: res.sintesis, datos: res.datos };
+        pintarRespuestas();
+      })
+      .catch(function () {
+        cacheIA[clave] = { estado: 'error', msg:
+          'No pude hablar con Ollama en ' + OLLAMA + '. Comprueba que corre («ollama serve») y que lo lanzaste con ' +
+          'OLLAMA_ORIGINS=* para permitir la llamada desde el navegador. El resumen IA solo funciona con este ' +
+          'tablero abierto como archivo local, no por HTTPS.' };
+        pintarRespuestas();
+      });
+  }
+
+  function resumirVisibles() {
+    if (!datos) return;
+    var hayFiltro = Object.keys(seleccion).length > 0;
+    datos.respuestas.forEach(function (r) {
+      if (hayFiltro && !seleccion[r.seudonimo]) return;
+      var texto = String(r.respuestas[preguntaActiva] || '').trim();
+      var clave = r.seudonimo + '|' + preguntaActiva;
+      if (texto && !cacheIA[clave]) resumirIA(r, texto);
+    });
+  }
+
   function pintarRespuestas() {
     var cont = $('respuestas');
     cont.textContent = '';
@@ -308,11 +492,14 @@ body.proyeccion .tarjeta{box-shadow:var(--shadow-medium)}
     $('titulo').textContent = titulos[preguntaActiva] || preguntaActiva.toUpperCase();
     var marcadas = leidas();
     var conTexto = datos.respuestas.filter(function (r) { return String(r.respuestas[preguntaActiva] || '').trim(); });
+    var elegidas = Object.keys(seleccion);
     $('subtitulo').textContent =
       conTexto.length + ' de ' + datos.entregas + ' respondieron esta pregunta · ' +
-      datos.sesion + ' · ' + datos.titulo;
+      datos.sesion + ' · ' + datos.titulo +
+      (elegidas.length ? ' · confrontando ' + elegidas.sort().join(', ') : '');
 
     datos.respuestas.forEach(function (r) {
+      if (elegidas.length && !seleccion[r.seudonimo]) return;
       var texto = String(r.respuestas[preguntaActiva] || '').trim();
       var idMarca = r.seudonimo + '|' + preguntaActiva;
 
@@ -334,12 +521,20 @@ body.proyeccion .tarjeta{box-shadow:var(--shadow-medium)}
       m.textContent = marcadas[idMarca] ? 'discutida' : 'marcar';
       m.onclick = function () { alternarMarca(idMarca); };
       cab.appendChild(m);
+      var bia = document.createElement('button');
+      bia.className = 'tarjeta__ia';
+      bia.type = 'button';
+      bia.textContent = 'resumen IA';
+      bia.onclick = function () { resumirIA(r, texto); };
+      cab.appendChild(bia);
       t.appendChild(cab);
 
       var p = document.createElement('p');
       p.className = 'tarjeta__txt' + (texto ? '' : ' vacia');
       p.textContent = texto || 'Sin responder';
       t.appendChild(p);
+
+      if (cacheIA[idMarca]) t.appendChild(nodoResumen(cacheIA[idMarca]));
 
       var pie = document.createElement('p');
       pie.className = 'tarjeta__pie';
@@ -366,6 +561,7 @@ body.proyeccion .tarjeta{box-shadow:var(--shadow-medium)}
   $('sesion').onchange = function () {
     sesion = this.value;
     preguntaActiva = null;
+    seleccion = {};
     history.replaceState(null, '', '?sesion=' + sesion);
     cargar();
   };

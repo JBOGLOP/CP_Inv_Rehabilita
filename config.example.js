@@ -31,6 +31,14 @@ window.CONFIG = {
 
   // Correo del docente, por si alguna página lo necesita.
   teacherEmail: 'jbogoya63@uan.edu.co',
+
+  // ── Resumen IA del tablero (opcional) ────────────────────────────
+  // El tablero puede pedir a Ollama (local) una síntesis de cada
+  // respuesta. Estos valores tienen defecto y solo se ponen para
+  // cambiarlos. Requiere abrir el tablero como archivo local y lanzar
+  // Ollama con OLLAMA_ORIGINS abierto (ver la cabecera de tablero.html).
+  // ollamaURL: 'http://localhost:11434',
+  // ollamaModelo: 'qwen2.5:7b',
 };
 
 // ── Nota sobre los tokens de ESCRITURA ─────────────────────────────
