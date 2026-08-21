@@ -25,6 +25,7 @@ const amar = s => `\x1b[33m${s}\x1b[0m`, gris = s => `\x1b[90m${s}\x1b[0m`;
 function archivos(dir, filtro, acc = []) {
   for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
     if (e.name === '.git' || e.name === 'node_modules') continue;
+    if (/^privado_/i.test(e.name)) continue;  // gitignored (privado_*) — nunca se publica, no se revisa
     const p = path.join(dir, e.name);
     if (e.isDirectory()) archivos(p, filtro, acc);
     else if (filtro.test(e.name)) acc.push(p);
