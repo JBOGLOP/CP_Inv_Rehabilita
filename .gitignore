@@ -47,6 +47,12 @@ resultados_*.csv
 resultados_*.xlsx
 respuestas_recibidas*
 
+# Respuestas de Google Forms que Drive sincroniza dentro del repo: la
+# carpeta "... (File responses)" y su contenido (mapas del taller, PNG con
+# nombres, etc.). Son productos de estudiantes: nunca se versionan.
+*File responses*
+mapa-trayectoria-*.png
+
 # Transcripciones de clase (Tactiq, Meet, Zoom): nombre e intervención
 # atribuida de cada participante. Lo más sensible de todo el material.
 *transcript*
