@@ -1,0 +1,758 @@
+<!doctype html>
+<html lang="es">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Antes de la sesión 2 · Investigación en CP y Rehabilitación</title>
+<meta name="description" content="Entregable previo a la sesión 2 (Rehabilitación paliativa en cáncer) de Investigación en Cuidados Paliativos y Rehabilitación (37543013), Universidad Antonio Nariño. Se trabaja antes de clase; la sesión se construye sobre lo entregado.">
+
+<!-- ===========================================================================
+     ENTREGABLE PREVIO · SESIÓN 2 · Rehabilitación paliativa en cáncer
+     Se entrega antes del viernes 4 de septiembre de 2026, 1:00 p. m.
+
+     Dos partes: (A) una actividad ligera de tecnología que se trae preparada y
+     se expone al abrir la clase — recupera el Tema 3 de la Unidad 1; y (B) la
+     preparación formal de cinco preguntas, que se envía por el motor.
+
+     PORTABILIDAD. Se lee, se responde y se guarda SIN CONEXIÓN. Cero recursos
+     externos. DATOS PERSONALES: no lleva la lista del curso; el servidor valida
+     el correo contra el roster, que nunca sale de la hoja.
+
+     🔴 ANTES DE PUBLICAR: reemplazar el TOKEN de abajo por el de la fila S02 de
+     la pestaña Config (Apps Script), y poner esa fila Activa=Sí con Apertura y
+     Cierre. Mientras el TOKEN diga PEGAR, la página está en modo lectura.
+     =========================================================================== -->
+
+<style>
+:root{
+  --u2:#5E7488; --u2-dark:#3F5468; --u2-soft:#E0E6EC;
+  --marca:#22415C; --marca-dark:#163049; --marca-soft:#E3EAF0;
+  --ok:#0E8A80; --ok-soft:#D2EAE7;
+  --aviso:#B7791F; --aviso-soft:#F6EBD5; --aviso-dark:#7A5212;
+  --alerta:#C0392B; --alerta-soft:#F7DDD9; --alerta-dark:#8E2A20;
+  --tinta:#14202B; --gris:#4E6274; --gris-claro:#94A5B5; --resalte:#EDF2F7;
+  --blanco:#FFFFFF; --nieve:#F4F7FA;
+  --shadow-soft:0 1px 2px rgba(20,32,43,.06), 0 6px 18px rgba(20,32,43,.06);
+  --shadow-medium:0 6px 20px rgba(20,32,43,.10);
+  --radius:14px; --radius-sm:9px;
+  --sans:system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  --mono:ui-monospace,'Cascadia Mono','Segoe UI Mono',Consolas,monospace;
+  --serif:'Iowan Old Style','Palatino Linotype',Palatino,'Book Antiqua',Georgia,serif;
+  /* Unidad 2 → pizarra */
+  --acento:var(--u2); --acento-dark:var(--u2-dark); --acento-soft:var(--u2-soft);
+}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;font-family:var(--sans);color:var(--tinta);background:var(--nieve);line-height:1.62}
+:focus-visible{outline:3px solid var(--acento);outline-offset:2px}
+a{color:var(--acento-dark)}
+.envoltura{max-width:48rem;margin:0 auto;padding:0 1.25rem}
+.saltar{position:absolute;left:-9999px;background:var(--tinta);color:var(--nieve);padding:.6rem 1rem;z-index:20}
+.saltar:focus{left:0}
+
+.nav-sesion{background:var(--tinta);color:var(--nieve);padding:.55rem 1rem;font-size:.82rem;
+  display:flex;flex-wrap:wrap;align-items:center;gap:.3rem .9rem}
+.nav-sesion a{color:var(--gris-claro);text-decoration:none;border-bottom:1px solid transparent}
+.nav-sesion a:hover,.nav-sesion a:focus{border-bottom-color:var(--gris-claro)}
+.nav-sesion .ns-curso{font-weight:700}
+@media print{.nav-sesion,.saltar{display:none}}
+
+.hero{background:linear-gradient(160deg,var(--nieve) 0%,var(--u2-soft) 100%);
+  padding:clamp(1.8rem,5vw,3rem) 0 clamp(1.3rem,3vw,2rem);border-bottom:1px solid rgba(20,32,43,.08)}
+.hero__eyebrow{font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--acento-dark);font-weight:700;margin:0 0 .5rem}
+h1{font-family:var(--serif);font-size:clamp(1.5rem,4vw,2.3rem);line-height:1.15;letter-spacing:-.01em;margin:0 0 .6rem}
+.hero__sub{font-size:1rem;color:var(--gris);max-width:54ch;margin:0}
+.meta{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:1.1rem}
+.chip{background:var(--blanco);border:1px solid rgba(20,32,43,.1);border-radius:999px;padding:.28rem .85rem;font-size:.82rem;box-shadow:var(--shadow-soft)}
+
+section{padding:clamp(1.5rem,3.5vw,2.4rem) 0}
+h2{font-family:var(--serif);font-size:clamp(1.15rem,2.6vw,1.5rem);margin:0 0 .3rem;line-height:1.25}
+h3{font-size:1rem;margin:0 0 .35rem;color:var(--acento-dark)}
+p{max-width:62ch}
+.intro{color:var(--gris);max-width:62ch;margin:0 0 1.2rem}
+
+.estado{border-radius:var(--radius);padding:.9rem 1.15rem;margin:1.2rem 0 0;font-size:.92rem;
+  border-left:4px solid var(--gris-claro);background:var(--blanco);box-shadow:var(--shadow-soft);max-width:62ch}
+.estado--ok{border-left-color:var(--ok);background:var(--ok-soft)}
+.estado--aviso{border-left-color:var(--aviso);background:var(--aviso-soft);color:var(--aviso-dark)}
+.estado--malo{border-left-color:var(--alerta);background:var(--alerta-soft);color:var(--alerta-dark)}
+.estado strong{display:block;margin-bottom:.2rem}
+
+.pasos{list-style:none;padding:0;margin:1rem 0 0;display:grid;gap:.55rem;max-width:62ch;counter-reset:p}
+.pasos li{background:var(--blanco);border-radius:var(--radius-sm);padding:.75rem 1rem .75rem 2.6rem;
+  box-shadow:var(--shadow-soft);position:relative;font-size:.94rem}
+.pasos li::before{counter-increment:p;content:counter(p);position:absolute;left:.85rem;top:.75rem;
+  width:1.3rem;height:1.3rem;border-radius:50%;background:var(--acento);color:var(--blanco);
+  font-size:.75rem;font-weight:700;display:flex;align-items:center;justify-content:center}
+
+.tecno{background:var(--blanco);border-radius:var(--radius);padding:1.2rem 1.35rem;
+  box-shadow:var(--shadow-soft);border-left:4px solid var(--marca);max-width:62ch}
+.tecno ul.lista{list-style:none;padding:0;margin:.9rem 0 0;display:grid;grid-template-columns:repeat(2,1fr);gap:.4rem}
+@media (max-width:560px){.tecno ul.lista{grid-template-columns:1fr}}
+.tecno ul.lista li{background:var(--nieve);border-radius:var(--radius-sm);padding:.45rem .7rem;font-size:.88rem}
+.tecno .num{font-family:var(--mono);font-weight:700;color:var(--marca-dark);margin-right:.35rem}
+
+.identidad{background:var(--blanco);border-radius:var(--radius);padding:1.1rem 1.25rem;
+  box-shadow:var(--shadow-soft);border-top:3px solid var(--acento);max-width:62ch}
+.campo{margin-bottom:.9rem}
+.campo:last-child{margin-bottom:0}
+label{display:block;font-size:.85rem;font-weight:600;margin-bottom:.3rem}
+.pista{font-size:.8rem;color:var(--gris);font-weight:400;margin:.15rem 0 .4rem}
+input[type=text],input[type=email],input[type=number],textarea{
+  width:100%;font:inherit;font-size:.95rem;padding:.55rem .7rem;border:1px solid #B9CADA;
+  border-radius:var(--radius-sm);background:var(--blanco);color:var(--tinta)}
+textarea{min-height:9rem;resize:vertical;line-height:1.6}
+input:focus,textarea:focus{border-color:var(--acento)}
+
+.pregunta{background:var(--blanco);border-radius:var(--radius);padding:1.2rem 1.35rem;
+  box-shadow:var(--shadow-soft);border-left:4px solid var(--acento);margin-bottom:1.3rem}
+.pregunta__n{font-family:var(--mono);font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--acento-dark);margin:0 0 .3rem}
+.pregunta h3{font-size:1.08rem;color:var(--tinta);margin-bottom:.5rem;line-height:1.3}
+.pregunta__ctx{font-size:.93rem;color:var(--gris);margin:0 0 .8rem;max-width:60ch}
+.pregunta__q{font-family:var(--serif);font-size:1.04rem;color:var(--acento-dark);
+  border-left:3px solid var(--acento-soft);padding:.3em 0 .3em .9em;margin:0 0 .9rem;max-width:58ch}
+.espera{background:var(--resalte);border-radius:var(--radius-sm);padding:.7rem .9rem;font-size:.86rem;color:var(--marca-dark);margin:0 0 .9rem;max-width:60ch}
+.espera strong{display:block;margin-bottom:.2rem}
+.espera ul{margin:.3rem 0 0;padding-left:1.05rem}
+.espera li{margin-bottom:.2rem}
+.contador{font-family:var(--mono);font-size:.78rem;color:var(--gris);text-align:right;margin:.35rem 0 0}
+.contador.corto{color:var(--aviso-dark)}
+.contador.bien{color:var(--ok);font-weight:700}
+
+.envio{background:var(--blanco);border-radius:var(--radius);padding:1.2rem 1.35rem;box-shadow:var(--shadow-medium);border-top:4px solid var(--marca)}
+.botones{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1rem}
+button{font:inherit;font-weight:600;cursor:pointer;border-radius:999px;padding:.55rem 1.3rem;border:1px solid var(--acento);background:var(--blanco);color:var(--acento-dark)}
+button:hover{background:var(--acento-soft)}
+button.primario{background:var(--acento-dark);color:var(--blanco);border-color:var(--acento-dark)}
+button.primario:hover{background:var(--acento)}
+button[disabled]{opacity:.5;cursor:default}
+.autoguardado{font-size:.8rem;color:var(--gris);margin:.7rem 0 0;font-family:var(--mono)}
+
+.nota{background:var(--blanco);border-left:4px solid var(--marca);border-radius:var(--radius-sm);
+  padding:.95rem 1.15rem;box-shadow:var(--shadow-soft);font-size:.9rem;color:var(--gris);max-width:62ch}
+.nota strong{color:var(--tinta)}
+
+.lecturas{list-style:none;padding:0;margin:1rem 0 0;display:grid;gap:.55rem;max-width:62ch}
+.lecturas li{background:var(--blanco);border-radius:var(--radius-sm);padding:.8rem 1rem;box-shadow:var(--shadow-soft);border-left:3px solid var(--marca);font-size:.92rem}
+.lecturas .tipo{display:block;font-family:var(--mono);font-size:.71rem;letter-spacing:.05em;text-transform:uppercase;color:var(--marca-dark);font-weight:700;margin-bottom:.2rem}
+
+footer{background:var(--tinta);color:var(--nieve);margin-top:2rem;padding:2rem 0;font-size:.86rem}
+footer a{color:var(--gris-claro)}
+footer p{margin:0 0 .5rem;max-width:62ch}
+.footer__legal{color:#AEBAC6;font-size:.79rem;margin-top:.9rem}
+@media (prefers-reduced-motion:reduce){*{transition:none !important}}
+</style>
+
+<a class="saltar" href="#formulario">Saltar al formulario</a>
+
+<nav class="nav-sesion" aria-label="Navegación del curso">
+  <a class="ns-curso" href="../../index.html">← Investigación en CP y Rehabilitación</a>
+  <a href="index.html">Guía de la sesión</a>
+</nav>
+
+<header class="hero">
+  <div class="envoltura">
+    <p class="hero__eyebrow">Sesión 2 · Antes del encuentro · Individual</p>
+    <h1>Antes de la sesión 2 · Rehabilitación en cáncer</h1>
+    <p class="hero__sub">
+      Segunda parada, y ya con rodaje. Como la vez pasada, el trabajo va antes de vernos: esta vez
+      son dos cosas ligadas — traes <strong>una tecnología preparada</strong> para abrir la clase, y
+      respondes <strong>cinco preguntas</strong> mirando tu terreno con el cáncer. El jueves lo
+      ponemos en común y de ahí sale la sesión.
+    </p>
+    <div class="meta">
+      <span class="chip">Cierra: viernes 4 de septiembre, 1:00 p. m.</span>
+      <span class="chip">Encuentro sincrónico</span>
+      <span class="chip">1 tecnología + 5 preguntas</span>
+      <span class="chip">Cierra el primer corte · 35 %</span>
+    </div>
+    <div id="estado" class="estado">
+      <strong>Comprobando el plazo…</strong>
+      Si no tienes conexión, tranquilo: puedes leer y escribir igual, y enviar cuando la tengas.
+    </div>
+  </div>
+</header>
+
+<main>
+
+<section>
+  <div class="envoltura">
+    <h2>Cómo funciona esta vez</h2>
+    <ol class="pasos">
+      <li><strong>Prepara tu tecnología (parte A).</strong> A cada quien le tocó una tecnología distinta — el docente te dice cuál. La traes lista para contarla en tres minutos al abrir la clase. Es corta: un párrafo y una fuente. Detalle abajo.</li>
+      <li><strong>Lee y responde las cinco preguntas (parte B).</strong> El material recoge las intervenciones físicas y psicosociales en cáncer. Escribe aquí mismo: el texto se guarda solo y funciona sin internet.</li>
+      <li><strong>Envía la parte B antes del viernes a la 1:00 p. m.</strong> Puedes reenviar hasta esa hora; cada envío reemplaza al anterior. La tecnología (parte A) no se envía: se trae y se expone.</li>
+      <li><strong>En clase ponemos todo en común, sin nombres.</strong> Cada quien aparece con una letra. Comparamos y de ahí sale la sesión.</li>
+    </ol>
+  </div>
+</section>
+
+<section>
+  <div class="envoltura">
+    <h2>Parte A · Trae una tecnología preparada</h2>
+    <p class="intro">
+      En la Unidad 1 quedó pendiente mirar la <strong>tecnología en rehabilitación</strong>, así que
+      la recuperamos aquí, y la ponen ustedes. A cada quien le asigné <strong>una</strong> de estas
+      siete; abre la clase una ronda corta donde cada uno cuenta la suya y la discutimos juntos.
+    </p>
+    <div class="tecno">
+      <strong>Tu tecnología asignada te la dice el docente por correo.</strong> Prepárala así, para
+      exponerla en <strong>tres minutos</strong>:
+      <div class="espera" style="margin-top:.8rem">
+        <strong>Qué traer</strong>
+        <ul>
+          <li><strong>Qué es</strong>, en una frase, y cómo se usa en rehabilitación de personas con cáncer.</li>
+          <li><strong>Una fuente</strong> con un dato de evidencia (un estudio, una revisión, una guía) — citada, no de memoria.</li>
+          <li>El gancho del curso: <strong>qué mide o qué deja invisible</strong>. ¿Acerca el dato a lo que le importa a la persona, o solo a lo que es fácil de contar?</li>
+        </ul>
+      </div>
+      <ul class="lista">
+        <li><span class="num">1</span>Realidad virtual en rehabilitación</li>
+        <li><span class="num">2</span>Wysa (IA conversacional en salud mental)</li>
+        <li><span class="num">3</span>Telemedicina / tele-rehabilitación</li>
+        <li><span class="num">4</span>ePROMs (desenlaces reportados por el paciente)</li>
+        <li><span class="num">5</span>Wearables y sensores inteligentes</li>
+        <li><span class="num">6</span>Apps móviles y objetos virtuales de aprendizaje</li>
+        <li><span class="num">7</span>IA para pronóstico y apoyo a la decisión</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="envoltura">
+    <h2>Qué leer antes de responder la parte B</h2>
+    <p class="intro">
+      La base es la revisión de Minosso, que ya conocen de la sesión 1 — esta vez vamos a su
+      <em>Tabla 3</em>, la que lista intervención por intervención (drenaje linfático, estimulación
+      neuromuscular, ejercicio de fuerza, manejo de la fatiga) con su nivel de evidencia. Es
+      latinoamericana y está en español. Las demás son para profundizar.
+    </p>
+    <ul class="lecturas">
+      <li>
+        <span class="tipo">Base · revisión de la evidencia (resumen en español)</span>
+        <strong>Minosso JS, Souza LJ, Oliveira MAC.</strong> Rehabilitation in palliative care.
+        <em>Texto &amp; Contexto Enfermagem</em>. 2016;25(3):e1470015.
+        https://doi.org/10.1590/0104-07072016001470015
+      </li>
+      <li>
+        <span class="tipo">Fuente · específica de cáncer (en inglés)</span>
+        <strong>Santiago-Palma J, Payne R.</strong> Palliative care and rehabilitation.
+        <em>Cancer</em>. 2001;92(S4):1049-1052.
+      </li>
+      <li>
+        <span class="tipo">Fuente · rehabilitación paliativa oncológica hoy (en inglés)</span>
+        Revisión 2024 sobre definiciones, estructuras, procesos y desenlaces de la rehabilitación
+        paliativa en cáncer. <em>Current Oncology Reports</em>.
+        https://doi.org/10.1007/s11912-024-01585-8
+      </li>
+      <li>
+        <span class="tipo">Fuente · del programa (en inglés)</span>
+        <strong>Chowdhury RA, Brennan FP, Gardiner MD.</strong> Cancer Rehabilitation and Palliative
+        Care — Exploring the Synergies. <em>J Pain Symptom Manage</em>. 2020;60(6):1239-1252.
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section id="formulario">
+  <div class="envoltura">
+    <h2>Quién entrega (parte B)</h2>
+    <div class="identidad">
+      <div class="campo">
+        <label for="correo">Correo institucional</label>
+        <p class="pista">El que la maestría tiene registrado. Es tu identificación: no hay contraseña.</p>
+        <input type="email" id="correo" autocomplete="email" placeholder="nombre@uan.edu.co">
+      </div>
+      <div class="campo">
+        <label for="nombre">Nombre completo</label>
+        <input type="text" id="nombre" autocomplete="name" placeholder="Apellidos y nombres">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="envoltura">
+    <h2>Parte B · Las cinco preguntas</h2>
+    <p class="intro">
+      Como en la sesión 1, más que resumir la lectura, estas preguntas te piden mirar tu terreno con
+      lo que la lectura te dio — ahora en cáncer. Las extensiones son orientativas: cuenta que la
+      respuesta esté sostenida, no que sea larga. Y si no encuentras el dato, dilo: la ausencia de
+      dato es un hallazgo.
+    </p>
+
+    <!-- ── P1 ───────────────────────────────────────────────────────── -->
+    <article class="pregunta">
+      <p class="pregunta__n">Pregunta 1 · dolor y función</p>
+      <h3>¿La rehabilitación entra en el manejo del dolor, o el dolor va solo a fármacos?</h3>
+      <p class="pregunta__ctx">
+        En cáncer el dolor suele tratarse por la vía farmacológica, y está bien. Pero la evidencia
+        (Minosso) muestra que intervenciones no farmacológicas —ejercicio guiado, fisioterapia,
+        drenaje— también cambian el dolor y la función. En muchos servicios, esa puerta ni se abre.
+      </p>
+      <p class="pregunta__q">
+        En tu servicio con personas con cáncer avanzado, ¿la rehabilitación se usa para el dolor?
+        Cuenta un caso donde algo <em>no farmacológico</em> haya cambiado el dolor o la función — o,
+        si no ocurre, documenta esa ausencia.
+      </p>
+      <div class="espera">
+        <strong>Qué hace buena a esta respuesta</strong>
+        <ul>
+          <li>Es concreta: qué intervención, en quién, qué cambió y cómo lo supieron.</li>
+          <li>Distingue el manejo farmacológico del no farmacológico sin oponerlos: se trata de sumar, no de elegir.</li>
+          <li>Si en tu servicio el dolor va solo a fármacos, lo dice y lo trata como hallazgo del sistema.</li>
+        </ul>
+      </div>
+      <textarea id="p1" data-min="180" placeholder="Si la rehabilitación entra en el dolor, un caso no farmacológico; y si no, dilo…"></textarea>
+      <p class="contador" data-para="p1">0 palabras</p>
+    </article>
+
+    <!-- ── P2 ───────────────────────────────────────────────────────── -->
+    <article class="pregunta">
+      <p class="pregunta__n">Pregunta 2 · linfedema y edema</p>
+      <h3>¿Cómo se maneja el linfedema o el edema donde tú trabajas?</h3>
+      <p class="pregunta__ctx">
+        En la Tabla 3 de Minosso, el drenaje linfático manual reduce dolor y disnea. El linfedema es
+        de las complicaciones más frecuentes y peor atendidas en cáncer —mama, pelvis, cabeza y
+        cuello— y afecta directamente lo que la persona puede hacer.
+      </p>
+      <p class="pregunta__q">
+        En tu servicio, ¿cómo se maneja el linfedema o el edema en cáncer? ¿Quién lo hace, con qué
+        criterio se inicia, y cómo se mide si mejora (perímetro, volumen, función, síntoma)?
+      </p>
+      <div class="espera">
+        <strong>Qué hace buena a esta respuesta</strong>
+        <ul>
+          <li>Nombra quién lo hace y cuándo se activa — o si simplemente no hay ruta.</li>
+          <li>La medición pesa: ¿se mide con algo (perímetro, volumen) o «a ojo»? Ese es el hilo del curso.</li>
+          <li>Conecta el número con lo que la persona nota: un brazo que baja de volumen pero sigue sin poder vestirse solo.</li>
+        </ul>
+      </div>
+      <textarea id="p2" data-min="180" placeholder="Cómo se maneja el linfedema/edema, quién, con qué criterio y cómo se mide…"></textarea>
+      <p class="contador" data-para="p2">0 palabras</p>
+    </article>
+
+    <!-- ── P3 ───────────────────────────────────────────────────────── -->
+    <article class="pregunta">
+      <p class="pregunta__n">Pregunta 3 · fuerza y función neuromuscular</p>
+      <h3>Mantener la fuerza cuando la enfermedad y el tratamiento la roban</h3>
+      <p class="pregunta__ctx">
+        La evidencia de Minosso muestra algo contraintuitivo: la estimulación eléctrica neuromuscular
+        y el entrenamiento de fuerza mantienen la funcionalidad <em>incluso en pacientes en
+        quimioterapia paliativa</em>. La debilidad muscular y las complicaciones neuromusculares no
+        son solo «parte de la enfermedad»: algunas son modificables.
+      </p>
+      <p class="pregunta__q">
+        ¿Se ofrece en tu servicio algún trabajo de fuerza o estimulación neuromuscular a personas con
+        cáncer avanzado? ¿Con qué instrumento sabrías si la fuerza o la función mejoraron de verdad?
+      </p>
+      <div class="espera">
+        <strong>Qué hace buena a esta respuesta</strong>
+        <ul>
+          <li>Se atreve con la tensión: rehabilitar la fuerza en alguien que se está deteriorando no es una contradicción si el objetivo es la función, no la curación.</li>
+          <li>Elige un instrumento concreto (dinamometría, sentarse-y-levantarse, marcha, Barthel) y dice qué mide.</li>
+          <li>Distingue lo que se hace hoy de lo que sería posible con lo que la lectura describe.</li>
+        </ul>
+      </div>
+      <textarea id="p3" data-min="180" placeholder="Si se ofrece trabajo de fuerza/estimulación, y con qué instrumento se mediría la mejora…"></textarea>
+      <p class="contador" data-para="p3">0 palabras</p>
+    </article>
+
+    <!-- ── P4 ───────────────────────────────────────────────────────── -->
+    <article class="pregunta">
+      <p class="pregunta__n">Pregunta 4 · lo psicosocial no es el adorno</p>
+      <h3>Un desenlace psicosocial, y cómo lo medirías</h3>
+      <p class="pregunta__ctx">
+        La rehabilitación en cáncer no es solo física. En Minosso aparecen la fatiga, la esperanza,
+        la sociabilidad, el ánimo y la carga del cuidador como desenlaces reales de la intervención.
+        Son los que más importan a la persona y los que peor solemos medir.
+      </p>
+      <p class="pregunta__q">
+        Elige un desenlace psicosocial (fatiga, ánimo, autonomía percibida, carga del cuidador,
+        participación) y di cómo lo medirías en una persona con cáncer avanzado en tu servicio.
+      </p>
+      <div class="espera">
+        <strong>Qué hace buena a esta respuesta</strong>
+        <ul>
+          <li>No se queda en «mejorar la calidad de vida»: aterriza en un desenlace que se pueda observar y medir.</li>
+          <li>Propone un instrumento o una forma de medirlo, y reconoce qué se le escapa aun así.</li>
+          <li>Incluye a la familia o al cuidador si el desenlace lo toca — la rehabilitación también los alcanza.</li>
+        </ul>
+      </div>
+      <textarea id="p4" data-min="160" placeholder="El desenlace psicosocial elegido y cómo lo medirías…"></textarea>
+      <p class="contador" data-para="p4">0 palabras</p>
+    </article>
+
+    <!-- ── P5 ───────────────────────────────────────────────────────── -->
+    <article class="pregunta">
+      <p class="pregunta__n">Pregunta 5 · de la afirmación a la pregunta</p>
+      <h3>Convierte una intervención de Minosso en una pregunta investigable</h3>
+      <p class="pregunta__ctx">
+        Este es el movimiento que venimos repitiendo, y cierra el primer corte. La Tabla 3 de Minosso
+        está llena de afirmaciones: «el drenaje linfático reduce el dolor», «la estimulación
+        neuromuscular reduce la debilidad», «el ejercicio mantiene la capacidad física en enfermedad
+        avanzada». Todas suenan cerradas; ninguna, así escrita, se responde con tus datos.
+      </p>
+      <p class="pregunta__q">
+        Toma una intervención de Minosso, cítala, y conviértela en una pregunta de investigación para
+        tu servicio: con población, desenlace e <strong>instrumento</strong> con que lo medirías.
+        Luego di quién tendría ese dato y si crees que existe.
+      </p>
+      <div class="espera">
+        <strong>Qué hace buena a esta respuesta</strong>
+        <ul>
+          <li>La pregunta tiene sujeto, lugar y periodo, y nombra el instrumento del desenlace — es la que aprendimos a formular en la sesión 1.</li>
+          <li>Se nota la diferencia entre lo que la afirmación <em>dice</em> y lo que quedaría <em>demostrado</em> si el dato existiera.</li>
+          <li>Es honesta sobre la factibilidad: una buena pregunta que hoy no se puede responder sigue siendo buena, si dices por qué.</li>
+        </ul>
+      </div>
+      <textarea id="p5" data-min="200" placeholder="La intervención citada, la pregunta con población, desenlace e instrumento, y quién tendría el dato…"></textarea>
+      <p class="contador" data-para="p5">0 palabras</p>
+    </article>
+  </div>
+</section>
+
+<section>
+  <div class="envoltura">
+    <h2>Antes de enviar</h2>
+    <div class="identidad" style="margin-bottom:1.3rem">
+      <div class="campo">
+        <label for="ia">Declaración de uso de inteligencia artificial</label>
+        <p class="pista">
+          Qué herramienta usaste y para qué: buscar, ordenar ideas, traducir, redactar, nada.
+          <strong>Declararlo suma; una fuente inventada resta.</strong> Verificar lo que se cita es
+          justamente la competencia que este curso trabaja.
+        </p>
+        <textarea id="ia" style="min-height:5rem" placeholder="Ej.: usé un asistente para traducir un fragmento de Santiago-Palma y para ordenar el borrador de la P5. Las fuentes las verifiqué una por una."></textarea>
+      </div>
+      <div class="campo">
+        <label for="minutos">¿Cuántos minutos te llevó en total?</label>
+        <p class="pista">Sirve para calibrar la carga de las siguientes sesiones. No afecta la nota.</p>
+        <input type="number" id="minutos" min="0" max="1500" step="10" placeholder="180">
+      </div>
+    </div>
+
+    <div class="envio">
+      <h3 style="margin-top:0">Enviar el entregable (parte B)</h3>
+      <p style="font-size:.92rem;color:var(--gris);margin:0">
+        Puedes reenviar cuantas veces quieras hasta el viernes a la 1:00 p. m. Cada envío reemplaza
+        al anterior y queda registrado como una versión nueva. La tecnología (parte A) se trae a
+        clase, no se envía aquí.
+      </p>
+      <div class="botones">
+        <button type="button" id="enviar" class="primario">Enviar</button>
+        <button type="button" id="copiar">Copiar todo</button>
+        <button type="button" id="borrar">Borrar el borrador</button>
+      </div>
+      <div id="resultado" class="estado" style="display:none"></div>
+      <p class="autoguardado" id="autoguardado">Borrador vacío</p>
+
+      <p class="nota" style="margin-top:1.1rem">
+        <strong>Si no tienes conexión.</strong> «Copiar todo» pone el entregable completo en el
+        portapapeles. Pégalo en un correo a
+        <a href="mailto:jbogoya63@uan.edu.co">jbogoya63@uan.edu.co</a> y cuenta igual.
+      </p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="envoltura">
+    <p>
+      <strong>Antes de la sesión 2 · Rehabilitación paliativa en cáncer</strong><br>
+      Investigación en Cuidados Paliativos y Rehabilitación · código 37543013 ·
+      Maestría en Cuidados Paliativos · Facultad de Enfermería · Universidad Antonio Nariño · 2026-II
+    </p>
+    <p>
+      Docente: Jorge Wilhem Bogoya López ·
+      <a href="mailto:jbogoya63@uan.edu.co">jbogoya63@uan.edu.co</a> ·
+      <a href="index.html">Guía de la sesión</a>
+    </p>
+    <p class="footer__legal">
+      <strong>Tratamiento de datos.</strong> Se recogen tu nombre, tu correo institucional y tus
+      respuestas, con la única finalidad de desarrollar y evaluar este espacio académico. Se guardan
+      en una hoja de cálculo privada del docente y no se publican ni se comparten con terceros
+      (Ley 1581 de 2012 y Decreto 1377 de 2013). En clase las respuestas se proyectan
+      <strong>sin nombre ni correo</strong>, identificadas solo por una letra. Puedes pedir consulta,
+      corrección o supresión escribiendo al correo del docente.
+    </p>
+  </div>
+</footer>
+
+<script>
+/* ===========================================================================
+   CONFIG — 🔴 rellenar antes de publicar S02.
+   Ver scripts/apps-script/INSTALACION.md.
+
+   1. En la pestaña Config del Apps Script, fila S02: poner Apertura, Cierre y
+      Activa = Sí.
+   2. Copiar el Token de esa fila y reemplazar el PEGAR de abajo.
+
+   Mientras el TOKEN diga PEGAR, la página está en modo lectura: se puede leer,
+   escribir y usar «Copiar todo», pero Enviar avisa de que aún no está conectada.
+   =========================================================================== */
+var CONFIG = {
+  ENDPOINT: 'https://script.google.com/macros/s/AKfycbyp3Ihy_qKs5R1PQweMYUd1lQnXYqFmE7itCrLt1TTF6QR3HvrkPTQ-XXj9Ws3hxG5idw/exec',
+  TOKEN:    'S02_INV_REHAB_2026II_PEGAR',
+  SESION:   'S02',
+  CIERRE_LEGIBLE: 'viernes 4 de septiembre, 1:00 p. m.'
+};
+
+(function () {
+  'use strict';
+
+  var CLAVE = 'INV_REHAB_2026II_S02_borrador';
+  var IDS_TEXTO = ['p1', 'p2', 'p3', 'p4', 'p5'];
+  var IDS_TODOS = IDS_TEXTO.concat(['correo', 'nombre', 'ia', 'minutos']);
+  var $ = function (id) { return document.getElementById(id); };
+
+  var configurado = CONFIG.ENDPOINT.indexOf('http') === 0 &&
+                    CONFIG.TOKEN.indexOf('PEGAR') === -1;
+
+  /* ── Borrador local ─────────────────────────────────────────────── */
+  function guardar() {
+    var d = {};
+    IDS_TODOS.forEach(function (id) { var el = $(id); if (el) d[id] = el.value; });
+    try {
+      localStorage.setItem(CLAVE, JSON.stringify({ datos: d, cuando: Date.now() }));
+      var h = new Date().toLocaleTimeString('es-CO', { hour: '2-digit', minute: '2-digit' });
+      $('autoguardado').textContent = 'Borrador guardado en este navegador · ' + h;
+    } catch (err) {
+      $('autoguardado').textContent = 'No se pudo guardar el borrador en este navegador.';
+    }
+  }
+
+  function restaurar() {
+    var crudo;
+    try { crudo = localStorage.getItem(CLAVE); } catch (err) { return; }
+    if (!crudo) return;
+    try {
+      var d = JSON.parse(crudo).datos || {};
+      IDS_TODOS.forEach(function (id) { var el = $(id); if (el && d[id]) el.value = d[id]; });
+      $('autoguardado').textContent = 'Borrador recuperado de este navegador.';
+    } catch (err) { /* borrador ilegible: se ignora */ }
+  }
+
+  /* ── Contadores de palabras ─────────────────────────────────────── */
+  function contar(t) {
+    var limpio = (t || '').trim();
+    return limpio ? limpio.split(/\s+/).length : 0;
+  }
+  function actualizarContador(id) {
+    var area = $(id);
+    var salida = document.querySelector('.contador[data-para="' + id + '"]');
+    if (!area || !salida) return;
+    var n = contar(area.value);
+    var min = parseInt(area.getAttribute('data-min'), 10) || 0;
+    salida.textContent = n + (n === 1 ? ' palabra' : ' palabras') + (n < min ? ' · orientativo: ' + min + '+' : '');
+    salida.className = 'contador' + (n === 0 ? '' : n < min ? ' corto' : ' bien');
+  }
+
+  /* ── Estado del plazo ───────────────────────────────────────────── */
+  function pintarEstado(clase, titulo, texto) {
+    var el = $('estado');
+    el.className = 'estado ' + clase;
+    el.innerHTML = '<strong></strong>';
+    el.firstChild.textContent = titulo;
+    el.appendChild(document.createTextNode(' ' + texto));
+  }
+
+  function consultarEstado() {
+    if (!configurado) {
+      pintarEstado('estado--aviso', 'Entregable todavía sin conectar.',
+        'Puedes leerlo y escribir; el envío se habilita cuando el docente publique la conexión. ' +
+        'Mientras tanto, «Copiar todo» funciona.');
+      return;
+    }
+    if (!navigator.onLine) {
+      pintarEstado('estado--aviso', 'Sin conexión.',
+        'Puedes leer y escribir con normalidad: el borrador se guarda en este navegador. ' +
+        'Envíalo cuando recuperes la red, o usa «Copiar todo». Cierra el ' + CONFIG.CIERRE_LEGIBLE + '.');
+      return;
+    }
+    var url = CONFIG.ENDPOINT + '?action=estado&token=' + encodeURIComponent(CONFIG.TOKEN);
+    fetch(url)
+      .then(function (r) { return r.json(); })
+      .then(function (d) {
+        if (!d.ok) {
+          pintarEstado('estado--malo', 'El servidor no reconoce este entregable.', 'Avísale al docente: ' + (d.error || '') + '.');
+        } else if (d.abierta) {
+          pintarEstado('estado--ok', 'Entrega abierta.', 'Cierra el ' + CONFIG.CIERRE_LEGIBLE + '. Puedes reenviar hasta esa hora.');
+        } else if (!d.activa) {
+          pintarEstado('estado--aviso', 'Todavía no está habilitada.', 'El docente la abre unos días antes de la sesión.');
+        } else if (d.apertura && d.ahora && d.ahora < d.apertura) {
+          pintarEstado('estado--aviso', 'Todavía no abre.',
+            'La entrega se habilita el ' + d.apertura + ' y cierra el ' + d.cierre +
+            '. Puedes ir leyendo y escribiendo desde ya: el borrador se guarda solo.');
+        } else {
+          pintarEstado('estado--malo', 'El plazo se cerró.',
+            'La ventana era ' + (d.apertura || '') + ' – ' + (d.cierre || '') + '. Escríbele al docente.');
+        }
+      })
+      .catch(function () {
+        pintarEstado('estado--aviso', 'No se pudo comprobar el plazo.',
+          'Puedes escribir igual: el borrador se guarda aquí. Intenta enviar más tarde, o usa «Copiar todo».');
+      });
+  }
+
+  /* ── Envío ──────────────────────────────────────────────────────── */
+  function mostrarResultado(clase, titulo, texto) {
+    var el = $('resultado');
+    el.style.display = 'block';
+    el.className = 'estado ' + clase;
+    el.innerHTML = '<strong></strong>';
+    el.firstChild.textContent = titulo;
+    el.appendChild(document.createTextNode(' ' + texto));
+  }
+
+  var ERRORES = {
+    token_invalido:       'El entregable no está bien conectado. Avísale al docente.',
+    sesion_cerrada:       'La entrega de esta sesión no está habilitada.',
+    aun_no_abre:          'La entrega todavía no abre.',
+    plazo_vencido:        'El plazo se cerró. Escríbele al docente.',
+    correo_no_reconocido: 'Ese correo no aparece en la lista del curso. Revisa que sea el institucional registrado; si está bien, avísale al docente.',
+    sin_respuestas:       'No se envió ninguna respuesta.',
+    ocupado:              'El servidor estaba ocupado. Vuelve a intentarlo.'
+  };
+
+  function enviar() {
+    var correo = $('correo').value.trim();
+    var nombre = $('nombre').value.trim();
+
+    if (!correo || correo.indexOf('@') < 1) { mostrarResultado('estado--malo', 'Falta el correo.', 'Escribe tu correo institucional arriba.'); $('correo').focus(); return; }
+    if (!nombre)                            { mostrarResultado('estado--malo', 'Falta el nombre.', 'Escribe tu nombre completo arriba.'); $('nombre').focus(); return; }
+
+    var vacias = IDS_TEXTO.filter(function (id) { return !contar($(id).value); });
+    if (vacias.length === IDS_TEXTO.length) { mostrarResultado('estado--malo', 'Está todo vacío.', 'Responde al menos una pregunta antes de enviar.'); return; }
+    if (vacias.length && !confirm('Quedan ' + vacias.length + ' pregunta(s) sin responder (' + vacias.join(', ') + ').\n\n¿Enviar de todas formas? Podrás reenviar hasta el cierre.')) return;
+
+    if (!configurado) { mostrarResultado('estado--aviso', 'El envío no está conectado todavía.', 'Usa «Copiar todo» y mándalo por correo.'); return; }
+
+    var respuestas = {};
+    IDS_TEXTO.forEach(function (id) { respuestas[id] = $(id).value.trim(); });
+
+    var boton = $('enviar');
+    boton.disabled = true;
+    boton.textContent = 'Enviando…';
+    mostrarResultado('estado', 'Enviando…', 'No cierres la página.');
+
+    fetch(CONFIG.ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify({
+        token: CONFIG.TOKEN,
+        sesion: CONFIG.SESION,
+        correo: correo,
+        nombre: nombre,
+        minutos: $('minutos').value,
+        declaracionIA: $('ia').value.trim(),
+        respuestas: respuestas
+      })
+    })
+      .then(function (r) { return r.json(); })
+      .then(function (d) {
+        if (d.ok) {
+          mostrarResultado('estado--ok',
+            d.version > 1 ? 'Entrega actualizada (versión ' + d.version + ').' : 'Entrega registrada.',
+            'Quedó a nombre de ' + d.nombre + '. En clase aparecerás como «' + d.seudonimo +
+            '», sin tu nombre. Puedes seguir corrigiendo y reenviar hasta el cierre.');
+        } else {
+          mostrarResultado('estado--malo', 'No se pudo registrar.', ERRORES[d.error] || ('Error: ' + (d.error || 'desconocido') + '.'));
+        }
+      })
+      .catch(function () {
+        mostrarResultado('estado--malo', 'No se pudo conectar.',
+          'Tu borrador está guardado aquí. Intenta de nuevo, o usa «Copiar todo» y mándalo por correo.');
+      })
+      .finally(function () {
+        boton.disabled = false;
+        boton.textContent = 'Enviar';
+      });
+  }
+
+  /* ── Copiar todo · salida de emergencia sin conexión ────────────── */
+  function textoPlano() {
+    var l = [];
+    l.push('ANTES DE LA SESIÓN 2 · Rehabilitación paliativa en cáncer');
+    l.push('Investigación en Cuidados Paliativos y Rehabilitación · 37543013 · UAN · 2026-II');
+    l.push('');
+    l.push('Nombre: ' + $('nombre').value.trim());
+    l.push('Correo: ' + $('correo').value.trim());
+    l.push('Minutos dedicados: ' + ($('minutos').value || '—'));
+    l.push('');
+    var titulos = {
+      p1: 'P1 · ¿La rehabilitación entra en el manejo del dolor, o el dolor va solo a fármacos?',
+      p2: 'P2 · ¿Cómo se maneja el linfedema o el edema donde tú trabajas?',
+      p3: 'P3 · Mantener la fuerza y la función neuromuscular; con qué instrumento se mide',
+      p4: 'P4 · Un desenlace psicosocial, y cómo lo medirías',
+      p5: 'P5 · Convierte una intervención de Minosso en una pregunta investigable'
+    };
+    IDS_TEXTO.forEach(function (id) {
+      l.push('─────────────────────────────────────────────');
+      l.push(titulos[id]);
+      l.push('');
+      l.push($(id).value.trim() || '(sin responder)');
+      l.push('');
+    });
+    l.push('─────────────────────────────────────────────');
+    l.push('Declaración de uso de IA:');
+    l.push($('ia').value.trim() || '(sin declarar)');
+    return l.join('\n');
+  }
+
+  function copiar() {
+    var texto = textoPlano();
+    var listo = function () {
+      mostrarResultado('estado--ok', 'Copiado.', 'Pégalo en un correo a jbogoya63@uan.edu.co y cuenta como entrega.');
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(texto).then(listo, respaldoCopiar);
+    } else {
+      respaldoCopiar();
+    }
+    function respaldoCopiar() {
+      var ta = document.createElement('textarea');
+      ta.value = texto;
+      ta.style.position = 'fixed';
+      ta.style.top = '-1000px';
+      document.body.appendChild(ta);
+      ta.select();
+      var ok = false;
+      try { ok = document.execCommand('copy'); } catch (err) { ok = false; }
+      document.body.removeChild(ta);
+      ok ? listo() : mostrarResultado('estado--aviso', 'No se pudo copiar solo.', 'Selecciona tus respuestas con el ratón y cópialas a mano.');
+    }
+  }
+
+  /* ── Arranque ───────────────────────────────────────────────────── */
+  restaurar();
+  IDS_TEXTO.forEach(actualizarContador);
+
+  IDS_TODOS.forEach(function (id) {
+    var el = $(id);
+    if (!el) return;
+    el.addEventListener('input', function () {
+      if (IDS_TEXTO.indexOf(id) !== -1) actualizarContador(id);
+      clearTimeout(el._t);
+      el._t = setTimeout(guardar, 700);
+    });
+  });
+
+  $('enviar').addEventListener('click', enviar);
+  $('copiar').addEventListener('click', copiar);
+  $('borrar').addEventListener('click', function () {
+    if (!confirm('Esto borra el borrador guardado en este navegador y vacía el formulario.\n\nSi ya enviaste, la entrega registrada NO se borra.')) return;
+    try { localStorage.removeItem(CLAVE); } catch (err) { /* nada que borrar */ }
+    IDS_TODOS.forEach(function (id) { var el = $(id); if (el) el.value = ''; });
+    IDS_TEXTO.forEach(actualizarContador);
+    $('autoguardado').textContent = 'Borrador vacío';
+    mostrarResultado('estado', 'Borrador borrado.', 'El formulario quedó en blanco.');
+  });
+
+  window.addEventListener('online', consultarEstado);
+  window.addEventListener('offline', consultarEstado);
+  consultarEstado();
+})();
+</script>
+</html>
