@@ -55,10 +55,13 @@ mapa-trayectoria-*.png
 
 # Transcripciones de clase (Tactiq, Meet, Zoom): nombre e intervención
 # atribuida de cada participante. Lo más sensible de todo el material.
-*transcript*
-*Transcript*
-*transcripcion*
-*Transcripción*
+# El stem *transcrip* cubre transcript/transcripcion/transcription. Se añade
+# *trasncrip* porque esa errata ("trasncripcion") burló la regla una vez y
+# dejó una transcripción sin ignorar. Ante la duda, usa también PRIVADO_.
+*transcrip*
+*Transcrip*
+*trasncrip*
+*Trasncrip*
 *.vtt
 *.srt
 
