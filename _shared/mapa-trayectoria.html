@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="es">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mapa de trayectoria · trabajo previo</title>
+
+<!-- ===========================================================================
+     HERRAMIENTA DE TRABAJO PREVIO — el mapa de trayectoria con puntos de
+     intervención. Reemplaza al taller en clase: el estudiante lo hace EN CASA,
+     exporta el PNG y lo sube al formulario ANTES de la sesión. En clase solo
+     se confrontan los mapas.
+
+     Portable: abre con doble clic, sin conexión, sin librerías externas.
+     Reutilizable en las seis unidades — cada sesión la enlaza pasando su
+     trayectoria por la URL:  mapa-trayectoria.html?sesion=S02&t=cancer
+       t = sudden | cancer | organ | frailty
+     =========================================================================== -->
+
+<style>
+:root{
+  --marca:#22415C; --marca-dark:#163049;
+  --accent:#22415C; --accent-dark:#163049; --accent-soft:#E3EAF0;
+  --ink:#14202B; --ink-2:#4E6274; --ink-3:#74879A;
+  --rule:#D9E3EC; --rule-strong:#B9CADA;
+  --surface:#FFFFFF; --surface-2:#F4F7FA; --bg:#F4F7FA;
+  --sans:system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  --mono:ui-monospace,'Cascadia Mono','Segoe UI Mono',Consolas,monospace;
+  --serif:'Iowan Old Style','Palatino Linotype',Palatino,Georgia,serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;font-family:var(--sans);color:var(--ink);background:var(--bg);line-height:1.6}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.envoltura{max-width:60rem;margin:0 auto;padding:1.6rem 1.2rem 3rem}
+
+.eyebrow{font-family:var(--mono);font-size:.74rem;letter-spacing:.05em;text-transform:uppercase;
+  color:var(--accent);margin:0 0 .3rem}
+h1{font-family:var(--serif);font-size:clamp(1.5rem,4vw,2.1rem);line-height:1.2;margin:0 0 .6rem}
+.lede{font-size:1rem;color:var(--ink-2);margin:0 0 1rem;max-width:62ch}
+.paso{background:var(--surface);border:1px solid var(--rule);border-left:4px solid var(--accent);
+  border-radius:10px;padding:.9rem 1.1rem;margin:0 0 1.4rem;max-width:62ch}
+.paso ol{margin:.2rem 0 0;padding-left:1.2rem}
+.paso li{margin-bottom:.3rem}
+.paso a{color:var(--accent-dark);font-weight:600}
+.subir{display:inline-block;margin-top:.5rem;font-weight:700;text-decoration:none;color:#fff;
+  background:var(--accent-dark);border-radius:999px;padding:.5rem 1.2rem}
+
+.tw-controls{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:0 0 .8rem}
+label.et{font-size:.8rem;color:var(--ink-2)}
+select,input[type="text"]{font:inherit;font-size:.9rem;padding:7px 10px;border-radius:7px;
+  border:1px solid var(--rule-strong);background:var(--surface);color:var(--ink)}
+.tbtn{font:inherit;font-weight:600;cursor:pointer;border-radius:999px;padding:.45rem 1.1rem;
+  border:1px solid var(--accent-dark);background:var(--accent-dark);color:#fff}
+.tbtn.sec{background:transparent;color:var(--accent-dark)}
+.tbtn:hover{filter:brightness(1.08)}
+
+.desc{background:var(--surface);border:1px solid var(--rule);border-radius:10px;padding:.8rem 1rem;
+  margin:0 0 1rem;font-size:.9rem;color:var(--ink-2)}
+.desc b{color:var(--ink)}
+.desc .ventana{margin-top:.4rem;color:var(--accent-dark)}
+
+#twPool{border:1px solid var(--rule);border-radius:10px;padding:12px;background:var(--surface);margin-bottom:14px}
+.pool-t{font-family:var(--mono);font-size:.72rem;letter-spacing:.04em;text-transform:uppercase;
+  color:var(--ink-3);margin:0 0 10px}
+.chips{display:flex;flex-wrap:wrap;gap:7px}
+.chip{font-size:.82rem;padding:6px 11px;border-radius:999px;border:1px solid var(--rule-strong);
+  background:var(--surface-2);color:var(--ink);cursor:grab;user-select:none}
+.chip:active{cursor:grabbing}
+.chip.placed{background:var(--accent);border-color:var(--accent);color:#fff}
+
+.tw-board{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media (max-width:700px){.tw-board{grid-template-columns:1fr}}
+.zone{background:var(--surface);border:1.5px dashed var(--rule-strong);border-radius:10px;padding:12px;min-height:150px}
+.zone.over{border-color:var(--accent);background:var(--accent-soft)}
+.zone h4{margin:0 0 4px;font-size:.92rem;font-weight:650}
+.zone .hint{font-family:var(--mono);font-size:.64rem;color:var(--ink-3);letter-spacing:.04em;display:block;margin-bottom:10px}
+
+.kbdhint{font-family:var(--mono);font-size:.72rem;color:var(--ink-3);margin:.8rem 0 0}
+kbd{font-family:var(--mono);font-size:.7rem;border:1px solid var(--rule-strong);border-bottom-width:2px;
+  border-radius:4px;padding:1px 5px;background:var(--surface);color:var(--ink-2)}
+.pie{color:var(--ink-3);font-size:.78rem;margin-top:2rem;max-width:62ch}
+</style>
+
+<div class="envoltura">
+  <p class="eyebrow" id="eyebrow">Trabajo previo</p>
+  <h1>Mapa de trayectoria con puntos de intervención</h1>
+  <p class="lede">Elige la trayectoria de la unidad, ubica cada intervención en la fase donde tenga
+    <b>mayor sentido</b>, y prepárate para justificar cada ubicación con evidencia.</p>
+
+  <div class="paso">
+    <b>Cómo se entrega — antes de la sesión:</b>
+    <ol>
+      <li>Escribe tu nombre, arma el mapa y pulsa <b>«Descargar mapa (PNG)»</b>.</li>
+      <li>Súbelo al formulario del curso (elige tu sesión en el desplegable).</li>
+      <li>Trae a clase <b>una razón con evidencia</b> para cada intervención que ubicaste.</li>
+    </ol>
+    <a class="subir" id="subir" href="https://forms.gle/bz3vNo8eh6LyMQNR8" target="_blank" rel="noopener">Subir mi mapa al formulario ↗</a>
+  </div>
+
+  <div class="tw-controls">
+    <label class="et" for="twTraj">Trayectoria</label>
+    <select id="twTraj"></select>
+    <label class="et" for="twName">Tu nombre</label>
+    <input type="text" id="twName" placeholder="Nombre y apellido" size="22">
+    <button class="tbtn" id="twExport">Descargar mapa (PNG)</button>
+    <button class="tbtn sec" id="twReset">Vaciar</button>
+  </div>
+
+  <div class="desc" id="twDesc"></div>
+
+  <div id="twPool">
+    <p class="pool-t">Intervenciones disponibles — arrástralas a una fase</p>
+    <div class="chips" id="twChips"></div>
+  </div>
+
+  <div class="tw-board" id="twBoard">
+    <div class="zone" data-zone="0"><h4>Fase temprana</h4><span class="hint">FUNCIÓN CONSERVADA</span><div class="chips"></div></div>
+    <div class="zone" data-zone="1"><h4>Fase intermedia</h4><span class="hint">DECLINACIÓN INSTALADA</span><div class="chips"></div></div>
+    <div class="zone" data-zone="2"><h4>Fase avanzada / final</h4><span class="hint">ÚLTIMAS SEMANAS</span><div class="chips"></div></div>
+  </div>
+
+  <p class="kbdhint">Con teclado: selecciona una intervención con <kbd>Enter</kbd> y elige la fase con <kbd>1</kbd> <kbd>2</kbd> <kbd>3</kbd>.</p>
+
+  <p class="pie">Trayectorias según Lunney et al. (2002) y Murray et al. (2005). Esta herramienta funciona
+    sin conexión: puedes cerrarla y volver, pero el mapa no se guarda solo — descárgalo antes de salir.</p>
+</div>
+
+<script>
+(function () {
+  'use strict';
+  var $ = function (id) { return document.getElementById(id); };
+
+  var TRAJ = [
+    { k: "sudden", name: "Muerte súbita", sub: "Función alta hasta el final",
+      pts: [[0,.93],[.35,.93],[.6,.92],[.8,.91],[.815,.04]], bands: [],
+      desc: "Función conservada, con muerte inesperada. No hay una fase de declinación que anticipar.",
+      rehab: "No hay ventana de rehabilitación anticipatoria. El aporte se desplaza a la prevención y al acompañamiento del duelo de la familia." },
+    { k: "cancer", name: "Enfermedad terminal", sub: "Típica del cáncer",
+      pts: [[0,.90],[.3,.87],[.5,.83],[.65,.75],[.75,.60],[.84,.38],[.91,.17],[.96,.03]], bands: [[.28,.78]],
+      desc: "Declinación global lenta, seguida de una caída relativamente rápida. La mayor parte de la pérdida de función ocurre en los últimos meses.",
+      rehab: "La ventana está ANTES de la caída rápida: prehabilitación, mantenimiento de la función y anticipación de ayudas técnicas. Esperar a la fase terminal desperdicia el mejor momento." },
+    { k: "organ", name: "Falla de órgano", sub: "Entrada y reentrada",
+      pts: [[0,.78],[.10,.76],[.16,.40],[.25,.64],[.36,.60],[.43,.26],[.52,.53],[.63,.48],[.70,.18],[.79,.40],[.88,.34],[.95,.04]], bands: [[.16,.27],[.43,.54],[.70,.81]],
+      desc: "Exacerbaciones agudas con recuperación parcial. Tras cada episodio queda un deterioro acumulado. El momento de la muerte es incierto.",
+      rehab: "La ventana se repite: DESPUÉS de cada exacerbación, para recuperar la función perdida antes de que el deterioro se consolide. Es el fundamento de la rehabilitación cardiopulmonar." },
+    { k: "frailty", name: "Fragilidad y demencia", sub: "Declinación prolongada",
+      pts: [[0,.44],[.2,.40],[.4,.35],[.55,.30],[.7,.24],[.85,.15],[1,.04]], bands: [[0,.9]],
+      desc: "Discapacidad progresiva desde una línea de base ya baja. Pérdida lenta de peso y de capacidad funcional.",
+      rehab: "La ventana es TODA la trayectoria, con intervención continua y de baja intensidad: mantener las AVD, prevenir el desacondicionamiento y adaptar el entorno." }
+  ];
+
+  var IVS = [
+    "Prehabilitación antes del tratamiento", "Ejercicio aeróbico graduado",
+    "Entrenamiento de fuerza", "Rehabilitación cardiopulmonar",
+    "Manejo de la fatiga", "Adaptación del domicilio",
+    "Prescripción de ayudas técnicas", "Entrenamiento del cuidador",
+    "Drenaje linfático manual", "Manejo de la disfagia",
+    "Estimulación eléctrica neuromuscular", "Establecimiento de metas con la persona",
+    "Posicionamiento y prevención de úlceras", "Terapia ocupacional en AVD"
+  ];
+
+  var UNIDS = {
+    S01: "Sesión 01 · Unidad 1 · Trayectorias", S02: "Sesión 02 · Unidad 2 · Cáncer",
+    S03: "Sesión 03 · Unidad 3 · Falla de órgano", S04: "Sesión 04 · Unidad 4 · Neurodegenerativos",
+    S05: "Sesión 05 · Unidad 5 · Demencia y fragilidad", S06: "Sesión 06 · Unidad 6 · Eventos catastróficos",
+    S07: "Sesión 07 · Seminario integrador"
+  };
+
+  var params = new URLSearchParams(location.search);
+  var sesion = (params.get('sesion') || '').toUpperCase();
+  var tKey = (params.get('t') || '').toLowerCase();
+  if (sesion && UNIDS[sesion]) { $('eyebrow').textContent = 'Trabajo previo · ' + UNIDS[sesion]; }
+
+  var twSel = $('twTraj'), twChips = $('twChips'), twBoard = $('twBoard');
+  TRAJ.forEach(function (t, i) {
+    var o = document.createElement('option'); o.value = String(i);
+    o.textContent = t.name + ' · ' + t.sub; twSel.appendChild(o);
+  });
+  var idx = TRAJ.map(function (t) { return t.k; }).indexOf(tKey);
+  twSel.value = String(idx >= 0 ? idx : 1);
+
+  function pintarDesc() {
+    var t = TRAJ[parseInt(twSel.value, 10)];
+    $('twDesc').innerHTML = '<b>' + t.name + '.</b> ' + t.desc +
+      '<div class="ventana"><b>Ventana:</b> ' + t.rehab + '</div>';
+  }
+  twSel.onchange = pintarDesc;
+  pintarDesc();
+
+  var picked = null;
+  function makeChip(label) {
+    var c = document.createElement('button');
+    c.className = 'chip'; c.type = 'button'; c.draggable = true; c.textContent = label;
+    c.addEventListener('dragstart', function (e) {
+      e.dataTransfer.setData('text/plain', label); e.dataTransfer.effectAllowed = 'move';
+    });
+    c.addEventListener('click', function () {
+      if (picked) picked.style.outline = '';
+      picked = (picked === c) ? null : c;
+      if (picked) picked.style.outline = '2px solid var(--accent)';
+    });
+    return c;
+  }
+  function resetTaller() {
+    twChips.innerHTML = '';
+    IVS.forEach(function (l) { twChips.appendChild(makeChip(l)); });
+    Array.prototype.forEach.call(twBoard.querySelectorAll('.zone .chips'), function (z) { z.innerHTML = ''; });
+    picked = null;
+  }
+  function place(chip, zoneChips) {
+    chip.classList.add('placed'); chip.style.outline = '';
+    zoneChips.appendChild(chip); picked = null;
+  }
+  Array.prototype.forEach.call(twBoard.querySelectorAll('.zone'), function (z) {
+    var holder = z.querySelector('.chips');
+    z.addEventListener('dragover', function (e) { e.preventDefault(); z.classList.add('over'); });
+    z.addEventListener('dragleave', function () { z.classList.remove('over'); });
+    z.addEventListener('drop', function (e) {
+      e.preventDefault(); z.classList.remove('over');
+      var label = e.dataTransfer.getData('text/plain');
+      var all = Array.prototype.slice.call(document.querySelectorAll('.chip'));
+      var chip = all.filter(function (c) { return c.textContent === label; })[0];
+      if (chip) place(chip, holder);
+    });
+    z.addEventListener('click', function () { if (picked) place(picked, holder); });
+  });
+  document.addEventListener('keydown', function (e) {
+    if (!picked) return;
+    var n = '123'.indexOf(e.key);
+    if (n >= 0) { e.preventDefault(); place(picked, twBoard.querySelectorAll('.zone .chips')[n]); }
+  });
+  $('twReset').onclick = resetTaller;
+  resetTaller();
+
+  /* export PNG — dibujado directo en canvas, sin dependencias */
+  $('twExport').onclick = function () {
+    var t = TRAJ[parseInt(twSel.value, 10)];
+    var quien = $('twName').value.trim();
+    var zones = Array.prototype.map.call(twBoard.querySelectorAll('.zone'), function (z) {
+      return Array.prototype.map.call(z.querySelectorAll('.chip'), function (c) { return c.textContent; });
+    });
+    var Wc = 1400, Hc = 900, cv = document.createElement('canvas');
+    cv.width = Wc; cv.height = Hc;
+    var x = cv.getContext('2d');
+    x.fillStyle = '#FFFFFF'; x.fillRect(0, 0, Wc, Hc);
+
+    x.fillStyle = '#74879A'; x.font = '500 18px Consolas, monospace';
+    x.fillText((sesion ? sesion + ' · ' : '') + 'MAPA DE TRAYECTORIA CON PUNTOS DE INTERVENCIÓN', 60, 62);
+    x.fillStyle = '#14202B'; x.font = '600 44px Georgia, serif';
+    x.fillText(t.name, 60, 118);
+    x.fillStyle = '#4E6274'; x.font = '20px system-ui, sans-serif';
+    x.fillText(quien ? quien : '________________________', 60, 152);
+
+    var gx = 60, gy = 190, gw = Wc - 120, gh = 230;
+    x.strokeStyle = '#D9E3EC'; x.lineWidth = 1;
+    for (var i = 0; i <= 3; i++) {
+      var yy = gy + gh * i / 3;
+      x.beginPath(); x.moveTo(gx, yy); x.lineTo(gx + gw, yy); x.stroke();
+    }
+    (t.bands || []).forEach(function (b) {
+      x.fillStyle = 'rgba(28,92,171,.10)';
+      x.fillRect(gx + b[0] * gw, gy, (b[1] - b[0]) * gw, gh);
+    });
+    x.strokeStyle = '#2A78D6'; x.lineWidth = 3; x.lineJoin = 'round'; x.beginPath();
+    t.pts.forEach(function (p, i) {
+      var px = gx + p[0] * gw, py = gy + (1 - p[1]) * gh;
+      if (i) x.lineTo(px, py); else x.moveTo(px, py);
+    });
+    x.stroke();
+    x.fillStyle = '#74879A'; x.font = '13px Consolas, monospace';
+    x.fillText('FUNCIÓN ALTA', gx, gy - 8);
+    x.fillText('BAJA', gx, gy + gh + 20);
+    x.fillText('MUERTE', gx + gw - 60, gy + gh + 20);
+
+    var titles = ['FASE TEMPRANA', 'FASE INTERMEDIA', 'FASE AVANZADA / FINAL'];
+    var cw = (gw - 40) / 3;
+    for (var z = 0; z < 3; z++) {
+      var cx = gx + z * (cw + 20), cy = gy + gh + 60;
+      x.strokeStyle = '#B9CADA'; x.lineWidth = 1.5;
+      x.strokeRect(cx, cy, cw, 300);
+      x.fillStyle = '#22415C'; x.font = '600 15px Consolas, monospace';
+      x.fillText(titles[z], cx + 16, cy + 30);
+      x.fillStyle = '#14202B'; x.font = '17px system-ui, sans-serif';
+      var ly = cy + 62;
+      zones[z].forEach(function (label) {
+        var words = label.split(' '), line = '', first = true;
+        function flush() { x.fillText((first ? '• ' : '   ') + line, cx + 16, ly); ly += 24; first = false; line = ''; }
+        words.forEach(function (w) {
+          var test = line ? line + ' ' + w : w;
+          if (line && x.measureText((first ? '• ' : '   ') + test).width > cw - 32) { flush(); line = w; }
+          else { line = test; }
+        });
+        if (line) flush();
+        ly += 8;
+      });
+    }
+    x.fillStyle = '#74879A'; x.font = '13px Consolas, monospace';
+    x.fillText('Trayectorias según Lunney et al. (2002) y Murray et al. (2005) · Maestría en Cuidados Paliativos, UAN', 60, Hc - 30);
+
+    var a = document.createElement('a');
+    a.download = 'mapa-trayectoria-' + t.k + (quien ? '-' + quien.replace(/[^\wáéíóúñ ]/gi, '').replace(/\s+/g, '-') : '') + '.png';
+    a.href = cv.toDataURL('image/png');
+    a.click();
+  };
+})();
+</script>
+</html>
