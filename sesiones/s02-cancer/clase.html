@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="es">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sesión 2 · Rehabilitación en cáncer — material de la sesión</title>
+<meta name="description" content="Material de la sesión 2 (Rehabilitación paliativa en cáncer) de Investigación en Cuidados Paliativos y Rehabilitación (37543013), UAN. Evidencia 2021-2026 y guion de la sesión sincrónica.">
+<meta name="robots" content="noindex,nofollow">
+
+<!-- ===========================================================================
+     MATERIAL DE LA SESIÓN 2 · Rehabilitación paliativa en cáncer
+     Aula invertida: no es una cátedra, es el mapa de la puesta en común. Sirve
+     para consultar la evidencia del tema y para conducir la sesión sincrónica.
+     Portable (regla 1): tokens en línea, cero recursos externos, abre offline.
+     =========================================================================== -->
+
+<style>
+:root{
+  --u2:#5E7488; --u2-dark:#3F5468; --u2-soft:#E0E6EC;
+  --marca:#22415C; --marca-dark:#163049; --marca-soft:#E3EAF0;
+  --ok:#0E8A80; --ok-soft:#D2EAE7; --aviso:#B7791F; --aviso-soft:#F6EBD5; --aviso-dark:#7A5212;
+  --tinta:#14202B; --gris:#4E6274; --gris-claro:#94A5B5;
+  --linea:#D9E3EC; --blanco:#FFFFFF; --nieve:#F4F7FA;
+  --shadow-soft:0 1px 2px rgba(20,32,43,.06), 0 6px 18px rgba(20,32,43,.06);
+  --radius:12px; --radius-sm:8px;
+  --sans:system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  --serif:'Iowan Old Style','Palatino Linotype',Palatino,'Book Antiqua',Georgia,serif;
+  --mono:ui-monospace,'Cascadia Mono','Segoe UI Mono',Consolas,monospace;
+  --acento:var(--u2); --acento-dark:var(--u2-dark); --acento-soft:var(--u2-soft);
+}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;font-family:var(--sans);color:var(--tinta);background:var(--nieve);line-height:1.6}
+:focus-visible{outline:3px solid var(--acento);outline-offset:2px}
+a{color:var(--acento-dark)}
+.envoltura{max-width:56rem;margin:0 auto;padding:0 clamp(1rem,4vw,2rem)}
+.saltar{position:absolute;left:-9999px;background:var(--tinta);color:var(--blanco);padding:.6rem 1rem;z-index:20}
+.saltar:focus{left:0}
+
+.nav-sesion{background:var(--tinta);color:var(--nieve);padding:.55rem 1rem;font-size:.82rem;
+  display:flex;flex-wrap:wrap;align-items:center;gap:.3rem .9rem}
+.nav-sesion a{color:var(--gris-claro);text-decoration:none;border-bottom:1px solid transparent}
+.nav-sesion a:hover{border-bottom-color:var(--gris-claro)}
+.nav-sesion .ns-curso{font-weight:700}
+
+.cabecera{background:linear-gradient(160deg,var(--nieve) 0%,var(--u2-soft) 100%);
+  border-bottom:4px solid var(--acento);padding:clamp(1.8rem,5vw,3rem) 0 clamp(1.4rem,3vw,2rem)}
+.eyebrow{font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--acento-dark);font-weight:700;margin:0 0 .4rem}
+.numero{font-family:var(--mono);font-size:.85rem;color:var(--gris);display:block;margin-bottom:.3rem}
+h1{font-family:var(--serif);font-size:clamp(1.7rem,4.5vw,2.6rem);line-height:1.15;margin:0 0 .6rem;max-width:22ch}
+.lede{font-size:1.05rem;color:var(--gris);max-width:60ch;margin:.4rem 0 0}
+.chips{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.1rem;padding:0;list-style:none}
+.chip{background:var(--blanco);border:1px solid var(--acento-soft);border-radius:999px;padding:.3rem .9rem;font-size:.83rem;box-shadow:var(--shadow-soft)}
+
+main{padding:clamp(1.6rem,4vw,2.6rem) 0}
+section{margin-bottom:clamp(1.8rem,4vw,2.6rem)}
+h2{font-family:var(--serif);font-size:clamp(1.3rem,2.8vw,1.7rem);color:var(--acento-dark);margin:0 0 .3rem;line-height:1.2}
+h2 .n{font-family:var(--mono);font-size:.72rem;color:var(--gris);display:block;letter-spacing:.05em;text-transform:uppercase;margin-bottom:.15rem}
+h3{font-size:1.05rem;margin:1.1rem 0 .3rem;color:var(--tinta)}
+p{max-width:64ch}
+
+.como{background:var(--blanco);border-radius:var(--radius);box-shadow:var(--shadow-soft);border-left:4px solid var(--acento);padding:1.1rem 1.3rem;max-width:64ch}
+.crono{width:100%;border-collapse:collapse;margin-top:.7rem;font-size:.92rem}
+.crono td{padding:.4rem .5rem;border-top:1px solid var(--linea);vertical-align:top}
+.crono td:first-child{font-family:var(--mono);color:var(--acento-dark);white-space:nowrap;font-size:.84rem;font-weight:700}
+.crono td:nth-child(2){font-weight:700;white-space:nowrap;padding-right:1rem}
+
+ol.tec{list-style:none;counter-reset:t;padding:0;margin:.8rem 0 0;display:grid;grid-template-columns:repeat(2,1fr);gap:.5rem;max-width:64ch}
+@media (max-width:600px){ol.tec{grid-template-columns:1fr}}
+ol.tec li{background:var(--blanco);border-radius:var(--radius-sm);box-shadow:var(--shadow-soft);padding:.5rem .8rem .5rem 2.3rem;position:relative;font-size:.9rem}
+ol.tec li::before{counter-increment:t;content:counter(t);position:absolute;left:.7rem;top:.5rem;width:1.2rem;height:1.2rem;border-radius:50%;background:var(--marca);color:#fff;font-size:.72rem;font-weight:700;display:flex;align-items:center;justify-content:center}
+
+.preg{background:var(--blanco);border-radius:var(--radius);box-shadow:var(--shadow-soft);border-left:4px solid var(--acento);padding:1.1rem 1.3rem;margin-bottom:1rem}
+.preg__n{font-family:var(--mono);font-size:.73rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--acento-dark);margin:0 0 .2rem}
+.preg h3{margin-top:0;font-size:1.12rem;color:var(--tinta)}
+.tension{background:var(--u2-soft);border-radius:var(--radius-sm);padding:.6rem .85rem;margin:.6rem 0;font-size:.93rem}
+.tension strong{color:var(--marca-dark)}
+.instr{font-size:.86rem;color:var(--gris);margin:.4rem 0 0}
+.instr b{color:var(--tinta);font-family:var(--mono);font-size:.82rem}
+.preg ul{margin:.4rem 0 0;padding-left:1.1rem;font-size:.92rem}
+.preg li{margin-bottom:.25rem}
+
+.conducir{background:var(--marca-soft);border-radius:var(--radius);padding:1.1rem 1.3rem;border-left:4px solid var(--marca);max-width:64ch}
+.conducir strong{color:var(--marca-dark)}
+
+.refs{list-style:none;padding:0;margin:.8rem 0 0;display:grid;gap:.45rem;font-size:.86rem;color:var(--gris);max-width:64ch}
+.refs li{padding-left:1.3rem;position:relative}
+.refs li::before{content:"";position:absolute;left:.2rem;top:.65em;width:.45rem;height:.45rem;border-radius:50%;background:var(--acento)}
+.refs b{color:var(--tinta)}
+
+footer{border-top:1px solid var(--linea);background:var(--blanco);padding:1.8rem 0;font-size:.85rem;color:var(--gris)}
+footer p{max-width:64ch}
+@media print{.nav-sesion,.saltar{display:none}}
+</style>
+
+<a class="saltar" href="#contenido">Saltar al contenido</a>
+
+<nav class="nav-sesion" aria-label="Navegación del curso">
+  <a class="ns-curso" href="../../index.html">← Investigación en CP y Rehabilitación</a>
+  <a href="index.html">Guía de la sesión</a>
+  <a href="preparacion.html">Preparación</a>
+</nav>
+
+<header class="cabecera">
+  <div class="envoltura">
+    <p class="eyebrow">Unidad 2 · Material de la sesión</p>
+    <span class="numero">Sesión 02 de 7</span>
+    <h1>Rehabilitación paliativa en cáncer</h1>
+    <p class="lede">No es una cátedra: es el mapa de lo que ponemos en común. Recoge la evidencia
+      2021-2026 del tema —física, agentes físicos y psicosocial— y el guion de los tres bloques de la
+      sesión sincrónica.</p>
+    <ul class="chips">
+      <li class="chip">Viernes 4 de septiembre · sincrónica</li>
+      <li class="chip">Aula invertida</li>
+      <li class="chip">Evidencia verificada 2021-2026</li>
+    </ul>
+  </div>
+</header>
+
+<main id="contenido">
+  <div class="envoltura">
+
+    <section aria-labelledby="h-como">
+      <h2 id="h-como">Cómo transcurre la sesión</h2>
+      <div class="como">
+        <p style="margin:0">El trabajo previo ya está hecho: cada quien respondió cinco preguntas
+          sobre su servicio y preparó una tecnología. La clase contrasta lo que escribieron. Quien
+          conduce <strong>modera, no expone</strong>: proyecta, deja leer, y devuelve el análisis al
+          grupo con tres preguntas — <em>¿qué se repite? ¿qué dice solo una persona? ¿dónde se
+          contradicen dos?</em></p>
+        <table class="crono">
+          <tr><td>2:00–2:10</td><td>Encuadre</td><td>Puesta en común de lo preparado; quien conduce modera.</td></tr>
+          <tr><td>2:10–2:55</td><td>Bloque 1</td><td>Ronda de tecnología: cada estudiante, 3 minutos.</td></tr>
+          <tr><td>3:05–4:35</td><td>Bloque 2</td><td>Las cinco preguntas, una por una (~18 min c/u).</td></tr>
+          <tr><td>4:35–5:00</td><td>Bloque 3</td><td>Cierre: una frase por pregunta; qué queda para S03.</td></tr>
+        </table>
+      </div>
+    </section>
+
+    <section aria-labelledby="h-b1">
+      <h2 id="h-b1"><span class="n">Bloque 1</span>Ronda de tecnología</h2>
+      <p>Recupera el tema de tecnología de la Unidad 1. Cada estudiante trae una y la cuenta en tres
+        minutos: <strong>qué es, un dato de evidencia con su fuente, y qué mide o qué deja invisible.</strong>
+        Tras cada una, una pregunta corta al grupo.</p>
+      <ol class="tec">
+        <li>Realidad virtual en rehabilitación</li>
+        <li>Wysa (IA conversacional en salud mental)</li>
+        <li>Telemedicina / tele-rehabilitación</li>
+        <li>ePROMs (desenlaces reportados por el paciente)</li>
+        <li>Wearables y sensores inteligentes</li>
+        <li>Apps móviles y objetos virtuales de aprendizaje</li>
+        <li>IA para pronóstico y apoyo a la decisión</li>
+      </ol>
+    </section>
+
+    <section aria-labelledby="h-b2">
+      <h2 id="h-b2"><span class="n">Bloque 2</span>Las cinco preguntas, con su evidencia</h2>
+      <p>Para cada una: la tensión que provoca la discusión y el instrumento que la aterriza. Toda la
+        evidencia es 2021-2026 salvo donde se indica, verificada contra la fuente.</p>
+
+      <article class="preg">
+        <p class="preg__n">Pregunta 1 · dolor</p>
+        <h3>Lo que usamos para el dolor, ¿funciona en la población paliativa?</h3>
+        <div class="tension">
+          <strong>La tensión:</strong> el ejercicio reduce el dolor en cáncer en general (tamaño de
+          efecto ≈ 0,38), pero ese efecto <strong>se desvanece en enfermedad metastásica</strong>
+          (≈ −0,06) — justo la población paliativa. Y el TENS, de uso diario, <strong>no muestra
+          beneficio significativo</strong>: distíngase «no se ha estudiado» de «se estudió y no sirve».
+        </div>
+        <p style="margin:.3rem 0 0;font-size:.92rem">El marco (Li 2026): las no farmacológicas son
+          <em>adyuvantes, no sustitutos</em> de la escalera de la OMS. La guía SIO-ASCO (2022) respalda
+          acupuntura y masaje para el dolor oncológico.</p>
+        <p class="instr">Instrumentos: <b>BPI</b> (Brief Pain Inventory), escala de dolor del <b>EORTC QLQ-C30</b>.</p>
+      </article>
+
+      <article class="preg">
+        <p class="preg__n">Pregunta 2 · linfedema y edema</p>
+        <h3>¿Se mide, o va «a ojo»?</h3>
+        <div class="tension">
+          <strong>La tensión:</strong> el linfedema tiene estadificación estándar (ISL 2023) y medición
+          objetiva, pero en enfermedad avanzada el edema <strong>no siempre es linfático</strong>
+          (sobrehidratación, obstrucción venosa) y el objetivo pasa de reducir volumen a
+          <strong>controlar el síntoma y proteger la piel</strong>.
+        </div>
+        <p style="margin:.3rem 0 0;font-size:.92rem">El entrenamiento de fuerza <em>no</em> está
+          contraindicado: lo reduce (Wang 2025). La detección subclínica por bioimpedancia adelanta la
+          intervención (ensayo PREVENT). Para la vertiente paliativa: Tennison 2026 y el capítulo 13 de
+          Dylke.</p>
+        <p class="instr">Instrumentos: <b>perímetros</b>, <b>volumen</b>, <b>bioimpedancia</b> (estadio subclínico).</p>
+      </article>
+
+      <article class="preg">
+        <p class="preg__n">Pregunta 3 · neuromuscular y musculoesquelético</p>
+        <h3>Prevenir, no solo tratar; y saber cuándo es seguro mover</h3>
+        <div class="tension">
+          <strong>La tensión:</strong> un ECA (Streckmann 2024) mostró que el entrenamiento
+          sensoriomotor <strong>durante</strong> la quimioterapia <em>previene</em> la neuropatía
+          (30 % frente a 70 % sin él). La guía de referencia sigue siendo la de 2020: la evidencia va
+          por delante de la norma.
+        </div>
+        <p style="margin:.3rem 0 0;font-size:.92rem">Antes de movilizar metástasis óseas o vertebrales,
+          las escalas <strong>SINS</strong> (estabilidad vertebral) y de <strong>Mirels</strong> (riesgo
+          de fractura) son la puerta de seguridad. El consenso de Campbell (2022) desmonta el reposo
+          obligado: el ejercicio en metástasis óseas es seguro (solo 3 eventos graves en 26 ensayos,
+          ninguno en sitio metastásico), aunque no mejora la densidad mineral ósea.</p>
+        <p class="instr">Instrumentos: <b>dinamometría</b>, <b>sentarse-y-levantarse</b>, <b>equilibrio/marcha</b>; escalas <b>SINS</b> y <b>Mirels</b>.</p>
+      </article>
+
+      <article class="preg">
+        <p class="preg__n">Pregunta 4 · psicosocial y funcional</p>
+        <h3>Medir lo que le importa a la persona</h3>
+        <div class="tension">
+          <strong>La tensión:</strong> lo psicosocial es el desenlace que más importa y peor medimos.
+          El <strong>Goal Attainment Scaling (GAS)</strong> mide el avance hacia la meta de <em>esa</em>
+          persona, no una escala genérica. Para la fatiga al final de la vida, solo la TCC y los
+          corticoides mostraron beneficio (guía ASCO-SIO 2024).
+        </div>
+        <p style="margin:.3rem 0 0;font-size:.92rem">Estructurar la rehabilitación rinde incluso en la
+          última fase: en cáncer terminal, el Barthel modificado cayó −1,31 con rehabilitación
+          estructurada frente a −15,51 sin ella (Nishiyama 2026). La rehabilitación paliativa mejora la
+          calidad de vida sin mayor costo (Pryde 2026, 27 ECA).</p>
+        <p class="instr">Instrumentos: <b>GAS</b>, <b>Barthel</b>, <b>EORTC QLQ-C15-PAL</b>, <b>AKPS</b>.</p>
+      </article>
+
+      <article class="preg">
+        <p class="preg__n">Pregunta 5 · de la afirmación a la pregunta</p>
+        <h3>Cada vacío de la evidencia es una pregunta esperando</h3>
+        <div class="tension">
+          <strong>La tensión:</strong> de 26 ensayos de ejercicio en metástasis óseas, <strong>solo 6
+          midieron el dolor</strong>; no hay estudios en pacientes muy avanzados (ECOG 3-4); casi no hay
+          literatura latinoamericana; y a veces algo es <strong>factible pero no eficaz</strong>
+          (NEXTAC-TWO: 98 % de adherencia, cero efecto).
+        </div>
+        <p style="margin:.3rem 0 0;font-size:.92rem">La consigna: tomar un vacío o una afirmación y
+          volverla una pregunta con población, desenlace e instrumento — para el propio servicio.</p>
+      </article>
+    </section>
+
+    <section aria-labelledby="h-b3">
+      <h2 id="h-b3"><span class="n">Bloque 3</span>Cierre</h2>
+      <div class="conducir">
+        <p style="margin:0"><strong>Una frase por pregunta</strong> con lo que quedó — al final hay
+          cinco frases que el grupo construyó. Recordar que el <strong>mapa de trayectoria</strong> es
+          tarea aparte, con dos semanas de plazo (para S03). Cinco minutos: qué queda abierto, qué se
+          lleva a la siguiente sesión.</p>
+      </div>
+    </section>
+
+    <section aria-labelledby="h-refs">
+      <h2 id="h-refs">Referencias de la sesión</h2>
+      <ul class="refs">
+        <li><b>Li X, Jia F, Wu P, Wen Q.</b> Multimodal Rehabilitation for Advanced Cancer Pain. Curr Oncol Rep. 2026;28(1):3. DOI 10.1007/s11912-026-01734-1.</li>
+        <li><b>Mao JJ, Ismaila N, Bao T, et al.</b> Integrative Medicine for Pain Management in Oncology: SIO–ASCO Guideline. J Clin Oncol. 2022;40(34):3998-4024. DOI 10.1200/JCO.22.01357.</li>
+        <li><b>Streckmann F, Elter T, Lehmann HC, et al.</b> Preventive Effect of Neuromuscular Training on Chemotherapy-Induced Neuropathy. JAMA Intern Med. 2024;184(9):1046-1053. DOI 10.1001/jamainternmed.2024.2354.</li>
+        <li><b>Campbell KL, Cormie P, Weller S, et al.</b> Exercise Recommendation for People With Bone Metastases. JCO Oncol Pract. 2022;18(5):e697-e709. DOI 10.1200/OP.21.00454.</li>
+        <li><b>International Society of Lymphology.</b> The Diagnosis and Treatment of Peripheral Lymphedema: 2023 Consensus Document. Lymphology. 2023;56(3):133-151. PMID 39207406.</li>
+        <li><b>Tennison JM, Gupta Sharma E, Lee R, et al.</b> Peripheral Edema in Advanced Cancer: Mechanisms and Management — A Scoping Review. J Palliat Med. 2026. DOI 10.1177/10966218261440404.</li>
+        <li><b>Nishiyama N, Matsuda Y, Fujiwara N, et al.</b> Efficacy of a structured rehabilitation program for patients with terminal cancer. Cancer. 2026;132(12):e70485. DOI 10.1002/cncr.70485.</li>
+        <li><b>Pryde K, Lakhani A, William L, Dennett A.</b> Palliative rehabilitation and quality of life: systematic review and meta-analysis. BMJ Support Palliat Care. 2026;16(5):1043-1053. PMID 39424340.</li>
+        <li><b>Maddocks M, Fettes L, Takemura N, et al.</b> Functional goals and outcomes of rehabilitation within palliative care. BMC Palliat Care. 2025;24(1):172. DOI 10.1186/s12904-025-01816-0.</li>
+        <li><b>Minosso JS, Souza LJ, Oliveira MAC.</b> Rehabilitation in palliative care. Texto &amp; Contexto Enferm. 2016;25(3):e1470015. DOI 10.1590/0104-07072016001470015.</li>
+        <li><b>Hernández-Rivera A, González-Patiño FJ.</b> Estrategias para la atención segura en rehabilitación de pacientes adultos con cáncer. Rev Colomb Med Fís Rehabil. 2024;34(Supl 1):e461. DOI 10.28957/rcmfr.461.</li>
+      </ul>
+      <p style="font-size:.82rem;color:var(--gris-claro);margin-top:.8rem">Material de terceros: se
+        referencia, no se reproduce. Los textos completos viven en la carpeta de lecturas del curso.</p>
+    </section>
+
+  </div>
+</main>
+
+<footer>
+  <div class="envoltura">
+    <p><strong>Investigación en Cuidados Paliativos y Rehabilitación</strong> · código 37543013 ·
+      Maestría en Cuidados Paliativos · Facultad de Enfermería · Universidad Antonio Nariño · 2026-II.
+      Docente: Jorge Wilhem Bogoya López. <a href="../../index.html">Volver a la portada</a>.</p>
+  </div>
+</footer>
+</html>

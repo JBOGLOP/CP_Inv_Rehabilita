@@ -59,7 +59,7 @@
         "Medición de resultados funcionales · cierre y evaluación del primer corte"
       ],
       "lecturas": ["Chowdhury, Brennan y Gardiner (2020)", "Sampedro Pilegaard et al. (2021)", "Tiep et al. (2015)"],
-      "material": null,
+      "material": { "tipo": "material", "archivo": "clase.html", "etiqueta": "Abrir el material de la sesión" },
       "preparacion": { "archivo": "preparacion.html", "cierra": "viernes 4 de septiembre, 1:00 p. m.", "sesionToken": "S02" }
     },
     {
