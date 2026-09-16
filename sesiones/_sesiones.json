@@ -73,7 +73,7 @@
         "Ámbitos (institucional, domiciliaria, comunitaria) y medición de resultados; lectura crítica en segunda lengua"
       ],
       "lecturas": ["Tiep et al. (2015)", "Cecatto y Battistella (2021)", "OMS (2018)"],
-      "material": null
+      "material": { "tipo": "material", "archivo": "clase.html", "etiqueta": "Abrir el material de la sesión" }
     },
     {
       "num": 4, "slug": "s04-neurodegenerativos",
