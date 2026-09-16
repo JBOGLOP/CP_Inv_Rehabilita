@@ -24,8 +24,11 @@
      «Ver todas» las devuelve. Funciona también en proyección.
 
      RESUMEN IA. Cada tarjeta tiene «resumen IA»: llama a Ollama en local y pega
-     una síntesis de máquina (borrador de lectura, NO se proyecta — se oculta en
-     modo proyección). Requiere DOS cosas, y por eso solo sirve con el tablero
+     un análisis de máquina en ocho campos —síntesis, qué sostiene, evidencia que
+     nombra, cómo mide, vacío que reporta, tensión para discutir, pregunta para
+     devolver al grupo y una cita verificada contra el texto— usando la pregunta
+     de la sesión (TITULOS). Es borrador de lectura: NO se proyecta y se oculta en
+     modo proyección. Las respuestas no salen del equipo. Requiere DOS cosas, y por eso solo sirve con el tablero
      abierto como ARCHIVO LOCAL, no por HTTPS:
        1. Ollama corriendo con el modelo (por defecto qwen2.5:7b).
        2. Lanzarlo permitiendo la llamada del navegador. En Windows PowerShell:
@@ -142,6 +145,10 @@ body.proyeccion .tarjeta{box-shadow:var(--shadow-medium)}
 .resumen-ia .et{font-family:var(--mono);font-size:.66rem;text-transform:uppercase;letter-spacing:.04em;
   color:var(--ok);display:block;margin-bottom:.2rem}
 .resumen-ia .datos{color:var(--gris);font-size:.82rem;margin-top:.35rem}
+.resumen-ia .campo-ia{margin:.35rem 0 0}
+.resumen-ia .campo-ia b{display:block;font-family:var(--mono);font-size:.64rem;text-transform:uppercase;letter-spacing:.04em;color:var(--ok)}
+.resumen-ia .vacio-ia{color:var(--gris-claro)}
+.resumen-ia .cita-ia{font-family:var(--serif);font-style:italic;border-top:1px dashed rgba(14,138,128,.35);padding-top:.35rem}
 .resumen-ia.malo{background:var(--alerta-soft);border-left-color:var(--alerta);color:var(--alerta-dark)}
 .resumen-ia.malo .et{color:var(--alerta-dark)}
 
@@ -215,26 +222,76 @@ body.proyeccion .participantes .ia{display:none}
       p3: '¿Con qué desenlace se mide el éxito? ¿Se registra? Función frente a supervivencia',
       p4: 'Un desenlace de la lectura: qué captura y qué deja invisible',
       p5: 'Convierte una afirmación del material en una pregunta investigable'
+    },
+    S02: {
+      p1: 'Dolor: lo que usamos, ¿funciona en la población paliativa? (ejercicio, TENS, masaje; cómo se mide)',
+      p2: '¿Cómo se maneja el linfedema o el edema en tu servicio? ¿Quién, con qué criterio y cómo se mide?',
+      p3: 'Neuromuscular: prevenir, no solo tratar, y saber cuándo es seguro mover (SINS, Mirels)',
+      p4: 'Un desenlace psicosocial y cómo lo medirías en cáncer avanzado (GAS, instrumento validado)',
+      p5: 'Un vacío de la evidencia, vuelto pregunta investigable con población, desenlace e instrumento'
     }
   };
 
-  // Mismo prompt que scripts/resumir-entregas.js, para que el resumen en vivo
-  // y el guion de preparación digan lo mismo.
-  function PROMPT(texto) {
-    return 'Eres un asistente que prepara material docente. Analiza la respuesta de un estudiante y devuelve EXACTAMENTE tres bloques, sin añadir nada más y sin repetir estas instrucciones.\n\n' +
-      'SINTESIS: una sola frase de máximo 25 palabras que diga qué sostiene la respuesta.\n' +
-      'DATOS: hasta tres datos concretos del texto (cifras, desenlaces, instrumentos, servicios, fuentes), separados por " · ". Si no hay ninguno, escribe: ninguno\n' +
-      'CITA: una frase COPIADA LITERALMENTE del texto, sin cambiar ni una palabra ni una tilde, que sea la más discutible o la más reveladora.\n\n' +
-      'No inventes nada. No interpretes. Si algo no está en el texto, no lo pongas.\n\n' +
-      'TEXTO DEL ESTUDIANTE:\n"""\n' + texto + '\n"""';
+  // Resumen analítico local. Más largo que el del guion de preparación
+  // (scripts/resumir-entregas.js): aquí se lee en vivo, respuesta por respuesta.
+  // Todo corre en Ollama, en este equipo: las respuestas no salen de aquí.
+  var CAMPOS_IA = [
+    ['sintesis',  'SINTESIS',  'Síntesis'],
+    ['argumento', 'ARGUMENTO', 'Qué sostiene'],
+    ['evidencia', 'EVIDENCIA', 'Evidencia que nombra'],
+    ['medicion',  'MEDICION',  'Cómo mide'],
+    ['vacio',     'VACIO',     'Vacío que reporta'],
+    ['tension',   'TENSION',   'Tensión para discutir'],
+    ['pregunta',  'PREGUNTA',  'Para devolver al grupo'],
+    ['cita',      'CITA',      'Cita']
+  ];
+  function PROMPT(texto, pregunta) {
+    return 'Eres asistente de un docente de una maestría en cuidados paliativos que enseña investigación en rehabilitación. ' +
+      'Vas a analizar la respuesta escrita por un estudiante (profesional de la salud) a una pregunta de preparación de clase. ' +
+      'Responde en español, sin markdown, y devuelve EXACTAMENTE estos ocho bloques, cada uno en una línea que empiece por su etiqueta:\n\n' +
+      'SINTESIS: dos o tres frases que digan qué responde y cuál es su posición.\n' +
+      'ARGUMENTO: la idea central que sostiene y en qué se apoya (su experiencia, un dato, una fuente).\n' +
+      'EVIDENCIA: fuentes, estudios, guías, cifras o instrumentos que el texto nombra. Si no nombra ninguno, escribe: no cita evidencia.\n' +
+      'MEDICION: cómo describe o propone medir el desenlace (instrumento, escala, registro). Si no lo menciona, escribe: no lo menciona.\n' +
+      'VACIO: lo que según el texto no existe, no se registra o no se hace en su servicio. Si no lo menciona, escribe: no lo menciona.\n' +
+      'TENSION: un punto discutible, una generalización o una contradicción útil para la discusión en clase.\n' +
+      'PREGUNTA: una pregunta breve que el docente pueda devolver al grupo a partir de esta respuesta.\n' +
+      'CITA: la frase más reveladora, COPIADA LITERALMENTE del texto, sin cambiar ni una palabra ni una tilde.\n\n' +
+      'Reglas: en SINTESIS, ARGUMENTO, EVIDENCIA, MEDICION, VACIO y CITA usa solo lo que está en el texto; no inventes fuentes ni cifras. ' +
+      'En TENSION y PREGUNTA puedes razonar, sin atribuir al estudiante algo que no dijo.\n\n' +
+      'PREGUNTA DE LA SESIÓN: ' + (pregunta || '(no disponible)') + '\n\n' +
+      'RESPUESTA DEL ESTUDIANTE:\n"""\n' + texto + '\n"""';
   }
   function parsearIA(salida) {
-    function saca(etq, sig) {
-      var re = new RegExp('(?:' + etq + ')\\s*:?\\s*([\\s\\S]*?)(?=\\n\\s*(?:' + sig + ')\\s*:|$)', 'i');
-      var m = salida.match(re);
-      return m && m[1] ? m[1].trim().replace(/^\d\.\s*/, '').trim() : '';
+    var etiquetas = 'SINTESIS|SÍNTESIS|ARGUMENTO|EVIDENCIA|MEDICION|MEDICIÓN|VACIO|VACÍO|TENSION|TENSIÓN|PREGUNTA|CITA';
+    var re = new RegExp('^[\\s*#-]*(' + etiquetas + ')\\s*\\**\\s*:\\s*', 'gim');
+    var marcas = [], m;
+    while ((m = re.exec(salida)) !== null) marcas.push({ etq: m[1], ini: m.index, fin: re.lastIndex });
+    var norm = function (x) { return x.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toUpperCase(); };
+    var res = {};
+    marcas.forEach(function (mk, k) {
+      var hasta = k + 1 < marcas.length ? marcas[k + 1].ini : salida.length;
+      var campo = CAMPOS_IA.filter(function (c) { return c[1] === norm(mk.etq); })[0];
+      if (campo && !res[campo[0]]) res[campo[0]] = salida.slice(mk.fin, hasta).trim();
+    });
+    return res;
+  }
+  // Una cita solo se muestra si aparece en el texto original, y con su grafía real.
+  function verificarCita(cita, original) {
+    var sinTildes = function (x) { return String(x).normalize('NFD').replace(/[\u0300-\u036f]/g, ''); };
+    var limpia = String(cita || '').replace(/^[\u00ab"'\u201c\s]+|[\u00bb"'\u201d\s.]+$/g, '').trim();
+    if (limpia.length < 20) return null;
+    if (original.indexOf(limpia) !== -1) return limpia;
+    var mapa = [], normal = '';
+    for (var i = 0; i < original.length; i++) {
+      var c = sinTildes(original[i]).toLowerCase();
+      if (/\s/.test(c)) { if (normal.slice(-1) === ' ') continue; normal += ' '; mapa.push(i); }
+      else { normal += c; mapa.push(i); }
     }
-    return { sintesis: saca('SINTESIS|SÍNTESIS', 'DATOS|CITA'), datos: saca('DATOS', 'CITA') };
+    var objetivo = sinTildes(limpia).toLowerCase().replace(/\s+/g, ' ').trim();
+    var pos = normal.indexOf(objetivo);
+    if (pos === -1) return null;
+    return original.slice(mapa[pos], mapa[Math.min(pos + objetivo.length - 1, mapa.length - 1)] + 1).trim();
   }
 
   var datos = null, preguntaActiva = null;
@@ -414,7 +471,7 @@ body.proyeccion .participantes .ia{display:none}
     if (res.estado === 'cargando') {
       et.textContent = 'Resumen IA';
       div.appendChild(et);
-      div.appendChild(document.createTextNode('Consultando a ' + MODELO_IA + '…'));
+      div.appendChild(document.createTextNode('Analizando con ' + MODELO_IA + ' en este equipo… (10 a 30 s por respuesta)'));
       return div;
     }
     if (res.estado === 'error') {
@@ -423,29 +480,46 @@ body.proyeccion .participantes .ia{display:none}
       div.appendChild(document.createTextNode(res.msg));
       return div;
     }
-    et.textContent = 'Resumen IA · ' + MODELO_IA + ' · borrador, revísalo';
+    et.textContent = 'Resumen IA · ' + MODELO_IA + ' · borrador de máquina, revísalo';
     div.appendChild(et);
-    div.appendChild(document.createTextNode(res.sintesis || '(el modelo no devolvió síntesis)'));
-    if (res.datos && !/^ninguno$/i.test(res.datos)) {
-      var d = document.createElement('div');
-      d.className = 'datos';
-      d.textContent = 'Datos: ' + res.datos;
-      div.appendChild(d);
+    var hayAlgo = false;
+    CAMPOS_IA.forEach(function (c) {
+      var valor = res[c[0]];
+      if (c[0] === 'cita' || !valor) return;
+      hayAlgo = true;
+      var fila = document.createElement('div');
+      fila.className = 'campo-ia' + (/^(no cita evidencia|no lo menciona)\.?$/i.test(valor) ? ' vacio-ia' : '');
+      var b = document.createElement('b');
+      b.textContent = c[2];
+      fila.appendChild(b);
+      fila.appendChild(document.createTextNode(valor));
+      div.appendChild(fila);
+    });
+    if (!hayAlgo) div.appendChild(document.createTextNode('(el modelo no devolvió el formato esperado; vuelve a pulsar «resumen IA»)'));
+    if (res.citaPropuesta) {
+      var fc = document.createElement('div');
+      fc.className = 'campo-ia cita-ia';
+      var bc = document.createElement('b');
+      bc.textContent = res.cita ? 'Cita verificada ✓' : 'Cita descartada';
+      fc.appendChild(bc);
+      fc.appendChild(document.createTextNode(res.cita ? '«' + res.cita + '»' : 'el modelo propuso una frase que no está literal en la respuesta.'));
+      div.appendChild(fc);
     }
     return div;
   }
 
   function resumirIA(r, texto) {
     if (!texto) return;
-    var clave = r.seudonimo + '|' + preguntaActiva;
+    var pregunta = preguntaActiva;
+    var clave = r.seudonimo + '|' + pregunta;
     cacheIA[clave] = { estado: 'cargando' };
     pintarRespuestas();
     fetch(OLLAMA + '/api/generate', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        model: MODELO_IA, prompt: PROMPT(texto), stream: false,
-        options: { temperature: 0.1, num_predict: 300 }
+        model: MODELO_IA, prompt: PROMPT(texto, (TITULOS[sesion] || {})[pregunta]), stream: false,
+        options: { temperature: 0.2, num_predict: 900, num_ctx: 4096 }
       })
     })
       .then(function (resp) {
@@ -454,7 +528,10 @@ body.proyeccion .participantes .ia{display:none}
       })
       .then(function (j) {
         var res = parsearIA(j.response || '');
-        cacheIA[clave] = { estado: 'ok', sintesis: res.sintesis, datos: res.datos };
+        res.estado = 'ok';
+        res.citaPropuesta = res.cita || '';
+        res.cita = res.citaPropuesta ? verificarCita(res.citaPropuesta, texto) : null;
+        cacheIA[clave] = res;
         pintarRespuestas();
       })
       .catch(function () {

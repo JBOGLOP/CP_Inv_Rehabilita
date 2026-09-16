@@ -75,6 +75,9 @@ privado_*
 /referencias/
 recursos/articulos/
 sesiones/**/lecturas/*.pdf
+# Carpeta de artículos de trabajo del docente dentro de cada sesión (PDF de
+# terceros y resúmenes derivados): nunca al repositorio público.
+sesiones/**/ref/
 sesiones/**/lecturas/*.epub
 *_libro.pdf
 *ATLAS*.pdf
