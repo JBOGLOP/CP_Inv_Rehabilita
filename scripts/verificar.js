@@ -22,11 +22,27 @@ const RAIZ = path.resolve(process.argv[2] || path.join(__dirname, '..'));
 const rojo = s => `\x1b[31m${s}\x1b[0m`, verde = s => `\x1b[32m${s}\x1b[0m`;
 const amar = s => `\x1b[33m${s}\x1b[0m`, gris = s => `\x1b[90m${s}\x1b[0m`;
 
+// Lo que git ignora nunca se publica, así que no se revisa: PDF de terceros y
+// páginas guardadas en sesiones/**/ref/, carpetas privadas, respuestas de
+// formularios… Se pregunta a git una sola vez; si git no está, se sigue igual.
+const IGNORADOS = (() => {
+  try {
+    return require('child_process')
+      .execSync('git -c core.quotepath=off ls-files --others --ignored --exclude-standard --directory', { cwd: RAIZ, encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] })
+      .split('\n').map(s => s.trim().replace(/^"|"$/g, '')).filter(Boolean);
+  } catch (err) { return []; }
+})();
+const ignorado = p => {
+  const r = path.relative(RAIZ, p).replace(/\\/g, '/');
+  return IGNORADOS.some(i => i.endsWith('/') ? (r + '/').startsWith(i) : r === i);
+};
+
 function archivos(dir, filtro, acc = []) {
   for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
     if (e.name === '.git' || e.name === 'node_modules') continue;
     if (/^privado_/i.test(e.name)) continue;  // gitignored (privado_*) — nunca se publica, no se revisa
     const p = path.join(dir, e.name);
+    if (ignorado(p)) continue;
     if (e.isDirectory()) archivos(p, filtro, acc);
     else if (filtro.test(e.name)) acc.push(p);
   }
