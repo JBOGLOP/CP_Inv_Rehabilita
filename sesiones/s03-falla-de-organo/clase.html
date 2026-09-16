@@ -91,6 +91,12 @@ th{background:var(--acento-dark);color:var(--blanco);text-align:left;padding:.5r
 td{padding:.5rem .6rem;border-top:1px solid var(--linea);vertical-align:top}
 td b{font-family:var(--mono);font-size:.84rem}
 
+.caja-instr{display:flex;flex-wrap:wrap;align-items:center;gap:.6rem 1rem;background:var(--acento-soft);border-radius:var(--radius);padding:.9rem 1.2rem;max-width:66ch;margin:.9rem 0}
+.caja-instr p{margin:0;font-size:.92rem;flex:1 1 20rem}
+.caja-instr a.cta{display:inline-block;background:var(--acento);color:var(--blanco);text-decoration:none;font-weight:600;padding:.45rem .9rem;border-radius:var(--radius-sm);white-space:nowrap}
+.caja-instr a.cta:hover,.caja-instr a.cta:focus{background:var(--acento-dark)}
+.giro{margin-top:.9rem;border-top:1px solid rgba(255,255,255,.25);padding-top:.7rem}
+.giro summary{cursor:pointer;font-weight:700;color:var(--blanco)}
 .refs{list-style:none;padding:0;margin:.8rem 0 0;display:grid;gap:.45rem;font-size:.86rem;color:var(--gris);max-width:66ch}
 .refs li{padding-left:1.3rem;position:relative}
 .refs li::before{content:"";position:absolute;left:.2rem;top:.65em;width:.45rem;height:.45rem;border-radius:50%;background:var(--acento)}
@@ -140,6 +146,12 @@ footer{border-top:1px solid var(--linea);background:var(--blanco);padding:1.8rem
           <tr><td>4:50–5:00</td><td>Cierre</td><td>Una frase por bloque; qué pasa a la sesión 4</td></tr>
         </table>
       </div>
+      <div class="caja-instr">
+        <p><strong>Caja de instrumentos.</strong> Definiciones A y B, mMRC, Borg, caminata de 6 minutos, Barthel,
+          Karnofsky, EAT-10, MECV-V y escala de penetración-aspiración, con calculadoras para practicar con los casos
+          de los bloques 2 y 3.</p>
+        <a class="cta" href="instrumentos.html">Abrir la caja de instrumentos &rarr;</a>
+      </div>
     </section>
 
     <section aria-labelledby="h-b1">
@@ -158,6 +170,13 @@ footer{border-top:1px solid var(--linea);background:var(--blanco);padding:1.8rem
           al ejercicio</strong> (clase NYHA), pero su única mención a la rehabilitación llega prestada de un
           modelo de disnea desarrollado para otras enfermedades, que «quizá» sea aplicable. El de hígado describe
           pérdida muscular, calambres y fatiga, y no menciona la rehabilitación ni una vez.</p>
+        <details class="giro">
+          <summary>Después de discutirlo: ¿el libro calla porque no hay evidencia?</summary>
+          <p>No. Contar palabras mide lo que el libro decidió incluir, no la evidencia que existe. Fuera del libro hay
+            60 ensayos de rehabilitación cardíaca en falla cardíaca (Cochrane 2024), y desde 2021 la guía de la
+            Asociación Americana para el Estudio de las Enfermedades Hepáticas (AASLD) recomienda ejercicio en la
+            cirrosis. La pregunta útil es otra: <strong>¿para quién es esa evidencia?</strong></p>
+        </details>
       </div>
       <div class="actividad" style="margin-top:1rem">
         <h3>Actividad · el mapa de la trayectoria (en parejas, 15 min)</h3>
@@ -191,23 +210,34 @@ footer{border-top:1px solid var(--linea);background:var(--blanco);padding:1.8rem
           <span class="fuente">Maddocks et al. 2024 · cap. 67</span>
         </article>
         <article class="tarjeta">
-          <h3>…pero en enfermedad avanzada, poco estudiada</h3>
-          <p>El capítulo reconoce que se ha estudiado menos en enfermedad avanzada y, aun así, recomienda
-            considerarla en las personas más afectadas: recuperar un pequeño grado de función puede marcar una
-            diferencia sorprendente.</p>
-          <span class="fuente">Maddocks et al. 2024 · cap. 67</span>
+          <h3>…pero la evidencia se adelgaza al avanzar la enfermedad</h3>
+          <p><strong>Estable:</strong> recomendación fuerte; en EPOC la caminata de 6 minutos mejora 44 m, e iniciarla
+            en las 3 semanas tras una hospitalización reduce los reingresos. <strong>Grave:</strong> solo
+            recomendaciones condicionales, con certeza baja o muy baja. <strong>Final de la vida:</strong> ninguna
+            recomendación de ejercicio para la fatiga en cáncer. Y menos del 5 % de quienes podrían beneficiarse
+            recibe rehabilitación pulmonar.</p>
+          <span class="fuente">Rochester et al. 2023 (ATS) · Holland et al. 2024 (ERS) · Bower et al. 2024 · cap. 67</span>
         </article>
         <article class="tarjeta">
           <h3>Disnea crónica: un síndrome, no un número</h3>
           <p>La disnea se asocia débilmente con la función pulmonar (FEV1, FVC). Las intervenciones no
-            farmacológicas tienen una base de evidencia sólida; el ventilador de mano es barato y valorado, y
-            los andadores tienen evidencia moderada.</p>
+            farmacológicas tienen una base de evidencia sólida. El ventilador de mano es barato y valorado: alivia
+            durante o tras el esfuerzo, pero su uso diario prolongado no mostró beneficio. Los andadores tienen
+            evidencia moderada.</p>
           <p>No es rara: aun con el tratamiento de la enfermedad según las guías, entre el <strong>38 % y el
             53 %</strong> de las personas con enfermedades crónicas refiere disnea clínicamente relevante. El
             término ha evolucionado: de <em>chronic breathlessness syndrome</em> (2017) a <em>persistent
             breathlessness</em>, y la CIE-11 ya reconoce <em>breathlessness</em> como sinónimo de disnea.</p>
           <span class="fuente">Currow y Ferreira 2024 · cap. 11 · Maddocks et al. · cap. 67 · Kochovska et al. 2023 ·
-            Lewthwaite y Takemura 2026</span>
+            Lewthwaite y Takemura 2026 · Bausewein et al. 2026</span>
+        </article>
+        <article class="tarjeta">
+          <h3>Falla cardíaca: mejora la función, no siempre los reingresos</h3>
+          <p>En 60 ensayos, la rehabilitación cardíaca con ejercicio redujo las hospitalizaciones y mejoró la calidad
+            de vida, sin cambiar la mortalidad; casi no incluye personas mayores, mujeres ni fracción de eyección
+            preservada. En REHAB-HF, iniciada durante la hospitalización en personas mayores casi todas frágiles,
+            mejoró la función física (SPPB), pero no los reingresos a 6 meses.</p>
+          <span class="fuente">Molloy et al. 2024 (Cochrane) · Kitzman et al. 2021</span>
         </article>
         <article class="tarjeta">
           <h3>Fatiga: se mide preguntando</h3>
@@ -237,7 +267,8 @@ footer{border-top:1px solid var(--linea);background:var(--blanco);padding:1.8rem
         <ol>
           <li>Traduzcan el texto A y señalen sus dos criterios.</li>
           <li>¿Qué palabra lo vuelve un asunto de <strong>rehabilitación</strong> y no solo de farmacología?</li>
-          <li>¿Con qué instrumentos documentarían, en su servicio, que la persona cumple <em>cada</em> criterio?</li>
+          <li>¿Con qué instrumentos documentarían, en su servicio, que la persona cumple <em>cada</em> criterio?
+            Pruébenlo en el verificador de la <a href="instrumentos.html#verificador">caja de instrumentos</a>.</li>
           <li>Comparen A y B: ¿qué exige B que A no exigía, y qué criterio de A no aparece en B? Si diseñaran un
             estudio, ¿cuál usarían como criterio de inclusión?</li>
         </ol>
@@ -282,9 +313,11 @@ footer{border-top:1px solid var(--linea);background:var(--blanco);padding:1.8rem
           al tomar líquidos y pide seguir tomando su café en taza, no espesado.</p>
         <ol>
           <li>¿Qué evaluarían y con qué instrumento, sabiendo que el tamizaje puede no detectar la aspiración
-            silente?</li>
+            silente? Apóyense en la <a href="instrumentos.html#deglucion">caja de instrumentos</a> (EAT-10, MECV-V,
+            escala de penetración-aspiración).</li>
           <li>¿Qué compensaciones propondrían antes de restringir?</li>
-          <li>Si la persona elige asumir el riesgo, ¿qué se documenta y cómo se acompaña a la familia?</li>
+          <li>Si la persona elige asumir el riesgo, ¿qué se documenta y cómo se acompaña a la familia? La caja trae
+            una <a href="instrumentos.html#riesgo">lista de chequeo</a> para contrastar.</li>
         </ol>
       </div>
     </section>
@@ -309,11 +342,20 @@ footer{border-top:1px solid var(--linea);background:var(--blanco);padding:1.8rem
           <span class="fuente">Murphy y Murtagh 2024 · cap. 68</span>
         </article>
         <article class="tarjeta">
-          <h3>Hígado: pérdida muscular sin rehabilitación</h3>
-          <p>En la enfermedad hepática avanzada se describen desnutrición proteico-calórica, pérdida muscular,
-            calambres, fatiga, encefalopatía y ascitis. Para trasplante hay que estar «lo bastante enfermo para
-            morir». La rehabilitación no aparece en el capítulo.</p>
-          <span class="fuente">Backhaus et al. 2024 · cap. 61</span>
+          <h3>Hígado: la evidencia existe, la integración no</h3>
+          <p>El capítulo describe desnutrición, pérdida muscular, calambres, fatiga, encefalopatía y ascitis, y no
+            menciona la rehabilitación. Pero la guía de la AASLD (2021) recomienda medir la fragilidad y prescribir
+            ejercicio aeróbico y de fuerza. En 11 ensayos no hubo complicaciones por hipertensión portal, y el
+            ejercicio mejora la caminata de 6 minutos (+69 m) y la fatiga, no la calidad de vida.</p>
+          <span class="fuente">Backhaus et al. 2024 · cap. 61 · Lai et al. 2021 · Jamali et al. 2022 · Hsieh et al. 2024</span>
+        </article>
+        <article class="tarjeta">
+          <h3>¿Para quién es esa evidencia?</h3>
+          <p>Casi todos los ensayos incluyen personas con cirrosis compensada o candidatas a trasplante: solo 1 de 8
+            incluyó Child-Pugh B o C. La guía de fragilidad no menciona los cuidados paliativos, y la de cuidado
+            paliativo en cirrosis descompensada solo dice «recomendar actividad física», sin dosis. Para trasplante
+            hay que estar «lo bastante enfermo para morir».</p>
+          <span class="fuente">Hsieh et al. 2024 · Rogal et al. 2022 · Backhaus et al. 2024 · cap. 61</span>
         </article>
         <article class="tarjeta">
           <h3>La mirada de la OMS: atención primaria</h3>
@@ -329,7 +371,7 @@ footer{border-top:1px solid var(--linea);background:var(--blanco);padding:1.8rem
           <strong>domiciliario</strong> o <strong>comunitario</strong>.</p>
         <ol>
           <li>Elijan una de las brechas de este bloque (sin ensayos en manejo conservador renal; función que
-            predice pero no se interviene; hígado sin rehabilitación).</li>
+            predice pero no se interviene; cirrosis descompensada fuera de los ensayos).</li>
           <li>Formulen una pregunta investigable para su ámbito, con población, intervención o exposición,
             desenlace e <strong>instrumento</strong>.</li>
           <li>Digan quién tendría el dato en Colombia y si creen que existe.</li>
@@ -339,6 +381,10 @@ footer{border-top:1px solid var(--linea);background:var(--blanco);padding:1.8rem
 
     <section aria-labelledby="h-instr">
       <h2 id="h-instr">Instrumentos que aparecen en la sesión</h2>
+      <div class="caja-instr">
+        <p>Para aplicarlos con el caso, con calculadoras y referencias, usen la caja de instrumentos.</p>
+        <a class="cta" href="instrumentos.html">Abrir la caja de instrumentos &rarr;</a>
+      </div>
       <div class="tabla">
         <table>
           <thead><tr><th>Qué mide</th><th>Instrumento</th><th>Dónde aparece</th></tr></thead>
@@ -346,6 +392,9 @@ footer{border-top:1px solid var(--linea);background:var(--blanco);padding:1.8rem
             <tr><td>Limitación funcional por falla cardíaca</td><td><b>Clase NYHA</b> (I a IV)</td><td>Cap. 66</td></tr>
             <tr><td>Intensidad de la disnea</td><td><b>Escala numérica 0–10</b></td><td>Cap. 11</td></tr>
             <tr><td>Discapacidad por disnea</td><td><b>mMRC</b> (0 a 4) · <b>Dyspnoea-12</b></td><td>Actividad del bloque 2 · puede subestimar la prevalencia (Lewthwaite y Takemura 2026)</td></tr>
+            <tr><td>Capacidad de ejercicio</td><td><b>Caminata de 6 minutos</b></td><td>Cap. 67 · ATS 2023 · Hsieh et al. 2024</td></tr>
+            <tr><td>Función física en personas mayores con falla cardíaca</td><td><b>SPPB</b> (0 a 12)</td><td>Kitzman et al. 2021</td></tr>
+            <tr><td>Fragilidad en cirrosis</td><td><b>Liver Frailty Index</b></td><td>Lai et al. 2021</td></tr>
             <tr><td>Fatiga</td><td><b>BFI</b> · <b>EORTC QLQ-C30</b> · diario de fatiga</td><td>Cap. 12</td></tr>
             <tr><td>Riesgo de disfagia (tamizaje)</td><td><b>EAT-10</b> · prueba de sorbo de agua</td><td>Cap. 18</td></tr>
             <tr><td>Ingesta oral y calidad de vida al tragar</td><td><b>FOIS</b> · <b>SWAL-QOL</b> · <b>DOSS</b></td><td>Cap. 18</td></tr>
@@ -379,6 +428,16 @@ footer{border-top:1px solid var(--linea);background:var(--blanco);padding:1.8rem
         <li><b>Mücke M, Kravchenko D.</b> Fatigue. En: MacLeod RD, Van den Block L, editores. Textbook of Palliative Care. 2.ª ed. Cham: Springer; 2024. p. 205-219. doi:10.1007/978-3-031-48991-4_12</li>
         <li><b>Gourley P, Allen J.</b> Swallowing difficulties in palliative care. En: MacLeod RD, Van den Block L, editores. Textbook of Palliative Care. 2.ª ed. Cham: Springer; 2024. p. 309-330. doi:10.1007/978-3-031-48991-4_19</li>
         <li><b>Tiep B, Sun V, Koczywas M, Kim J, Raz D, Hurria A, Hayter J.</b> Pulmonary rehabilitation and palliative care for the lung cancer patient. J Hosp Palliat Nurs. 2015;17(5):462-468. doi:10.1097/NJH.0000000000000187</li>
+        <li><b>Rochester CL, Alison JA, Carlin B, et al.</b> Pulmonary rehabilitation for adults with chronic respiratory disease: an official ATS clinical practice guideline. Am J Respir Crit Care Med. 2023;208(4):e7-e26. doi:10.1164/rccm.202306-1066ST</li>
+        <li><b>Holland AE, Spathis A, Marsaa K, et al.</b> European Respiratory Society clinical practice guideline on symptom management for adults with serious respiratory illness. Eur Respir J. 2024;63:2400335. doi:10.1183/13993003.00335-2024</li>
+        <li><b>Bausewein C, Holland AE, Romero L, et al.</b> Airflow for reducing breathlessness in people with serious respiratory illness: a systematic review. ERJ Open Res. 2026;12:00388-2025. doi:10.1183/23120541.00388-2025</li>
+        <li><b>Bower JE, Lacchetti C, Alici Y, et al.</b> Management of fatigue in adult survivors of cancer: ASCO-Society for Integrative Oncology guideline update. J Clin Oncol. 2024;42:2456-2487. doi:10.1200/JCO.24.00541</li>
+        <li><b>Molloy C, Long L, Mordi IR, et al.</b> Exercise-based cardiac rehabilitation for adults with heart failure. Cochrane Database Syst Rev. 2024;3:CD003331. doi:10.1002/14651858.CD003331.pub6</li>
+        <li><b>Kitzman DW, Whellan DJ, Duncan P, et al.</b> Physical rehabilitation for older patients hospitalized for heart failure. N Engl J Med. 2021;385(3):203-216. doi:10.1056/NEJMoa2026141</li>
+        <li><b>Lai JC, Tandon P, Bernal W, et al.</b> Malnutrition, frailty, and sarcopenia in patients with cirrhosis: 2021 practice guidance by the American Association for the Study of Liver Diseases. Hepatology. 2021;74(3):1611-1644. doi:10.1002/hep.32049</li>
+        <li><b>Rogal SS, Hansen L, Patel A, et al.</b> AASLD practice guidance: palliative care and symptom-based management in decompensated cirrhosis. Hepatology. 2022;76(3):819-853. doi:10.1002/hep.32378</li>
+        <li><b>Jamali T, Raasikh T, Bustamante G, et al.</b> Outcomes of exercise interventions in patients with advanced liver disease: a systematic review of randomized clinical trials. Am J Gastroenterol. 2022;117(10):1614-1620. doi:10.14309/ajg.0000000000001883</li>
+        <li><b>Hsieh HC, Chang WP, Huang PJ, Wang CH, Lin YH.</b> Effectiveness of exercise interventions on body composition, exercise capacity, fatigue, and quality of life in patients with liver cirrhosis: a meta-analysis of randomized controlled trials. Dig Dis Sci. 2024;69(7):2655-2666. doi:10.1007/s10620-024-08447-0</li>
         <li><b>World Health Organization.</b> Integrating palliative care and symptom relief into primary health care: a WHO guide for planners, implementers and managers. Geneva: WHO; 2018. Disponible en: https://apps.who.int/iris/handle/10665/274559</li>
       </ul>
       <p style="font-size:.82rem;color:var(--gris-claro);margin-top:.8rem">Material de terceros: se referencia, no se
