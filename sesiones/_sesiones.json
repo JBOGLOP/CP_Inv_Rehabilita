@@ -85,8 +85,9 @@
         "Cerebral palsy; settings of rehabilitation (long-term care, comprehensive programmes)",
         "Measurement of functional outcomes — la unidad se desarrolla en inglés"
       ],
-      "lecturas": ["Cecatto y Battistella (2021)", "Tiberini et al. (2024)"],
-      "material": null
+      "lecturas": ["Cecatto y Battistella (2021)", "Tiberini et al. (2024)", "Zucchi et al. (2019)"],
+      "material": null,
+      "preparacion": { "archivo": "preparacion.html", "cierra": "viernes 2 de octubre, 1:00 p. m.", "sesionToken": "S04" }
     },
     {
       "num": 5, "slug": "s05-demencia-y-fragilidad",
