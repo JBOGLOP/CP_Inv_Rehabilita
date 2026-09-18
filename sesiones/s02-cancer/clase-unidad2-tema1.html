@@ -1,0 +1,1522 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<meta name="description" content="Presentación interactiva de clase: evidencia 2021-2026 sobre rehabilitación física y psicosocial en cáncer. Maestría en Cuidados Paliativos, Universidad Antonio Nariño.">
+<title>Rehabilitación paliativa en cáncer</title>
+<!-- Tipografía: fuentes del sistema (regla 1 de CLAUDE.md). Las pilas son las
+     de _shared/tokens.css; se sustituyeron Fraunces, Karla e IBM Plex Mono. -->
+<style>
+:root{
+  --ground:#F2F6F3; --surface:#FFFFFF; --surface-2:#E8F0EA;
+  --ink:#16302A; --ink-2:#4E625B; --ink-3:#7C8D86;
+  --line:#D5E1D9; --line-2:#BFD2C7;
+  --accent:#2E7A69; --accent-ink:#1E5548; --accent-soft:#DBEDE5;
+  --warm:#B96F2B; --warm-soft:#F7E8D7;
+  --slate:#6F7C92; --slate-soft:#E6EAF1;
+  --shadow:0 1px 2px rgba(22,48,42,.05), 0 8px 24px -12px rgba(22,48,42,.18);
+  --radius:14px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#0E1815; --surface:#16241F; --surface-2:#1E302A;
+    --ink:#E7F0EB; --ink-2:#A9BDB5; --ink-3:#7E928A;
+    --line:#273A33; --line-2:#33493F;
+    --accent:#63C4AC; --accent-ink:#8FDCC7; --accent-soft:#18332C;
+    --warm:#E0A868; --warm-soft:#362818;
+    --slate:#9DAABE; --slate-soft:#222B37;
+    --shadow:0 1px 2px rgba(0,0,0,.3), 0 10px 28px -14px rgba(0,0,0,.6);
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#0E1815; --surface:#16241F; --surface-2:#1E302A;
+  --ink:#E7F0EB; --ink-2:#A9BDB5; --ink-3:#7E928A;
+  --line:#273A33; --line-2:#33493F;
+  --accent:#63C4AC; --accent-ink:#8FDCC7; --accent-soft:#18332C;
+  --warm:#E0A868; --warm-soft:#362818;
+  --slate:#9DAABE; --slate-soft:#222B37;
+  --shadow:0 1px 2px rgba(0,0,0,.3), 0 10px 28px -14px rgba(0,0,0,.6);
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0; background:var(--ground); color:var(--ink);
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+  font-size:16px; line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+.deck{height:100%; display:flex; flex-direction:column; overflow:hidden}
+
+/* ---------- top bar ---------- */
+.topbar{
+  display:flex; align-items:center; gap:14px;
+  padding:10px 20px; padding-top:calc(10px + env(safe-area-inset-top,0px));
+  border-bottom:1px solid var(--line); background:var(--surface);
+  flex:0 0 auto;
+}
+.brand{font-family:Iowan Old Style,Palatino Linotype,Palatino,Book Antiqua,Georgia,serif; font-size:15px; font-weight:600; letter-spacing:.2px; color:var(--ink)}
+.brand span{color:var(--ink-3); font-weight:400}
+.topbar .spacer{flex:1}
+.iconbtn{
+  border:1px solid var(--line); background:var(--surface); color:var(--ink-2);
+  border-radius:9px; padding:6px 11px; font:inherit; font-size:13px; font-weight:600;
+  cursor:pointer; line-height:1.3;
+}
+.iconbtn:hover{background:var(--surface-2); color:var(--ink)}
+.iconbtn:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+
+/* ---------- stage ---------- */
+.stage{flex:1 1 auto; overflow-y:auto; overflow-x:hidden; scroll-behavior:auto}
+.slide{display:none; min-height:100%; padding:44px 24px 40px;}
+.slide.on{display:block; animation:in .32s ease both}
+@keyframes in{from{opacity:0; transform:translateY(8px)} to{opacity:1; transform:none}}
+@media (prefers-reduced-motion:reduce){ .slide.on{animation:none} }
+.wrap{max-width:1080px; margin:0 auto}
+
+/* ---------- typography ---------- */
+.eyebrow{
+  font-family:ui-monospace,Cascadia Mono,Segoe UI Mono,Consolas,Liberation Mono,monospace; font-size:12px; font-weight:500;
+  letter-spacing:.16em; text-transform:uppercase; color:var(--accent); margin:0 0 12px;
+}
+.eyebrow.warm{color:var(--warm)}
+h1.title{
+  font-family:Iowan Old Style,Palatino Linotype,Palatino,Book Antiqua,Georgia,serif; font-weight:600; font-size:clamp(34px,5.4vw,62px);
+  line-height:1.06; margin:0 0 18px; text-wrap:balance; letter-spacing:-.015em;
+}
+h2.title{
+  font-family:Iowan Old Style,Palatino Linotype,Palatino,Book Antiqua,Georgia,serif; font-weight:600; font-size:clamp(26px,3.6vw,42px);
+  line-height:1.12; margin:0 0 16px; text-wrap:balance; letter-spacing:-.01em;
+}
+h3{font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif; font-size:17px; font-weight:700; margin:0 0 7px; line-height:1.3}
+p{margin:0 0 14px}
+.lead{font-size:clamp(17px,2vw,20px); line-height:1.5; color:var(--ink-2); max-width:62ch}
+.muted{color:var(--ink-2)}
+.small{font-size:14px}
+strong{font-weight:700}
+.num{font-family:ui-monospace,Cascadia Mono,Segoe UI Mono,Consolas,Liberation Mono,monospace; font-variant-numeric:tabular-nums; font-weight:500}
+.ref{
+  font-family:ui-monospace,Cascadia Mono,Segoe UI Mono,Consolas,Liberation Mono,monospace; font-size:12.5px; color:var(--ink-3);
+  margin:16px 0 0; line-height:1.5;
+}
+.ref b{color:var(--ink-2); font-weight:500}
+
+/* ---------- layout helpers ---------- */
+.row{display:flex; gap:18px; flex-wrap:wrap}
+.g2{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px}
+.g3{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px}
+.g4{display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:14px}
+@media (max-width:820px){ .g3,.g4{grid-template-columns:repeat(2,minmax(0,1fr))} }
+@media (max-width:560px){ .g2,.g3,.g4{grid-template-columns:1fr} }
+.sp{height:18px}
+
+/* ---------- cards ---------- */
+.card{
+  background:var(--surface); border:1px solid var(--line); border-radius:var(--radius);
+  padding:18px 18px 16px;
+}
+.card.flat{background:var(--surface-2); border-color:transparent}
+.card .k{font-family:ui-monospace,Cascadia Mono,Segoe UI Mono,Consolas,Liberation Mono,monospace; font-size:11.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3); margin:0 0 8px}
+.stat{font-family:Iowan Old Style,Palatino Linotype,Palatino,Book Antiqua,Georgia,serif; font-size:clamp(30px,4.4vw,46px); font-weight:600; line-height:1; letter-spacing:-.02em; margin:0 0 8px}
+.stat.acc{color:var(--accent)}
+.stat.warmc{color:var(--warm)}
+.stat.sl{color:var(--slate)}
+.statlbl{font-size:14.5px; color:var(--ink-2); line-height:1.4; margin:0}
+
+.chip{
+  display:inline-flex; align-items:center; gap:6px; font-size:12.5px; font-weight:600;
+  padding:3px 10px; border-radius:999px; border:1px solid transparent; line-height:1.5;
+}
+.chip.solid{background:var(--accent-soft); color:var(--accent-ink); border-color:var(--accent-soft)}
+.chip.fragil{background:var(--warm-soft); color:var(--warm)}
+.chip.vacio{background:var(--slate-soft); color:var(--slate)}
+
+/* ---------- reveal ---------- */
+.reveal{
+  background:var(--surface); border:1px solid var(--line); border-radius:var(--radius);
+  padding:16px 18px; cursor:pointer; text-align:left; font:inherit; color:inherit;
+  display:block; width:100%; transition:border-color .18s, background .18s;
+  position:relative;
+}
+.reveal:hover{border-color:var(--accent); background:var(--surface)}
+.reveal:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+.reveal .q{font-weight:700; font-size:16px; margin:0; padding-right:70px; line-height:1.35}
+.reveal .hint{
+  position:absolute; top:14px; right:14px; font-family:ui-monospace,Cascadia Mono,Segoe UI Mono,Consolas,Liberation Mono,monospace;
+  font-size:11px; letter-spacing:.09em; text-transform:uppercase; color:var(--accent);
+  border:1px solid var(--line-2); border-radius:6px; padding:2px 7px;
+}
+.reveal .a{margin:12px 0 0; font-size:15px; color:var(--ink-2); line-height:1.5}
+.reveal .a .big{
+  display:block; font-family:Iowan Old Style,Palatino Linotype,Palatino,Book Antiqua,Georgia,serif; font-size:26px; font-weight:600;
+  color:var(--accent); margin:0 0 6px; line-height:1.15;
+}
+.reveal .a .big.w{color:var(--warm)}
+.reveal .a .big.s{color:var(--slate)}
+.reveal[aria-expanded="false"] .a{display:none}
+.reveal[aria-expanded="true"]{border-color:var(--accent); background:var(--surface)}
+.reveal[aria-expanded="true"] .hint{color:var(--ink-3); border-color:var(--line)}
+
+/* ---------- quiz ---------- */
+.quiz{background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:22px}
+.quiz .qtext{font-family:Iowan Old Style,Palatino Linotype,Palatino,Book Antiqua,Georgia,serif; font-size:clamp(20px,2.6vw,27px); font-weight:600; line-height:1.25; margin:0 0 18px}
+.opts{display:flex; flex-direction:column; gap:10px}
+.opt{
+  display:flex; gap:12px; align-items:flex-start; text-align:left; width:100%;
+  background:var(--ground); border:1px solid var(--line); border-radius:11px;
+  padding:13px 15px; font:inherit; font-size:15.5px; color:var(--ink); cursor:pointer;
+  transition:border-color .15s, background .15s;
+}
+.opt:hover:not(.done){border-color:var(--accent)}
+.opt:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+.opt .letter{
+  flex:0 0 auto; font-family:ui-monospace,Cascadia Mono,Segoe UI Mono,Consolas,Liberation Mono,monospace; font-weight:600; font-size:13px;
+  width:24px; height:24px; border-radius:7px; background:var(--surface-2); color:var(--ink-2);
+  display:grid; place-items:center; margin-top:1px;
+}
+.opt.ok{border-color:var(--accent); background:var(--accent-soft)}
+.opt.ok .letter{background:var(--accent); color:var(--surface)}
+.opt.no{border-color:var(--warm); background:var(--warm-soft)}
+.opt.no .letter{background:var(--warm); color:var(--surface)}
+.opt.dim{opacity:.55}
+.feedback{
+  margin:16px 0 0; padding:14px 16px; border-radius:11px; font-size:15px; line-height:1.5;
+  background:var(--surface-2); border-left:3px solid var(--accent); color:var(--ink-2);
+}
+.feedback b{color:var(--ink)}
+
+/* ---------- decisión caso ---------- */
+.patient{
+  display:flex; gap:16px; align-items:flex-start; background:var(--surface-2);
+  border-radius:var(--radius); padding:16px 18px; margin:0 0 20px;
+}
+.patient .av{
+  flex:0 0 auto; width:46px; height:46px; border-radius:50%; background:var(--accent);
+  color:var(--surface); display:grid; place-items:center;
+  font-family:Iowan Old Style,Palatino Linotype,Palatino,Book Antiqua,Georgia,serif; font-size:19px; font-weight:600;
+}
+.patient p{margin:0; font-size:15px; color:var(--ink-2); line-height:1.5}
+.patient p b{color:var(--ink)}
+
+/* ---------- accordion ---------- */
+.fold{border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; background:var(--surface)}
+.fold + .fold{margin-top:9px}
+.fold button{
+  width:100%; display:flex; gap:13px; align-items:flex-start; text-align:left;
+  background:none; border:0; padding:15px 17px; font:inherit; cursor:pointer; color:var(--ink);
+}
+.fold button:focus-visible{outline:2px solid var(--accent); outline-offset:-2px}
+.fold .n{
+  flex:0 0 auto; font-family:ui-monospace,Cascadia Mono,Segoe UI Mono,Consolas,Liberation Mono,monospace; font-size:12px; font-weight:600;
+  color:var(--accent); width:22px; margin-top:3px;
+}
+.fold .h{font-weight:700; font-size:16px; line-height:1.35; margin:0}
+.fold .body{padding:0 17px 16px 52px; font-size:15px; color:var(--ink-2); line-height:1.55; margin:0}
+.fold[aria-expanded="false"] .body{display:none}
+
+/* ---------- chart ---------- */
+.chart{background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:20px 18px 14px}
+.chart svg{display:block; width:100%; height:auto; max-width:100%; overflow:visible}
+.chart .cap{font-size:13px; color:var(--ink-3); margin:12px 0 0; line-height:1.5}
+
+/* ---------- table ---------- */
+.tw{overflow-x:auto; border:1px solid var(--line); border-radius:var(--radius); background:var(--surface)}
+table{border-collapse:collapse; width:100%; font-size:14.5px; min-width:520px}
+th,td{padding:11px 14px; text-align:left; border-bottom:1px solid var(--line); vertical-align:top}
+th{font-size:12px; letter-spacing:.09em; text-transform:uppercase; color:var(--ink-3); font-weight:600; font-family:ui-monospace,Cascadia Mono,Segoe UI Mono,Consolas,Liberation Mono,monospace}
+tr:last-child td{border-bottom:0}
+td .num{font-size:14px}
+
+/* ---------- eje cover ---------- */
+.cover{
+  min-height:min(560px,68vh); display:flex; flex-direction:column; justify-content:center;
+  border-radius:20px; padding:clamp(28px,5vw,56px); background:var(--surface);
+  border:1px solid var(--line);
+}
+.cover .idx{
+  font-family:Iowan Old Style,Palatino Linotype,Palatino,Book Antiqua,Georgia,serif; font-size:clamp(56px,11vw,110px); font-weight:600;
+  line-height:.9; color:var(--accent-soft); letter-spacing:-.04em; margin:0 0 6px;
+}
+:root[data-theme="dark"] .cover .idx, :root:not([data-theme="light"]) .cover .idx{}
+.cover .lead{max-width:56ch}
+
+/* ---------- bottom bar ---------- */
+.botbar{
+  flex:0 0 auto; border-top:1px solid var(--line); background:var(--surface);
+  padding:9px 18px; padding-bottom:calc(9px + env(safe-area-inset-bottom,0px));
+  display:flex; align-items:center; gap:14px;
+}
+.rail{flex:1 1 auto; display:flex; gap:3px; min-width:0}
+.seg{flex:1 1 0; min-width:0; background:none; border:0; padding:0; cursor:pointer; text-align:left}
+.seg .bar{height:5px; border-radius:3px; background:var(--surface-2); overflow:hidden}
+.seg .bar i{display:block; height:100%; width:0; background:var(--accent); border-radius:3px; transition:width .25s}
+.seg .lb{
+  display:block; font-family:ui-monospace,Cascadia Mono,Segoe UI Mono,Consolas,Liberation Mono,monospace; font-size:10px; letter-spacing:.07em;
+  text-transform:uppercase; color:var(--ink-3); margin-top:5px; white-space:nowrap;
+  overflow:hidden; text-overflow:ellipsis;
+}
+.seg[data-cur="1"] .lb{color:var(--accent); font-weight:600}
+.seg:focus-visible{outline:2px solid var(--accent); outline-offset:3px; border-radius:4px}
+@media (max-width:700px){ .seg .lb{display:none} }
+.counter{
+  font-family:ui-monospace,Cascadia Mono,Segoe UI Mono,Consolas,Liberation Mono,monospace; font-size:13px; color:var(--ink-3);
+  font-variant-numeric:tabular-nums; flex:0 0 auto;
+}
+.nav{display:flex; gap:6px; flex:0 0 auto}
+
+/* ---------- overlays ---------- */
+.ov{
+  position:fixed; inset:0; background:var(--ground); z-index:40; overflow-y:auto;
+  padding:24px 20px calc(30px + env(safe-area-inset-bottom,0px));
+  padding-top:calc(24px + env(safe-area-inset-top,0px));
+}
+.ov[hidden]{display:none!important}
+.maplist{display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:9px; margin-top:18px}
+.mapitem{
+  display:flex; gap:11px; align-items:baseline; background:var(--surface); border:1px solid var(--line);
+  border-radius:10px; padding:11px 13px; font:inherit; font-size:14.5px; color:var(--ink);
+  cursor:pointer; text-align:left; line-height:1.35;
+}
+.mapitem:hover{border-color:var(--accent)}
+.mapitem .no{font-family:ui-monospace,Cascadia Mono,Segoe UI Mono,Consolas,Liberation Mono,monospace; font-size:12px; color:var(--ink-3); flex:0 0 auto}
+.mapitem[data-cur="1"]{border-color:var(--accent); background:var(--accent-soft)}
+.notes{
+  position:fixed; left:0; right:0; bottom:0; z-index:35; background:var(--surface);
+  border-top:2px solid var(--accent); padding:16px 20px calc(18px + env(safe-area-inset-bottom,0px));
+  max-height:46vh; overflow-y:auto; box-shadow:0 -10px 30px -18px rgba(0,0,0,.4);
+}
+.notes[hidden]{display:none!important}
+.notes .k{font-family:ui-monospace,Cascadia Mono,Segoe UI Mono,Consolas,Liberation Mono,monospace; font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); margin:0 0 7px}
+.notes p{margin:0; font-size:15.5px; line-height:1.6; color:var(--ink-2); max-width:78ch}
+
+.kbd{
+  font-family:ui-monospace,Cascadia Mono,Segoe UI Mono,Consolas,Liberation Mono,monospace; font-size:11.5px; border:1px solid var(--line-2);
+  border-bottom-width:2px; border-radius:5px; padding:1px 6px; color:var(--ink-2); background:var(--surface);
+}
+.hintline{font-size:13.5px; color:var(--ink-3); margin-top:22px; display:flex; gap:14px; flex-wrap:wrap; align-items:center}
+</style>
+<style>
+/* --- Mirels --- */
+.mopts{display:flex; flex-direction:column; gap:6px}
+.mopt{
+  text-align:left; font:inherit; font-size:14px; line-height:1.3; cursor:pointer;
+  background:var(--ground); border:1px solid var(--line); border-radius:9px;
+  padding:9px 11px; color:var(--ink-2); transition:border-color .14s, background .14s;
+}
+.mopt:hover{border-color:var(--accent); color:var(--ink)}
+.mopt:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+.mopt.sel{background:var(--accent-soft); border-color:var(--accent); color:var(--accent-ink); font-weight:600}
+#mscore{font-size:52px; line-height:1}
+#mscore.lo{color:var(--accent)} #mscore.mid{color:var(--warm)} #mscore.hi{color:#B43A3A}
+:root[data-theme="dark"] #mscore.hi, :root:not([data-theme="light"]) #mscore.hi{color:#E98A8A}
+
+/* --- ranked list --- */
+.rank{display:flex; gap:11px; align-items:flex-start; font-size:15px; color:var(--ink-2); line-height:1.45; margin-bottom:9px}
+.rank .rk{
+  flex:0 0 auto; width:22px; height:22px; border-radius:7px; background:var(--accent-soft);
+  color:var(--accent-ink); font-family:ui-monospace,Cascadia Mono,Segoe UI Mono,Consolas,Liberation Mono,monospace; font-size:12px; font-weight:600;
+  display:grid; place-items:center; margin-top:2px;
+}
+.rank b{color:var(--ink)}
+
+/* --- print --- */
+@media print{
+  .topbar,.botbar,.ov,.notes{display:none!important}
+  .stage{overflow:visible; height:auto}
+  .slide{display:block!important; page-break-after:always; min-height:0; padding:20px 0}
+  .reveal .a,.fold .body,.feedback{display:block!important}
+  body{background:#fff}
+}
+</style>
+<style>[hidden]{display:none!important}img{max-width:100%}</style>
+</head>
+<body>
+<div class="deck">
+<div class="topbar">
+  <div class="brand">Rehabilitación paliativa en cáncer <span>· Unidad 2 · Tema 1</span></div>
+  <div class="spacer"></div>
+  <button class="iconbtn" id="btnMap" aria-haspopup="dialog">Mapa</button>
+  <button class="iconbtn" id="btnNotes" aria-pressed="false">Guía</button>
+  <button class="iconbtn" id="btnTheme" aria-label="Cambiar tema">Tema</button>
+</div>
+
+<div class="stage" id="stage">
+
+<!-- ============ 1 ============ -->
+<section class="slide on" data-blk="0" data-note="Arranque. Preséntate y anuncia el trato de la sesión: no vamos a repasar técnicas de rehabilitación, vamos a interrogar la evidencia que las sostiene. Menciona que todas las cifras de hoy salen de 76 referencias verificadas una por una.">
+ <div class="wrap">
+  <p class="eyebrow">Maestría en Cuidados Paliativos · Universidad Antonio Nariño</p>
+  <h1 class="title">Rehabilitación paliativa en cáncer:<br>qué dice la evidencia y qué todavía no</h1>
+  <p class="lead">Unidad 2 · Tema 1 — Rehabilitación física y psicosocial. Seis ejes, 76 referencias verificadas publicadas entre 2021 y 2026, y una pregunta que los recorre todos: <b>¿en quién se midió realmente este efecto?</b></p>
+  <div class="sp"></div>
+  <div class="g4">
+    <div class="card flat"><p class="stat acc">76</p><p class="statlbl">referencias verificadas una a una contra su fuente primaria</p></div>
+    <div class="card flat"><p class="stat acc">6</p><p class="statlbl">ejes clínicos, del dolor a la supervivencia</p></div>
+    <div class="card flat"><p class="stat warmc">2021<span style="font-size:.6em">–</span>26</p><p class="statlbl">ventana temporal, con tres excepciones normativas señaladas</p></div>
+    <div class="card flat"><p class="stat sl">0</p><p class="statlbl">ensayos aleatorizados latinoamericanos en esta población</p></div>
+  </div>
+  <p class="hintline"><span><span class="kbd">→</span> <span class="kbd">←</span> navegar</span><span><span class="kbd">M</span> mapa de la sesión</span><span><span class="kbd">N</span> guía docente</span><span>Las tarjetas y preguntas son para hacer clic</span></p>
+ </div>
+</section>
+
+<!-- ============ 2 ============ -->
+<section class="slide" data-blk="0" data-note="Pregunta abierta al grupo ANTES de revelar. Levanten la mano quienes movilizarían al paciente. Casi siempre gana el reposo. Revela: 26 ensayos, ~1.300 pacientes con metástasis óseas, 3 eventos adversos graves en total y ninguno en sitio metastásico. El reposo obligado es un prejuicio, no un hallazgo.">
+ <div class="wrap">
+  <p class="eyebrow warm">Para empezar</p>
+  <h2 class="title">Un hombre de 68 años con cáncer de próstata y metástasis en L3 y en fémur pregunta si puede volver al gimnasio.</h2>
+  <p class="lead">Antes de mirar la evidencia: ¿qué le responderían hoy, con lo que saben?</p>
+  <div class="sp"></div>
+  <button class="reveal" aria-expanded="false">
+    <span class="hint">Revelar</span>
+    <p class="q">Lo que muestran 26 ensayos clínicos con cerca de 1.300 pacientes con metástasis óseas</p>
+    <p class="a"><span class="big">3 eventos adversos graves en total</span>Dos fracturas de peroné y una rotura tendinosa. <b>Ninguno en sitio metastásico</b>. En los ensayos que reclutaron exclusivamente pacientes con metástasis óseas no se reportó ningún evento esquelético relacionado. La adherencia remota (80,3 %) fue equivalente a la presencial (81,3 %).</p>
+  </button>
+  <p class="ref"><b>Duong H, Walker M, Maugham-Macan M.</b> Exercise Intervention for Bone Metastasis: Safety, Efficacy and Method of Delivery. <i>Cancers</i>. 2023;15(6):1786. DOI 10.3390/cancers15061786</p>
+ </div>
+</section>
+
+<!-- ============ 3 ============ -->
+<section class="slide" data-blk="0" data-note="Mapa de ruta. Señala que los seis ejes no tienen el mismo nivel de evidencia y que esa asimetría es parte del contenido. Los bloques son clicables.">
+ <div class="wrap">
+  <p class="eyebrow">Ruta de la sesión</p>
+  <h2 class="title">Seis ejes, tres niveles de certeza</h2>
+  <p class="lead">No todos los ejes están igual de respaldados. Esa asimetría no es un defecto de la presentación: es el estado real del campo, y es lo que vamos a aprender a leer.</p>
+  <div class="sp"></div>
+  <div class="g3">
+    <button class="card jump" data-to="eje1" style="cursor:pointer;text-align:left;font:inherit;color:inherit">
+      <p class="k">Eje 1</p><h3>Manejo del dolor</h3>
+      <p class="statlbl">Guía normativa sólida, efecto del ejercicio que se desvanece en enfermedad metastásica.</p>
+      <div style="margin-top:10px"><span class="chip fragil">Evidencia mixta</span></div>
+    </button>
+    <button class="card jump" data-to="eje2" style="cursor:pointer;text-align:left;font:inherit;color:inherit">
+      <p class="k">Eje 2</p><h3>Complicaciones neuromusculares</h3>
+      <p class="statlbl">La neuropatía por quimioterapia concentra la mejor evidencia del tema; el resto, casi nada.</p>
+      <div style="margin-top:10px"><span class="chip solid">Sólida en un frente</span></div>
+    </button>
+    <button class="card jump" data-to="eje3" style="cursor:pointer;text-align:left;font:inherit;color:inherit">
+      <p class="k">Eje 3</p><h3>Musculoesquelético avanzado</h3>
+      <p class="statlbl">El cambio de paradigma más nítido del periodo: del reposo obligado a la estratificación del riesgo.</p>
+      <div style="margin-top:10px"><span class="chip solid">Consenso internacional</span></div>
+    </button>
+    <button class="card jump" data-to="eje4" style="cursor:pointer;text-align:left;font:inherit;color:inherit">
+      <p class="k">Eje 4</p><h3>Edema y linfedema</h3>
+      <p class="statlbl">Mucha normatividad para el linfedema crónico de mama; casi nada para el edema del final de la vida.</p>
+      <div style="margin-top:10px"><span class="chip fragil">Desigual</span></div>
+    </button>
+    <button class="card jump" data-to="eje5" style="cursor:pointer;text-align:left;font:inherit;color:inherit">
+      <p class="k">Eje 5</p><h3>Funcional en cáncer avanzado</h3>
+      <p class="statlbl">El eje que define la unidad. Estructurar la rehabilitación preserva las AVD incluso en fase terminal.</p>
+      <div style="margin-top:10px"><span class="chip solid">Creciente</span></div>
+    </button>
+    <button class="card jump" data-to="eje6" style="cursor:pointer;text-align:left;font:inherit;color:inherit">
+      <p class="k">Eje 6</p><h3>Sobrevivientes de cáncer</h3>
+      <p class="statlbl">Por primera vez, un programa de ejercicio modifica la supervivencia y no solo la calidad de vida.</p>
+      <div style="margin-top:10px"><span class="chip solid">Nivel I</span></div>
+    </button>
+  </div>
+ </div>
+</section>
+
+<!-- ============ 4 ============ -->
+<section class="slide" data-blk="0" data-note="Definición operativa. Subraya la parte incómoda: potencial rehabilitador limitado. Rehabilitación paliativa no es rehabilitación de baja intensidad, es rehabilitación con otro objetivo.">
+ <div class="wrap">
+  <p class="eyebrow">Marco conceptual</p>
+  <h2 class="title">Rehabilitación paliativa no es «rehabilitación más suave»</h2>
+  <div class="g2">
+    <div>
+      <p class="lead" style="font-family:Iowan Old Style,Palatino Linotype,Palatino,Book Antiqua,Georgia,serif;font-size:clamp(19px,2.3vw,25px);line-height:1.4;color:var(--ink)">«Busca confort y mejoría funcional en pacientes con <b>potencial rehabilitador limitado</b>.»</p>
+      <p class="ref"><b>Tennison JM, Fu JB, Hui D.</b> Palliative Rehabilitation in Patients with Cancer: Definitions, Structures, Processes and Outcomes. <i>Curr Oncol Rep</i>. 2024;26(11):1283-92. DOI 10.1007/s11912-024-01585-8 · PMID 39102013</p>
+    </div>
+    <div class="row" style="flex-direction:column;gap:12px">
+      <div class="card"><h3>Hospice</h3><p class="statlbl">Predomina la mejoría del <b>control sintomático</b>, no la ganancia funcional.</p></div>
+      <div class="card"><h3>Hospitalización de agudos</h3><p class="statlbl">Resultados funcionales <b>mixtos</b>; dependen mucho de la función basal.</p></div>
+      <div class="card"><h3>Ambulatorio</h3><p class="statlbl">Mejorías funcionales y sintomáticas, sobre todo en quienes <b>llegan mejor</b>.</p></div>
+    </div>
+  </div>
+  <div class="sp"></div>
+  <p class="lead">El mismo nombre designa tres cosas distintas según dónde se practique. Cuando lean un estudio, la primera pregunta es en cuál de los tres escenarios ocurrió.</p>
+ </div>
+</section>
+
+<!-- ============ 5 ============ -->
+<section class="slide" data-blk="1" data-note="Herramienta de lectura. Insiste en la línea del cero: si el intervalo la cruza, no podemos afirmar que hay efecto. Y en que 'no significativo' no equivale a 'no sirve'.">
+ <div class="wrap">
+  <p class="eyebrow">Cómo leer lo que viene</p>
+  <h2 class="title">Anatomía de un tamaño de efecto</h2>
+  <p class="lead">Todo lo que veremos hoy se resume en una diferencia de medias estandarizada (DME) con su intervalo de confianza del 95 %. Tres preguntas bastan para interpretarla.</p>
+  <div class="sp"></div>
+  <div class="g3">
+    <button class="reveal" aria-expanded="false"><span class="hint">1</span><p class="q">¿El intervalo cruza el cero?</p><p class="a"><span class="big s">Si lo cruza, no podemos afirmar que hay efecto.</span>No significa que la intervención sea inútil: significa que este cuerpo de estudios no alcanza a demostrarlo. Ausencia de evidencia no es evidencia de ausencia.</p></button>
+    <button class="reveal" aria-expanded="false"><span class="hint">2</span><p class="q">¿De qué tamaño es el efecto?</p><p class="a"><span class="big">0,2 pequeño · 0,5 moderado · 0,8 grande</span>Casi todo lo que hay en rehabilitación oncológica vive entre 0,2 y 0,5. Un efecto pequeño y real vale más que uno grande e irreproducible.</p></button>
+    <button class="reveal" aria-expanded="false"><span class="hint">3</span><p class="q">¿Qué tan seguros estamos del número?</p><p class="a"><span class="big w">GRADE: alta, moderada, baja, muy baja</span>Un resultado estadísticamente significativo con certeza GRADE muy baja obliga a matizar la recomendación. Lo veremos literalmente hoy con la masoterapia.</p></button>
+  </div>
+  <div class="sp"></div>
+  <div class="chart" data-chart="demo"></div>
+ </div>
+</section>
+
+<!-- ============ 6 ============ -->
+<section class="slide" data-blk="1" data-note="Este es el sesgo estructural del campo. Pregunta al grupo qué ECOG tienen sus pacientes reales. Casi todos dirán 2 a 4. Casi toda la evidencia viene de 0 a 1.">
+ <div class="wrap">
+  <p class="eyebrow warm">La pregunta que recorre toda la sesión</p>
+  <h2 class="title">¿En quién se midió realmente este efecto?</h2>
+  <div class="g2">
+    <div class="card" style="border-color:var(--accent);background:var(--accent-soft)">
+      <p class="k">Quién entra en los ensayos</p>
+      <h3 style="font-size:20px">ECOG 0-1, ambulatorio, pronóstico largo</h3>
+      <p class="statlbl">Pacientes que caminan hasta el centro de rehabilitación, toleran 2 sesiones semanales de 60 minutos y completan 6 meses de programa.</p>
+    </div>
+    <div class="card" style="border-color:var(--warm)">
+      <p class="k">Quién está en nuestras camas</p>
+      <h3 style="font-size:20px">ECOG 3-4, encamado, semanas de pronóstico</h3>
+      <p class="statlbl">Sistemáticamente <b>excluido</b> de los ensayos. Es la población nuclear de los cuidados paliativos y la que menos evidencia tiene.</p>
+    </div>
+  </div>
+  <div class="sp"></div>
+  <p class="lead">Cada vez que hoy aparezca una cifra, la pregunta obligada es si el paciente del estudio se parece al paciente de la cama. Muchas veces la respuesta será que no, y eso cambia lo que podemos prometer.</p>
+ </div>
+</section>
+<!-- ============ EJE 1 ============ -->
+<section class="slide" id="eje1" data-blk="2" data-note="Portada del eje. El dato que abre la discusión: el dolor es el síntoma más frecuente y el desenlace peor medido de todo el campo.">
+ <div class="wrap">
+  <div class="cover">
+    <p class="idx">01</p>
+    <p class="eyebrow">Eje 1 de 6</p>
+    <h2 class="title">Rehabilitación en el manejo del dolor</h2>
+    <p class="lead">El síntoma más prevalente del cáncer avanzado es, a la vez, el desenlace peor medido de toda la investigación en rehabilitación oncológica. De 26 ensayos de ejercicio en metástasis óseas, solo 6 midieron el dolor óseo.</p>
+  </div>
+ </div>
+</section>
+
+<section class="slide" data-blk="2" data-note="La guía SIO-ASCO es el documento normativo. Destaca que 'puede ofrecerse' no es 'debe ofrecerse', y que la evidencia es de nivel intermedio.">
+ <div class="wrap">
+  <p class="eyebrow">Lo que sí está recomendado</p>
+  <h2 class="title">La guía SIO–ASCO, en cuatro recomendaciones</h2>
+  <p class="lead">Revisión sistemática de base con 227 estudios. Haz clic en cada terapia para ver qué dice exactamente la recomendación.</p>
+  <div class="sp"></div>
+  <div class="g2">
+    <button class="reveal" aria-expanded="false"><span class="hint">Ver</span><p class="q">Acupuntura</p><p class="a"><span class="big">Se recomienda ofrecerla</span>Para <b>artralgia por inhibidores de aromatasa</b> en cáncer de mama. También puede recomendarse, junto con reflexología y acupresión, para dolor general o musculoesquelético en cáncer: un ECA con 360 participantes mostró efectos sostenidos a seis meses.</p></button>
+    <button class="reveal" aria-expanded="false"><span class="hint">Ver</span><p class="q">Masaje</p><p class="a"><span class="big">Puede ofrecerse</span>Específicamente en <b>cuidados paliativos y hospice</b>, con beneficio clínicamente significativo en dolor moderado a severo en cáncer avanzado. Es de las pocas recomendaciones formuladas para nuestra población.</p></button>
+    <button class="reveal" aria-expanded="false"><span class="hint">Ver</span><p class="q">Hipnosis</p><p class="a"><span class="big">Puede ofrecerse</span>Para el <b>dolor durante procedimientos</b>. Nótese lo estrecho de la indicación: no es para el dolor de base.</p></button>
+    <button class="reveal" aria-expanded="false"><span class="hint">Ver</span><p class="q">Nivel global de la evidencia</p><p class="a"><span class="big w">Intermedio</span>El panel concluye que los beneficios superan los riesgos, pero ninguna recomendación alcanza evidencia alta. «Puede ofrecerse» no es «debe ofrecerse».</p></button>
+  </div>
+  <p class="ref"><b>Mao JJ, Ismaila N, Bao T, et al.</b> Integrative Medicine for Pain Management in Oncology: SIO–ASCO Guideline. <i>J Clin Oncol</i>. 2022;40(34):3998-4024. DOI 10.1200/JCO.22.01357 · PMID 36122322</p>
+ </div>
+</section>
+
+<section class="slide" data-blk="2" data-note="El corazón del eje. Muestra primero el 0,38 y deja que el grupo lo celebre. Luego revela el −0,06. La pregunta: ¿cuál de los dos aplica a mi paciente de hospice? Aclara la homogeneización de signos.">
+ <div class="wrap">
+  <p class="eyebrow warm">El hallazgo incómodo</p>
+  <h2 class="title">El efecto analgésico del ejercicio se desvanece justo donde más lo necesitamos</h2>
+  <div class="chart" data-chart="dolor"></div>
+  <div class="sp"></div>
+  <div class="g2">
+    <div class="card flat"><p class="k">Cáncer en general</p><p class="stat acc">0,38</p><p class="statlbl">23 ECA, 1.954 participantes. Efecto pequeño a moderado, significativo, con mejorías paralelas en función física, fatiga y síntomas psicológicos.</p></div>
+    <div class="card flat"><p class="k">Cáncer metastásico</p><p class="stat sl">−0,06</p><p class="statlbl">13 ECA, 992 pacientes. Sin efecto significativo. Pero tampoco empeora el dolor, lo que sostiene su indicación como cuidado de soporte.</p></div>
+  </div>
+  <p class="ref"><b>Austin P, Lee W, Costa D, et al.</b> <i>Heliyon</i>. 2024;10(7):e29193 · <b>Sprengers R, Monninkhof EM, et al.</b> <i>J Cancer Surviv</i>. 2025. DOI 10.1007/s11764-025-01936-9 — signos homogeneizados para que un valor positivo siempre favorezca a la rehabilitación.</p>
+ </div>
+</section>
+
+<section class="slide" data-blk="2" data-note="El punto de lectura crítica más importante del eje. Dos casos: TENS sin efecto demostrado, masaje con efecto pero certeza GRADE muy baja. Son errores distintos.">
+ <div class="wrap">
+  <p class="eyebrow">Lectura crítica</p>
+  <h2 class="title">Dos maneras distintas de no tener evidencia</h2>
+  <div class="g2">
+    <button class="reveal" aria-expanded="false"><span class="hint">Revelar</span><p class="q">TENS en dolor oncológico: el metaanálisis más reciente</p><p class="a"><span class="big s">Sin beneficio demostrado</span>Dolor promedio DM −0,393 (IC 95 % −1,780 a 0,993; p = 0,578). Dolor máximo DM 0,128 (p = 0,845). Los autores concluyen que <b>no pueden extraerse conclusiones definitivas</b> por las limitaciones del metaanálisis. Esto es ausencia de evidencia, no evidencia de ausencia.</p></button>
+    <button class="reveal" aria-expanded="false"><span class="hint">Revelar</span><p class="q">Masaje: 36 ECA y 3.671 participantes</p><p class="a"><span class="big w">Efecto significativo, certeza muy baja</span>Redujo el dolor y la ansiedad y mejoró la calidad de vida, pero la certeza GRADE fue <b>muy baja para todos los desenlaces</b>, con la mayoría de los estudios en riesgo de sesgo alto o poco claro. El número es positivo; la confianza en el número, no.</p></button>
+  </div>
+  <div class="sp"></div>
+  <div class="card" style="border-left:3px solid var(--warm)">
+    <h3>El vacío que deberían notar</h3>
+    <p class="statlbl">No se localizaron revisiones sistemáticas actualizadas 2021-2026 sobre <b>termoterapia, crioterapia, ultrasonido, ondas de choque o punción seca</b> en dolor oncológico. Son técnicas de uso diario en fisioterapia paliativa. El vacío más grande de este eje está justamente en lo que más se hace.</p>
+  </div>
+  <p class="ref"><b>Kaye AD, et al.</b> <i>Curr Pain Headache Rep</i>. 2025;29(1):5 · <b>Win Myint O, et al.</b> <i>J Clin Nurs</i>. 2025;34(1):49-87. PMID 39558520</p>
+ </div>
+</section>
+
+<section class="slide" data-blk="2" data-quiz="q1" data-note="Quiz 1. La trampa está en la opción que suena más razonable. El ECA IMPACT no encontró diferencia entre acupuntura y masaje, lo que cambia el criterio de elección: preferencia, acceso y costo.">
+ <div class="wrap">
+  <p class="eyebrow">Comprobación rápida</p>
+  <h2 class="title">Pregunta 1</h2>
+  <div class="quiz">
+    <p class="qtext">En el ECA IMPACT (n = 298, cáncer avanzado con dolor musculoesquelético) se compararon acupuntura y masaje durante 10 semanas. ¿Qué encontró?</p>
+    <div class="opts">
+      <button class="opt" data-ok="0"><span class="letter">A</span><span>La acupuntura fue superior al masaje en reducción del dolor máximo.</span></button>
+      <button class="opt" data-ok="0"><span class="letter">B</span><span>El masaje fue superior, con casi un punto más de reducción en la escala BPI.</span></button>
+      <button class="opt" data-ok="1"><span class="letter">C</span><span>Ambas redujeron el dolor de forma similar, sin diferencia estadísticamente significativa entre ellas.</span></button>
+      <button class="opt" data-ok="0"><span class="letter">D</span><span>Ninguna superó al control, por lo que no se recomiendan en cáncer avanzado.</span></button>
+    </div>
+    <div class="feedback" hidden><b>Respuesta: C.</b> Acupuntura −2,53 puntos y masaje −3,01 puntos en dolor máximo (BPI), sin diferencia significativa entre grupos; ambas mejoraron además fatiga, insomnio y calidad de vida, con eventos adversos leves. La consecuencia clínica es la interesante: cuando dos terapias funcionan igual, la elección se basa en <b>preferencia del paciente, acceso y costo</b>, no en superioridad. En Moniquirá eso puede significar que el masaje sea la opción realista. <span style="display:block;margin-top:10px;font-size:13px;font-family:ui-monospace,Cascadia Mono,Segoe UI Mono,Consolas,Liberation Mono,monospace;color:var(--ink-3)">Epstein AS, Liou KT, et al. JAMA Netw Open. 2023;6(11):e2342482. PMID 37962891</span></div>
+  </div>
+ </div>
+</section>
+<!-- ============ EJE 2 ============ -->
+<section class="slide" id="eje2" data-blk="3" data-note="Portada. El mensaje del eje es la asimetría: un frente con ECA y metaanálisis, cuatro frentes con series de casos.">
+ <div class="wrap">
+  <div class="cover">
+    <p class="idx">02</p>
+    <p class="eyebrow">Eje 2 de 6</p>
+    <h2 class="title">Rehabilitación y complicaciones neuromusculares</h2>
+    <p class="lead">Aquí está la mayor asimetría de evidencia de toda la unidad. La neuropatía por quimioterapia tiene ensayos aleatorizados y metaanálisis en red. La compresión medular, las metástasis cerebrales y las plexopatías tienen series retrospectivas y revisiones narrativas.</p>
+  </div>
+ </div>
+</section>
+
+<section class="slide" data-blk="3" data-note="El hallazgo más importante del eje: prevención primaria. Subraya que se hace DURANTE la quimioterapia, no después, y que la guía ASCO vigente es anterior a este ensayo.">
+ <div class="wrap">
+  <p class="eyebrow">El mejor dato del eje</p>
+  <h2 class="title">Se puede <i>prevenir</i> la neuropatía por quimioterapia con ejercicio</h2>
+  <p class="lead">158 pacientes, cuatro centros, sesiones supervisadas de 15 a 30 minutos dos veces por semana <b>durante</b> la quimioterapia.</p>
+  <div class="sp"></div>
+  <div class="chart" data-chart="npiq"></div>
+  <div class="sp"></div>
+  <div class="card" style="border-left:3px solid var(--warm)">
+    <h3>El desfase que hay que enseñar</h3>
+    <p class="statlbl">La guía vigente de ASCO sobre neuropatía por quimioterapia es de <b>2020</b> y deja explícitamente abierto el papel del ejercicio por insuficiencia de evidencia. Este ensayo es de 2024 y no existe actualización posterior. Hay un desfase real entre lo que la evidencia muestra y lo que la norma recomienda: reconocerlo es parte del oficio.</p>
+  </div>
+  <p class="ref"><b>Streckmann F, Elter T, Lehmann HC, et al.</b> Preventive Effect of Neuromuscular Training on Chemotherapy-Induced Neuropathy: A Randomized Clinical Trial. <i>JAMA Intern Med</i>. 2024;184(9):1046-53. PMID 38949824</p>
+ </div>
+</section>
+
+<section class="slide" data-blk="3" data-note="De 'que haga ejercicio' a 'qué ejercicio'. El metaanálisis en red responde la pregunta de prescripción. Solo la combinación equilibrio + fuerza superó al control en calidad de vida.">
+ <div class="wrap">
+  <p class="eyebrow">Prescripción</p>
+  <h2 class="title">No basta con decir «que haga ejercicio»</h2>
+  <div class="g2">
+    <div>
+      <p class="lead">Un metaanálisis en red de 12 ECA comparó ocho modalidades. Solo una combinación superó al control en calidad de vida.</p>
+      <div class="sp"></div>
+      <button class="reveal" aria-expanded="false"><span class="hint">Revelar</span><p class="q">¿Cuál fue la única modalidad superior?</p><p class="a"><span class="big">Equilibrio + fuerza</span>Calidad de vida DME 0,45 (IC 95 % 0,12–0,78) y síntomas reportados por el paciente DME 0,46 (IC 95 % 0,11–0,82). El dolor mostró tendencia favorable sin alcanzar significación. Sin eventos adversos graves — pero los 12 ECA fueron calificados de <b>alto riesgo de sesgo</b>.</p></button>
+    </div>
+    <div class="row" style="flex-direction:column;gap:12px">
+      <div class="card"><h3>Mama con taxanos</h3><p class="statlbl">Síntomas de neuropatía DME <span class="num">−0,71</span> (IC 95 % −1,24 a −0,17), calidad moderada. <b>Sin efecto sobre la fatiga.</b></p></div>
+      <div class="card"><h3>El vínculo con las caídas</h3><p class="statlbl">En 425 supervivientes con sensores inerciales, la neuropatía se expresó como mayor <b>frecuencia</b> de balanceo; las caídas prospectivas, como menor <b>longitud de zancada</b>. Son dianas terapéuticas distintas.</p></div>
+    </div>
+  </div>
+  <p class="ref"><b>Nakagawa N, et al.</b> <i>Front Neurol</i>. 2024;15:1346099 · <b>Brownson-Smith R, et al.</b> <i>J Cancer Surviv</i>. 2025;19(1):78-96 · <b>Shah VV, et al.</b> <i>JCO Precis Oncol</i>. 2024;8:e2300312</p>
+ </div>
+</section>
+
+<section class="slide" data-blk="3" data-note="El prejuicio a derribar: que la compresión medular metastásica no es candidata a rehabilitación. 40 pacientes, todos mejoraron, 82,5% volvió a casa. Y en metástasis cerebrales, la ganancia es motora, no cognitiva: ajusta expectativas.">
+ <div class="wrap">
+  <p class="eyebrow">Contra el nihilismo terapéutico</p>
+  <h2 class="title">Compresión medular y metástasis cerebrales sí son candidatas a rehabilitar</h2>
+  <div class="g2">
+    <div class="card">
+      <p class="k">Compresión medular metastásica · n = 40</p>
+      <p class="stat acc">43,8 → 64,5</p>
+      <p class="statlbl">Puntuación SCIM III tras seis semanas de rehabilitación especializada (p &lt; 0,001). <b>Mejoró en todos los pacientes</b>, sin diferencia entre mayores y menores de 65 años. El 82,5 % fue dado de alta a domicilio; el 70 % requirió intervención psicológica formal.</p>
+    </div>
+    <div class="card">
+      <p class="k">Metástasis cerebrales · rehabilitación post-aguda</p>
+      <p class="stat warmc">+16,5 % / +3,6 %</p>
+      <p class="statlbl">Ganancia del FIM <b>motor</b> frente al FIM <b>cognitivo</b>. La recuperación es fundamentalmente motora, lo que obliga a fijar expectativas realistas en el dominio cognitivo con el paciente y la familia. El 84,6 % volvió a domicilio.</p>
+    </div>
+  </div>
+  <div class="sp"></div>
+  <div class="card flat">
+    <h3>Antes de movilizar: el criterio de estabilidad</h3>
+    <p class="statlbl">La guía NICE NG234 (2023) normativiza la rehabilitación especializada en compresión medular metastásica, y el consenso de la WFNS exige evaluar el índice <b>SINS</b> antes de iniciar cualquier plan de movilización, para prevenir fracturas patológicas. La radioterapia paliativa alivia el dolor en cerca del 60 % de los pacientes.</p>
+  </div>
+  <p class="ref"><b>Lafeuillee G, et al.</b> <i>J Spinal Cord Med</i>. 2024;47(3):432-9 · <b>Donnelly BM, et al.</b> <i>Support Care Cancer</i>. 2025;33(5):418 · <b>Pojskic M, et al.</b> <i>Neurosurg Rev</i>. 2024;47(1):830</p>
+ </div>
+</section>
+
+<section class="slide" data-blk="3" data-case="c1" data-note="Primera decisión del caso. Deja que discutan en parejas 2 minutos antes de votar. La respuesta correcta no es la más intuitiva: hay que evaluar estabilidad antes de decidir cualquier cosa.">
+ <div class="wrap">
+  <p class="eyebrow warm">Caso clínico · decisión 1 de 3</p>
+  <h2 class="title">Doña Rosa llega a su consulta</h2>
+  <div class="patient">
+    <div class="av">R</div>
+    <p><b>Rosa, 62 años.</b> Cáncer de mama metastásico diagnosticado hace 14 meses. Metástasis óseas en columna dorsal (T7, T9) y en fémur proximal derecho. ECOG 2. Recibe quimioterapia con taxanos desde hace tres meses. Refiere hormigueo y torpeza en ambos pies, y dos tropiezos en casa la semana pasada. Vive sola en un segundo piso sin ascensor. Dolor dorsal 4/10 en reposo, 7/10 al levantarse de la silla.</p>
+  </div>
+  <div class="quiz">
+    <p class="qtext">¿Cuál es la conducta inicial más defendible con la evidencia que acabamos de ver?</p>
+    <div class="opts">
+      <button class="opt" data-ok="0"><span class="letter">A</span><span>Reposo relativo y analgesia hasta terminar la quimioterapia, por el riesgo de fractura patológica.</span></button>
+      <button class="opt" data-ok="1"><span class="letter">B</span><span>Evaluar estabilidad vertebral (SINS) y riesgo de fractura femoral (Mirels) y, con eso, prescribir un programa supervisado que incluya entrenamiento de equilibrio.</span></button>
+      <button class="opt" data-ok="0"><span class="letter">C</span><span>Iniciar de inmediato entrenamiento de fuerza de alta intensidad, ya que el ejercicio en metástasis óseas demostró ser seguro.</span></button>
+      <button class="opt" data-ok="0"><span class="letter">D</span><span>Remitir solo a terapia ocupacional para adaptación del domicilio, dado el ECOG 2.</span></button>
+    </div>
+    <div class="feedback" hidden><b>Respuesta: B.</b> La seguridad demostrada del ejercicio en metástasis óseas no es un permiso en blanco: el consenso internacional pide estratificar el riesgo antes de prescribir, y eso significa SINS para la columna y Mirels para el fémur. El componente de equilibrio no es opcional en su caso: tiene neuropatía incipiente por taxanos y ya se está tropezando, y la combinación equilibrio + fuerza es la única modalidad que superó al control. La opción A es el prejuicio que ya desmontamos; la C salta el paso de estratificación; la D es necesaria pero insuficiente.</div>
+  </div>
+ </div>
+</section>
+<!-- ============ EJE 3 ============ -->
+<section class="slide" id="eje3" data-blk="4" data-note="Portada. El cambio de paradigma más claro del periodo. Dilo así: hace diez años la respuesta era reposo; hoy es estratificar.">
+ <div class="wrap">
+  <div class="cover">
+    <p class="idx">03</p>
+    <p class="eyebrow">Eje 3 de 6</p>
+    <h2 class="title">Rehabilitación musculoesquelética en cáncer avanzado</h2>
+    <p class="lead">El reposo obligado ante metástasis óseas fue sustituido por un modelo de estratificación de riesgo y modificación individualizada del ejercicio. Es el cambio de paradigma más nítido de los últimos cinco años, y está respaldado por consenso internacional.</p>
+  </div>
+ </div>
+</section>
+
+<section class="slide" data-blk="4" data-note="Los tres dominios del consenso. Insiste en que la prescripción la conduce un profesional con formación oncológica y que los ejes de seguridad son alineación, control del movimiento y técnica.">
+ <div class="wrap">
+  <p class="eyebrow">El nuevo marco</p>
+  <h2 class="title">Tres dominios que deciden qué puede hacer este paciente</h2>
+  <p class="lead">Consenso del International Bone Metastases Exercise Working Group: 22 expertos, cinco etapas metodológicas. Haz clic en cada dominio.</p>
+  <div class="sp"></div>
+  <div class="g3">
+    <button class="reveal" aria-expanded="false"><span class="hint">Dominio 1</span><p class="q">Factores de la lesión</p><p class="a">Localización, número y presentación de las lesiones óseas; carácter lítico o blástico; compromiso cortical; estabilidad de la columna. Es lo que define <b>qué segmentos se cargan y cuáles no</b>.</p></button>
+    <button class="reveal" aria-expanded="false"><span class="hint">Dominio 2</span><p class="q">Factores del cáncer y su tratamiento</p><p class="a">Tipo de tumor primario, tratamiento sistémico en curso, radioterapia reciente, hipercalcemia, citopenias, agentes modificadores del hueso. Determina la <b>ventana de seguridad</b> y la intensidad tolerable.</p></button>
+    <button class="reveal" aria-expanded="false"><span class="hint">Dominio 3</span><p class="q">Factores de la persona</p><p class="a">Estado funcional, comorbilidad, historia de caídas, dolor, preferencias y entorno. Es el dominio que más se olvida y el que define si el programa se va a <b>sostener en el tiempo</b>.</p></button>
+  </div>
+  <div class="sp"></div>
+  <div class="card" style="border-color:var(--accent);background:var(--accent-soft)">
+    <h3>La frase que cambia la práctica</h3>
+    <p class="statlbl">«Los beneficios potenciales para la salud <b>superan el riesgo percibido</b> de complicaciones esqueléticas cuando hay consulta colaborativa.» Los ejes de seguridad son alineación postural, movimiento controlado y técnica correcta, no la ausencia de carga.</p>
+  </div>
+  <p class="ref"><b>Campbell KL, Cormie P, Weller S, et al.</b> Exercise Recommendation for People With Bone Metastases: Expert Consensus. <i>JCO Oncol Pract</i>. 2022;18(5):e697-709. PMID 34990293</p>
+ </div>
+</section>
+
+<section class="slide" data-blk="4" data-note="Calculadora de Mirels. Úsala en vivo con el fémur de Doña Rosa: lesión lítica, peritrocantérea, dolor mecánico, más de dos tercios de la cortical. Da 12. Eso es quirúrgico antes de rehabilitar.">
+ <div class="wrap">
+  <p class="eyebrow">Herramienta</p>
+  <h2 class="title">Escala de Mirels: cuánto riesgo de fractura tiene esta lesión</h2>
+  <p class="lead">Cuatro variables, de 1 a 3 puntos cada una. Selecciona los valores de una lesión lítica del esqueleto apendicular y observa cómo cambia la conducta.</p>
+  <div class="sp"></div>
+  <div class="card" id="mirels">
+    <div class="g4" style="gap:16px">
+      <div><p class="k">Sitio</p><div class="mopts" data-var="sitio"><button class="mopt" data-v="1">Miembro superior</button><button class="mopt" data-v="2">Miembro inferior</button><button class="mopt" data-v="3">Peritrocantérea</button></div></div>
+      <div><p class="k">Dolor</p><div class="mopts" data-var="dolor"><button class="mopt" data-v="1">Leve</button><button class="mopt" data-v="2">Moderado</button><button class="mopt" data-v="3">Mecánico / con la carga</button></div></div>
+      <div><p class="k">Tipo de lesión</p><div class="mopts" data-var="tipo"><button class="mopt" data-v="1">Blástica</button><button class="mopt" data-v="2">Mixta</button><button class="mopt" data-v="3">Lítica</button></div></div>
+      <div><p class="k">Tamaño (cortical)</p><div class="mopts" data-var="tam"><button class="mopt" data-v="1">Menos de 1/3</button><button class="mopt" data-v="2">Entre 1/3 y 2/3</button><button class="mopt" data-v="3">Más de 2/3</button></div></div>
+    </div>
+    <div class="sp"></div>
+    <div id="mresult" style="display:flex;gap:20px;align-items:center;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:18px">
+      <div style="flex:0 0 auto"><p class="k" style="margin-bottom:4px">Puntaje</p><p class="stat" id="mscore" style="margin:0">—</p></div>
+      <p class="statlbl" id="mtext" style="flex:1 1 300px;font-size:15.5px">Selecciona un valor en cada una de las cuatro variables.</p>
+    </div>
+  </div>
+  <div class="sp"></div>
+  <p class="lead small">La revisión crítica de 2025 recuerda que Mirels <b>sobreestima y subestima</b> el riesgo con frecuencia, y propone complementarla con análisis de rigidez estructural por tomografía y elementos finitos. Sigue siendo, sin embargo, la herramienta operativa disponible en la mayoría de nuestros servicios.</p>
+  <p class="ref"><b>Meschini C, El Motassime A, Ziranu A, et al.</b> Advancements in Assessing Pathological Fracture Risk: News on Mirels' Score. <i>Cancers</i>. 2025;17(6):973</p>
+ </div>
+</section>
+
+<section class="slide" data-blk="4" data-note="Contraste deliberado: un ensayo que funciona y otro que no. PREFERABLE-EFFECT con 67% de metástasis óseas y solo 2 fracturas no relacionadas. NEXTAC-TWO con 98,4% de finalización y cero eficacia. Factibilidad no es eficacia.">
+ <div class="wrap">
+  <p class="eyebrow">Dos ensayos, dos lecciones opuestas</p>
+  <h2 class="title">Uno funcionó. El otro se completó casi perfecto y no sirvió.</h2>
+  <div class="g2">
+    <div class="card" style="border-color:var(--accent)">
+      <p class="k">PREFERABLE-EFFECT · n = 357 · mama metastásica</p>
+      <h3 style="font-size:19px">Ejercicio supervisado, 9 meses</h3>
+      <p class="statlbl">El <b>67,2 % tenía metástasis óseas</b> (estables). A los 6 meses: menos fatiga física (−5,3 puntos; p = 0,027) y mejor calidad de vida (+4,8; p = 0,0003). Solo dos eventos adversos graves, <b>no relacionados con las metástasis óseas</b>. En el análisis musculoesquelético: +0,79 kg de masa magra a los 3 meses y +34,22 kg en prensa de piernas a los 6.</p>
+    </div>
+    <div class="card" style="border-color:var(--warm)">
+      <p class="k">NEXTAC-TWO · n = 131 · páncreas y pulmón, ≥70 años</p>
+      <h3 style="font-size:19px">Ejercicio + nutrición, 12 semanas</h3>
+      <p class="statlbl">Tasa de finalización del <b>98,4 %</b>. Supervivencia libre de discapacidad 478 frente a 499 días; HR 0,970 (IC 95 % 0,642–1,465), <b>p = 0,884</b>. Ninguna diferencia en desenlaces secundarios. El 71 % desarrolló discapacidad de todos modos.</p>
+    </div>
+  </div>
+  <div class="sp"></div>
+  <div class="card flat" style="border-left:3px solid var(--warm)">
+    <h3>La lección que deben llevarse</h3>
+    <p class="statlbl">Que un programa sea <b>factible</b> —que los pacientes lo completen, que les guste, que no haya eventos adversos— no significa que sea <b>eficaz</b>. Son dos preguntas distintas y muchos programas asistenciales se justifican con la primera respondiendo a la segunda. En caquexia avanzada, el momento de intervenir parece ser temprano, no terminal.</p>
+  </div>
+  <p class="ref"><b>Hiensch AE, et al.</b> <i>Nat Med</i>. 2024;30(10):2957-66 · <b>Zopf EM, et al.</b> <i>Breast Cancer Res</i>. 2026;28(1):98 · <b>Mitsunaga S, et al.</b> <i>J Cachexia Sarcopenia Muscle</i>. 2025;16(3):e13871</p>
+ </div>
+</section>
+
+<section class="slide" data-blk="4" data-quiz="q2" data-note="Quiz 2. El punto es separar lo que el ejercicio sí logra (función, fuerza, masa magra) de lo que no ha demostrado (densidad mineral ósea). Evita prometer al paciente un objetivo sin respaldo.">
+ <div class="wrap">
+  <p class="eyebrow">Comprobación rápida</p>
+  <h2 class="title">Pregunta 2</h2>
+  <div class="quiz">
+    <p class="qtext">Un metaanálisis de 18 estudios y 1.478 participantes con metástasis o pérdida ósea evaluó el efecto del ejercicio sobre desenlaces óseos. ¿Qué encontró?</p>
+    <div class="opts">
+      <button class="opt" data-ok="0"><span class="letter">A</span><span>Aumento significativo de la densidad mineral ósea en columna lumbar y cuello femoral.</span></button>
+      <button class="opt" data-ok="1"><span class="letter">B</span><span>Ningún efecto significativo sobre la densidad mineral ósea en ninguna localización.</span></button>
+      <button class="opt" data-ok="0"><span class="letter">C</span><span>Reducción significativa de los eventos esqueléticos relacionados.</span></button>
+      <button class="opt" data-ok="0"><span class="letter">D</span><span>Aumento de la densidad ósea solo con ejercicios de impacto.</span></button>
+    </div>
+    <div class="feedback" hidden><b>Respuesta: B.</b> Cuerpo entero TE 0,16 (IC 95 % −0,10 a 0,41); columna lumbar 0,10; cadera −0,06; cuello femoral 0,07. Ninguno significativo. Y esto importa clínicamente: el ejercicio en enfermedad ósea avanzada mejora <b>función, fuerza y masa magra</b>, y es seguro, pero <b>no hay evidencia de que mejore la densidad ósea</b>. Prometerle eso a un paciente es ofrecerle un objetivo que la evidencia no respalda, y erosiona la confianza cuando el control densitométrico no cambia. <span style="display:block;margin-top:10px;font-size:13px;font-family:ui-monospace,Cascadia Mono,Segoe UI Mono,Consolas,Liberation Mono,monospace;color:var(--ink-3)">Borsati A, et al. Osteoporos Int. 2025;36(12):2381-99. PMID 40764418</span></div>
+  </div>
+ </div>
+</section>
+<!-- ============ EJE 4 ============ -->
+<section class="slide" id="eje4" data-blk="5" data-note="Portada. La brecha del eje: mucha evidencia en supervivientes de mama, casi nada en el edema del final de la vida, que es el escenario paliativo por excelencia.">
+ <div class="wrap">
+  <div class="cover">
+    <p class="idx">04</p>
+    <p class="eyebrow">Eje 4 de 6</p>
+    <h2 class="title">Edema y linfedema</h2>
+    <p class="lead">Es el subtema con más evidencia y más normatividad internacional. También el que tiene la brecha más marcada con nuestra población: casi todo viene de supervivientes de cáncer de mama con linfedema crónico. El edema maligno del final de la vida sigue sustentado en series y reportes de casos.</p>
+  </div>
+ </div>
+</section>
+
+<section class="slide" data-blk="5" data-note="Estadificación ISL. El punto clave es el estadio 0: existe, es detectable solo por bioimpedancia, y es donde la intervención rinde más.">
+ <div class="wrap">
+  <p class="eyebrow">Estadificación</p>
+  <h2 class="title">Los cuatro estadios de la Sociedad Internacional de Linfología</h2>
+  <p class="lead">Consenso 2023, la referencia vigente. Haz clic en cada estadio.</p>
+  <div class="sp"></div>
+  <div class="g4">
+    <button class="reveal" aria-expanded="false"><span class="hint">0</span><p class="q">Latente o subclínico</p><p class="a"><span class="big">Invisible al ojo</span>Transporte linfático ya alterado, <b>sin edema aparente</b>. Se detecta solo con bioimpedancia o constante dieléctrica tisular. Es el estadio donde la intervención temprana rinde más.</p></button>
+    <button class="reveal" aria-expanded="false"><span class="hint">I</span><p class="q">Reversible</p><p class="a"><span class="big">Cede con la elevación</span>Acumulación de líquido rico en proteínas que <b>disminuye al elevar el miembro</b>. Puede haber fóvea.</p></button>
+    <button class="reveal" aria-expanded="false"><span class="hint">II</span><p class="q">Espontáneamente irreversible</p><p class="a"><span class="big w">Ya no cede con elevar</span>Acumulación permanente de grasa y proteínas; la fóvea puede desaparecer a medida que aparece fibrosis tisular.</p></button>
+    <button class="reveal" aria-expanded="false"><span class="hint">III</span><p class="q">Elefantiasis linfostática</p><p class="a"><span class="big s">Cambios tróficos</span>Ausencia de fóvea, acantosis, depósito graso, verrugas y sobrecrecimiento cutáneo. Alto riesgo de celulitis recurrente.</p></button>
+  </div>
+  <div class="sp"></div>
+  <div class="g2">
+    <div class="card flat"><h3>Severidad por volumen</h3><p class="statlbl">Mínima: incremento del 5 al 20 %. Moderada: 20 a 40 %. Severa: más del 40 %.</p></div>
+    <div class="card flat"><h3>Compresión</h3><p class="statlbl">Prendas a medida con presiones de <b>20 a 60 mmHg</b>; el consenso prefiere el tejido plano al circular.</p></div>
+  </div>
+  <p class="ref"><b>International Society of Lymphology.</b> The Diagnosis and Treatment of Peripheral Lymphedema: 2023 Consensus Document. <i>Lymphology</i>. 2023;56(3):133-51. PMID 39207406</p>
+ </div>
+</section>
+
+<section class="slide" data-blk="5" data-note="La ventana de los 9 meses. Es el dato operativo más útil para diseñar un programa de vigilancia con recursos limitados. Menciona el criterio de priorización de la MASCC: IMC ≥30 con 15+ ganglios o radioterapia axilar.">
+ <div class="wrap">
+  <p class="eyebrow">Prevención</p>
+  <h2 class="title">La ventana crítica son los primeros nueve meses</h2>
+  <div class="g2">
+    <div>
+      <p class="lead">En el ensayo PREVENT, 919 mujeres seguidas durante 36 meses con cribado seriado. Más de la mitad de los casos subclínicos aparecieron <b>dentro de los primeros nueve meses</b> tras el tratamiento, con tasas estables en los años 2 y 3.</p>
+      <div class="sp"></div>
+      <div class="card flat">
+        <h3>Bioimpedancia frente a cinta métrica</h3>
+        <p class="statlbl">De 209 casos subclínicos detectados, progresaron a linfedema crónico <span class="num">7</span> de los detectados por bioimpedancia frente a <span class="num">23</span> de los detectados por circometría. Otros 39 progresaron <b>sin haber sido detectados</b>.</p>
+      </div>
+    </div>
+    <div>
+      <div class="card" style="border-color:var(--accent)">
+        <h3>El esquema de vigilancia que recomienda la MASCC</h3>
+        <p class="statlbl" style="margin-bottom:10px">Medición basal <b>antes</b> de la cirugía; inicio de la vigilancia dentro de los 3 meses postoperatorios; luego cada 3 a 4 meses el primer año y cada 6 a 12 meses después, durante al menos 24 meses.</p>
+        <p class="statlbl">Y, para sistemas con recursos limitados, un criterio explícito de priorización: <b>IMC ≥ 30 kg/m² con disección de 15 o más ganglios, o radioterapia axilar</b>.</p>
+      </div>
+      <div class="sp"></div>
+      <div class="card flat">
+        <h3>Prevención quirúrgica</h3>
+        <p class="statlbl">Reconstrucción linfática inmediata en el momento de la disección axilar: incidencia de linfedema <span class="num">9,5 %</span> frente a <span class="num">32 %</span> (p = 0,014) a 18 meses.</p>
+      </div>
+    </div>
+  </div>
+  <p class="ref"><b>Shah C, Boyages J, et al.</b> <i>Ann Surg Oncol</i>. 2024;31(11):7487-95 · <b>Wong HCY, et al.</b> <i>eClinicalMedicine</i>. 2024;68:102441 · <b>Coriddi M, et al.</b> <i>Ann Surg</i>. 2023;278(4):630-7. PMID 37314177</p>
+ </div>
+</section>
+
+<section class="slide" data-blk="5" data-note="Dos mitos y una dosis. El ejercicio de fuerza no solo no está contraindicado: reduce el linfedema. Y en vendajes ninguna técnica demostró ser superior, lo que libera la decisión hacia tolerancia y costo.">
+ <div class="wrap">
+  <p class="eyebrow">Tratamiento</p>
+  <h2 class="title">Lo que la evidencia sí permite decidir — y lo que deja abierto</h2>
+  <div class="g3">
+    <button class="reveal" aria-expanded="false"><span class="hint">Mito</span><p class="q">«No levante peso con ese brazo»</p><p class="a"><span class="big">Falso, y con dosis conocida</span>30 estudios: el entrenamiento de resistencia <b>reduce</b> el linfedema (DME −0,28; IC 95 % −0,44 a −0,15) y aumenta la fuerza. La alta intensidad (5-8 RM), cuatro veces por semana, 120-180 min semanales, superó a la moderada-baja. Programas de al menos <b>12 semanas</b>.</p></button>
+    <button class="reveal" aria-expanded="false"><span class="hint">Abierto</span><p class="q">¿Qué técnica de vendaje es mejor?</p><p class="a"><span class="big s">Ninguna demostró ser superior</span>21 ECA, 1.122 participantes: sin diferencias entre vendaje multicapa, kinesiotaping, cohesivo o de alginato (DME −0,04; p = 0,750). La decisión puede guiarse por <b>tolerancia, costo y adherencia</b>.</p></button>
+    <button class="reveal" aria-expanded="false"><span class="hint">Matiz</span><p class="q">Compresión neumática intermitente</p><p class="a"><span class="big w">Funciona mientras se aplica</span>Añadida a la terapia descongestiva mejora volumen y movilidad del hombro a corto plazo (≤4 semanas), pero a las ~9 semanas de suspenderla el beneficio adicional <b>deja de ser significativo</b>. Es coadyuvante, no sustituto.</p></button>
+  </div>
+  <div class="sp"></div>
+  <div class="card" style="border-left:3px solid var(--warm)">
+    <h3>El territorio sin respuesta</h3>
+    <p class="statlbl">En cáncer de cabeza y cuello, el drenaje linfático manual con ejercicio y la compresión mejoran el linfedema <b>externo</b>. Ninguna terapia evaluada logró mejoría del linfedema <b>interno</b> (faríngeo o laríngeo), que es el que compromete la deglución y la vía aérea.</p>
+  </div>
+  <p class="ref"><b>Wang L, et al.</b> <i>Support Care Cancer</i>. 2025;33(5):395 · <b>García-Chico C, et al.</b> <i>Breast Cancer</i>. 2025;32(4):654-75 · <b>de-la-Cruz-Fernández L, et al.</b> <i>Support Care Cancer</i>. 2025;33(5):420</p>
+ </div>
+</section>
+
+<section class="slide" data-blk="5" data-case="c2" data-note="Segunda decisión. El giro conceptual del eje paliativo: en cáncer avanzado el edema no siempre es linfático. Razonar por mecanismo antes de aplicar terapia descongestiva.">
+ <div class="wrap">
+  <p class="eyebrow warm">Caso clínico · decisión 2 de 3</p>
+  <h2 class="title">Ocho meses después</h2>
+  <div class="patient">
+    <div class="av">R</div>
+    <p><b>Rosa, 63 años.</b> Progresión hepática y ganglionar retroperitoneal. ECOG 3, la mayor parte del día en cama o silla. Aparece edema <b>bilateral</b> de miembros inferiores en dos semanas, con fóvea, hasta muslos, y aumento del perímetro abdominal. Albúmina 2,4 g/dL. Está recibiendo hidratación endovenosa por vía periférica en su casa.</p>
+  </div>
+  <div class="quiz">
+    <p class="qtext">¿Cuál es la conducta inicial más coherente con la evidencia de 2026 sobre edema en cáncer avanzado?</p>
+    <div class="opts">
+      <button class="opt" data-ok="0"><span class="letter">A</span><span>Iniciar terapia descongestiva compleja bilateral con vendaje multicapa y drenaje linfático manual.</span></button>
+      <button class="opt" data-ok="1"><span class="letter">B</span><span>Identificar primero el mecanismo predominante —sobrehidratación, obstrucción venosa, hipoalbuminemia— y actuar sobre él antes de decidir la compresión.</span></button>
+      <button class="opt" data-ok="0"><span class="letter">C</span><span>Prescribir medias de compresión de 30-40 mmHg y elevación, y revalorar en un mes.</span></button>
+      <button class="opt" data-ok="0"><span class="letter">D</span><span>Aumentar la dosis de diurético de asa hasta lograr balance negativo sostenido.</span></button>
+    </div>
+    <div class="feedback" hidden><b>Respuesta: B.</b> La revisión de alcance más reciente (31 estudios, 2.223 pacientes) muestra que el edema en cáncer avanzado surge de mecanismos <b>diversos y frecuentemente superpuestos</b>, más allá de la disfunción linfática: sobrehidratación iatrogénica, obstrucción maligna de la vena cava inferior, hipoalbuminemia. Las intervenciones dirigidas por mecanismo —ajustar fluidos y medicación, valorar stent, usar diurético con criterio— producen mejorías significativas en la carga sintomática. El edema bilateral de instalación rápida con hipoalbuminemia e hidratación endovenosa en curso no es un linfedema: aplicarle terapia descongestiva sin corregir la causa es doloroso, costoso e inútil. En esta fase, además, el objetivo se desplaza de la reducción volumétrica al <b>confort, la protección cutánea y la carga de cuidado</b>. <span style="display:block;margin-top:10px;font-size:13px;font-family:ui-monospace,Cascadia Mono,Segoe UI Mono,Consolas,Liberation Mono,monospace;color:var(--ink-3)">Tennison JM, Gupta Sharma E, Lee R, Dev R, Farris DP, Bruera E. J Palliat Med. 2026. DOI 10.1177/10966218261440404</span></div>
+  </div>
+ </div>
+</section>
+<!-- ============ EJE 5 ============ -->
+<section class="slide" id="eje5" data-blk="6" data-note="Portada. Este es el eje que define conceptualmente la unidad. Anuncia que aquí está el mejor ensayo del año para nuestra práctica.">
+ <div class="wrap">
+  <div class="cover">
+    <p class="idx">05</p>
+    <p class="eyebrow">Eje 5 de 6</p>
+    <h2 class="title">Rehabilitación funcional en cáncer avanzado</h2>
+    <p class="lead">El eje que define conceptualmente la unidad. La rehabilitación paliativa multidisciplinaria mejora la calidad de vida sin costar más que el cuidado habitual, y un ensayo japonés reciente aporta el dato más relevante de todos: estructurar la rehabilitación preserva las actividades de la vida diaria incluso en la última fase de la enfermedad.</p>
+  </div>
+ </div>
+</section>
+
+<section class="slide" data-blk="6" data-note="Nota el contraste por diagnóstico: en cáncer el efecto es 0,22 y en respiratorio no maligno 0,77. Pregunta al grupo por qué. Respuesta plausible: la trayectoria de la enfermedad y la reversibilidad del desacondicionamiento.">
+ <div class="wrap">
+  <p class="eyebrow">La pregunta de fondo</p>
+  <h2 class="title">¿Sirve la rehabilitación paliativa?</h2>
+  <p class="lead">27 ECA, 3.571 adultos con enfermedad avanzada limitante para la vida. La respuesta es sí, con matices que importan.</p>
+  <div class="sp"></div>
+  <div class="chart" data-chart="qol"></div>
+  <div class="sp"></div>
+  <div class="g3">
+    <div class="card flat"><p class="k">Reingresos</p><p class="stat acc">−1,84</p><p class="statlbl">días de estancia hospitalaria de reingreso, con certeza baja.</p></div>
+    <div class="card flat"><p class="k">Costo</p><p class="stat acc">=</p><p class="statlbl">Sin mayor costo que el cuidado habitual. Es el argumento de gestión.</p></div>
+    <div class="card flat"><p class="k">Lo que hay que explicar</p><p class="stat warmc">0,22</p><p class="statlbl">El efecto en cáncer es menor que en enfermedad respiratoria no maligna (0,77). La trayectoria de la enfermedad condiciona cuánto se puede recuperar.</p></div>
+  </div>
+  <p class="ref"><b>Pryde K, Lakhani A, William L, Dennett A.</b> Palliative rehabilitation and quality of life: systematic review and meta-analysis. <i>BMJ Support Palliat Care</i>. 2026;16(5):1043-53. PMID 39424340</p>
+ </div>
+</section>
+
+<section class="slide" data-blk="6" data-note="El mejor dato de la sesión para la práctica diaria. 19 unidades de hospice japonesas. La diferencia de 14,21 puntos supera la DMCI de 9,25. Lo que cambió no fue la técnica: fue estructurarla.">
+ <div class="wrap">
+  <p class="eyebrow">El ensayo que hay que conocer</p>
+  <h2 class="title">En cáncer terminal, estructurar la rehabilitación cambia la trayectoria funcional</h2>
+  <p class="lead">130 pacientes con cáncer terminal en 19 unidades japonesas de hospice y cuidados paliativos. Tres semanas de programa estructurado frente a la rehabilitación habitual no estructurada.</p>
+  <div class="sp"></div>
+  <div class="chart" data-chart="barthel"></div>
+  <div class="sp"></div>
+  <div class="card" style="border-color:var(--accent);background:var(--accent-soft)">
+    <h3>Por qué esto es distinto de todo lo anterior</h3>
+    <p class="statlbl">No compara rehabilitación contra nada: compara <b>rehabilitación estructurada contra rehabilitación habitual</b>. Y en una población que casi todos los demás ensayos excluyen. Lo que marcó la diferencia no fue una técnica nueva, sino sistematizar las conductas de cuidado ya recomendadas. Sin eventos adversos graves.</p>
+  </div>
+  <p class="ref"><b>Nishiyama N, Matsuda Y, Fujiwara N, et al.</b> Efficacy of a structured rehabilitation program for patients with terminal cancer: A multicenter randomized controlled trial. <i>Cancer</i>. 2026;132(12):e70485. DOI 10.1002/cncr.70485</p>
+ </div>
+</section>
+
+<section class="slide" data-blk="6" data-note="Fatiga y disnea. El matiz crítico está en la última línea: al final de la vida, de todo el arsenal solo quedan TCC y corticoides. Y en disnea, la acupresión desplazó al ventilador al segundo lugar.">
+ <div class="wrap">
+  <p class="eyebrow">Control de síntomas</p>
+  <h2 class="title">Fatiga y disnea: lo que sirve, y lo que cambia al final de la vida</h2>
+  <div class="g2">
+    <div class="card">
+      <p class="k">Fatiga · guía ASCO–SIO 2024 · 113 ECA</p>
+      <h3 style="font-size:19px">Durante y después del tratamiento</h3>
+      <p class="statlbl" style="margin-bottom:12px">Mejoran la fatiga: <b>ejercicio, terapia cognitivo-conductual y mindfulness</b>. Tai Chi y Qigong, durante el tratamiento. Se recomienda <b>no</b> usar L-carnitina, antidepresivos ni agentes promotores de la vigilia, y no recomendar de rutina psicoestimulantes.</p>
+      <div style="border-top:1px solid var(--line);padding-top:12px">
+        <h3 style="font-size:16px;color:var(--warm)">Al final de la vida</h3>
+        <p class="statlbl">De todo ese arsenal, <b>solo la terapia cognitivo-conductual y los corticoides</b> mostraron beneficio. Las recomendaciones cambian con la trayectoria.</p>
+      </div>
+    </div>
+    <div class="card">
+      <p class="k">Disnea · metaanálisis en red 2026 · 46 ECA, 4.138 participantes</p>
+      <h3 style="font-size:19px">Jerarquía de estrategias no farmacológicas</h3>
+      <div class="sp" style="height:8px"></div>
+      <div class="rank"><span class="rk">1</span><div><b>Acupresión</b> — SUCRA 98,7 %; g de Hedges −1,96</div></div>
+      <div class="rank"><span class="rk">2</span><div><b>Ventilador de mano</b> — la opción más accesible y barata que existe</div></div>
+      <div class="rank"><span class="rk">3</span><div><b>Intervenciones multicomponente</b> — primeras en pacientes posquirúrgicos (SUCRA 97,4 %)</div></div>
+      <p class="statlbl" style="margin-top:14px">En cáncer de pulmón avanzado, el ejercicio también reduce la disnea (DME −0,43) y la fatiga (DME −0,33), con I² = 0 %.</p>
+    </div>
+  </div>
+  <p class="ref"><b>Bower JE, et al.</b> <i>J Clin Oncol</i>. 2024;42(20):2456-87 · <b>Hu G, et al.</b> <i>Eur Respir Rev</i>. 2026;35(180):250232 · <b>Hu Y, et al.</b> <i>J Sport Health Sci</i>. 2025;14:101017</p>
+ </div>
+</section>
+
+<section class="slide" data-blk="6" data-quiz="q3" data-note="Quiz 3. La trampa: creer que hay un instrumento estándar. No lo hay, y ese es un vacío metodológico que conecta con el Tema 3 de esta misma unidad.">
+ <div class="wrap">
+  <p class="eyebrow">Comprobación rápida</p>
+  <h2 class="title">Pregunta 3</h2>
+  <div class="quiz">
+    <p class="qtext">Usted quiere medir el resultado funcional de su programa de rehabilitación paliativa. Según la evidencia 2021-2026, ¿cuál es el instrumento de referencia consensuado para función física en cuidados paliativos?</p>
+    <div class="opts">
+      <button class="opt" data-ok="0"><span class="letter">A</span><span>El índice de Barthel modificado, con una diferencia mínima clínicamente importante de 9,25 puntos.</span></button>
+      <button class="opt" data-ok="0"><span class="letter">B</span><span>La escala AKPS, por su correlación demostrada con la carga sintomática.</span></button>
+      <button class="opt" data-ok="0"><span class="letter">C</span><span>La batería corta de rendimiento físico (SPPB), por ser la más objetiva.</span></button>
+      <button class="opt" data-ok="1"><span class="letter">D</span><span>No existe. Los estudios usan escalas heterogéneas y no hay revisión con metodología COSMIN en el periodo.</span></button>
+    </div>
+    <div class="feedback" hidden><b>Respuesta: D.</b> Los estudios que vimos hoy usan Barthel modificado, Goal Attainment Scaling, AKPS, EQ-5D-5L y ESAS, cada uno por razones distintas, y no se localizó ninguna revisión sistemática 2021-2026 con metodología COSMIN sobre propiedades de medida de instrumentos de función física en esta población. Las pruebas de desempeño como el SPPB o el test de marcha de 6 minutos apenas aparecen, por limitaciones de factibilidad en pacientes encamados. <b>La medición de resultados funcionales —el Tema 3 de esta misma unidad— es el cuello de botella metodológico de todo el campo</b>, y por eso es una de las líneas de investigación que les propondré al cierre.</div>
+  </div>
+ </div>
+</section>
+
+<!-- ============ EJE 6 ============ -->
+<section class="slide" id="eje6" data-blk="7" data-note="Portada. Aquí está el hallazgo más importante del periodo completo.">
+ <div class="wrap">
+  <div class="cover">
+    <p class="idx">06</p>
+    <p class="eyebrow">Eje 6 de 6</p>
+    <h2 class="title">Rehabilitación en sobrevivientes de cáncer</h2>
+    <p class="lead">En supervivencia ocurrió el hallazgo más importante del periodo: por primera vez, con nivel I de evidencia, un programa estructurado de ejercicio modificó la supervivencia y no solo la calidad de vida.</p>
+  </div>
+ </div>
+</section>
+
+<section class="slide" data-blk="7" data-note="CHALLENGE. Este es el argumento para institucionalizar la rehabilitación. Mediana de seguimiento 7,9 años. Nombra también el costo: más eventos adversos musculoesqueléticos.">
+ <div class="wrap">
+  <p class="eyebrow">El ensayo del periodo</p>
+  <h2 class="title">El ejercicio dejó de ser cuidado de soporte y pasó a ser tratamiento</h2>
+  <p class="lead">889 pacientes con cáncer de colon que ya habían completado quimioterapia adyuvante. Tres años de programa estructurado con entrenador conductual, frente a material educativo. Mediana de seguimiento: 7,9 años.</p>
+  <div class="sp"></div>
+  <div class="chart" data-chart="challenge"></div>
+  <div class="sp"></div>
+  <div class="g2">
+    <div class="card flat"><h3>Lo que significa</h3><p class="statlbl">Es el argumento más potente disponible para institucionalizar la rehabilitación dentro del proceso oncológico, y no como un servicio accesorio al que se deriva cuando sobra tiempo.</p></div>
+    <div class="card flat" style="border-left:3px solid var(--warm)"><h3>Lo que también hay que decir</h3><p class="statlbl">Los eventos adversos musculoesqueléticos fueron más frecuentes con ejercicio: <b>18,5 % frente a 11,5 %</b>. Ningún tratamiento eficaz es gratuito, y esto también se conversa con el paciente.</p></div>
+  </div>
+  <p class="ref"><b>Courneya KS, Vardy JL, O'Callaghan CJ, et al.; CHALLENGE Investigators.</b> Structured Exercise after Adjuvant Chemotherapy for Colon Cancer. <i>N Engl J Med</i>. 2025;393(1):13-25. PMID 40450658</p>
+ </div>
+</section>
+
+<section class="slide" data-blk="7" data-note="Cochrane sobre retorno al trabajo. El mensaje: lo que mueve la aguja es el componente físico y el abordaje multidisciplinario, no la educación aislada. Y nada mejoró claramente la calidad de vida.">
+ <div class="wrap">
+  <p class="eyebrow">Reintegración</p>
+  <h2 class="title">Volver al trabajo: qué intervención lo logra</h2>
+  <p class="lead">Revisión Cochrane actualizada: 15 ECA, 1.477 personas con cáncer, todos en países de ingresos altos.</p>
+  <div class="sp"></div>
+  <div class="chart" data-chart="rtw"></div>
+  <div class="sp"></div>
+  <div class="card" style="border-left:3px solid var(--accent)">
+    <h3>La lectura</h3>
+    <p class="statlbl">El componente <b>físico</b> y el abordaje <b>multidisciplinario</b> aumentan el retorno al trabajo con certeza moderada. La intervención psicoeducativa aislada no muestra diferencia. Y un matiz que se repite en toda la sesión: <b>ninguna modalidad mejoró claramente la calidad de vida</b>, lo que sugiere que los instrumentos genéricos son poco sensibles a lo que la rehabilitación realmente cambia.</p>
+  </div>
+  <p class="ref"><b>de Boer AGEM, Tamminga SJ, Boschman JS, Hoving JL.</b> Non-medical interventions to enhance return to work for people with cancer. <i>Cochrane Database Syst Rev</i>. 2024;(3):CD007569. PMID 38441440</p>
+ </div>
+</section>
+
+<section class="slide" data-blk="7" data-note="El corpus psicosocial: efectos medios atractivos con riesgo de sesgo alto. 28 de 32 ensayos. Enseña a presentar esos números como estimaciones optimistas.">
+ <div class="wrap">
+  <p class="eyebrow">Rehabilitación psicosocial</p>
+  <h2 class="title">Efectos medios atractivos, con una advertencia grande</h2>
+  <div class="g3">
+    <div class="card"><p class="k">Miedo a la recurrencia · 32 ECA</p><p class="stat acc">g = −0,65</p><p class="statlbl">Terapia cognitivo-conductual, presencial y digital (IC 95 % −0,86 a −0,44). Pero <b>28 de los 32 ensayos tenían alto riesgo de sesgo</b>.</p></div>
+    <div class="card"><p class="k">Bienestar · 2.651 participantes</p><p class="stat acc">DME 0,60</p><p class="statlbl">Mindfulness: bienestar eudaimónico, hedónico y social. El efecto fue equivalente <b>independientemente de la modalidad de entrega</b>.</p></div>
+    <div class="card"><p class="k">Cuidadores · 35 ECA</p><p class="stat acc">3 de 7</p><p class="statlbl">Solo psicoterapia centrada en el significado, psicoeducación y terapia de apoyo mostraron eficacia sobre ansiedad y depresión. El cuidador también es sujeto de rehabilitación.</p></div>
+  </div>
+  <div class="sp"></div>
+  <div class="g2">
+    <button class="reveal" aria-expanded="false"><span class="hint">Revelar</span><p class="q">Deterioro cognitivo relacionado con cáncer: ¿qué ofrecer y cuándo?</p><p class="a"><span class="big">Hay una ventana temporal</span>Afecta al 20-30 % de las sobrevivientes de cáncer de mama y no existe estándar de cuidado. Lo farmacológico <b>no</b> mostró beneficio. La <b>actividad física en los primeros meses</b> mejoró calidad de vida y velocidad de procesamiento; la <b>rehabilitación cognitiva más tardía</b> mejoró memoria y atención. No es qué, sino qué y cuándo.</p></button>
+    <button class="reveal" aria-expanded="false"><span class="hint">Revelar</span><p class="q">Y el ejercicio, ¿siempre mejora la calidad de vida?</p><p class="a"><span class="big s">No necesariamente</span>En 1.322 sobrevivientes de cáncer de cabeza y cuello el ejercicio redujo la fatiga (DME −0,51) y el dolor tras disección cervical, pero <b>no hubo diferencias en calidad de vida en ningún periodo de seguimiento</b>. El beneficio es población-dependiente y no siempre se traduce en el desenlace que medimos.</p></button>
+  </div>
+  <p class="ref"><b>Wei F, et al.</b> <i>BMJ Support Palliat Care</i>. 2025;15(1):1-11 · <b>Telles R, et al.</b> <i>Health Psychol Rev</i>. 2024;18(4):723-49 · <b>Kao C, et al.</b> <i>Support Care Cancer</i>. 2025;33(6):513 · <b>Merceur M, et al.</b> <i>Ann Phys Rehabil Med</i>. 2024;67(5):101832 · <b>Martín Pérez IM, et al.</b> <i>Sci Rep</i>. 2023;13:8523</p>
+ </div>
+</section>
+
+<section class="slide" data-blk="7" data-case="c3" data-note="Tercera decisión. Rosa está en sus últimas semanas. La respuesta correcta es la que muchos consideran 'no rehabilitación': objetivos negociados, mínimos y significativos. Eso es exactamente rehabilitación paliativa.">
+ <div class="wrap">
+  <p class="eyebrow warm">Caso clínico · decisión 3 de 3</p>
+  <h2 class="title">Las últimas semanas</h2>
+  <div class="patient">
+    <div class="av">R</div>
+    <p><b>Rosa, 63 años.</b> ECOG 4. Pronóstico estimado en semanas. Encamada, requiere ayuda para todo salvo alimentarse. Dolor controlado. Su hija pregunta si «todavía tiene sentido la terapia». Rosa dice que lo que más le pesa es tener que pedir ayuda para ir al baño.</p>
+  </div>
+  <div class="quiz">
+    <p class="qtext">¿Qué hace el equipo de rehabilitación?</p>
+    <div class="opts">
+      <button class="opt" data-ok="0"><span class="letter">A</span><span>Suspende la intervención: con ECOG 4 y pronóstico de semanas no hay potencial rehabilitador.</span></button>
+      <button class="opt" data-ok="0"><span class="letter">B</span><span>Mantiene el programa de fuerza y equilibrio con menor intensidad, para enlentecer el deterioro.</span></button>
+      <button class="opt" data-ok="1"><span class="letter">C</span><span>Acuerda con Rosa dos o tres objetivos funcionales concretos y significativos —la transferencia al baño entre ellos— y estructura las conductas de cuidado alrededor de ellos.</span></button>
+      <button class="opt" data-ok="0"><span class="letter">D</span><span>Deriva únicamente a terapia ocupacional para prescripción de ayudas técnicas y adaptación del entorno.</span></button>
+    </div>
+    <div class="feedback" hidden><b>Respuesta: C.</b> Esto es, con precisión, rehabilitación paliativa: confort y mejoría funcional en un paciente con potencial rehabilitador limitado. Dos datos lo respaldan. El ensayo japonés muestra que un programa <b>estructurado</b> de tres semanas en cáncer terminal preservó el Barthel (−1,31 frente a −15,51), con una diferencia que supera la diferencia mínima clínicamente importante. Y la cohorte de 364 pacientes en 10 hospices británicos muestra cómo se hace: una mediana de <b>dos objetivos por paciente</b> a 28 días, con Goal Attainment Scaling; se alcanzó el 50,5 % de los objetivos y la puntuación T mejoró 8,9 puntos. Un dato para la discusión: recibir <b>ejercicio genérico</b> redujo la probabilidad de logro, y recibir múltiples intervenciones dirigidas la aumentó. La opción A es el nihilismo que la evidencia desmiente; la B es precisamente el ejercicio genérico que no funciona; la D es parte de C, no su alternativa. <span style="display:block;margin-top:10px;font-size:13px;font-family:ui-monospace,Cascadia Mono,Segoe UI Mono,Consolas,Liberation Mono,monospace;color:var(--ink-3)">Maddocks M, Fettes L, Takemura N, et al. BMC Palliat Care. 2025;24(1):172</span></div>
+  </div>
+ </div>
+</section>
+<!-- ============ CIERRE ============ -->
+<section class="slide" id="cierre" data-blk="8" data-note="Los ocho mensajes. Despliega uno a uno o pide a los estudiantes que elijan cuál les parece más discutible. Este acordeón es el resumen que se llevan.">
+ <div class="wrap">
+  <p class="eyebrow">Síntesis</p>
+  <h2 class="title">Ocho mensajes de la sesión</h2>
+  <p class="lead">Haz clic en cada uno para desplegarlo.</p>
+  <div class="sp"></div>
+  <div class="fold" aria-expanded="false"><button><span class="n">01</span><p class="h">El ejercicio pasó de ser cuidado de soporte a ser tratamiento.</p></button><p class="body">El ensayo CHALLENGE aporta la primera evidencia de nivel I de que un programa estructurado de ejercicio mejora la supervivencia libre de enfermedad y la supervivencia global en cáncer de colon. Es el argumento más potente disponible para institucionalizar la rehabilitación dentro del proceso oncológico.</p></div>
+  <div class="fold" aria-expanded="false"><button><span class="n">02</span><p class="h">La seguridad está demostrada; la eficacia funcional, no siempre.</p></button><p class="body">En cáncer avanzado y en metástasis óseas la evidencia de seguridad es consistente y abarca miles de pacientes. La evidencia de eficacia sobre calidad de vida y función es heterogénea y varía entre metaanálisis del mismo campo. Enseñar esa diferencia evita tanto el nihilismo terapéutico como la promesa excesiva.</p></div>
+  <div class="fold" aria-expanded="false"><button><span class="n">03</span><p class="h">El efecto se atenúa a medida que avanza la enfermedad.</p></button><p class="body">El caso más nítido es el dolor: DME 0,38 en cáncer en general y −0,06 al restringir a enfermedad metastásica. La extrapolación desde poblaciones ambulatorias a pacientes con ECOG 3-4 no está justificada por la evidencia.</p></div>
+  <div class="fold" aria-expanded="false"><button><span class="n">04</span><p class="h">Estructurar la intervención importa más que la tecnología con que se entrega.</p></button><p class="body">Dos ensayos independientes lo muestran. En cáncer terminal, un programa estructurado de tres semanas preservó el índice de Barthel frente a la rehabilitación habitual. Y en disfagia profiláctica, el modo de entrega —papel, aplicación digital o logopeda— no cambió los resultados, pero la adherencia igual o superior al 75 % sí.</p></div>
+  <div class="fold" aria-expanded="false"><button><span class="n">05</span><p class="h">El riesgo esquelético se estratifica, no se evita.</p></button><p class="body">El consenso internacional sobre metástasis óseas, la escala de Mirels actualizada y el índice SINS conforman hoy un marco operativo que sustituye la contraindicación histórica del ejercicio por una decisión individualizada.</p></div>
+  <div class="fold" aria-expanded="false"><button><span class="n">06</span><p class="h">La prevención tiene mejor evidencia que el tratamiento en varios ejes.</p></button><p class="body">Entrenamiento sensoriomotor para prevenir la neuropatía por quimioterapia; vigilancia prospectiva y reconstrucción linfática inmediata para prevenir el linfedema; ejercicio aeróbico para prevenir el empeoramiento de las artralgias por inhibidores de aromatasa. El desplazamiento del foco hacia la prevención es la tendencia transversal del periodo.</p></div>
+  <div class="fold" aria-expanded="false"><button><span class="n">07</span><p class="h">Lo psicosocial tiene tamaños de efecto atractivos y riesgo de sesgo alto.</p></button><p class="body">Terapia cognitivo-conductual para miedo a la recurrencia (g = −0,65) y mindfulness para bienestar (DME = 0,60) muestran efectos medios, pero con la mayoría de los ensayos en alto riesgo de sesgo. Son estimaciones optimistas y conviene presentarlas como tales.</p></div>
+  <div class="fold" aria-expanded="false"><button><span class="n">08</span><p class="h">Medimos mal lo que más importa.</p></button><p class="body">El dolor rara vez es desenlace primario en la investigación en rehabilitación oncológica; no existe instrumento de medición funcional consensuado en cuidados paliativos; y los instrumentos genéricos de calidad de vida son poco sensibles a los objetivos de la rehabilitación. La medición de resultados funcionales, Tema 3 de esta misma unidad, es el cuello de botella metodológico de todo el campo.</p></div>
+ </div>
+</section>
+
+<section class="slide" data-blk="8" data-note="Mapa de vacíos. Esta diapositiva es la bisagra hacia la investigación: lo que no sabemos es la agenda de trabajo de ellos.">
+ <div class="wrap">
+  <p class="eyebrow warm">Lo que no sabemos</p>
+  <h2 class="title">Mapa de vacíos por eje</h2>
+  <div class="tw">
+    <table>
+      <tr><th style="width:22%">Eje</th><th style="width:44%">El vacío</th><th style="width:34%">Por qué importa aquí</th></tr>
+      <tr><td><b>Dolor</b></td><td>Agentes físicos de uso diario —termoterapia, crioterapia, ultrasonido, ondas de choque, punción seca— sin revisiones sistemáticas 2021-2026.</td><td>Es lo que más se hace en fisioterapia paliativa y lo que menos respaldo tiene.</td></tr>
+      <tr><td><b>Neuromuscular</b></td><td>Ningún ECA de rehabilitación en compresión medular metastásica ni en plexopatía por radiación. Espasticidad y síndromes paraneoplásicos, sin literatura verificable.</td><td>Son cuadros frecuentes en la consulta y se manejan por analogía con otras patologías.</td></tr>
+      <tr><td><b>Musculoesquelético</b></td><td>Caquexia sin intervención multimodal eficaz demostrada en fase avanzada. Fragilidad con certeza baja y heterogeneidad alta.</td><td>Casi toda la evidencia sólida viene de un único ensayo en cáncer de mama metastásico.</td></tr>
+      <tr><td><b>Linfedema</b></td><td>Edema maligno y de final de vida sin evidencia experimental. Ninguna revisión que integre edema periférico con ascitis maligna o anasarca.</td><td>Es el escenario paliativo por excelencia y el peor documentado.</td></tr>
+      <tr><td><b>Funcional</b></td><td>Sin instrumento de medición funcional consensuado. Terapia ocupacional, ayudas técnicas y adaptación del entorno sin ECA recientes.</td><td>No podemos demostrar lo que no sabemos medir.</td></tr>
+      <tr><td><b>Sobrevivientes</b></td><td>El modelo de vigilancia prospectiva evalúa factibilidad y aceptabilidad, no reducción de discapacidad. La implementación es el cuello de botella.</td><td>Lo que falta no es la idea, es cómo desplegarla en un sistema real.</td></tr>
+    </table>
+  </div>
+  <div class="sp"></div>
+  <p class="lead">Y un vacío transversal: <b>no se identificó ningún ensayo aleatorizado latinoamericano de rehabilitación paliativa</b> dentro del periodo. La única referencia iberoamericana sólida es una revisión sistemática colombiana de 2021 que ya concluye que la evidencia es escasa y de baja calidad.</p>
+ </div>
+</section>
+
+<section class="slide" data-blk="8" data-note="Cierre propositivo. Invítalos a elegir una de las seis preguntas como semilla de su trabajo de grado. Es una invitación real: ninguna está respondida.">
+ <div class="wrap">
+  <p class="eyebrow">Para ustedes</p>
+  <h2 class="title">Seis preguntas que nadie está respondiendo</h2>
+  <p class="lead">Cada vacío del mapa anterior es una pregunta de investigación viable desde aquí. Estas seis, en particular, están al alcance de un trabajo de maestría.</p>
+  <div class="sp"></div>
+  <div class="g2">
+    <div class="card"><p class="k">01 · Efectividad</p><p class="statlbl">¿Qué efecto tiene un programa estructurado de rehabilitación paliativa sobre la funcionalidad y la carga sintomática en pacientes con <b>ECOG 3-4</b> atendidos en unidades colombianas?</p></div>
+    <div class="card"><p class="k">02 · Medición</p><p class="statlbl">¿Cuál es la validez y la sensibilidad al cambio de Barthel, AKPS, PPS y SPPB en cáncer avanzado en nuestro medio? No hay ninguna revisión <b>COSMIN</b> en el periodo.</p></div>
+    <div class="card"><p class="k">03 · Implementación</p><p class="statlbl">¿Es factible y costo-efectivo un modelo de <b>vigilancia prospectiva del linfedema</b> con recursos limitados? La guía MASCC ofrece el criterio de priorización; nadie lo ha evaluado en la región.</p></div>
+    <div class="card"><p class="k">04 · Acceso</p><p class="statlbl">¿Qué modelos de <b>telerrehabilitación</b> son viables en contextos rurales y de baja conectividad, donde la adherencia remota documentada (≈80 %) proviene de poblaciones urbanas de países de ingresos altos?</p></div>
+    <div class="card"><p class="k">05 · Agentes físicos</p><p class="statlbl">¿Cuál es el efecto de <b>termoterapia, crioterapia, TENS y terapias manuales</b> sobre el dolor oncológico? El vacío más llamativo de toda la unidad, dado su nivel de uso.</p></div>
+    <div class="card"><p class="k">06 · Final de la vida</p><p class="statlbl">¿Cómo se comporta el <b>edema maligno de final de vida</b> bajo distintos esquemas de compresión adaptada? Toda la evidencia disponible son series y reportes de casos.</p></div>
+  </div>
+ </div>
+</section>
+
+<section class="slide" data-blk="8" data-note="Cierre. Entrega la matriz completa y recuérdales el criterio de verificación: si no pudimos confirmar un identificador, lo dejamos en blanco en lugar de inventarlo.">
+ <div class="wrap">
+  <p class="eyebrow">Cierre</p>
+  <h2 class="title">Lo que se llevan de hoy</h2>
+  <div class="g2">
+    <div>
+      <p class="lead">Tres hábitos de lectura, más que un listado de intervenciones:</p>
+      <div class="fold" aria-expanded="true" style="margin-top:14px"><button><span class="n">·</span><p class="h">Preguntar siempre en quién se midió</p></button><p class="body">Antes que el tamaño del efecto, la población. Si el estudio excluyó ECOG 3-4, sus resultados no llegan hasta la cama de su paciente.</p></div>
+      <div class="fold" aria-expanded="true"><button><span class="n">·</span><p class="h">Separar seguridad, factibilidad y eficacia</p></button><p class="body">Son tres preguntas distintas con tres respuestas distintas, y muchos programas se justifican con una respondiendo a otra.</p></div>
+      <div class="fold" aria-expanded="true"><button><span class="n">·</span><p class="h">Mirar la certeza, no solo la significación</p></button><p class="body">Un resultado positivo con GRADE muy baja y 28 de 32 ensayos en alto riesgo de sesgo es una hipótesis prometedora, no una recomendación.</p></div>
+    </div>
+    <div class="card" style="border-color:var(--accent);background:var(--accent-soft)">
+      <h3 style="font-size:19px">La matriz completa</h3>
+      <p class="statlbl" style="margin-bottom:12px">Las 76 referencias de hoy, con autores, diseño, población, intervención, hallazgos con estimadores, utilidad docente y DOI, están en el documento <b>Unidad2_Tema1_Rehabilitacion_paliativa_cancer_evidencia_2021-2026.docx</b>, en la carpeta de referencias del curso.</p>
+      <p class="statlbl">Cada referencia fue verificada contra su fuente primaria. Donde un identificador no pudo confirmarse, aparece un guion en lugar del dato. En un curso de investigación, la trazabilidad de la cita es parte de lo que se enseña.</p>
+    </div>
+  </div>
+  <p class="hintline"><span>Universidad Antonio Nariño · Maestría en Cuidados Paliativos</span><span>Investigación en Cuidados Paliativos y Rehabilitación (37543013)</span><span>Unidad 2 · Tema 1</span></p>
+ </div>
+</section>
+
+</div><!-- /stage -->
+
+<div class="botbar">
+  <div class="rail" id="rail"></div>
+  <div class="counter" id="counter">1 / 1</div>
+  <div class="nav">
+    <button class="iconbtn" id="btnPrev" aria-label="Diapositiva anterior">←</button>
+    <button class="iconbtn" id="btnNext" aria-label="Diapositiva siguiente">→</button>
+  </div>
+</div>
+</div><!-- /deck -->
+
+<div class="ov" id="mapOv" hidden role="dialog" aria-label="Mapa de la sesión">
+  <div class="wrap">
+    <div style="display:flex;align-items:center;gap:14px">
+      <div><p class="eyebrow" style="margin-bottom:6px">Mapa de la sesión</p><h2 class="title" style="font-size:clamp(24px,3vw,34px);margin:0">Ir a cualquier diapositiva</h2></div>
+      <div style="flex:1"></div>
+      <button class="iconbtn" id="btnMapClose">Cerrar</button>
+    </div>
+    <div class="maplist" id="maplist"></div>
+  </div>
+</div>
+
+<div class="notes" id="notesPanel" hidden>
+  <p class="k">Guía docente</p>
+  <p id="noteText">—</p>
+</div>
+<script>
+(function(){
+"use strict";
+var stage=document.getElementById('stage');
+var slides=Array.prototype.slice.call(stage.querySelectorAll('.slide'));
+var cur=0;
+var BLOCKS=[
+  {id:0,label:'Apertura'},{id:1,label:'Leer evidencia'},{id:2,label:'Dolor'},
+  {id:3,label:'Neuromuscular'},{id:4,label:'Óseo'},{id:5,label:'Linfedema'},
+  {id:6,label:'Funcional'},{id:7,label:'Sobrevivientes'},{id:8,label:'Cierre'}
+];
+
+/* ---------- storage (best effort) ---------- */
+function save(k,v){try{localStorage.setItem('rpc_'+k,v);}catch(e){}}
+function load(k){try{return localStorage.getItem('rpc_'+k);}catch(e){return null;}}
+
+/* ---------- theme ---------- */
+var btnTheme=document.getElementById('btnTheme');
+var stored=load('theme');
+if(stored==='dark'||stored==='light'){document.documentElement.setAttribute('data-theme',stored);}
+btnTheme.addEventListener('click',function(){
+  var root=document.documentElement, now=root.getAttribute('data-theme');
+  var isDark = now ? now==='dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+  var next = isDark ? 'light' : 'dark';
+  root.setAttribute('data-theme',next); save('theme',next);
+  setTimeout(function(){ drawChartsIn(slides[cur]); },30);
+});
+
+/* ---------- rail ---------- */
+var rail=document.getElementById('rail');
+var blkFirst={};
+slides.forEach(function(s,i){var b=s.getAttribute('data-blk'); if(blkFirst[b]===undefined) blkFirst[b]=i;});
+BLOCKS.forEach(function(b){
+  var btn=document.createElement('button');
+  btn.className='seg'; btn.type='button';
+  btn.innerHTML='<span class="bar"><i></i></span><span class="lb">'+b.label+'</span>';
+  btn.setAttribute('aria-label','Ir a '+b.label);
+  btn.addEventListener('click',function(){ if(blkFirst[b.id]!==undefined) go(blkFirst[b.id]); });
+  rail.appendChild(btn);
+});
+var segs=Array.prototype.slice.call(rail.children);
+
+/* ---------- map ---------- */
+var maplist=document.getElementById('maplist');
+slides.forEach(function(s,i){
+  var t=s.querySelector('.title');
+  var txt=t?t.textContent.trim():'Diapositiva '+(i+1);
+  if(txt.length>78) txt=txt.slice(0,76)+'…';
+  var b=document.createElement('button');
+  b.className='mapitem'; b.type='button';
+  b.innerHTML='<span class="no">'+String(i+1).padStart(2,'0')+'</span><span>'+txt+'</span>';
+  b.addEventListener('click',function(){ go(i); closeMap(); });
+  maplist.appendChild(b);
+});
+var mapItems=Array.prototype.slice.call(maplist.children);
+var mapOv=document.getElementById('mapOv');
+function openMap(){ mapOv.hidden=false; syncMap(); }
+function closeMap(){ mapOv.hidden=true; }
+document.getElementById('btnMap').addEventListener('click',function(){ mapOv.hidden?openMap():closeMap(); });
+document.getElementById('btnMapClose').addEventListener('click',closeMap);
+function syncMap(){ mapItems.forEach(function(el,i){ el.setAttribute('data-cur', i===cur?'1':'0'); }); }
+
+/* ---------- notes ---------- */
+var notesOn=false;
+var notesPanel=document.getElementById('notesPanel');
+var noteText=document.getElementById('noteText');
+var btnNotes=document.getElementById('btnNotes');
+btnNotes.addEventListener('click',function(){
+  notesOn=!notesOn; btnNotes.setAttribute('aria-pressed',notesOn?'true':'false');
+  notesPanel.hidden=!notesOn; syncNote();
+});
+function syncNote(){
+  if(!notesOn) return;
+  var n=slides[cur].getAttribute('data-note');
+  noteText.textContent = n || 'Sin nota para esta diapositiva.';
+}
+
+/* ---------- navigation ---------- */
+var counter=document.getElementById('counter');
+function go(i){
+  i=Math.max(0,Math.min(slides.length-1,i));
+  if(slides[cur]) slides[cur].classList.remove('on');
+  cur=i;
+  slides[cur].classList.add('on');
+  stage.scrollTop=0;
+  counter.textContent=(cur+1)+' / '+slides.length;
+  var b=slides[cur].getAttribute('data-blk');
+  segs.forEach(function(sg,k){
+    var ids=slides.map(function(s){return s.getAttribute('data-blk');});
+    var total=ids.filter(function(x){return x===String(BLOCKS[k].id);}).length;
+    var done=ids.filter(function(x,idx){return x===String(BLOCKS[k].id)&&idx<=cur;}).length;
+    var pct= total? Math.min(100,Math.round(done/total*100)) : 0;
+    sg.querySelector('i').style.width=pct+'%';
+    sg.setAttribute('data-cur', String(BLOCKS[k].id)===b ? '1':'0');
+  });
+  syncNote(); syncMap(); save('slide',String(cur));
+  drawChartsIn(slides[cur]);
+}
+document.getElementById('btnNext').addEventListener('click',function(){go(cur+1);});
+document.getElementById('btnPrev').addEventListener('click',function(){go(cur-1);});
+document.addEventListener('keydown',function(e){
+  if(e.target && /INPUT|TEXTAREA/.test(e.target.tagName)) return;
+  var k=e.key;
+  if(k==='ArrowRight'||k==='PageDown'){ e.preventDefault(); go(cur+1); }
+  else if(k==='ArrowLeft'||k==='PageUp'){ e.preventDefault(); go(cur-1); }
+  else if(k===' '){ if(e.target===document.body){ e.preventDefault(); go(cur+1);} }
+  else if(k==='Home'){ e.preventDefault(); go(0); }
+  else if(k==='End'){ e.preventDefault(); go(slides.length-1); }
+  else if(k==='m'||k==='M'){ mapOv.hidden?openMap():closeMap(); }
+  else if(k==='n'||k==='N'){ btnNotes.click(); }
+  else if(k==='Escape'){ if(!mapOv.hidden) closeMap(); }
+});
+
+/* ---------- reveal ---------- */
+document.addEventListener('click',function(e){
+  var r=e.target.closest ? e.target.closest('.reveal') : null;
+  if(r){ r.setAttribute('aria-expanded', r.getAttribute('aria-expanded')==='true'?'false':'true'); return; }
+  var ab=e.target.closest ? e.target.closest('.fold > button') : null;
+  if(ab){ var a=ab.parentNode; a.setAttribute('aria-expanded', a.getAttribute('aria-expanded')==='true'?'false':'true'); return; }
+  var j=e.target.closest ? e.target.closest('.jump') : null;
+  if(j){ var el=document.getElementById(j.getAttribute('data-to')); if(el){ go(slides.indexOf(el)); } return; }
+});
+
+/* ---------- quiz / decisiones ---------- */
+Array.prototype.slice.call(document.querySelectorAll('.quiz')).forEach(function(q){
+  var opts=Array.prototype.slice.call(q.querySelectorAll('.opt'));
+  var fb=q.querySelector('.feedback');
+  opts.forEach(function(o){
+    o.addEventListener('click',function(){
+      if(o.classList.contains('done')) return;
+      var ok=o.getAttribute('data-ok')==='1';
+      o.classList.add(ok?'ok':'no');
+      opts.forEach(function(x){
+        x.classList.add('done');
+        if(x.getAttribute('data-ok')==='1'){ x.classList.add('ok'); }
+        else if(x!==o){ x.classList.add('dim'); }
+      });
+      if(fb) fb.hidden=false;
+    });
+  });
+});
+
+/* ---------- Mirels ---------- */
+(function(){
+  var box=document.getElementById('mirels'); if(!box) return;
+  var vals={};
+  Array.prototype.slice.call(box.querySelectorAll('.mopts')).forEach(function(grp){
+    var name=grp.getAttribute('data-var');
+    Array.prototype.slice.call(grp.querySelectorAll('.mopt')).forEach(function(b){
+      b.type='button';
+      b.addEventListener('click',function(){
+        Array.prototype.slice.call(grp.querySelectorAll('.mopt')).forEach(function(x){x.classList.remove('sel');});
+        b.classList.add('sel'); vals[name]=parseInt(b.getAttribute('data-v'),10); update();
+      });
+    });
+  });
+  var sc=document.getElementById('mscore'), tx=document.getElementById('mtext');
+  function update(){
+    var keys=['sitio','dolor','tipo','tam'], sum=0, n=0;
+    keys.forEach(function(k){ if(vals[k]){ sum+=vals[k]; n++; } });
+    if(n<4){ sc.textContent='—'; sc.className='stat'; tx.innerHTML='Faltan '+(4-n)+' de 4 variables.'; return; }
+    sc.textContent=sum;
+    sc.className='stat '+(sum<=7?'lo':(sum===8?'mid':'hi'));
+    if(sum<=7){ tx.innerHTML='<b>Riesgo bajo de fractura (≈4 %).</b> Puede manejarse con radioterapia y carga según tolerancia. Es seguro prescribir ejercicio con las precauciones del consenso: alineación, movimiento controlado y técnica.'; }
+    else if(sum===8){ tx.innerHTML='<b>Zona gris (≈15 %).</b> Decisión individualizada junto con ortopedia oncológica. Considerar imagen adicional —rigidez estructural por tomografía— antes de definir la carga. No inicie fortalecimiento en carga sin esa conversación.'; }
+    else { tx.innerHTML='<b>Riesgo alto (≥33 %). Fijación profiláctica antes de la radioterapia.</b> La rehabilitación en carga sobre ese segmento se difiere hasta después de la estabilización quirúrgica; mientras tanto, trabaje segmentos no comprometidos, transferencias seguras y ayudas para la marcha.'; }
+  }
+})();
+
+/* ================= CHARTS ================= */
+var SVGNS='http://www.w3.org/2000/svg';
+function E(tag,attrs,text){
+  var n=document.createElementNS(SVGNS,tag);
+  for(var k in attrs){ if(attrs[k]!==null&&attrs[k]!==undefined) n.setAttribute(k,attrs[k]); }
+  if(text!==undefined&&text!==null) n.textContent=text;
+  return n;
+}
+var C={
+  acc:'var(--accent)', sl:'var(--slate)', warm:'var(--warm)',
+  ink:'var(--ink)', ink2:'var(--ink-2)', ink3:'var(--ink-3)',
+  line:'var(--line)', line2:'var(--line-2)', soft:'var(--accent-soft)'
+};
+function fmt(v,d){ d=(d===undefined)?2:d; return v.toFixed(d).replace('.',','); }
+
+var SPECS={
+  demo:{
+    type:'forest', nullAt:0, dec:2, axis:'DME (diferencia de medias estandarizada)',
+    caption:'Ejemplo didáctico. La línea vertical marca el cero: cuando el intervalo de confianza del 95 % la cruza, el estudio no permite afirmar que exista efecto.',
+    rows:[
+      {l:'Efecto moderado y significativo', e:0.52, lo:0.28, hi:0.76},
+      {l:'Efecto pequeño y significativo', e:0.22, lo:0.03, hi:0.41},
+      {l:'No concluyente: el intervalo cruza el cero', e:0.10, lo:-0.22, hi:0.42}
+    ]
+  },
+  dolor:{
+    type:'forest', nullAt:0, dec:2, axis:'DME · a la derecha, a favor de la rehabilitación',
+    caption:'Signos homogeneizados para que un valor positivo siempre indique beneficio. Austin 2024 (23 ECA, n = 1.954) · Sprengers 2025 (13 ECA, n = 992) · Huang 2024 (15 ECA, n = 1.124).',
+    rows:[
+      {l:'Ejercicio sobre dolor · cáncer en general', s:'Austin 2024', e:0.38, lo:0.17, hi:0.58},
+      {l:'Ejercicio sobre dolor · cáncer metastásico', s:'Sprengers 2025', e:-0.06, lo:-0.32, hi:0.19},
+      {l:'Ejercicio sobre dolor neuropático por quimioterapia', s:'Huang 2024', e:0.40, lo:0.18, hi:0.62}
+    ]
+  },
+  qol:{
+    type:'forest', nullAt:0, dec:2, axis:'DME sobre calidad de vida',
+    caption:'Pryde K, et al. BMJ Support Palliat Care. 2026;16(5):1043-53. 27 ECA, 3.571 adultos con enfermedad avanzada limitante para la vida.',
+    rows:[
+      {l:'Rehabilitación paliativa · global', s:'27 ECA', e:0.40, lo:0.23, hi:0.56},
+      {l:'Subgrupo cáncer', s:'', e:0.22, lo:0.03, hi:0.41},
+      {l:'Subgrupo enfermedad respiratoria no maligna', s:'', e:0.77, lo:0.29, hi:1.24}
+    ]
+  },
+  rtw:{
+    type:'forest', nullAt:1, dec:2, axis:'Riesgo relativo de retorno al trabajo',
+    caption:'de Boer AGEM, et al. Cochrane Database Syst Rev. 2024;(3):CD007569. La línea vertical marca el 1: a su derecha, más retorno al trabajo que con cuidado habitual.',
+    rows:[
+      {l:'Intervención física (caminata, yoga, ejercicio)', s:'4 ECA, n = 434 · certeza moderada', e:1.23, lo:1.08, hi:1.39},
+      {l:'Intervención multidisciplinaria', s:'6 ECA, n = 497 · certeza moderada', e:1.23, lo:1.09, hi:1.33},
+      {l:'Intervención psicoeducativa aislada', s:'certeza moderada', e:1.09, lo:0.96, hi:1.24}
+    ]
+  },
+  npiq:{
+    type:'bars', unit:' %', max:80, axis:'Incidencia de neuropatía periférica inducida por quimioterapia',
+    caption:'Streckmann F, et al. JAMA Intern Med. 2024;184(9):1046-53. n = 158, cuatro centros. p = 0,002 entre grupos. Menos es mejor.',
+    rows:[
+      {l:'Entrenamiento sensoriomotor', v:30.0, c:C.acc},
+      {l:'Vibración de cuerpo entero', v:41.2, c:C.acc},
+      {l:'Tratamiento habitual', v:70.6, c:C.sl}
+    ]
+  },
+  barthel:{
+    type:'zero', unit:' pts', axis:'Cambio en el índice de Barthel modificado a tres semanas',
+    marker:{at:-9.25, label:'Diferencia mínima clínicamente importante: 9,25 puntos', c:'var(--ink-3)'},
+    caption:'Nishiyama N, et al. Cancer. 2026;132(12):e70485. n = 130 en 19 unidades de hospice. La diferencia entre grupos, 14,21 puntos, supera la DMCI.',
+    rows:[
+      {l:'Rehabilitación estructurada', v:-1.31, c:C.acc},
+      {l:'Rehabilitación habitual', v:-15.51, c:C.warm}
+    ]
+  },
+  challenge:{
+    type:'group', unit:' %', min:60, max:100, axis:'Supervivencia (%)',
+    caption:'Courneya KS, et al. N Engl J Med. 2025;393(1):13-25. n = 889, eje vertical truncado en 60 % para hacer visible la diferencia. Mediana de seguimiento 7,9 años. SLE: HR 0,72 (IC 95 % 0,55–0,94). SG: HR 0,63 (IC 95 % 0,43–0,94).',
+    series:[{n:'Ejercicio estructurado',c:C.acc},{n:'Control (material educativo)',c:C.sl}],
+    groups:[
+      {l:'Supervivencia libre de enfermedad a 5 años', v:[80.3,73.9]},
+      {l:'Supervivencia global a 8 años', v:[90.3,83.2]}
+    ]
+  }
+};
+
+function drawChart(box){
+  var key=box.getAttribute('data-chart'); var sp=SPECS[key]; if(!sp) return;
+  var W=Math.max(320,Math.min(940,box.clientWidth||box.getBoundingClientRect().width||760));
+  var narrow=W<620;
+  box.innerHTML='';
+  var svg=E('svg',{viewBox:'0 0 '+W+' 10',width:'100%',role:'img'});
+  var H=0;
+  var fs=narrow?13:14, fsl=narrow?13.5:15;
+
+  function axisLabel(y,txt){
+    svg.appendChild(E('text',{x:0,y:y,'font-size':11.5,'letter-spacing':'0.08em',style:'fill:'+C.ink3+';font-family:ui-monospace,Cascadia Mono,Segoe UI Mono,Consolas,Liberation Mono,monospace'},txt.toUpperCase()));
+  }
+
+  if(sp.type==='forest'){
+    var lw = narrow? W : Math.min(330,W*0.4);
+    var px0 = narrow? 0 : lw+16, px1 = W-6;
+    var lo=Math.min.apply(null,sp.rows.map(function(r){return r.lo;}));
+    var hi=Math.max.apply(null,sp.rows.map(function(r){return r.hi;}));
+    lo=Math.min(lo,sp.nullAt); hi=Math.max(hi,sp.nullAt);
+    var pad=(hi-lo)*0.12||0.1; lo-=pad; hi+=pad;
+    var x=function(v){ return px0+(v-lo)/(hi-lo)*(px1-px0); };
+    var rowH = narrow? (sp.rows[0].s!==undefined?74:62) : 52;
+    var top=22;
+    axisLabel(11,sp.axis);
+    sp.rows.forEach(function(r,i){
+      var yTop=top+i*rowH;
+      var yLine = narrow? yTop+ (r.s? 44:34) : yTop+20;
+      svg.appendChild(E('text',{x:0,y:yTop+13,'font-size':fsl,style:'fill:'+C.ink+';font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;font-weight:600'},r.l));
+      var sub=(r.s?r.s+'  ':'')+fmt(r.e,sp.dec)+'  ['+fmt(r.lo,sp.dec)+', '+fmt(r.hi,sp.dec)+']';
+      svg.appendChild(E('text',{x:0,y:yTop+ (narrow?31:34),'font-size':12.5,style:'fill:'+C.ink3+';font-family:ui-monospace,Cascadia Mono,Segoe UI Mono,Consolas,Liberation Mono,monospace'},sub));
+      var crosses = (r.lo<=sp.nullAt && r.hi>=sp.nullAt);
+      var col = crosses? C.sl : C.acc;
+      svg.appendChild(E('line',{x1:x(r.lo),x2:x(r.hi),y1:yLine,y2:yLine,style:'stroke:'+col+';stroke-width:2.5;stroke-linecap:round'}));
+      [r.lo,r.hi].forEach(function(v){ svg.appendChild(E('line',{x1:x(v),x2:x(v),y1:yLine-6,y2:yLine+6,style:'stroke:'+col+';stroke-width:2.5;stroke-linecap:round'})); });
+      svg.appendChild(E('rect',{x:x(r.e)-6,y:yLine-6,width:12,height:12,rx:2.5,transform:'rotate(45 '+x(r.e)+' '+yLine+')',style:'fill:'+col}));
+      H=yLine+ (narrow?22:26);
+    });
+    svg.insertBefore(E('line',{x1:x(sp.nullAt),x2:x(sp.nullAt),y1:top+6,y2:H-6,style:'stroke:'+C.line2+';stroke-width:1.5;stroke-dasharray:5 5'}),svg.firstChild);
+    svg.appendChild(E('line',{x1:px0,x2:px1,y1:H,y2:H,style:'stroke:'+C.line+';stroke-width:1'}));
+    var ticks=[sp.nullAt];
+    var step=(hi-lo)>2?0.5:((hi-lo)>1?0.25:0.2);
+    var tdec = (step===0.25)?2:(step<1?1:0);
+    for(var t=Math.ceil(lo/step)*step;t<=hi;t+=step){ if(Math.abs(t-sp.nullAt)>1e-9) ticks.push(Math.round(t*1000)/1000); }
+    ticks.forEach(function(t){
+      svg.appendChild(E('line',{x1:x(t),x2:x(t),y1:H,y2:H+5,style:'stroke:'+C.line+';stroke-width:1'}));
+      svg.appendChild(E('text',{x:x(t),y:H+19,'text-anchor':'middle','font-size':12,style:'fill:'+C.ink3+';font-family:ui-monospace,Cascadia Mono,Segoe UI Mono,Consolas,Liberation Mono,monospace'},fmt(t,tdec)));
+    });
+    H+=30;
+  }
+
+  else if(sp.type==='bars'){
+    var lw2 = narrow? W : Math.min(300,W*0.36);
+    var bx0 = narrow? 0 : lw2+16, bx1 = W-58;
+    var mx = sp.max || Math.max.apply(null,sp.rows.map(function(r){return r.v;}))*1.15;
+    var rowH2 = narrow? 62:50, top2=22;
+    axisLabel(11,sp.axis);
+    sp.rows.forEach(function(r,i){
+      var yT=top2+i*rowH2;
+      var by = narrow? yT+26 : yT+10;
+      svg.appendChild(E('text',{x:0,y:yT+13,'font-size':fsl,style:'fill:'+C.ink+';font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;font-weight:600'},r.l));
+      var w=(r.v/mx)*(bx1-bx0);
+      svg.appendChild(E('rect',{x:bx0,y:by,width:Math.max(0,bx1-bx0),height:20,rx:5,style:'fill:'+C.line+';opacity:.45'}));
+      svg.appendChild(E('rect',{x:bx0,y:by,width:Math.max(2,w),height:20,rx:5,style:'fill:'+r.c}));
+      svg.appendChild(E('text',{x:bx0+w+9,y:by+15,'font-size':13.5,style:'fill:'+C.ink2+';font-family:ui-monospace,Cascadia Mono,Segoe UI Mono,Consolas,Liberation Mono,monospace;font-weight:600'},fmt(r.v,1)+(sp.unit||'')));
+      H=by+28;
+    });
+    H+=4;
+  }
+
+  else if(sp.type==='zero'){
+    var lw3 = narrow? W : Math.min(260,W*0.32);
+    var zx0 = narrow? 0 : lw3+16, zx1 = W-6;
+    var vmin=Math.min.apply(null,sp.rows.map(function(r){return r.v;}));
+    if(sp.marker) vmin=Math.min(vmin,sp.marker.at);
+    vmin=vmin*1.22;
+    var zx=function(v){ return zx1 - (v/vmin)*(zx1-zx0); };
+    var rowH3= narrow? 60:52, top3=26;
+    axisLabel(11,sp.axis);
+    sp.rows.forEach(function(r,i){
+      var yT=top3+i*rowH3;
+      var by= narrow? yT+26: yT+8;
+      svg.appendChild(E('text',{x:0,y:yT+13,'font-size':fsl,style:'fill:'+C.ink+';font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;font-weight:600'},r.l));
+      var xv=zx(r.v);
+      svg.appendChild(E('rect',{x:Math.min(zx1,xv),y:by,width:Math.max(2,Math.abs(zx1-xv)),height:22,rx:5,style:'fill:'+r.c}));
+      var tx=xv-9;
+      svg.appendChild(E('text',{x:tx,y:by+16,'text-anchor':'end','font-size':13.5,style:'fill:'+C.ink2+';font-family:ui-monospace,Cascadia Mono,Segoe UI Mono,Consolas,Liberation Mono,monospace;font-weight:600'},fmt(r.v,2)+(sp.unit||'')));
+      H=by+30;
+    });
+    if(sp.marker){
+      var mxx=zx(sp.marker.at);
+      svg.appendChild(E('line',{x1:mxx,x2:mxx,y1:top3-4,y2:H-4,style:'stroke:'+(sp.marker.c||C.warm)+';stroke-width:1.5;stroke-dasharray:4 4'}));
+      svg.appendChild(E('text',{x:Math.max(0,mxx-8),y:H+14,'text-anchor': mxx>W*0.55?'end':'start','font-size':12,style:'fill:'+(sp.marker.c||C.warm)+';font-family:ui-monospace,Cascadia Mono,Segoe UI Mono,Consolas,Liberation Mono,monospace'},sp.marker.label));
+      H+=20;
+    }
+    svg.appendChild(E('line',{x1:zx1,x2:zx1,y1:top3-4,y2:H-6,style:'stroke:'+C.line2+';stroke-width:1.5'}));
+    H+=12;
+  }
+
+  else if(sp.type==='group'){
+    var gTop=26, gh=narrow?150:132, gap=narrow?26:40;
+    axisLabel(11,sp.axis);
+    var gw=(W-gap*(sp.groups.length-1))/sp.groups.length;
+    sp.groups.forEach(function(g,gi){
+      var ox=gi*(gw+gap);
+      var bw=Math.min(74,(gw-24)/sp.series.length);
+      var innerGap=Math.min(26,(gw-bw*sp.series.length)/2);
+      g.v.forEach(function(v,si){
+        var hgt=(v-sp.min)/(sp.max-sp.min)*gh;
+        var bxp=ox+ (gw - (bw*sp.series.length+innerGap))/2 + si*(bw+innerGap);
+        svg.appendChild(E('rect',{x:bxp,y:gTop+gh-hgt,width:bw,height:Math.max(3,hgt),rx:6,style:'fill:'+sp.series[si].c}));
+        svg.appendChild(E('text',{x:bxp+bw/2,y:gTop+gh-hgt-9,'text-anchor':'middle','font-size':15,style:'fill:'+C.ink+';font-family:ui-monospace,Cascadia Mono,Segoe UI Mono,Consolas,Liberation Mono,monospace;font-weight:600'},fmt(v,1)+(sp.unit||'')));
+      });
+      svg.appendChild(E('line',{x1:ox,x2:ox+gw,y1:gTop+gh,y2:gTop+gh,style:'stroke:'+C.line+';stroke-width:1'}));
+      var words=g.l.split(' '); var lines=[]; var curL='';
+      var maxChars=Math.floor(gw/7.2);
+      words.forEach(function(w){ if((curL+' '+w).trim().length>maxChars){ lines.push(curL.trim()); curL=w; } else { curL+=' '+w; } });
+      if(curL.trim()) lines.push(curL.trim());
+      lines.forEach(function(ln,li){
+        svg.appendChild(E('text',{x:ox+gw/2,y:gTop+gh+20+li*17,'text-anchor':'middle','font-size':13.5,style:'fill:'+C.ink2+';font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;font-weight:600'},ln));
+      });
+      H=Math.max(H,gTop+gh+20+lines.length*17);
+    });
+    H+=16;
+    sp.series.forEach(function(s,si){
+      var lx= narrow? 0 : si*(W/2);
+      var ly= narrow? H+si*22 : H;
+      svg.appendChild(E('rect',{x:lx,y:ly-10,width:13,height:13,rx:3,style:'fill:'+s.c}));
+      svg.appendChild(E('text',{x:lx+19,y:ly+1,'font-size':13.5,style:'fill:'+C.ink2+';font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif'},s.n));
+    });
+    H = narrow? H+sp.series.length*22 : H+10;
+  }
+
+  svg.setAttribute('viewBox','0 0 '+W+' '+Math.ceil(H+4));
+  svg.setAttribute('aria-label',sp.axis+'. '+(sp.caption||''));
+  box.appendChild(svg);
+  if(sp.caption){ var c=document.createElement('p'); c.className='cap'; c.textContent=sp.caption; box.appendChild(c); }
+}
+function drawChartsIn(root){
+  Array.prototype.slice.call(root.querySelectorAll('.chart[data-chart]')).forEach(drawChart);
+}
+function drawAllCharts(){ drawChartsIn(document); }
+var rt;
+window.addEventListener('resize',function(){ clearTimeout(rt); rt=setTimeout(function(){ drawChartsIn(slides[cur]); },180); });
+
+/* ---------- boot ---------- */
+slides.forEach(function(s){s.classList.remove('on');});
+cur=0;
+go(0);
+})();
+</script>
+</body>
+</html>

@@ -179,7 +179,11 @@ titulo('4 · Lenguaje del curso');
       ).test(ctx);
       // ¿Se enuncia la propia regla? «X, no Y» / «en vez de Y».
       const menciona = /\b(no|nunca|jam[áa]s|en (?:vez|lugar) de|antes que|frente a)\b[^.]{0,40}$/i.test(antes);
-      if (menciona) { console.log(gris('  ok    ') + `${rel(f)}  —  «${termino}» enuncia la regla, no la infringe`); continue; }
+      // ¿O se cita el término como lo que ESTE detector marca? La documentación del
+      // repositorio enumera los términos prohibidos para explicarlos, y enumerarlos
+      // no es designar a nadie por su pronóstico: «verificar.js marca «… terminal»».
+      const enuncia = /\b(marca|detecta|se[ñn]ala|reporta|prohíbe|proscribe|regla)\b[^.]{0,80}$/i.test(antes);
+      if (menciona || enuncia) { console.log(gris('  ok    ') + `${rel(f)}  —  «${termino}» enuncia la regla, no la infringe`); continue; }
       console.log((fuente ? amar('  CITA  ') : rojo('  TERM  ')) + `${rel(f)}  —  «${termino}»`);
       console.log(gris(`          …${ctx.slice(0, 150)}…`));
       console.log(gris(fuente ? '          → cita una norma o estudio: CONSERVAR, verificar a mano'
