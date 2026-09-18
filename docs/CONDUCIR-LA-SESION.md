@@ -48,12 +48,36 @@ Para abrir directo en una sesión: `…/tablero.html?sesion=S03`.
 | **Contador** | `entregas / inscritos`. Lo primero que hay que mirar al abrir |
 | **Recargar** | Vuelve a leer. Útil si alguien entrega sobre la hora |
 | **A− / A+** | Tamaño de letra. Súbelo hasta que se lea **desde la última fila** |
+| **Síntesis** (tecla `S`) | Cambia a la vista agrupada de la pregunta: ideas de todo el grupo, sin distinguir a nadie |
 | **Modo proyección** | 🔴 Oculta nombres, correos, pie de tarjeta y el panel de faltantes |
 | **← →** | Cambian de pregunta sin tocar el ratón |
 | **«marcar»** | Atenúa la tarjeta ya discutida. Se ve de un vistazo qué falta |
 
 Las marcas viven solo en ese navegador: son el rastro de por dónde va la clase, no un dato del
 curso. Se borran sin consecuencia.
+
+### La vista de síntesis: para proyectar sin leerlo todo
+
+Con el botón **Síntesis** (o la tecla `S`) el tablero deja de mostrar las respuestas una por una y
+muestra, de esa pregunta:
+
+- **Señales contadas**, que se calculan solas y son exactas: cuántos respondieron, cuántos dicen que
+  «no se mide» o que «no hay ruta», y qué instrumentos nombraron, con su frecuencia. Funcionan
+  aunque Ollama esté apagado.
+- **Cuatro a seis ideas principales** con su peso («4 de 7»), en qué coinciden, la tensión para
+  discutir, lo que nadie menciona y dos preguntas para devolver al grupo. Esto sí lo escribe el
+  modelo local, en unos 10 a 40 segundos.
+- **Frases textuales sin autor.** Solo se muestran si están literalmente en alguna respuesta: las
+  que el modelo parafrasea se descartan, y si no logra copiar ninguna, el tablero extrae por su
+  cuenta frases reales de los textos.
+
+**«Sintetizar toda la sesión»** recorre las cinco preguntas y guarda el resultado en ese navegador,
+así que conviene dejarlo hecho la noche antes y llegar con todo listo. **«Copiar»** deja la síntesis
+en el portapapeles para el acta o el correo de cierre.
+
+Esta vista **no identifica a nadie**: no lleva seudónimos ni letras. Aun así, el prompt le prohíbe
+nombrar personas, instituciones o ciudades, y conviene leerla antes de proyectarla: alguien puede
+reconocerse si describió un servicio muy particular.
 
 ### 🔴 Antes de compartir pantalla
 
@@ -194,3 +218,4 @@ perdió la sesión por no tener el material antes. Se entiende mejor así que co
 - [ ] Decidido con qué pregunta abres
 - [ ] Las respuestas leídas por ti antes de entrar
 - [ ] Si corriste `resumir-entregas.js`, el guion **leído y corregido**
+- [ ] Si vas a proyectar la **síntesis**, generada antes y **releída**
