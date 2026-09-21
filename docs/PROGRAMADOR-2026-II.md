@@ -33,13 +33,13 @@ curso va el viernes por la tarde. Sobre esas dos cosas, las sesiones son:
 | 31 julio | viernes | Inducción de estudiantes nuevos | ❌ No es de asignatura |
 | 8 agosto | sábado | Sincrónico | ❌ Antes del inicio (21 ago) y no es viernes |
 | **21 agosto** | **viernes** | **Presencial** · Circunvalar | ✅ **Sesión 1** |
-| **4 septiembre** | **viernes** | **Sincrónico** | ✅ **Sesión 2** |
-| **18 septiembre** | **viernes** | **Presencial** | ✅ **Sesión 3** |
-| **2 octubre** | **viernes** | **Sincrónico** | ✅ **Sesión 4** |
-| **16 octubre** | **viernes** | **Presencial** | ✅ **Sesión 5** |
-| **30 octubre** | **viernes** | **Sincrónico** | ✅ **Sesión 6** |
+| **4 septiembre** | **viernes** | **Sincrónico** | ⚠️ sesión aplazada |
+| **18 septiembre** | **viernes** | **Sincrónico** | ✅ **Sesión 2** · cáncer |
+| **2 octubre** | **viernes** | **Sincrónico** | ✅ **Sesión 3** · falla de órgano |
+| **16 octubre** | **viernes** | **Presencial** | ✅ **Sesión 4** · neurodegenerativos + demencia |
+| **30 octubre** | **viernes** | **Sincrónico** | ✅ **Sesión 5** · eventos catastróficos |
 | 13 noviembre | viernes | Encuentro de investigación | ❌ **Solo estudiantes de tesis II** |
-| **20 noviembre** | **viernes** | **Presencial** | ✅ **Sesión 7** |
+| **20 noviembre** | **viernes** | **Presencial** | ✅ **Sesión 6** · seminario integrador |
 
 **Resultado: siete sesiones de viernes.** Cuatro presenciales (21 ago, 18 sep, 16 oct, 20 nov) y
 tres sincrónicas (4 sep, 2 oct, 30 oct), tal como la modalidad de cada fin de semana lo indica en
@@ -72,21 +72,25 @@ cierra en su última sesión.
 | # | Fecha | Sem | Modalidad | Unidad · contenido | Corte |
 |---|---|---|---|---|---|
 | **1** | vie **21 ago** | 4 | Presencial | Presentación + **U1** · declinación funcional, trayectorias, modelos de intervención y tecnologías (RV, TIC, IA generativa) | C1 |
-| **2** | vie **4 sep** | 6 | Sincrónico | **U2 · cáncer** · rehabilitación física y psicosocial, ámbitos y medición | C1 · **entrega 35 %** |
-| **3** | vie **18 sep** | 8 | Presencial | **U3 · falla de órgano** · rehabilitación cardiopulmonar, disfagia, ámbitos y medición | C2 |
-| **4** | vie **2 oct** | 10 | Sincrónico | **U4 · neurodegenerativos** *(en inglés)* · EM, ELA, parálisis cerebral, ámbitos y medición | C2 |
-| **5** | vie **16 oct** | 12 | Presencial | **U5 · demencia y fragilidad** · rehabilitación, ámbitos y cambio mínimo importante | C2 · **entrega 35 %** |
-| **6** | vie **30 oct** | 14 | Sincrónico | **U6 · eventos catastróficos** · geriatría, espasticidad, ámbitos y medición | C3 |
-| **7** | vie **20 nov** | 17 | Presencial | Seminario integrador · socialización de productos · cierre | C3 · **entrega 30 %** |
+| **2** | vie **18 sep** | 6 | Sincrónico | **U2 · cáncer** · rehabilitación física y psicosocial, ámbitos y medición | C1 · **entrega 35 %** |
+| **3** | vie **2 oct** | 8 | Sincrónico | **U3 · falla de órgano** · rehabilitación cardiopulmonar, disfagia, ámbitos y medición | C2 |
+| **4** | vie **16 oct** | 10 | Presencial | **U4 + U5 · neurodegenerativos, demencia y fragilidad** · EM y ELA con lectura crítica en inglés, metas realistas, cambio mínimo importante | C2 · **entrega 35 %** |
+| **5** | vie **30 oct** | 12 | Sincrónico | **U6 · eventos catastróficos** · ictus severo, fractura de cadera, geriatría y espasticidad | C3 |
+| **6** | vie **20 nov** | 17 | Presencial | Seminario integrador · socialización de productos · cierre | C3 · **entrega 30 %** |
 
 **Evaluación:** primer corte 35 % · segundo corte 35 % · producto final 30 %.
 
 Los 18 subtemas del contenido programático quedan cubiertos, sin excepción. Cada sesión se
 descompone en tres bloques horarios (2–3, 3–4, 4–5 p. m.) en el `.docx`, como manda el formato.
 
-> **Sobre las entregas.** El cierre del primer corte cae en la sesión 2 (4 sep), que es sincrónica;
-> la entrega se recibe en línea. Los cierres de segundo corte (16 oct) y del producto final (20 nov)
-> caen en sesiones presenciales.
+> **Sobre las entregas.** El cierre del primer corte cayó en la sesión 2, que se dictó el **18 de
+> septiembre** en sincrónico (la del 4 de septiembre se aplazó); la entrega se recibió en línea. Los
+> cierres de segundo corte (16 oct) y del producto final (20 nov) caen en sesiones presenciales.
+
+> **Reprogramación del 20 de septiembre de 2026.** La sesión de cáncer se dictó el 18 de septiembre
+> y no el 4, de modo que todo corrió una fecha. Como solo quedaban cuatro viernes para cinco
+> sesiones, las unidades 4 (neurodegenerativos) y 5 (demencia y fragilidad) se funden en la sesión
+> del 16 de octubre. El semestre queda en **seis sesiones**.
 
 ---
 
