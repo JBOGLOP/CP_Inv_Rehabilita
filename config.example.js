@@ -39,6 +39,12 @@ window.CONFIG = {
   // Ollama con OLLAMA_ORIGINS abierto (ver la cabecera de tablero.html).
   // ollamaURL: 'http://localhost:11434',
   // ollamaModelo: 'qwen2.5:7b',
+  //
+  // Probado el 25 de septiembre de 2026 con el prompt de síntesis del tablero:
+  //   qwen2.5:7b   13-14 s · 5 ideas · 5/5 campos · cita verificada
+  //   qwen3.5:9b    9 s    · 5 ideas · 5/5 campos · cita verificada · 6,6 GB
+  // Qwen 3.x razona antes de responder; el tablero le apaga el razonamiento
+  // solo, porque si no se gasta los tokens pensando y no escribe nada.
 };
 
 // ── Nota sobre los tokens de ESCRITURA ─────────────────────────────

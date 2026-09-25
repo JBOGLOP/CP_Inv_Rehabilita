@@ -86,7 +86,7 @@ const norm = s => quitarTildes(String(s)).toLowerCase().replace(/\s+/g, ' ').tri
  */
 function verificarCita(cita, original) {
   const limpia = String(cita || '').replace(/^[«"'\s]+|[»"'\s]+$/g, '').trim();
-  if (limpia.length < 20) return null;
+  if (limpia.length < 12 || limpia.split(/\s+/).length < 3) return null;
   if (original.includes(limpia)) return limpia;               // exacta
 
   // Comparación normalizada, con mapa de posiciones para recuperar el
@@ -131,7 +131,10 @@ async function preguntar(texto) {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       model: MODELO, prompt: PROMPT(texto), stream: false,
-      options: { temperature: 0.1, num_predict: 400 }
+      options: { temperature: 0.1, num_predict: 400 },
+      // Los modelos que razonan (Qwen 3.x, DeepSeek-R1) se gastarían el
+      // presupuesto pensando y no escribirían los bloques.
+      ...(/qwen3|deepseek-r1|magistral|thinking|reason/i.test(MODELO) ? { think: false } : {})
     })
   });
   if (!r.ok) throw new Error(`Ollama respondió ${r.status}`);

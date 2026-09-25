@@ -254,6 +254,14 @@ body.proyeccion .no-proyectar{display:none}
   var OLLAMA = (CFG.ollamaURL || 'http://localhost:11434').replace(/\/+$/, '');
   var MODELO_IA = CFG.ollamaModelo || 'qwen2.5:7b';
 
+  // Qwen 3.x, DeepSeek-R1 y familia razonan antes de responder: con un
+  // presupuesto de 900 tokens se lo gastan pensando y nunca escriben los
+  // bloques con etiqueta que el lector necesita. Se les apaga el razonamiento
+  // (Ollama ignora el campo en los modelos que no razonan).
+  function opcionesModelo() {
+    return /qwen3|deepseek-r1|magistral|thinking|reason/i.test(MODELO_IA) ? { think: false } : {};
+  }
+
   // Títulos legibles de cada pregunta. El servidor devuelve solo los ids
   // (p1, p2…), porque no sabe —ni tiene por qué— cómo se llaman.
   var TITULOS = {
@@ -321,7 +329,9 @@ body.proyeccion .no-proyectar{display:none}
   function verificarCita(cita, original) {
     var sinTildes = function (x) { return String(x).normalize('NFD').replace(/[\u0300-\u036f]/g, ''); };
     var limpia = String(cita || '').replace(/^[\u00ab"'\u201c\s]+|[\u00bb"'\u201d\s.]+$/g, '').trim();
-    if (limpia.length < 20) return null;
+    // Corta pero literal sigue siendo cita: «no sé si sirve» son 14 caracteres
+    // y cuatro palabras. Lo que se descarta es el fragmento suelto.
+    if (limpia.length < 12 || limpia.split(/\s+/).length < 3) return null;
     if (original.indexOf(limpia) !== -1) return limpia;
     var mapa = [], normal = '';
     for (var i = 0; i < original.length; i++) {
@@ -704,10 +714,10 @@ body.proyeccion .no-proyectar{display:none}
     fetch(OLLAMA + '/api/generate', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
+      body: JSON.stringify(Object.assign({
         model: MODELO_IA, prompt: PROMPT(texto, (TITULOS[sesion] || {})[pregunta]), stream: false,
         options: { temperature: 0.2, num_predict: 900, num_ctx: 4096 }
-      })
+      }, opcionesModelo()))
     })
       .then(function (resp) {
         if (!resp.ok) throw new Error('estado ' + resp.status);
@@ -768,10 +778,10 @@ body.proyeccion .no-proyectar{display:none}
     return fetch(OLLAMA + '/api/generate', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
+      body: JSON.stringify(Object.assign({
         model: MODELO_IA, prompt: PROMPT_SINTESIS(textos, (TITULOS[sesion] || {})[pregunta]), stream: false,
         options: { temperature: 0.2, num_predict: 800, num_ctx: 8192 }
-      })
+      }, opcionesModelo()))
     })
       .then(function (resp) {
         if (!resp.ok) throw new Error('estado ' + resp.status);

@@ -154,13 +154,29 @@ node scripts/resumir-entregas.js --sesion S01
 
 Baja las entregas, pide a **Ollama en local** una síntesis y una cita por respuesta, y escribe
 `PRIVADO_guion-S01.md` — fuera del repositorio por el prefijo. Con siete estudiantes × cinco
-preguntas y `qwen2.5:7b`, unos **dos o tres minutos**.
+preguntas y `qwen2.5:7b`, unos **dos o tres minutos**; con `qwen3.5:9b`, algo menos.
 
 Por cada respuesta deja: **síntesis** de una frase, **datos** extraídos (cifras, desenlaces,
 instrumentos, servicios) y una **cita literal**, más la respuesta completa plegada en un
 desplegable. Y antes de cada pregunta, las mismas señales del tablero.
 
 Requisitos: tener **Ollama** instalado y el modelo descargado (`ollama pull qwen2.5:7b`).
+
+### Qué modelo usar
+
+Los dos probados en este equipo, el 25 de septiembre de 2026, con el prompt real de la síntesis:
+
+| Modelo | Descarga | Una síntesis | Resultado |
+|---|---|---|---|
+| `qwen2.5:7b` | 4,7 GB | 13-14 s | 5 ideas · los 5 campos · cita verificada |
+| **`qwen3.5:9b`** | 6,6 GB | **8-9 s** | 5 ideas · los 5 campos · cita verificada |
+
+Para cambiarlo, una línea en `config.js`: `ollamaModelo: 'qwen3.5:9b'`. En el script, `--modelo`.
+
+> **Cuidado con los modelos que razonan.** Qwen 3.x y DeepSeek-R1 piensan antes de responder y, con
+> el presupuesto de tokens del tablero, se lo gastan pensando y **no escriben nada**. El tablero les
+> apaga el razonamiento solo, por el nombre del modelo. Si usas uno que razona con otro nombre,
+> añádelo a esa lista en `opcionesModelo()`.
 Opciones: `--modelo llama3.1:8b` para cambiar de modelo, `--sin-ia` para generar solo las señales y
 los textos, sin llamar a Ollama.
 
