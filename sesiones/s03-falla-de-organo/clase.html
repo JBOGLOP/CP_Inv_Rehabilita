@@ -85,6 +85,48 @@ p{max-width:66ch}
 .actividad li{margin-bottom:.3rem}
 .cita-en{font-family:var(--serif);font-style:italic;border-left:3px solid var(--acento-soft);padding:.2rem 0 .2rem .8rem;margin:.6rem 0}
 
+.espiral{background:var(--blanco);border-radius:var(--radius);box-shadow:var(--shadow-soft);
+  border-top:3px solid var(--acento);padding:1rem 1.1rem;margin:.9rem 0}
+.espiral__cab{display:flex;flex-wrap:wrap;gap:.6rem;align-items:baseline;justify-content:space-between}
+.espiral h3{margin:0}
+.espiral__ayuda{font-size:.8rem;color:var(--gris);margin:.15rem 0 0}
+.espiral__lienzo{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:1rem;align-items:center;margin-top:.7rem}
+@media (max-width:640px){.espiral__lienzo{grid-template-columns:1fr}}
+.espiral svg{width:100%;height:auto;display:block;overflow:visible}
+.nodo{cursor:pointer}
+.nodo circle{fill:var(--blanco);stroke:var(--acento);stroke-width:2;transition:fill .15s,stroke-width .15s}
+.nodo text{font-family:var(--sans);font-size:11.5px;fill:var(--tinta);pointer-events:none}
+.nodo:hover circle,.nodo:focus circle{fill:var(--acento-soft)}
+.nodo.activo circle{fill:var(--acento);stroke:var(--acento-dark);stroke-width:3}
+.nodo.activo text{fill:var(--blanco);font-weight:700}
+.nodo:focus{outline:none}
+.nodo:focus circle{stroke:var(--aviso-dark);stroke-width:3}
+.flecha{stroke:var(--acento);stroke-width:2.5;fill:none;marker-end:url(#punta)}
+#punta path{fill:var(--acento)}
+.espiral.con-rehab #punta path{fill:var(--gris-claro)}
+.rotura{opacity:0;transition:opacity .25s}
+.espiral.con-rehab .rotura{opacity:1}
+.espiral.con-rehab .flecha{stroke:var(--gris-claro)}
+.rotura line{stroke:var(--aviso-dark);stroke-width:3;stroke-linecap:round}
+.rotura text{font-family:var(--sans);font-size:9.5px;fill:var(--aviso-dark);font-weight:700}
+.espiral__panel{background:var(--nieve);border-radius:var(--radius-sm);padding:.8rem .9rem;min-height:11rem}
+.espiral__panel h4{margin:0 0 .3rem;font-size:.98rem;color:var(--acento-dark)}
+.espiral__panel p{font-size:.9rem;margin:0 0 .5rem;max-width:none}
+.espiral__panel .fuente{display:block;font-family:var(--mono);font-size:.7rem;color:var(--gris)}
+.espiral__panel .rompe{border-left:3px solid var(--aviso-dark);padding-left:.6rem;margin-top:.5rem}
+.espiral__panel .rompe b{display:block;font-size:.84rem;color:var(--aviso-dark)}
+.certeza{display:inline-block;font-family:var(--mono);font-size:.68rem;padding:.05rem .45rem;border-radius:999px;
+  border:1px solid var(--gris-claro);color:var(--gris);margin-left:.3rem;white-space:nowrap}
+.certeza.fuerte{border-color:var(--acento);color:var(--acento-dark);background:var(--acento-soft)}
+.certeza.condicional{border-color:var(--aviso);color:var(--aviso-dark);background:var(--aviso-soft)}
+.certeza.vacio{border-color:var(--gris-claro);color:var(--gris)}
+.espiral__mandos{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.7rem}
+.espiral__mandos button{font:inherit;font-size:.82rem;font-weight:600;cursor:pointer;border-radius:999px;
+  padding:.3rem .8rem;border:1px solid var(--acento);background:var(--blanco);color:var(--acento-dark)}
+.espiral__mandos button:hover{background:var(--acento-soft)}
+.espiral__mandos button[aria-pressed="true"]{background:var(--aviso-dark);border-color:var(--aviso-dark);color:var(--blanco)}
+@media (prefers-reduced-motion:reduce){.rotura,.nodo circle{transition:none}}
+@media print{.espiral__mandos{display:none}.espiral .rotura{opacity:1}}
 .tabla{overflow-x:auto;margin-top:.8rem}
 table{width:100%;border-collapse:collapse;font-size:.88rem;background:var(--blanco);box-shadow:var(--shadow-soft);border-radius:var(--radius-sm);overflow:hidden}
 th{background:var(--acento-dark);color:var(--blanco);text-align:left;padding:.5rem .6rem;font-weight:600}
@@ -256,6 +298,33 @@ footer{border-top:1px solid var(--linea);background:var(--blanco);padding:1.8rem
           <span class="fuente">Tiep et al. 2015</span>
         </article>
       </div>
+      <figure class="espiral" id="espiral">
+        <div class="espiral__cab">
+          <h3>La espiral, por dentro</h3>
+          <p class="espiral__ayuda">Toca cada paso del ciclo. Después, mira dónde entra la rehabilitación.</p>
+        </div>
+        <div class="espiral__lienzo">
+          <svg viewBox="0 0 440 330" role="img" aria-labelledby="espiral-t espiral-d">
+            <title id="espiral-t">Ciclo de la disnea</title>
+            <desc id="espiral-d">La disnea lleva a evitar el esfuerzo, que desacondiciona el músculo, que exige
+              más ventilación para el mismo esfuerzo, lo que aumenta la disnea y alimenta la ansiedad y el
+              aislamiento. La rehabilitación puede romper el ciclo en cuatro puntos.</desc>
+            <defs>
+              <marker id="punta" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M0,0 L10,5 L0,10 z"></path>
+              </marker>
+            </defs>
+            <g id="flechas"></g>
+            <g id="roturas" class="rotura"></g>
+            <g id="nodos"></g>
+          </svg>
+          <div class="espiral__panel" id="espiralPanel" aria-live="polite"></div>
+        </div>
+        <div class="espiral__mandos">
+          <button type="button" id="espiralRehab" aria-pressed="false">Ver dónde entra la rehabilitación</button>
+          <button type="button" id="espiralSig">Paso siguiente &rarr;</button>
+        </div>
+      </figure>
       <div class="actividad">
         <h3>Actividad · lectura crítica en segunda lengua (grupos, 20 min)</h3>
         <p style="margin:0 0 .4rem"><strong>Texto A.</strong> Definición de consenso internacional del
@@ -447,6 +516,179 @@ footer{border-top:1px solid var(--linea);background:var(--blanco);padding:1.8rem
 
   </div>
 </main>
+
+<script>
+/* ===========================================================================
+   La espiral de la disnea · figura interactiva del bloque 2.
+   Todo va aquí dentro: el SVG se dibuja por JavaScript, sin librerías, y la
+   página sigue abriendo sin conexión (regla 1). Los colores salen de los
+   tokens de la Unidad 3 vía getComputedStyle, para no repetir hex.
+   =========================================================================== */
+(function () {
+  'use strict';
+  var fig = document.getElementById('espiral');
+  if (!fig) return;
+
+  var PASOS = [
+    { t: 'Disnea', corto: 'Disnea',
+      d: 'La persona siente falta de aire al esforzarse. No se deduce de la espirometría: la disnea se asocia débilmente con el FEV1.',
+      f: 'Currow y Ferreira 2024 · cap. 11',
+      rompe: 'Ventilador de mano',
+      re: 'Alivia durante o tras el esfuerzo. Con uso diario de 14 a 60 días no mostró beneficio.',
+      rf: 'Bausewein et al. 2026', c: 'condicional' },
+    { t: 'Evitar el esfuerzo', corto: 'Evitar el esfuerzo',
+      d: 'Para no sentir ahogo, la persona deja de hacer lo que se lo provoca: caminar, bañarse, salir. La vida se encoge alrededor del síntoma.',
+      f: 'Maddocks et al. 2024 · cap. 67',
+      rompe: 'Técnicas de respiración y conservación de energía',
+      re: 'Recomendación condicional, con certeza muy baja. Efectos modestos, pero baratos y sin daño.',
+      rf: 'Holland et al. 2024 (ERS)', c: 'condicional' },
+    { t: 'Desacondicionamiento muscular', corto: 'Músculo que se debilita',
+      d: 'El músculo que no se usa pierde capacidad oxidativa y fuerza. Es el eslabón donde la rehabilitación tiene más que ofrecer.',
+      f: 'Maddocks et al. 2024 · cap. 67',
+      rompe: 'Rehabilitación pulmonar',
+      re: 'Recomendación fuerte con certeza moderada en EPOC estable: la caminata de 6 minutos mejora 44 metros. Iniciarla en las 3 semanas tras una hospitalización reduce los reingresos (OR 0,48). Menos del 5 % de quienes podrían beneficiarse la recibe.',
+      rf: 'Rochester et al. 2023 (ATS)', c: 'fuerte' },
+    { t: 'Más ventilación para lo mismo', corto: 'Más ventilación',
+      d: 'El músculo desacondicionado usa peor el oxígeno, así que el mismo esfuerzo exige más ventilación. El ahogo aparece antes que ayer.',
+      f: 'Maddocks et al. 2024 · cap. 67',
+      rompe: 'Ejercicio graduado',
+      re: 'Única intervención con efecto demostrado sobre la fatiga en enfermedad respiratoria grave: CRQ-fatiga +0,53, por encima de la diferencia mínima importante. Recomendación condicional, certeza baja.',
+      rf: 'Holland et al. 2024 (ERS)', c: 'condicional' },
+    { t: 'Ansiedad y aislamiento', corto: 'Ansiedad y aislamiento',
+      d: 'El miedo a ahogarse hace evitar más, y evitar más desacondiciona más. El ciclo se cierra y se acelera.',
+      f: 'Modelo respirar-pensar-funcionar · caps. 66 y 67',
+      rompe: 'Abordar el ciclo disnea-ansiedad',
+      re: 'En falla cardíaca, la única mención a la rehabilitación del capítulo llega prestada de este modelo, y el propio texto dice que «quizá» sea aplicable. Al final de la vida no hay recomendación de ejercicio para la fatiga.',
+      rf: 'Sobanski y Goodlin 2024 · Bower et al. 2024', c: 'vacio' }
+  ];
+  var ETIQ = { fuerte: 'evidencia fuerte', condicional: 'condicional, certeza baja', vacio: 'vacío en fase avanzada' };
+
+  var svgNS = 'http://www.w3.org/2000/svg';
+  var CX = 220, CY = 162, R = 108, NODO_R = 42;
+  var nodos = document.getElementById('nodos');
+  var flechas = document.getElementById('flechas');
+  var roturas = document.getElementById('roturas');
+  var panel = document.getElementById('espiralPanel');
+  var activo = 0;
+
+  function pos(i) {
+    var a = (-90 + i * (360 / PASOS.length)) * Math.PI / 180;
+    return { x: CX + R * Math.cos(a), y: CY + R * Math.sin(a), a: a };
+  }
+  function crear(tag, attrs) {
+    var el = document.createElementNS(svgNS, tag);
+    Object.keys(attrs).forEach(function (k) { el.setAttribute(k, attrs[k]); });
+    return el;
+  }
+  function partir(texto, ancho) {
+    var p = texto.split(' '), lineas = [], linea = '';
+    p.forEach(function (w) {
+      if ((linea + ' ' + w).trim().length > (ancho || 12)) { lineas.push(linea.trim()); linea = w; }
+      else linea += ' ' + w;
+    });
+    if (linea.trim()) lineas.push(linea.trim());
+    return lineas;
+  }
+
+  PASOS.forEach(function (p, i) {
+    /* Arco hasta el siguiente paso. El recorte es ANGULAR, no radial: si se
+       acercan los extremos al centro, la punta de flecha queda debajo del
+       círculo del nodo y no se ve. */
+    var a = pos(i), b = pos((i + 1) % PASOS.length);
+    var hueco = Math.asin(NODO_R / R) * 1.12;      // deja libre el borde del nodo
+    var ang1 = a.a + hueco, ang2 = a.a + (2 * Math.PI / PASOS.length) - hueco;
+    var x1 = CX + R * Math.cos(ang1), y1 = CY + R * Math.sin(ang1);
+    var x2 = CX + R * Math.cos(ang2), y2 = CY + R * Math.sin(ang2);
+    flechas.appendChild(crear('path', {
+      d: 'M' + x1.toFixed(1) + ',' + y1.toFixed(1) + ' A' + R + ',' + R + ' 0 0 1 ' + x2.toFixed(1) + ',' + y2.toFixed(1),
+      'class': 'flecha'
+    }));
+
+    /* marca de rotura a mitad del arco, donde entra la intervención */
+    var med = (a.a + (b.a > a.a ? b.a : b.a + 2 * Math.PI)) / 2;
+    var rx = CX + (R - 2) * Math.cos(med), ry = CY + (R - 2) * Math.sin(med);
+    var g = crear('g', {});
+    g.appendChild(crear('line', { x1: rx - 7, y1: ry - 7, x2: rx + 7, y2: ry + 7 }));
+    g.appendChild(crear('line', { x1: rx + 7, y1: ry - 7, x2: rx - 7, y2: ry + 7 }));
+    /* la etiqueta va por fuera del anillo; el viewBox es ancho a propósito
+       para que quepa y escale con el dibujo, en vez de recortarse. */
+    var der = Math.cos(med) > 0.08, izq = Math.cos(med) < -0.08;
+    var lx = CX + (R + 26) * Math.cos(med), ly = CY + (R + 26) * Math.sin(med);
+    var ancla = der ? 'start' : (izq ? 'end' : 'middle');
+    var ll = partir(p.rompe, 17);
+    ll.forEach(function (linea, k) {
+      var tx = crear('text', { x: lx.toFixed(1), y: (ly + (k - (ll.length - 1) / 2) * 11 + 3).toFixed(1), 'text-anchor': ancla });
+      tx.textContent = linea;
+      g.appendChild(tx);
+    });
+    roturas.appendChild(g);
+
+    /* nodo */
+    var gn = crear('g', { 'class': 'nodo', tabindex: '0', role: 'button', 'aria-label': 'Paso: ' + p.t });
+    gn.appendChild(crear('circle', { cx: a.x.toFixed(1), cy: a.y.toFixed(1), r: NODO_R }));
+    var lineas = partir(p.corto, 12);
+    lineas.forEach(function (l, k) {
+      var t = crear('text', { x: a.x.toFixed(1), y: (a.y + (k - (lineas.length - 1) / 2) * 12 + 4).toFixed(1), 'text-anchor': 'middle' });
+      t.textContent = l;
+      gn.appendChild(t);
+    });
+    gn.addEventListener('click', function () { seleccionar(i); });
+    gn.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); seleccionar(i); }
+    });
+    nodos.appendChild(gn);
+  });
+
+  function seleccionar(i) {
+    activo = i;
+    var p = PASOS[i];
+    [].forEach.call(nodos.children, function (g, k) { g.classList.toggle('activo', k === i); });
+    panel.textContent = '';
+    var h = document.createElement('h4');
+    h.textContent = (i + 1) + ' · ' + p.t;
+    panel.appendChild(h);
+    var d = document.createElement('p');
+    d.textContent = p.d;
+    panel.appendChild(d);
+    var f = document.createElement('span');
+    f.className = 'fuente';
+    f.textContent = p.f;
+    panel.appendChild(f);
+    if (fig.classList.contains('con-rehab')) {
+      var box = document.createElement('div');
+      box.className = 'rompe';
+      var b = document.createElement('b');
+      b.appendChild(document.createTextNode('Rompe aquí: ' + p.rompe));
+      var c = document.createElement('span');
+      c.className = 'certeza ' + p.c;
+      c.textContent = ETIQ[p.c];
+      b.appendChild(c);
+      box.appendChild(b);
+      var re = document.createElement('p');
+      re.textContent = p.re;
+      box.appendChild(re);
+      var rf = document.createElement('span');
+      rf.className = 'fuente';
+      rf.textContent = p.rf;
+      box.appendChild(rf);
+      panel.appendChild(box);
+    }
+  }
+
+  document.getElementById('espiralRehab').addEventListener('click', function () {
+    var on = fig.classList.toggle('con-rehab');
+    this.setAttribute('aria-pressed', on ? 'true' : 'false');
+    this.textContent = on ? 'Ocultar la rehabilitación' : 'Ver dónde entra la rehabilitación';
+    seleccionar(activo);
+  });
+  document.getElementById('espiralSig').addEventListener('click', function () {
+    seleccionar((activo + 1) % PASOS.length);
+  });
+
+  seleccionar(0);
+})();
+</script>
+
 
 <footer>
   <div class="envoltura">
