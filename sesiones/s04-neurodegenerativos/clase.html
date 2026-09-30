@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="es">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sesión 4 · Neurodegenerativos, demencia y fragilidad — material de la sesión</title>
+<meta name="description" content="Material de la sesión 4 (trastornos neurodegenerativos, demencia y fragilidad) de Investigación en Cuidados Paliativos y Rehabilitación (37543013), UAN. Hilo único: la función que se pierde.">
+<meta name="robots" content="noindex,nofollow">
+
+<!-- ===========================================================================
+     MATERIAL DE LA SESIÓN 4 · Neurodegenerativos, demencia y fragilidad
+     Sesión presencial del 16 de octubre; cierra el segundo corte. Funde las
+     unidades 4 y 5 en una sola tarde, con un hilo único: la función que se
+     pierde, y qué se hace cuando perderla es el curso esperado.
+     Portable (regla 1): tokens en línea, cero recursos externos, abre offline.
+     =========================================================================== -->
+
+<style>
+:root{
+  --u4:#2E86BC; --u4-dark:#1C6493; --u4-soft:#D8EBF7;
+  --marca:#22415C; --marca-dark:#163049; --marca-soft:#E3EAF0;
+  --aviso-soft:#F6EBD5; --aviso-dark:#7A5212;
+  --tinta:#14202B; --gris:#4E6274; --gris-claro:#94A5B5;
+  --linea:#D9E3EC; --blanco:#FFFFFF; --nieve:#F4F7FA;
+  --shadow-soft:0 1px 2px rgba(20,32,43,.06), 0 6px 18px rgba(20,32,43,.06);
+  --radius:12px; --radius-sm:8px;
+  --sans:system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  --serif:'Iowan Old Style','Palatino Linotype',Palatino,'Book Antiqua',Georgia,serif;
+  --mono:ui-monospace,'Cascadia Mono','Segoe UI Mono',Consolas,monospace;
+  /* Unidad 4 → cielo. La sesión funde U4 y U5: el color señala U4 y
+     la etiqueta lo dice, porque el color nunca es el único canal. */
+  --acento:var(--u4); --acento-dark:var(--u4-dark); --acento-soft:var(--u4-soft);
+}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;font-family:var(--sans);color:var(--tinta);background:var(--nieve);line-height:1.6}
+:focus-visible{outline:3px solid var(--acento);outline-offset:2px}
+a{color:var(--acento-dark)}
+.envoltura{max-width:58rem;margin:0 auto;padding:0 clamp(1rem,4vw,2rem)}
+.saltar{position:absolute;left:-9999px;background:var(--tinta);color:var(--blanco);padding:.6rem 1rem;z-index:20}
+.saltar:focus{left:0}
+
+.nav-sesion{background:var(--tinta);color:var(--nieve);padding:.55rem 1rem;font-size:.82rem;display:flex;flex-wrap:wrap;gap:.3rem .9rem}
+.nav-sesion a{color:var(--gris-claro);text-decoration:none;border-bottom:1px solid transparent}
+.nav-sesion a:hover{border-bottom-color:var(--gris-claro)}
+.nav-sesion .ns-curso{font-weight:700}
+
+.cabecera{background:linear-gradient(160deg,var(--nieve) 0%,var(--u4-soft) 100%);border-bottom:4px solid var(--acento);padding:clamp(1.8rem,5vw,3rem) 0 clamp(1.4rem,3vw,2rem)}
+.eyebrow{font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--acento-dark);font-weight:700;margin:0 0 .4rem}
+.numero{font-family:var(--mono);font-size:.85rem;color:var(--gris);display:block;margin-bottom:.3rem}
+h1{font-family:var(--serif);font-size:clamp(1.7rem,4.5vw,2.6rem);line-height:1.15;margin:0 0 .6rem;max-width:24ch}
+.lede{font-size:1.05rem;color:var(--gris);max-width:62ch;margin:.4rem 0 0}
+.chips{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.1rem;padding:0;list-style:none}
+.chip{background:var(--blanco);border:1px solid var(--acento-soft);border-radius:999px;padding:.3rem .9rem;font-size:.83rem;box-shadow:var(--shadow-soft)}
+
+main{padding:clamp(1.6rem,4vw,2.6rem) 0}
+section{margin-bottom:clamp(2rem,4vw,2.8rem)}
+h2{font-family:var(--serif);font-size:clamp(1.3rem,2.8vw,1.7rem);color:var(--acento-dark);margin:0 0 .4rem;line-height:1.2}
+h2 .n{font-family:var(--mono);font-size:.72rem;color:var(--gris);display:block;letter-spacing:.05em;text-transform:uppercase;margin-bottom:.15rem}
+h3{font-size:1.02rem;margin:0 0 .35rem;color:var(--tinta)}
+p{max-width:66ch}
+
+.caja{background:var(--blanco);border-radius:var(--radius);box-shadow:var(--shadow-soft);border-left:4px solid var(--acento);padding:1.1rem 1.3rem;max-width:66ch}
+.crono{width:100%;border-collapse:collapse;margin-top:.7rem;font-size:.92rem}
+.crono td{padding:.45rem .5rem;border-top:1px solid var(--linea);vertical-align:top}
+.crono td:first-child{font-family:var(--mono);color:var(--acento-dark);white-space:nowrap;font-size:.84rem;font-weight:700}
+.crono td:nth-child(2){font-weight:700;white-space:nowrap;padding-right:1rem}
+
+.gancho{background:var(--marca);color:var(--blanco);border-radius:var(--radius);padding:1.2rem 1.4rem;max-width:66ch}
+.gancho h3{color:var(--blanco);font-family:var(--serif);font-size:1.25rem}
+.gancho p{color:#DDE6EE;margin:.3rem 0 0}
+.barras{list-style:none;padding:0;margin:.9rem 0 0;display:grid;gap:.4rem}
+.barras li{display:grid;grid-template-columns:12rem 1fr 2.5rem;align-items:center;gap:.6rem;font-size:.88rem}
+@media (max-width:560px){.barras li{grid-template-columns:8.5rem 1fr 2rem}}
+.barras .b{height:.7rem;background:rgba(255,255,255,.18);border-radius:999px;overflow:hidden}
+.barras .b span{display:block;height:100%;background:#B9B2EA}
+.barras .v{font-family:var(--mono);text-align:right}
+
+.tarjetas{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,17rem),1fr));gap:.8rem;margin:.9rem 0}
+.tarjeta{background:var(--blanco);border-radius:var(--radius-sm);box-shadow:var(--shadow-soft);border-top:3px solid var(--acento);padding:.85rem 1rem}
+.tarjeta h3{font-size:.95rem;color:var(--acento-dark)}
+.tarjeta p{font-size:.9rem;margin:0}
+.tarjeta .fuente{display:block;font-family:var(--mono);font-size:.7rem;color:var(--gris);margin-top:.5rem}
+
+.actividad{background:var(--aviso-soft);border-radius:var(--radius);padding:1rem 1.2rem;max-width:66ch;border-left:4px solid #B7791F}
+.actividad h3{color:var(--aviso-dark)}
+.actividad ol,.actividad ul{margin:.3rem 0 0;padding-left:1.2rem;font-size:.93rem}
+.actividad li{margin-bottom:.3rem}
+.cita-en{font-family:var(--serif);font-style:italic;border-left:3px solid var(--acento-soft);padding:.2rem 0 .2rem .8rem;margin:.6rem 0}
+
+.tabla{overflow-x:auto;margin-top:.8rem}
+table{width:100%;border-collapse:collapse;font-size:.88rem;background:var(--blanco);box-shadow:var(--shadow-soft);border-radius:var(--radius-sm);overflow:hidden}
+th{background:var(--acento-dark);color:var(--blanco);text-align:left;padding:.5rem .6rem;font-weight:600}
+td{padding:.5rem .6rem;border-top:1px solid var(--linea);vertical-align:top}
+td b{font-family:var(--mono);font-size:.84rem}
+
+.caja-instr{display:flex;flex-wrap:wrap;align-items:center;gap:.6rem 1rem;background:var(--acento-soft);border-radius:var(--radius);padding:.9rem 1.2rem;max-width:66ch;margin:.9rem 0}
+.caja-instr p{margin:0;font-size:.92rem;flex:1 1 20rem}
+.caja-instr a.cta{display:inline-block;background:var(--acento);color:var(--blanco);text-decoration:none;font-weight:600;padding:.45rem .9rem;border-radius:var(--radius-sm);white-space:nowrap}
+.caja-instr a.cta:hover,.caja-instr a.cta:focus{background:var(--acento-dark)}
+.giro{margin-top:.9rem;border-top:1px solid rgba(255,255,255,.25);padding-top:.7rem}
+.giro summary{cursor:pointer;font-weight:700;color:var(--blanco)}
+.refs{list-style:none;padding:0;margin:.8rem 0 0;display:grid;gap:.45rem;font-size:.86rem;color:var(--gris);max-width:66ch}
+.refs li{padding-left:1.3rem;position:relative}
+.refs li::before{content:"";position:absolute;left:.2rem;top:.65em;width:.45rem;height:.45rem;border-radius:50%;background:var(--acento)}
+.refs b{color:var(--tinta)}
+footer{border-top:1px solid var(--linea);background:var(--blanco);padding:1.8rem 0;font-size:.85rem;color:var(--gris)}
+@media print{.nav-sesion,.saltar{display:none}}
+</style>
+
+<a class="saltar" href="#contenido">Saltar al contenido</a>
+
+<nav class="nav-sesion" aria-label="Navegación del curso">
+  <a class="ns-curso" href="../../index.html">← Investigación en CP y Rehabilitación</a>
+  <a href="index.html">Guía de la sesión</a>
+  <a href="preparacion.html">Entregable previo</a>
+</nav>
+
+<header class="cabecera">
+  <div class="envoltura">
+    <p class="eyebrow">Unidades 4 y 5 · Material de la sesión</p>
+    <span class="numero">Sesión 04 de 6</span>
+    <h1>Neurodegenerativos, demencia y fragilidad</h1>
+    <p class="lede">Una sola tarde para dos unidades, con un hilo que las une: <strong>la función que se
+      pierde</strong>. En las tres condiciones la pérdida es el curso esperado de la enfermedad, y ahí la pregunta
+      de la rehabilitación cambia: ya no es «¿cuánto recupera?», sino «¿qué sostiene, y cómo lo sabemos?».</p>
+    <ul class="chips">
+      <li class="chip">Viernes 16 de octubre · 2:00–5:00 p. m.</li>
+      <li class="chip">Presencial</li>
+      <li class="chip"><a href="preparacion.html" style="color:inherit">Entregable previo: el ensayo de ELA</a></li>
+      <li class="chip">Cierra el segundo corte</li>
+    </ul>
+  </div>
+</header>
+
+<main id="contenido">
+  <div class="envoltura">
+
+    <section aria-labelledby="h-como">
+      <h2 id="h-como">Cómo transcurre la sesión</h2>
+      <div class="caja">
+        <p style="margin:0">Cuatro bloques con el mismo método de siempre: se leen las tarjetas en grupos
+          pequeños, se hace la actividad, se pone en común. Quien conduce <strong>modera</strong>: devuelve al
+          grupo lo que aparece —<em>¿qué se repite en sus servicios? ¿qué no se mide? ¿dónde falta
+          evidencia?</em>—.</p>
+        <table class="crono">
+          <tr><td>2:00–2:30</td><td>Bloque 1</td><td>El libro que enmudece cuando la pérdida es el curso esperado</td></tr>
+          <tr><td>2:30–3:20</td><td>Bloque 2</td><td>El ensayo que leyeron: dosis de ejercicio en ELA</td></tr>
+          <tr><td>3:20–3:30</td><td>Pausa</td><td></td></tr>
+          <tr><td>3:30–4:10</td><td>Bloque 3</td><td>Medir cuando la persona ya no puede contarlo</td></tr>
+          <tr><td>4:10–4:50</td><td>Bloque 4</td><td>Fragilidad: la única de las tres que se considera reversible</td></tr>
+          <tr><td>4:50–5:00</td><td>Cierre</td><td>Una frase por bloque; qué pasa a la sesión 5</td></tr>
+        </table>
+      </div>
+    </section>
+
+    <section aria-labelledby="h-b1">
+      <h2 id="h-b1"><span class="n">Bloque 1 · 2:00–2:30</span>El libro que enmudece</h2>
+      <div class="gancho">
+        <h3>¿Cuántas veces dice «rehabilitación» cada capítulo?</h3>
+        <p>Mismo conteo que en la sesión 3, sobre los capítulos de esta sesión en el <em>Textbook of Palliative
+          Care</em> (2.ª ed., 2024), sin contar las referencias.</p>
+        <ul class="barras">
+          <li><span>Fragilidad (cap. 70)</span><span class="b"><span style="width:100%"></span></span><span class="v">12</span></li>
+          <li><span>Neurodegenerativos (cap. 58)</span><span class="b"><span style="width:25%"></span></span><span class="v">3</span></li>
+          <li><span>Demencia (cap. 59)</span><span class="b"><span style="width:25%"></span></span><span class="v">3</span></li>
+        </ul>
+        <p style="margin-top:.8rem">Pero el conteo esconde algo peor. En el capítulo de demencia, <strong>las tres
+          menciones son «unidad de rehabilitación»</strong>: el sitio por donde pasa la señora del caso clínico,
+          nunca algo que se le haga. Y el capítulo de neurodegenerativos <strong>no dice «ejercicio» ni una
+          vez</strong>.</p>
+        <details class="giro">
+          <summary>Después de discutirlo: ¿y dónde sí habla?</summary>
+          <p>En fragilidad, cuatro veces más. Justo en la condición que la geriatría considera <strong>en parte
+            reversible</strong>. Donde la etiqueta dice «degenerativo», el libro se calla; donde dice «frágil»,
+            propone programas. La pregunta para la tarde: ¿es una diferencia de evidencia, o de expectativa?</p>
+        </details>
+      </div>
+      <div class="actividad" style="margin-top:1rem">
+        <h3>Actividad · la palabra que falta (10 min)</h3>
+        <ol>
+          <li>En su servicio, ¿a quién con demencia avanzada se le ofrece algo de rehabilitación, y con qué
+            criterio se decide?</li>
+          <li>¿Han visto a alguien a quien le retiraran la terapia <em>por</em> el diagnóstico, no por su estado?</li>
+        </ol>
+      </div>
+    </section>
+
+    <section aria-labelledby="h-b2">
+      <h2 id="h-b2"><span class="n">Bloque 2 · 2:30–3:20</span>El ensayo que leyeron</h2>
+      <div class="tarjetas">
+        <article class="tarjeta">
+          <h3>La dosis como pregunta entera</h3>
+          <p>Sesenta y cinco personas con ELA, tres centros, el <strong>mismo ejercicio</strong> en los dos grupos
+            durante diez semanas: aeróbico, resistencia de baja carga, estiramientos y movilización asistida. Lo
+            único que cambiaba era la frecuencia, <strong>cinco sesiones por semana frente a dos</strong>.</p>
+          <span class="fuente">Zucchi et al. 2019</span>
+        </article>
+        <article class="tarjeta">
+          <h3>Qué midieron, y cuánto consideraron importante</h3>
+          <p>El desenlace principal fue el cambio en la escala funcional ALSFRS-R a los doce meses. Fijaron en
+            <strong>cuatro puntos al año</strong> la diferencia clínicamente importante, partiendo de que la
+            enfermedad hace perder alrededor de un punto por mes: frenar la caída un tercio.</p>
+          <span class="fuente">Zucchi et al. 2019</span>
+        </article>
+        <article class="tarjeta">
+          <h3>No hubo diferencias. En nada.</h3>
+          <p>Ni en progresión, ni en supervivencia, ni en función respiratoria, ni en fatiga, ni en calidad de
+            vida, ni en carga del cuidador. El seguimiento duró 24 meses y por el camino muchas personas murieron
+            o recibieron traqueostomía.</p>
+          <span class="fuente">Zucchi et al. 2019</span>
+        </article>
+        <article class="tarjeta">
+          <h3>A quién dejaron fuera</h3>
+          <p>Exigieron capacidad vital forzada por encima del <strong>50 %</strong> y excluyeron a quien ya usaba
+            ventilación no invasiva o invasiva. Es decir: a buena parte de la población que vemos en cuidados
+            paliativos. El efecto se midió en quien todavía podía entrenar.</p>
+          <span class="fuente">Zucchi et al. 2019</span>
+        </article>
+        <article class="tarjeta">
+          <h3>En esclerosis múltiple grave, el mismo patrón</h3>
+          <p>Un abordaje paliativo domiciliario redujo algo la carga de síntomas (p = 0,047), con un tamaño de
+            efecto pequeño que quedó en el límite al analizar por protocolo, y <strong>sin efecto</strong> sobre la
+            calidad de vida ni sobre los desenlaces del cuidador.</p>
+          <span class="fuente">Solari et al. 2018 · PeNSAMI</span>
+        </article>
+        <article class="tarjeta">
+          <h3>Y en el ensayo más grande, tampoco</h3>
+          <p>350 personas con EM, enfermedad de motoneurona o parkinsonismos avanzados: el cuidado paliativo
+            integrado breve <strong>no superó</strong> a la atención habitual en ningún desenlace reportado por el
+            paciente. Costó menos y fue bien recibido, pero el desenlace principal no se movió.</p>
+          <span class="fuente">Gao et al. 2020 · OPTCARE Neuro</span>
+        </article>
+      </div>
+      <div class="actividad">
+        <h3>Actividad · el veredicto (grupos, 25 min)</h3>
+        <p style="margin:0 0 .4rem">Ustedes leyeron el ensayo y respondieron cinco preguntas. Ahora, en grupo:</p>
+        <ol>
+          <li>Pongan en común el <strong>límite</strong> que cada quien eligió. ¿Coinciden?</li>
+          <li>Tres ensayos distintos, tres resultados que no favorecen a la intervención. ¿Eso significa que no
+            sirve, que se midió mal, o que se midió en quien no era?</li>
+          <li>Si tuvieran que defender ante un comité que <strong>vale la pena</strong> rehabilitar en ELA, ¿con
+            qué argumento y con qué desenlace lo harían?</li>
+        </ol>
+      </div>
+    </section>
+
+    <section aria-labelledby="h-b3">
+      <h2 id="h-b3"><span class="n">Bloque 3 · 3:30–4:10</span>Medir cuando la persona ya no puede contarlo</h2>
+      <div class="tarjetas">
+        <article class="tarjeta">
+          <h3>Más de treinta instrumentos para el dolor</h3>
+          <p>En demencia avanzada el dolor se observa, no se pregunta. Hay más de treinta instrumentos con
+            propiedades distintas; para la práctica se recomiendan el <strong>PAINAD</strong> y el
+            <strong>PACSLAC</strong>, y el PAIC15 parece útil. Lo que no puede pasar es que no se use ninguno.</p>
+          <span class="fuente">Davies, Klapwijk y van der Steen 2024 · cap. 59</span>
+        </article>
+        <article class="tarjeta">
+          <h3>Lo que se receta cuando no se entiende la conducta</h3>
+          <p>Los antipsicóticos se usan con frecuencia para la conducta desafiante, <strong>a menudo sin resultado
+            positivo</strong> y con efectos adversos múltiples: síntomas extrapiramidales, ictus y aumento de la
+            mortalidad. Los síntomas neuropsiquiátricos afectan a más de la mitad de las personas con demencia que
+            viven en comunidad.</p>
+          <span class="fuente">Davies, Klapwijk y van der Steen 2024 · cap. 59</span>
+        </article>
+        <article class="tarjeta">
+          <h3>El cuerpo que deambula está diciendo algo</h3>
+          <p>Una mujer con demencia moderada que caminaba kilómetros por el pasillo lo explicaba así: «es terrible
+            estar atada; el cuerpo se olvida de moverse y ya no sirve para nada». Deambular no siempre es un
+            síntoma que suprimir: a veces es la última forma de conservar el cuerpo.</p>
+          <span class="fuente">Potential and Possibility 2013 · cap. 2.8</span>
+        </article>
+        <article class="tarjeta">
+          <h3>Menos es más, con el contacto</h3>
+          <p>La fisioterapia en demencia entra por el movimiento y el tacto, no por la instrucción verbal. El libro
+            insiste en dar tiempo, respetar los límites de cada persona y no esperar que la respuesta se vea de
+            inmediato. Para clasificar la etapa usa la Global Deterioration Scale.</p>
+          <span class="fuente">Potential and Possibility 2013 · cap. 2.8</span>
+        </article>
+      </div>
+      <div class="actividad">
+        <h3>Actividad · el caso de la señora que ya no habla (grupos, 25 min)</h3>
+        <p style="margin:0 0 .4rem">Una mujer de 84 años con demencia avanzada, en una unidad de larga estancia.
+          Lleva dos semanas gritando al movilizarla para el baño y golpea al personal. Se le inició un
+          antipsicótico.</p>
+        <ol>
+          <li>¿Qué habría que descartar antes de atribuirlo a la demencia, y con qué instrumento?</li>
+          <li>Si el PAINAD saliera alto al movilizarla, ¿qué cambiaría en el plan de esa mañana?</li>
+          <li>¿Quién debería estar en esa decisión, y qué se registra para que no se pierda en el siguiente turno?</li>
+        </ol>
+      </div>
+    </section>
+
+    <section aria-labelledby="h-b4">
+      <h2 id="h-b4"><span class="n">Bloque 4 · 4:10–4:50</span>Fragilidad, la que sí se considera reversible</h2>
+      <div class="tarjetas">
+        <article class="tarjeta">
+          <h3>Cuánto pesa estar frágil</h3>
+          <p>Frente a una persona mayor en forma, la fragilidad <strong>leve</strong> casi duplica el riesgo de
+            morir, y la <strong>grave</strong> lo multiplica por cinco. Entre el 4,9 % y el 27,3 % de los mayores de
+            65 años vive con fragilidad, y la cifra es más alta en países de ingresos bajos y medios.</p>
+          <span class="fuente">Nicholson, Evans y Combes 2024 · cap. 70</span>
+        </article>
+        <article class="tarjeta">
+          <h3>Dos formas de nombrarla</h3>
+          <p>El <strong>fenotipo</strong> (Fried) la define por signos: pérdida de peso, agotamiento, debilidad,
+            lentitud e inactividad. El <strong>índice de déficits</strong> la mide acumulando problemas; su versión
+            electrónica usa 36. Y para la cabecera está la <strong>escala clínica de fragilidad</strong>, pictórica
+            y basada en las actividades de la vida diaria.</p>
+          <span class="fuente">Nicholson, Evans y Combes 2024 · cap. 70 · Rockwood y Theou 2020</span>
+        </article>
+        <article class="tarjeta">
+          <h3>Aquí sí hay programas</h3>
+          <p>Una revisión Cochrane de rehabilitación funcional en centros de larga estancia mejoró fuerza,
+            flexibilidad y equilibrio, y pudo mejorar el ánimo. Una revisión de ensayos de ejercicio en personas
+            mayores frágiles mejoró movilidad, equilibrio, fuerza, composición corporal y caídas. El matiz:
+            <strong>no se sabe cuál es el programa óptimo</strong>.</p>
+          <span class="fuente">Nicholson, Evans y Combes 2024 · cap. 70 (Forster et al. 2009 · de Labra et al. 2015)</span>
+        </article>
+        <article class="tarjeta">
+          <h3>Y existe la guía para hacerlo</h3>
+          <p>El proyecto europeo <strong>Vivifrail</strong> publicó una guía práctica de ejercicio que incluye a
+            personas con fragilidad grave y riesgo de caídas. La rehabilitación pulmonar también puede ayudar,
+            porque ataca justo lo que define la fragilidad: fatiga, debilidad y disnea.</p>
+          <span class="fuente">Nicholson, Evans y Combes 2024 · cap. 70 · <a href="https://vivifrail.com/recursos/">vivifrail.com</a></span>
+        </article>
+      </div>
+      <div class="actividad">
+        <h3>Actividad · de la brecha a la pregunta (grupos, 25 min)</h3>
+        <ol>
+          <li>Comparen los tres capítulos: la misma editorial, el mismo año, y tres niveles de ambición muy
+            distintos. ¿Qué explica la diferencia: la evidencia disponible, o lo que esperamos de cada diagnóstico?</li>
+          <li>Elijan <strong>un instrumento</strong> de esta tarde —PAINAD, escala clínica de fragilidad, ALSFRS-R,
+            Global Deterioration Scale— y digan qué decisión concreta cambiaría en su servicio si se usara de
+            rutina.</li>
+          <li>Conviértanlo en una pregunta investigable, con población, desenlace e instrumento. Es el mismo
+            movimiento del diseño que entregaron para la sesión 3.</li>
+        </ol>
+      </div>
+    </section>
+
+    <section aria-labelledby="h-instr">
+      <h2 id="h-instr">Instrumentos que aparecen en la sesión</h2>
+      <div class="tabla">
+        <table>
+          <thead><tr><th>Qué mide</th><th>Instrumento</th><th>Dónde aparece</th></tr></thead>
+          <tbody>
+            <tr><td>Función en ELA</td><td><b>ALSFRS-R</b></td><td>Zucchi et al. 2019 · desenlace principal</td></tr>
+            <tr><td>Dolor en demencia avanzada</td><td><b>PAINAD</b> · <b>PACSLAC</b> · <b>PAIC15</b></td><td>Cap. 59</td></tr>
+            <tr><td>Etapa de la demencia</td><td><b>Global Deterioration Scale</b></td><td>Potential and Possibility · cap. 2.8</td></tr>
+            <tr><td>Fragilidad, a la cabecera</td><td><b>Escala clínica de fragilidad</b> (pictórica, por AVD)</td><td>Cap. 70</td></tr>
+            <tr><td>Fragilidad, por signos</td><td><b>Fenotipo de Fried</b> (5 criterios)</td><td>Cap. 70</td></tr>
+            <tr><td>Fragilidad, por acumulación</td><td><b>Índice de déficits</b> · versión electrónica de 36</td><td>Cap. 70</td></tr>
+            <tr><td>Síntomas en enfermedad neurológica avanzada</td><td><b>IPOS Neuro</b> · <b>POS-S-MS</b></td><td>Gao et al. 2020 · Solari et al. 2018</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section aria-labelledby="h-cierre">
+      <h2 id="h-cierre">Cierre · 4:50–5:00</h2>
+      <div class="caja">
+        <p style="margin:0"><strong>Una frase por bloque</strong> con lo que quedó. Y una pregunta para llevar a la
+          sesión 5, sobre eventos catastróficos: si en estas enfermedades la pérdida de función es el curso
+          esperado y aun así discutimos qué sostener, ¿qué pasa cuando la pérdida llega <em>de golpe</em>, en un
+          ictus o una fractura de cadera?</p>
+      </div>
+    </section>
+
+    <section aria-labelledby="h-refs">
+      <h2 id="h-refs">Referencias de la sesión</h2>
+      <ul class="refs">
+        <li><b>Oliver D, Veronese S.</b> Palliative care and neurodegenerative diseases. En: MacLeod RD, Van den Block L, editores. Textbook of Palliative Care. 2.ª ed. Cham: Springer; 2024. p. 1119-1140. doi:10.1007/978-3-031-48991-4_58</li>
+        <li><b>Davies N, Klapwijk MS, van der Steen JT.</b> Palliative care and dementia. En: MacLeod RD, Van den Block L, editores. Textbook of Palliative Care. 2.ª ed. Cham: Springer; 2024. p. 1141-1166. doi:10.1007/978-3-031-48991-4_113</li>
+        <li><b>Nicholson C, Evans C, Combes S.</b> Palliative care and frailty in older people. En: MacLeod RD, Van den Block L, editores. Textbook of Palliative Care. 2.ª ed. Cham: Springer; 2024. p. 1329-1348. doi:10.1007/978-3-031-48991-4_66</li>
+        <li><b>Zucchi E, Vinceti M, Malagoli C, et al.</b> High-frequency motor rehabilitation in amyotrophic lateral sclerosis: a randomized clinical trial. Ann Clin Transl Neurol. 2019;6(5):893-901. doi:10.1002/acn3.765</li>
+        <li><b>Solari A, Giordano A, Patti F, et al.</b> Randomized controlled trial of a home-based palliative approach for people with severe multiple sclerosis. Mult Scler. 2018;24(5):663-674. doi:10.1177/1352458517704078</li>
+        <li><b>Gao W, Wilson R, Hepgul N, et al.</b> Effect of short-term integrated palliative care on patient-reported outcomes among patients severely affected with long-term neurological conditions: a randomized clinical trial. JAMA Netw Open. 2020;3(8):e2015061. doi:10.1001/jamanetworkopen.2020.15061</li>
+        <li><b>Taylor J, Simader R, Nieland P, editores.</b> Potential and Possibility: Rehabilitation at End of Life — Physiotherapy in Palliative Care. Múnich: Urban &amp; Fischer / Elsevier; 2013. Capítulo 2.8 (demencia). Se cita como práctica descrita, no como evidencia actual.</li>
+      </ul>
+      <p style="font-size:.82rem;color:var(--gris-claro);margin-top:.8rem">Material de terceros: se referencia, no se
+        reproduce. Los textos completos están en la carpeta de lecturas del curso.</p>
+    </section>
+
+  </div>
+</main>
+
+<footer>
+  <div class="envoltura">
+    <p><strong>Investigación en Cuidados Paliativos y Rehabilitación</strong> · código 37543013 · Maestría en
+      Cuidados Paliativos · Facultad de Enfermería · Universidad Antonio Nariño · 2026-II. Docente: Jorge Wilhem
+      Bogoya López. <a href="../../index.html">Volver a la portada</a>.</p>
+  </div>
+</footer>
+</html>

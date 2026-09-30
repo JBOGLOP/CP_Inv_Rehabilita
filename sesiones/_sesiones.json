@@ -165,7 +165,11 @@
         "Harwood y Enguell (2019)",
         "Eva y Payne (2014)"
       ],
-      "material": null,
+      "material": {
+        "tipo": "material",
+        "archivo": "clase.html",
+        "etiqueta": "Abrir el material de la sesión"
+      },
       "preparacion": {
         "archivo": "preparacion.html",
         "cierra": "viernes 16 de octubre, 1:00 p. m.",
