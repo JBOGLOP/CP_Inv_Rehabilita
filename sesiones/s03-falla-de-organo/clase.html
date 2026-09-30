@@ -120,6 +120,7 @@ p{max-width:66ch}
 .certeza.fuerte{border-color:var(--acento);color:var(--acento-dark);background:var(--acento-soft)}
 .certeza.condicional{border-color:var(--aviso);color:var(--aviso-dark);background:var(--aviso-soft)}
 .certeza.vacio{border-color:var(--gris-claro);color:var(--gris)}
+.certeza.practica{border-color:var(--marca);color:var(--marca-dark);background:var(--marca-soft)}
 .espiral__mandos{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.7rem}
 .espiral__mandos button{font:inherit;font-size:.82rem;font-weight:600;cursor:pointer;border-radius:999px;
   padding:.3rem .8rem;border:1px solid var(--acento);background:var(--blanco);color:var(--acento-dark)}
@@ -221,17 +222,35 @@ footer{border-top:1px solid var(--linea);background:var(--blanco);padding:1.8rem
             cirrosis. La pregunta útil es otra: <strong>¿para quién es esa evidencia?</strong></p>
         </details>
       </div>
+      <div class="tarjetas">
+        <article class="tarjeta">
+          <h3>«No hay un demasiado pronto; quizá sí un demasiado tarde»</h3>
+          <p>Un libro de fisioterapia paliativa se hace justo esta pregunta, y la responde con revisiones Cochrane
+            de <strong>los tres órganos de esta sesión</strong>: en enfermedad renal crónica el ejercicio regular
+            mejora la condición física y la calidad de vida; en falla cardíaca sistólica mejora la calidad de vida
+            y reduce ingresos; y en EPOC, la rehabilitación iniciada tras una exacerbación reduce ingresos y
+            mortalidad. Sin fisioterapia, dice, la capacidad de moverse se deteriora y los síntomas empeoran.</p>
+          <span class="fuente">Dahlin 2013 · cap. 1.4 (citando a Heiwe y Jacobson 2011, Davies et al. 2010 y Puhan et al. 2011)</span>
+        </article>
+        <article class="tarjeta">
+          <h3>Trece años después, la misma afirmación no dice lo mismo</h3>
+          <p>El libro afirma en 2013 que la rehabilitación cardíaca <em>reduce ingresos</em>. El Cochrane de 2024,
+            con 60 ensayos y 8.728 personas, lo confirma para las hospitalizaciones… y no encuentra diferencia en
+            <strong>mortalidad</strong>. Ninguna de las dos miente: la evidencia se afinó. Esa es la lectura crítica
+            que pide esta asignatura.</p>
+          <span class="fuente">Dahlin 2013 · cap. 1.4 · Molloy et al. 2024 (Cochrane)</span>
+        </article>
+      </div>
       <div class="actividad" style="margin-top:1rem">
-        <h3>Actividad · el mapa de la trayectoria (en parejas, 15 min)</h3>
+        <h3>Actividad · ¿demasiado pronto o demasiado tarde? (10 min)</h3>
         <ol>
-          <li>Abran la herramienta del mapa con la trayectoria de <strong>falla de órgano</strong>: «entrada y
-            reentrada», con descompensaciones y recuperación parcial.
-            <a href="../../_shared/mapa-trayectoria.html?sesion=S03&amp;t=organ">Abrir el mapa de falla de órgano</a>.</li>
-          <li>Ubiquen cada intervención en la fase donde tenga más sentido.</li>
-          <li>Para la puesta en común: ¿dónde ponen la rehabilitación <em>después de cada
-            descompensación</em>? ¿Y qué pasa en su servicio con el paciente que sale del hospital tras una
-            exacerbación?</li>
+          <li>En su servicio, ¿en qué momento de la enfermedad llega la remisión a rehabilitación? ¿Y qué pasa con
+            la persona que sale del hospital tras una descompensación?</li>
+          <li>Comparen las dos tarjetas de arriba: la de 2013 y la de 2024 dicen cosas distintas sobre lo mismo.
+            ¿Cuál usarían para sustentar un proyecto, y por qué?</li>
         </ol>
+        <p style="font-size:.86rem;margin:.5rem 0 0">El mapa de la trayectoria se retoma en la sesión 4, donde la
+          pérdida de función es el curso esperado de la enfermedad.</p>
       </div>
     </section>
 
@@ -288,7 +307,11 @@ footer{border-top:1px solid var(--linea);background:var(--blanco);padding:1.8rem
             Instrumentos: escalas numéricas, el Brief Fatigue Inventory (BFI) y el EORTC QLQ-C30. El diario de
             fatiga ayuda a administrar la energía. Dos revisiones Cochrane no lograron recomendaciones
             farmacológicas claras.</p>
-          <span class="fuente">Mücke y Kravchenko 2024 · cap. 12</span>
+          <p>Dos razones para <strong>preguntar por ella</strong> en vez de esperar a que la reporten: las personas
+            la <strong>infra-priorizan</strong> —solo la mencionan cuando los demás síntomas están controlados— y
+            la <strong>anemia está en el 70 %</strong> de quienes reciben cuidados paliativos, así que por debajo de
+            8 g/dL hay que dosificar con cuidado y hablar con el equipo médico antes de exigir esfuerzo.</p>
+          <span class="fuente">Mücke y Kravchenko 2024 · cap. 12 · Taylor et al. 2013 · cap. 2.6 (citando a Stromgren et al. 2006)</span>
         </article>
         <article class="tarjeta">
           <h3>Rehabilitación pulmonar en cáncer de pulmón</h3>
@@ -434,6 +457,15 @@ footer{border-top:1px solid var(--linea);background:var(--blanco);padding:1.8rem
             de rehabilitación.</p>
           <span class="fuente">OMS 2018</span>
         </article>
+        <article class="tarjeta">
+          <h3>¿Y cuando ya no hay nada que rehabilitar?</h3>
+          <p>En la fase terminal la fisioterapia no desaparece, cambia de objetivo: movilización pasiva para
+            prevenir contracturas, posicionamiento, alivio del dolor con calor, frío o masaje, y el movimiento y el
+            contacto como fuente de bienestar aunque no mejoren la función. Y una regla que conviene decir en voz
+            alta: <strong>también se sabe cuándo retirarse</strong> —si aparece inquietud, respiración más rápida o
+            aumento del tono muscular, se suspende y se comenta con el equipo—.</p>
+          <span class="fuente">Nieland y Simader 2013 · cap. 2.10</span>
+        </article>
       </div>
       <div class="actividad">
         <h3>Actividad · de la brecha a la pregunta (grupos por ámbito, 25 min)</h3>
@@ -508,6 +540,7 @@ footer{border-top:1px solid var(--linea);background:var(--blanco);padding:1.8rem
         <li><b>Rogal SS, Hansen L, Patel A, et al.</b> AASLD practice guidance: palliative care and symptom-based management in decompensated cirrhosis. Hepatology. 2022;76(3):819-853. doi:10.1002/hep.32378</li>
         <li><b>Jamali T, Raasikh T, Bustamante G, et al.</b> Outcomes of exercise interventions in patients with advanced liver disease: a systematic review of randomized clinical trials. Am J Gastroenterol. 2022;117(10):1614-1620. doi:10.14309/ajg.0000000000001883</li>
         <li><b>Hsieh HC, Chang WP, Huang PJ, Wang CH, Lin YH.</b> Effectiveness of exercise interventions on body composition, exercise capacity, fatigue, and quality of life in patients with liver cirrhosis: a meta-analysis of randomized controlled trials. Dig Dis Sci. 2024;69(7):2655-2666. doi:10.1007/s10620-024-08447-0</li>
+        <li><b>Taylor J, Simader R, Nieland P, editores.</b> Potential and Possibility: Rehabilitation at End of Life — Physiotherapy in Palliative Care. Múnich: Urban &amp; Fischer / Elsevier; 2013. ISBN 978-0-7020-5027-5. En esta sesión se usan los capítulos 1.3 (del control de síntomas a la rehabilitación), 1.4 (el momento adecuado), 2.4 (disnea y miedo), 2.6 (fatiga y debilidad) y 2.10 (fase terminal). Es de 2013: se cita como <em>práctica descrita</em>, no como evidencia actual.</li>
         <li><b>World Health Organization.</b> Integrating palliative care and symptom relief into primary health care: a WHO guide for planners, implementers and managers. Geneva: WHO; 2018. Disponible en: https://apps.who.int/iris/handle/10665/274559</li>
       </ul>
       <p style="font-size:.82rem;color:var(--gris-claro);margin-top:.8rem">Material de terceros: se referencia, no se
@@ -558,10 +591,10 @@ footer{border-top:1px solid var(--linea);background:var(--blanco);padding:1.8rem
       d: 'El miedo a ahogarse hace evitar más, y evitar más desacondiciona más. El ciclo se cierra y se acelera.',
       f: 'Modelo respirar-pensar-funcionar · caps. 66 y 67',
       rompe: 'Abordar el ciclo disnea-ansiedad',
-      re: 'En falla cardíaca, la única mención a la rehabilitación del capítulo llega prestada de este modelo, y el propio texto dice que «quizá» sea aplicable. Al final de la vida no hay recomendación de ejercicio para la fatiga.',
-      rf: 'Sobanski y Goodlin 2024 · Bower et al. 2024', c: 'vacio' }
+      re: 'Aquí no hay ensayos que citar, pero sí práctica descrita y transmisible: aire frío dirigido a la cara, compresa fría, posición erguida o semirreclinada con los brazos apoyados, respiración con labios fruncidos, relajación, acupresión, presencia planificada de la familia y timbre al alcance. «No probado» no es lo mismo que «no existe»: lo que falta son los ensayos, no las manos.',
+      rf: 'Taylor 2013 · cap. 2.4 (St Christopher\'s Hospice) · sin recomendación de ejercicio al final de la vida: Bower et al. 2024', c: 'practica' }
   ];
-  var ETIQ = { fuerte: 'evidencia fuerte', condicional: 'condicional, certeza baja', vacio: 'vacío en fase avanzada' };
+  var ETIQ = { fuerte: 'evidencia fuerte', condicional: 'condicional, certeza baja', vacio: 'vacío en fase avanzada', practica: 'práctica descrita, sin ensayos' };
 
   var svgNS = 'http://www.w3.org/2000/svg';
   var CX = 220, CY = 162, R = 108, NODO_R = 42;
