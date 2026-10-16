@@ -84,6 +84,20 @@ button:hover{background:var(--acento-soft)}
 .discutir li{margin-bottom:.4rem;break-inside:avoid}
 .ref{font-size:.82rem;color:var(--gris);max-width:72ch}
 footer{margin:2rem 0;font-size:.8rem;color:var(--gris)}
+.regiones{width:100%;border-collapse:collapse;font-size:.88rem;margin:.6rem 0}
+.regiones th{background:var(--acento-dark);color:var(--blanco);text-align:left;padding:.45rem .55rem;font-weight:600}
+.regiones td{padding:.45rem .55rem;border-top:1px solid var(--linea);vertical-align:middle}
+.regiones td.c{text-align:center}
+.regiones input{width:1.15rem;height:1.15rem;accent-color:var(--acento)}
+.regiones small{display:block;color:var(--gris);font-size:.75rem}
+.tabla-x{overflow-x:auto}
+.categoria{font-family:var(--serif);font-size:1.35rem;color:var(--acento-dark);margin:.2rem 0}
+.criterios{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,15rem),1fr));gap:.6rem;margin:.6rem 0 0}
+.criterios div{background:var(--nieve);border-radius:var(--radius-sm);padding:.6rem .7rem;font-size:.85rem;border-left:3px solid var(--linea)}
+.criterios div.activo{border-left-color:var(--acento);background:var(--acento-soft)}
+.criterios b{display:block;color:var(--acento-dark)}
+.check{display:flex;gap:.5rem;align-items:flex-start;font-size:.88rem;margin:.6rem 0}
+.check input{margin-top:.2rem;width:1.1rem;height:1.1rem;accent-color:var(--acento)}
 @media print{.nav-sesion,.botones{display:none}.panel{box-shadow:none;border:1px solid var(--linea)}.resumen{position:static}}
 </style>
 </head>
@@ -94,6 +108,7 @@ footer{margin:2rem 0;font-size:.8rem;color:var(--gris)}
   <a href="index.html">Guía de la sesión</a>
   <a href="clase.html">Material de la sesión</a>
   <a href="preparacion.html">Entregable previo</a>
+  <a href="#escorial">Criterios de El Escorial</a>
 </nav>
 
 <header>
@@ -148,6 +163,53 @@ footer{margin:2rem 0;font-size:.8rem;color:var(--gris)}
     <div class="dato" id="cambio" aria-live="polite">Completa los dos campos.</div>
   </section>
 
+  <section class="panel" aria-labelledby="h-esc" style="margin-top:1.2rem" id="escorial">
+    <h2 id="h-esc" style="margin-top:0">Criterios de El Escorial revisados: ¿quién entra a un ensayo de ELA?</h2>
+    <p style="font-size:.92rem;margin-top:0">Zucchi 2019 incluyó a personas con ELA <strong>definida, probable o posible</strong> según
+      estos criterios. No miden función, como la ALSFRS-R: clasifican la <em>certeza diagnóstica</em> según en cuántas regiones del
+      cuerpo hay signos de primera motoneurona (superior) y de segunda motoneurona (inferior). Se crearon para estandarizar quién
+      entra a la investigación, no para la decisión clínica.</p>
+
+    <div class="tabla-x"><table class="regiones">
+      <thead><tr><th>Región</th><th>Signos de motoneurona superior<small style="color:inherit;opacity:.85">hiperreflexia, espasticidad, Babinski, Hoffmann</small></th>
+        <th>Signos de motoneurona inferior<small style="color:inherit;opacity:.85">debilidad, atrofia, fasciculaciones</small></th></tr></thead>
+      <tbody id="escFilas"></tbody>
+    </table></div>
+    <label class="check"><input type="checkbox" id="escEmg">
+      <span>La electromiografía muestra denervación aguda y crónica en <strong>al menos dos extremidades</strong>
+        (solo cuenta para la categoría «probable con apoyo de laboratorio»).</span></label>
+
+    <div class="dato" aria-live="polite">
+      <div style="font-size:.8rem;color:var(--gris)">Categoría según los signos marcados</div>
+      <p class="categoria" id="escCat">Sin criterios</p>
+      <div id="escExpl" style="font-size:.88rem"></div>
+      <div id="escZucchi" style="font-size:.88rem;margin-top:.35rem"></div>
+    </div>
+
+    <div class="criterios" id="escLista">
+      <div data-cat="definida"><b>Definida</b>Signos de motoneurona superior e inferior en 3 regiones.</div>
+      <div data-cat="probable"><b>Probable</b>Signos de ambas en 2 regiones, con algún signo de motoneurona superior por encima de los de la inferior.</div>
+      <div data-cat="laboratorio"><b>Probable con apoyo de laboratorio</b>Signos de ambas en 1 región, o solo de motoneurona superior en 1 o más, más denervación en la electromiografía de al menos 2 extremidades.</div>
+      <div data-cat="posible"><b>Posible</b>Signos de ambas en 1 sola región; o solo de motoneurona superior en 2 o más; o signos de motoneurona inferior por encima de los de la superior.</div>
+    </div>
+
+    <p class="alerta" style="color:var(--aviso-dark)">En todos los casos los criterios exigen además que la enfermedad <strong>progrese</strong> y que
+      se hayan <strong>descartado otras causas</strong> con electrofisiología, neuroimagen o laboratorio. Esta herramienta es para entender
+      la clasificación: el diagnóstico lo hace el neurólogo.</p>
+
+    <h3 style="font-size:1rem;margin:1rem 0 .3rem">Para discutir</h3>
+    <ul class="discutir" style="columns:1">
+      <li><strong>Lo que deja fuera la «posible».</strong> Con los criterios originales, muchas personas con ELA pasaban meses clasificadas
+        como «posible» o sin categoría, y quedaban fuera de los ensayos que solo admitían «definida» o «probable». Zucchi sí incluyó la
+        «posible»: ¿qué gana y qué pierde un ensayo al hacerlo?</li>
+      <li><strong>Certeza diagnóstica no es gravedad.</strong> Una persona con ELA «definida» puede tener una ALSFRS-R de 44, y otra «posible»
+        puede tener una de 30. ¿Qué criterio de entrada usarían en un estudio de rehabilitación en cuidados paliativos?</li>
+      <li><strong>Los criterios cambian.</strong> Los de Awaji (2008) dieron a la electromiografía el mismo peso que la exploración, y los de
+        Gold Coast (2020) simplificaron todo a una sola categoría: hay ELA o no la hay. Un ensayo de 2019 y uno de 2026 pueden no estar
+        hablando de la misma población.</li>
+    </ul>
+  </section>
+
   <section aria-labelledby="h-disc">
     <h2 id="h-disc">Para discutir con el grupo</h2>
     <ul class="discutir">
@@ -165,7 +227,11 @@ footer{margin:2rem 0;font-size:.8rem;color:var(--gris)}
   <p class="ref"><b>Fuentes.</b> Cedarbaum JM, Stambler N, Malta E, et al. The ALSFRS-R: a revised ALS functional rating scale that
     incorporates assessments of respiratory function. J Neurol Sci. 1999;169(1-2):13-21. doi:10.1016/S0022-510X(99)00210-5 ·
     Zucchi E, Vinceti M, Malagoli C, et al. High-frequency motor rehabilitation in amyotrophic lateral sclerosis: a randomized
-    clinical trial. Ann Clin Transl Neurol. 2019;6(5):893-901. doi:10.1002/acn3.765.
+    clinical trial. Ann Clin Transl Neurol. 2019;6(5):893-901. doi:10.1002/acn3.765 ·
+    Brooks BR, Miller RG, Swash M, Munsat TL. El Escorial revisited: revised criteria for the diagnosis of amyotrophic lateral
+    sclerosis. Amyotroph Lateral Scler Other Motor Neuron Disord. 2000;1(5):293-299. doi:10.1080/146608200300079536 ·
+    Shefner JM, Al-Chalabi A, Baker MR, et al. A proposal for new diagnostic criteria for ALS. Clin Neurophysiol.
+    2020;131(8):1975-1978. doi:10.1016/j.clinph.2020.04.005.
     El texto oficial de los niveles no se reproduce aquí: las descripciones son un resumen propio con fines docentes.</p>
 </main>
 
@@ -354,6 +420,93 @@ footer{margin:2rem 0;font-size:.8rem;color:var(--gris)}
   });
   ['meses', 'seg', 'entre'].forEach(function (id) { document.getElementById(id).addEventListener('input', calcular); });
   calcular();
+})();
+</script>
+<script>
+/* Criterios de El Escorial revisados (Brooks et al., 2000), en versión didáctica.
+   Regiones ordenadas de arriba abajo: el índice menor es la región más «rostral». */
+(function () {
+  'use strict';
+  var REG = [
+    ['Bulbar', 'habla, deglución, lengua, cara'],
+    ['Cervical', 'cuello, brazos, manos, diafragma'],
+    ['Torácica', 'espalda, abdomen'],
+    ['Lumbosacra', 'espalda baja, abdomen bajo, piernas, pies']
+  ];
+  var cuerpo = document.getElementById('escFilas');
+  REG.forEach(function (r, i) {
+    var tr = document.createElement('tr');
+    var td = document.createElement('td');
+    td.innerHTML = '<b></b><small></small>';
+    td.firstChild.textContent = r[0];
+    td.lastChild.textContent = r[1];
+    tr.appendChild(td);
+    ['sup', 'inf'].forEach(function (t) {
+      var c = document.createElement('td');
+      c.className = 'c';
+      var inp = document.createElement('input');
+      inp.type = 'checkbox';
+      inp.id = 'esc-' + t + i;
+      inp.setAttribute('aria-label', r[0] + ': signos de motoneurona ' + (t === 'sup' ? 'superior' : 'inferior'));
+      inp.addEventListener('change', clasificar);
+      c.appendChild(inp);
+      tr.appendChild(c);
+    });
+    cuerpo.appendChild(tr);
+  });
+  document.getElementById('escEmg').addEventListener('change', clasificar);
+
+  function clasificar() {
+    var sup = [], inf = [];
+    for (var i = 0; i < 4; i++) {
+      sup.push(document.getElementById('esc-sup' + i).checked);
+      inf.push(document.getElementById('esc-inf' + i).checked);
+    }
+    var emg = document.getElementById('escEmg').checked;
+    var ambas = 0, soloSup = 0, haySup = false, hayInf = false;
+    for (var k = 0; k < 4; k++) {
+      if (sup[k] && inf[k]) ambas++;
+      if (sup[k] && !inf[k]) soloSup++;
+      if (sup[k]) haySup = true;
+      if (inf[k]) hayInf = true;
+    }
+    // ¿hay algún signo de motoneurona inferior por encima del signo de motoneurona superior más alto?
+    var supMasAlto = sup.indexOf(true), infMasAlto = inf.indexOf(true);
+    var infPorEncima = haySup && hayInf && infMasAlto < supMasAlto;
+
+    var cat = 'ninguna', nombre = 'Sin criterios', expl;
+    if (ambas >= 3) {
+      cat = 'definida'; nombre = 'ELA definida';
+      expl = 'Signos de motoneurona superior e inferior en ' + ambas + ' regiones.';
+    } else if (ambas === 2) {
+      cat = 'probable'; nombre = 'ELA probable';
+      expl = 'Signos de ambas motoneuronas en 2 regiones.';
+    } else if ((ambas === 1 || haySup) && emg) {
+      cat = 'laboratorio'; nombre = 'ELA probable con apoyo de laboratorio';
+      expl = 'Signos clínicos en una sola región, completados por la electromiografía en al menos dos extremidades.';
+    } else if (ambas === 1 || soloSup >= 2 || infPorEncima) {
+      cat = 'posible'; nombre = 'ELA posible';
+      expl = ambas === 1 ? 'Signos de ambas motoneuronas en una sola región.'
+           : soloSup >= 2 ? 'Solo signos de motoneurona superior, en ' + soloSup + ' regiones.'
+           : 'Hay signos de motoneurona inferior por encima de los de motoneurona superior.';
+    } else if (haySup || hayInf) {
+      expl = (haySup ? 'Solo signos de motoneurona superior en una región.' : 'Solo signos de motoneurona inferior.') +
+        ' No alcanza ninguna categoría; con signos de motoneurona inferior aislados, la electromiografía y el seguimiento deciden.';
+    } else {
+      expl = 'Marca en qué regiones hay signos de cada motoneurona.';
+    }
+    document.getElementById('escCat').textContent = nombre;
+    document.getElementById('escExpl').textContent = expl;
+    var z = document.getElementById('escZucchi');
+    z.textContent = cat === 'ninguna' ? '' :
+      (cat === 'laboratorio'
+        ? 'Zucchi 2019 nombra solo las categorías definida, probable y posible: el artículo no dice cómo trató esta categoría.'
+        : 'Por diagnóstico, esta persona podría entrar a Zucchi 2019, si además tiene capacidad vital forzada > 50 %, no usa ventilación y lleva 18 meses o menos de diagnóstico.');
+    [].forEach.call(document.querySelectorAll('#escLista div'), function (d) {
+      d.classList.toggle('activo', d.dataset.cat === cat);
+    });
+  }
+  clasificar();
 })();
 </script>
 </body>
