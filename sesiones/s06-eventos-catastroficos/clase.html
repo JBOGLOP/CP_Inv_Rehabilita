@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="es">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sesión 5 · Eventos catastróficos — material de la sesión</title>
+<meta name="description" content="Material de la sesión 5 (eventos catastróficos: ictus severo, fractura de cadera, espasticidad) de Investigación en Cuidados Paliativos y Rehabilitación (37543013), UAN. Exposición de revisiones rápidas por grupos, discusión crítica entre pares y síntesis de vacíos.">
+
+<!-- ===========================================================================
+     MATERIAL DE LA SESIÓN 5 · Eventos catastróficos
+     Sesión sincrónica del 30 de octubre, tercer corte. La sesión la construyen
+     los tres grupos: cada uno expone su revisión rápida y otro la discute.
+     Esta página es el guion común: cronograma, roles, banco de preguntas para
+     el grupo discutidor, rúbrica, cronómetro y tablero de síntesis.
+     Portable (regla 1): tokens en línea, cero recursos externos, abre offline.
+     Sin nombres de estudiantes (regla 2): los grupos se nombran por número.
+     =========================================================================== -->
+
+<style>
+:root{
+  --u6:#7A5FC0; --u6-dark:#574097; --u6-soft:#E9E3F7;
+  --marca:#22415C; --marca-dark:#163049; --marca-soft:#E3EAF0;
+  --ok:#0E8A80; --ok-soft:#D2EAE7;
+  --aviso-soft:#F6EBD5; --aviso-dark:#7A5212;
+  --tinta:#14202B; --gris:#4E6274; --gris-claro:#94A5B5;
+  --linea:#D9E3EC; --blanco:#FFFFFF; --nieve:#F4F7FA;
+  --shadow-soft:0 1px 2px rgba(20,32,43,.06), 0 6px 18px rgba(20,32,43,.06);
+  --radius:12px; --radius-sm:8px;
+  --sans:system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  --serif:'Iowan Old Style','Palatino Linotype',Palatino,'Book Antiqua',Georgia,serif;
+  --mono:ui-monospace,'Cascadia Mono','Segoe UI Mono',Consolas,monospace;
+  /* Unidad 6 → glicina */
+  --acento:var(--u6); --acento-dark:var(--u6-dark); --acento-soft:var(--u6-soft);
+}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;font-family:var(--sans);color:var(--tinta);background:var(--nieve);line-height:1.6}
+:focus-visible{outline:3px solid var(--acento);outline-offset:2px}
+a{color:var(--acento-dark)}
+.envoltura{max-width:58rem;margin:0 auto;padding:0 clamp(1rem,4vw,2rem)}
+.saltar{position:absolute;left:-9999px;background:var(--tinta);color:var(--blanco);padding:.6rem 1rem;z-index:20}
+.saltar:focus{left:0}
+
+.nav-sesion{background:var(--tinta);color:var(--nieve);padding:.55rem 1rem;font-size:.82rem;display:flex;flex-wrap:wrap;gap:.3rem .9rem}
+.nav-sesion a{color:var(--gris-claro);text-decoration:none;border-bottom:1px solid transparent}
+.nav-sesion a:hover{border-bottom-color:var(--gris-claro)}
+.nav-sesion .ns-curso{font-weight:700}
+
+.cabecera{background:linear-gradient(160deg,var(--nieve) 0%,var(--u6-soft) 100%);border-bottom:4px solid var(--acento);padding:clamp(1.8rem,5vw,3rem) 0 clamp(1.4rem,3vw,2rem)}
+.eyebrow{font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--acento-dark);font-weight:700;margin:0 0 .4rem}
+.numero{font-family:var(--mono);font-size:.85rem;color:var(--gris);display:block;margin-bottom:.3rem}
+h1{font-family:var(--serif);font-size:clamp(1.7rem,4.5vw,2.6rem);line-height:1.15;margin:0 0 .6rem;max-width:26ch}
+.lede{font-size:1.05rem;color:var(--gris);max-width:62ch;margin:.4rem 0 0}
+.chips{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.1rem;padding:0;list-style:none}
+.chip{background:var(--blanco);border:1px solid var(--acento-soft);border-radius:999px;padding:.3rem .9rem;font-size:.83rem;box-shadow:var(--shadow-soft)}
+
+main{padding:clamp(1.6rem,4vw,2.6rem) 0}
+section{margin-bottom:clamp(2rem,4vw,2.8rem)}
+h2{font-family:var(--serif);font-size:clamp(1.3rem,2.8vw,1.7rem);color:var(--acento-dark);margin:0 0 .4rem;line-height:1.2}
+h2 .n{font-family:var(--mono);font-size:.72rem;color:var(--gris);display:block;letter-spacing:.05em;text-transform:uppercase;margin-bottom:.15rem}
+h3{font-size:1.02rem;margin:0 0 .35rem;color:var(--tinta)}
+p{max-width:66ch}
+
+.caja{background:var(--blanco);border-radius:var(--radius);box-shadow:var(--shadow-soft);border-left:4px solid var(--acento);padding:1.1rem 1.3rem;max-width:66ch}
+.crono{width:100%;border-collapse:collapse;margin-top:.7rem;font-size:.92rem}
+.crono td{padding:.45rem .5rem;border-top:1px solid var(--linea);vertical-align:top}
+.crono td:first-child{font-family:var(--mono);color:var(--acento-dark);white-space:nowrap;font-size:.84rem;font-weight:700}
+.crono td:nth-child(2){font-weight:700;padding-right:1rem}
+
+.gancho{background:var(--marca);color:var(--blanco);border-radius:var(--radius);padding:1.2rem 1.4rem;max-width:66ch}
+.gancho h3{color:var(--blanco);font-family:var(--serif);font-size:1.25rem}
+.gancho p{color:#DDE6EE;margin:.3rem 0 0}
+
+.tarjetas{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,17rem),1fr));gap:.8rem;margin:.9rem 0}
+.tarjeta{background:var(--blanco);border-radius:var(--radius-sm);box-shadow:var(--shadow-soft);border-top:3px solid var(--acento);padding:.85rem 1rem}
+.tarjeta h3{font-size:.95rem;color:var(--acento-dark)}
+.tarjeta p,.tarjeta li{font-size:.9rem;margin:0}
+.tarjeta ul{margin:.3rem 0 0;padding-left:1.1rem}
+.tarjeta .fuente{display:block;font-family:var(--mono);font-size:.7rem;color:var(--gris);margin-top:.5rem}
+
+.actividad{background:var(--aviso-soft);border-radius:var(--radius);padding:1rem 1.2rem;max-width:66ch;border-left:4px solid #B7791F}
+.actividad h3{color:var(--aviso-dark)}
+.actividad ol,.actividad ul{margin:.3rem 0 0;padding-left:1.2rem;font-size:.93rem}
+.actividad li{margin-bottom:.3rem}
+
+.tabla{overflow-x:auto;margin-top:.8rem}
+table{width:100%;border-collapse:collapse;font-size:.88rem;background:var(--blanco);box-shadow:var(--shadow-soft);border-radius:var(--radius-sm);overflow:hidden}
+th{background:var(--acento-dark);color:var(--blanco);text-align:left;padding:.5rem .6rem;font-weight:600}
+td{padding:.5rem .6rem;border-top:1px solid var(--linea);vertical-align:top}
+
+/* Cronómetro de turnos */
+.reloj{display:flex;flex-wrap:wrap;align-items:center;gap:.8rem 1.2rem;background:var(--blanco);border-radius:var(--radius);box-shadow:var(--shadow-soft);padding:1rem 1.2rem;max-width:66ch;border-top:4px solid var(--acento)}
+.reloj__cifra{font-family:var(--mono);font-size:clamp(2.2rem,7vw,3.4rem);font-weight:700;color:var(--acento-dark);min-width:7ch}
+.reloj__cifra.poco{color:#B7791F}
+.reloj__cifra.fin{color:#C0392B}
+.reloj__etq{font-size:.88rem;color:var(--gris);flex:1 1 12rem}
+.botones{display:flex;flex-wrap:wrap;gap:.45rem}
+button{font:inherit;font-size:.86rem;font-weight:600;cursor:pointer;border-radius:999px;padding:.4rem .95rem;border:1px solid var(--acento);background:var(--blanco);color:var(--acento-dark)}
+button:hover{background:var(--acento-soft)}
+button.primario{background:var(--acento-dark);color:var(--blanco);border-color:var(--acento-dark)}
+button[aria-pressed="true"]{background:var(--acento-dark);color:var(--blanco)}
+
+/* Tablero de síntesis */
+.tablero{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,16rem),1fr));gap:.8rem;margin-top:.9rem}
+.tablero .col{background:var(--blanco);border-radius:var(--radius-sm);box-shadow:var(--shadow-soft);padding:.8rem .9rem;border-top:3px solid var(--acento)}
+.tablero label{display:block;font-weight:700;font-size:.9rem;margin-bottom:.35rem;color:var(--acento-dark)}
+textarea{width:100%;min-height:8rem;font:inherit;font-size:.92rem;padding:.55rem .65rem;border:1px solid #C9D5E0;border-radius:var(--radius-sm);resize:vertical}
+.guardado{font-family:var(--mono);font-size:.76rem;color:var(--gris);margin:.5rem 0 0}
+
+.refs{list-style:none;padding:0;margin:.8rem 0 0;display:grid;gap:.45rem;font-size:.86rem;color:var(--gris);max-width:66ch}
+.refs li{padding-left:1.3rem;position:relative;overflow-wrap:anywhere}
+.refs li::before{content:"";position:absolute;left:.2rem;top:.65em;width:.45rem;height:.45rem;border-radius:50%;background:var(--acento)}
+.refs b{color:var(--tinta)}
+footer{border-top:1px solid var(--linea);background:var(--blanco);padding:1.8rem 0;font-size:.85rem;color:var(--gris)}
+@media print{.nav-sesion,.saltar,.botones,.reloj{display:none}textarea{border:1px solid #999;min-height:4rem}}
+</style>
+
+<a class="saltar" href="#contenido">Saltar al contenido</a>
+
+<nav class="nav-sesion" aria-label="Navegación del curso">
+  <a class="ns-curso" href="../../index.html">← Investigación en CP y Rehabilitación</a>
+  <a href="index.html">Guía de la sesión</a>
+  <a href="preparacion.html">Entregable en grupo</a>
+</nav>
+
+<header class="cabecera">
+  <div class="envoltura">
+    <p class="eyebrow">Unidad 6 · Material de la sesión</p>
+    <span class="numero">Sesión 05 de 6</span>
+    <h1>Eventos catastróficos: cuando la pérdida llega de golpe</h1>
+    <p class="lede">La sesión 4 cerró con una pregunta: si en las enfermedades neurodegenerativas la pérdida de
+      función es el curso esperado, <strong>¿qué pasa cuando llega de golpe</strong>, con un ictus o una fractura de
+      cadera? Hoy la responden ustedes: tres grupos, tres revisiones rápidas de la evidencia, y cada una
+      discutida por otro grupo.</p>
+    <ul class="chips">
+      <li class="chip">Viernes 30 de octubre · 2:00–5:00 p. m.</li>
+      <li class="chip">Sincrónico</li>
+      <li class="chip"><a href="preparacion.html" style="color:inherit">Entregable en grupo</a></li>
+      <li class="chip">Tercer corte · 20 %</li>
+    </ul>
+  </div>
+</header>
+
+<main id="contenido">
+  <div class="envoltura">
+
+    <section aria-labelledby="h-crono">
+      <h2 id="h-crono">Cómo transcurre la sesión</h2>
+      <div class="caja">
+        <p style="margin:0">Cada grupo expone <strong>20 minutos</strong>; después, el grupo discutidor abre
+          <strong>15 minutos</strong> de discusión con tres preguntas preparadas, y luego participa el resto. El docente
+          modera y cuida los tiempos.</p>
+        <table class="crono">
+          <tr><td>2:00–2:15</td><td>Encuadre</td><td>Hilo de la sesión, roles y reglas de la discusión</td></tr>
+          <tr><td>2:15–2:50</td><td>Grupo 1 · Ictus severo</td><td>Discute el grupo 3</td></tr>
+          <tr><td>2:50–3:25</td><td>Grupo 2 · Fractura de cadera</td><td>Discute el grupo 1</td></tr>
+          <tr><td>3:25–3:35</td><td>Pausa</td><td></td></tr>
+          <tr><td>3:35–4:10</td><td>Grupo 3 · Espasticidad y medición</td><td>Discute el grupo 2</td></tr>
+          <tr><td>4:10–4:40</td><td>Síntesis</td><td>Qué vacíos se repiten en los tres temas</td></tr>
+          <tr><td>4:40–5:00</td><td>Cierre</td><td>Del vacío al producto final del 20 de noviembre</td></tr>
+        </table>
+      </div>
+    </section>
+
+    <section aria-labelledby="h-encuadre">
+      <h2 id="h-encuadre"><span class="n">Encuadre · 2:00–2:15</span>Lo que tienen en común los tres temas</h2>
+      <div class="gancho">
+        <h3>Un evento, una decisión temprana, una trayectoria que no se elige</h3>
+        <p>En el ictus severo y en la fractura de cadera de la persona frágil, las decisiones importantes se toman en
+          los primeros días, con un pronóstico incierto, a menudo sin poder preguntarle a la persona y con una familia
+          que no esperaba estar ahí. La rehabilitación y los cuidados paliativos no son caminos alternativos: la
+          pregunta es <strong>cómo se combinan, y con qué metas se miden</strong>.</p>
+      </div>
+      <div class="tarjetas">
+        <article class="tarjeta">
+          <h3>Quien expone</h3>
+          <p>Presenta la pregunta, el método, la evidencia y su certeza, la aplicabilidad y el vacío. Hablan todos. Máximo 12 diapositivas.</p>
+        </article>
+        <article class="tarjeta">
+          <h3>Quien discute</h3>
+          <p>No resume: interroga. Abre con tres preguntas preparadas (método, certeza, aplicabilidad) y una más que surja de la exposición.</p>
+        </article>
+        <article class="tarjeta">
+          <h3>Quien escucha</h3>
+          <p>Anota en el tablero de síntesis el vacío principal de cada grupo. Al final se buscan los que se repiten.</p>
+        </article>
+      </div>
+      <div class="actividad">
+        <h3>Reglas de la discusión</h3>
+        <ul>
+          <li>Se discute la evidencia, no a las personas.</li>
+          <li>Toda afirmación lleva su fuente; si no hay fuente, se dice que es experiencia clínica.</li>
+          <li>«No encontramos estudios» es un resultado, no un fracaso.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section aria-labelledby="h-reloj">
+      <h2 id="h-reloj"><span class="n">Para moderar</span>Cronómetro de turnos</h2>
+      <div class="reloj">
+        <div class="reloj__cifra" id="cifra" aria-live="off">20:00</div>
+        <div class="reloj__etq" id="etqReloj">Exposición · 20 minutos</div>
+        <div class="botones">
+          <button type="button" data-min="20" aria-pressed="true">Exposición 20</button>
+          <button type="button" data-min="15" aria-pressed="false">Discusión 15</button>
+          <button type="button" class="primario" id="btnReloj">Iniciar</button>
+          <button type="button" id="btnReset">Reiniciar</button>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="h-grupos">
+      <h2 id="h-grupos"><span class="n">2:15–4:10</span>Las tres preguntas y lo que conviene preguntarle a cada una</h2>
+      <div class="tarjetas">
+        <article class="tarjeta">
+          <h3>Grupo 1 · Ictus severo</h3>
+          <p>¿Cuándo rehabilitar, cuándo adecuar el esfuerzo y cómo integrar los cuidados paliativos, incluidas la disfagia y la alimentación?</p>
+          <ul style="margin-top:.5rem">
+            <li>¿Cómo evitaron confundir pronóstico con profecía autocumplida?</li>
+            <li>¿Qué peso tiene la evidencia observacional frente a los ensayos en esta pregunta?</li>
+            <li>¿Quién decide cuando la persona no puede hacerlo, según la Ley 1733?</li>
+          </ul>
+        </article>
+        <article class="tarjeta">
+          <h3>Grupo 2 · Fractura de cadera</h3>
+          <p>¿Operar, no operar o paliar en la persona frágil o con demencia, y qué rehabilitación, con qué metas, después?</p>
+          <ul style="margin-top:.5rem">
+            <li>¿El manejo no quirúrgico se comparó con la cirugía en personas comparables, o hubo sesgo de selección?</li>
+            <li>¿Qué desenlace eligieron: supervivencia, dolor, calidad de vida o calidad de la muerte?</li>
+            <li>¿Qué cambia en la rehabilitación cuando hay demencia?</li>
+          </ul>
+        </article>
+        <article class="tarjeta">
+          <h3>Grupo 3 · Espasticidad y medición</h3>
+          <p>¿Cómo se fijan y se miden metas centradas en la persona cuando no se espera recuperar la función?</p>
+          <ul style="margin-top:.5rem">
+            <li>¿Un instrumento validado para medir recuperación sirve para medir confort o carga del cuidado?</li>
+            <li>¿De dónde salió el cambio mínimo importante que usan, y en qué población?</li>
+            <li>¿Quién fija la meta: el equipo, la persona o la familia?</li>
+          </ul>
+        </article>
+      </div>
+      <div class="actividad">
+        <h3>Banco de preguntas para el grupo discutidor</h3>
+        <ul>
+          <li><strong>Método:</strong> ¿la búsqueda se puede repetir? ¿Qué bases faltaron? ¿Por qué excluyeron lo que excluyeron?</li>
+          <li><strong>Certeza:</strong> ¿por qué esa certeza GRADE y no otra? ¿Qué la baja más: sesgo, imprecisión o evidencia indirecta?</li>
+          <li><strong>Aplicabilidad:</strong> ¿en qué ámbito se hizo la evidencia y en cuál la aplicarían aquí? ¿Qué cambia en un municipio sin rehabilitación domiciliaria?</li>
+          <li><strong>Ética:</strong> ¿qué decisión de adecuación del esfuerzo se desprende de lo que encontraron, y cómo se documentaría?</li>
+          <li><strong>El vacío:</strong> ¿la pregunta de investigación que proponen se puede responder con datos que existan en Colombia?</li>
+        </ul>
+      </div>
+    </section>
+
+    <section aria-labelledby="h-sintesis">
+      <h2 id="h-sintesis"><span class="n">Síntesis · 4:10–4:40</span>Tablero de vacíos</h2>
+      <p>Durante las exposiciones, anote el vacío principal de cada grupo. En la síntesis, se buscan los que se repiten y
+        se escriben abajo. Lo que se escribe queda guardado en este navegador.</p>
+      <div class="tablero">
+        <div class="col"><label for="v1">Grupo 1 · Ictus severo</label><textarea id="v1" placeholder="Vacío principal…"></textarea></div>
+        <div class="col"><label for="v2">Grupo 2 · Fractura de cadera</label><textarea id="v2" placeholder="Vacío principal…"></textarea></div>
+        <div class="col"><label for="v3">Grupo 3 · Espasticidad y medición</label><textarea id="v3" placeholder="Vacío principal…"></textarea></div>
+        <div class="col" style="border-top-color:var(--marca)"><label for="vc" style="color:var(--marca-dark)">Vacíos que se repiten</label><textarea id="vc" placeholder="Lo que falta en los tres temas…"></textarea></div>
+      </div>
+      <div class="botones" style="margin-top:.6rem"><button type="button" id="btnBorrarTablero">Borrar el tablero</button></div>
+      <p class="guardado" id="estadoTablero">Tablero vacío</p>
+    </section>
+
+    <section aria-labelledby="h-rubrica">
+      <h2 id="h-rubrica">Cómo se califica · 20 % del tercer corte</h2>
+      <div class="tabla"><table>
+        <thead><tr><th>Criterio</th><th>Peso</th><th>Superior (4,5–5,0)</th><th>Aceptable (3,0–4,4)</th><th>Insuficiente (&lt; 3,0)</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Apropiación conceptual</strong></td><td>30 %</td><td>Pregunta estructurada y encuadre de rehabilitación paliativa, con metas proporcionales al pronóstico.</td><td>Pregunta clara, encuadre parcial.</td><td>Pregunta vaga o sin encuadre paliativo.</td></tr>
+          <tr><td><strong>Uso de la evidencia</strong></td><td>30 %</td><td>Búsqueda reproducible en dos o más bases, tabla de evidencia y certeza GRADE justificada.</td><td>Búsqueda descrita a medias o certeza sin justificar.</td><td>Sin estrategia ni valoración de la certeza.</td></tr>
+          <tr><td><strong>Postura crítica y ética</strong></td><td>20 %</td><td>Vacíos y aplicabilidad al contexto colombiano bien argumentados; preguntas incisivas como grupo discutidor.</td><td>Vacíos nombrados sin argumentar; discusión superficial.</td><td>Reproduce la fuente sin postura; no discute.</td></tr>
+          <tr><td><strong>Comunicación y citación</strong></td><td>20 %</td><td>Exposición clara en el tiempo, Vancouver con DOI o PMID verificados y declaración de IA.</td><td>Errores de forma o de tiempo; citas incompletas.</td><td>Desorden, fuentes sin verificar o inventadas.</td></tr>
+        </tbody>
+      </table></div>
+      <p style="font-size:.9rem;color:var(--gris)">El trabajo del grupo como discutidor cuenta dentro de «Postura crítica y ética». La coevaluación
+        dentro de cada grupo forma parte del 10 % de coevaluación y autoevaluación del tercer corte.</p>
+    </section>
+
+    <section aria-labelledby="h-cierre">
+      <h2 id="h-cierre"><span class="n">Cierre · 4:40–5:00</span>Del vacío al producto final</h2>
+      <div class="caja">
+        <p style="margin:0">El producto final del <strong>20 de noviembre</strong> es un ensayo o un protocolo de investigación.
+          La pregunta que cada grupo dejó hoy puede ser su punto de partida, individual o en grupo. Antes de irse,
+          cada persona escribe en una línea qué pregunta llevaría al producto final y qué dato le faltaría para responderla.</p>
+      </div>
+      <div class="caja-instr" style="display:flex;flex-wrap:wrap;align-items:center;gap:.6rem 1rem;background:var(--acento-soft);border-radius:var(--radius);padding:.9rem 1.2rem;max-width:66ch;margin:.9rem 0">
+        <p style="margin:0;font-size:.92rem;flex:1 1 20rem"><strong>Instrumentos de apoyo.</strong> Barthel, FAST, PAINAD e IPOS están en la calculadora de escalas clínicas del curso.</p>
+        <a href="https://jboglop.github.io/calculadoras_CP/calculadoras/escalas-clinicas.html" style="display:inline-block;background:var(--acento);color:var(--blanco);text-decoration:none;font-weight:600;padding:.45rem .9rem;border-radius:var(--radius-sm);white-space:nowrap">Abrir las escalas</a>
+      </div>
+    </section>
+
+    <section aria-labelledby="h-refs">
+      <h2 id="h-refs">Lecturas semilla de los grupos</h2>
+      <ul class="refs">
+        <li><b>Creutzfeldt CJ, Bu J, Comer A, et al.</b> Palliative and End-of-Life Care in Stroke: A Scientific Statement From the American Heart Association. Stroke. 2025;56(2):e75-e86. doi:10.1161/STR.0000000000000479</li>
+        <li><b>Ximénez-Carrillo Á, López Fernández JC, Alonso de Leciñana M, et al.</b> Palliative care in stroke: Guidelines of the Spanish Society of Neurology's Stroke Study Group. Neurologia (Engl Ed). 2026;41(7):502035. doi:10.1016/j.nrleng.2026.502035</li>
+        <li><b>Yang M, Li N, Mei Y.</b> Advance Care Planning in Patients With Stroke: A Scoping Review. Nurs Health Sci. 2025;27(2):e70085. doi:10.1111/nhs.70085</li>
+        <li><b>Zahuranec DB, Brown DL, Lisabeth LD, et al.</b> Early care limitations independently predict mortality after intracerebral hemorrhage. Neurology. 2007;68(20):1651-1657. doi:10.1212/01.wnl.0000261906.93238.72</li>
+        <li><b>Eastman P, Le B.</b> Palliative Care and Stroke. En: Textbook of Palliative Care. 2.ª ed. Cham: Springer; 2024. Capítulo 60.</li>
+        <li><b>Loggers SAI, Willems HC, Van Balen R, et al.</b> Evaluation of Quality of Life After Nonoperative or Operative Management of Proximal Femoral Fractures in Frail Institutionalized Patients: The FRAIL-HIP Study. JAMA Surg. 2022;157(5):424-434. doi:10.1001/jamasurg.2022.0089</li>
+        <li><b>Loggers SAI, Van Balen R, Willems HC, et al.</b> The Quality of Dying in Frail Institutionalized Older Patients After Nonoperative and Operative Management of a Proximal Femoral Fracture: An In-Depth Analysis. Am J Hosp Palliat Care. 2024;41(6):583-591. doi:10.1177/10499091231180556</li>
+        <li><b>Smith TO, Gilbert AW, Sreekanta A, et al.</b> Enhanced rehabilitation and care models for adults with dementia following hip fracture surgery. Cochrane Database Syst Rev. 2020;2:CD010569. doi:10.1002/14651858.CD010569.pub3</li>
+        <li><b>Tremblay A, Pelet S, Belzile É, et al.</b> Strategies to improve end-of-life decision-making and palliative care following hip fracture in frail older adults: a scoping review. Age Ageing. 2024;53(7):afae134. doi:10.1093/ageing/afae134</li>
+        <li><b>Tremblay A, Pelet S, Belzile É, et al.</b> Pain Management in Frail Hip Fracture Patients Receiving Palliative Care: A Descriptive Study. J Pain Symptom Manage. 2025;70(2):149-159.e6. doi:10.1016/j.jpainsymman.2025.04.012</li>
+        <li><b>Maddocks M, Fettes L, Takemura N, et al.</b> Functional goals and outcomes of rehabilitation within palliative care: a multicentre prospective cohort study. BMC Palliat Care. 2025;24(1):172. doi:10.1186/s12904-025-01816-0</li>
+        <li><b>Smit EB, Bouwstra H, Hertogh CM, et al.</b> Goal-setting in geriatric rehabilitation: a systematic review and meta-analysis. Clin Rehabil. 2019;33(3):395-407. doi:10.1177/0269215518818224</li>
+        <li><b>Ashford S, Williams H, Nair A, et al.</b> Categorisation of goals set using Goal Attainment Scaling for treatment of leg spasticity: a multicentre analysis. Disabil Rehabil. 2019;41(16):1925-1930. doi:10.1080/09638288.2018.1451927</li>
+        <li><b>Lam K, Lau KK, So KK, et al.</b> Can botulinum toxin decrease carer burden in long term care residents with upper limb spasticity? A randomized controlled study. J Am Med Dir Assoc. 2012;13(5):477-484. doi:10.1016/j.jamda.2012.03.005</li>
+        <li><b>Arcolin I, Godi M, Giardini M, et al.</b> Minimal clinically important difference of the functional independence measure in older adults with hip fracture. Disabil Rehabil. 2024;46(4):812-819. doi:10.1080/09638288.2023.2175386</li>
+        <li><b>Tapper CX, Curseen K.</b> Rehabilitation Concerns in the Geriatric Critically Ill and Injured - Part 1. Crit Care Clin. 2021;37(1):117-134. doi:10.1016/j.ccc.2020.08.012</li>
+      </ul>
+      <p style="font-size:.82rem;color:var(--gris-claro);margin-top:.8rem">Material de terceros: se referencia, no se
+        reproduce. Los grupos amplían esta lista con su propia búsqueda.</p>
+    </section>
+
+  </div>
+</main>
+
+<footer>
+  <div class="envoltura">
+    <p><strong>Investigación en Cuidados Paliativos y Rehabilitación</strong> · código 37543013 · Maestría en
+      Cuidados Paliativos · Facultad de Enfermería · Universidad Antonio Nariño · 2026-II. Docente: Jorge Wilhem
+      Bogoya López. <a href="../../index.html">Volver a la portada</a>.</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+  function $(id) { return document.getElementById(id); }
+
+  /* ── Cronómetro de turnos ── */
+  var total = 20 * 60, resta = total, marcha = null;
+  function fmt(s) { var m = Math.floor(s / 60), r = s % 60; return (m < 10 ? '0' : '') + m + ':' + (r < 10 ? '0' : '') + r; }
+  function pintar() {
+    var c = $('cifra');
+    c.textContent = resta > 0 ? fmt(resta) : '¡Tiempo!';
+    c.className = 'reloj__cifra' + (resta <= 0 ? ' fin' : resta <= 120 ? ' poco' : '');
+  }
+  function parar() { clearInterval(marcha); marcha = null; $('btnReloj').textContent = 'Iniciar'; }
+  [].forEach.call(document.querySelectorAll('[data-min]'), function (b) {
+    b.addEventListener('click', function () {
+      [].forEach.call(document.querySelectorAll('[data-min]'), function (o) { o.setAttribute('aria-pressed', o === b ? 'true' : 'false'); });
+      parar(); total = Number(b.dataset.min) * 60; resta = total;
+      $('etqReloj').textContent = (b.dataset.min === '20' ? 'Exposición' : 'Discusión') + ' · ' + b.dataset.min + ' minutos';
+      pintar();
+    });
+  });
+  $('btnReloj').addEventListener('click', function () {
+    if (marcha) { parar(); this.textContent = 'Continuar'; return; }
+    this.textContent = 'Pausar';
+    marcha = setInterval(function () { resta--; pintar(); if (resta <= 0) parar(); }, 1000);
+  });
+  $('btnReset').addEventListener('click', function () { parar(); resta = total; pintar(); });
+
+  /* ── Tablero de síntesis, guardado en este navegador ── */
+  var CLAVE = 'INV_REHAB_2026II_S05_tablero';
+  var IDS = ['v1', 'v2', 'v3', 'vc'];
+  function guardar() {
+    var d = {}; IDS.forEach(function (id) { d[id] = $(id).value; });
+    try { localStorage.setItem(CLAVE, JSON.stringify(d)); $('estadoTablero').textContent = 'Guardado en este navegador · ' + new Date().toLocaleTimeString('es-CO', { hour: '2-digit', minute: '2-digit' }); }
+    catch (e) { $('estadoTablero').textContent = 'No se pudo guardar en este navegador.'; }
+  }
+  try {
+    var d = JSON.parse(localStorage.getItem(CLAVE) || '{}');
+    IDS.forEach(function (id) { if (d[id]) $(id).value = d[id]; });
+    if (IDS.some(function (id) { return d[id]; })) $('estadoTablero').textContent = 'Tablero recuperado de este navegador.';
+  } catch (e) { /* sin almacenamiento: el tablero funciona igual */ }
+  IDS.forEach(function (id) {
+    $(id).addEventListener('input', function () { clearTimeout($(id)._t); $(id)._t = setTimeout(guardar, 500); });
+  });
+  $('btnBorrarTablero').addEventListener('click', function () {
+    if (!confirm('¿Borrar todo lo escrito en el tablero?')) return;
+    IDS.forEach(function (id) { $(id).value = ''; });
+    try { localStorage.removeItem(CLAVE); } catch (e) {}
+    $('estadoTablero').textContent = 'Tablero vacío';
+  });
+  pintar();
+})();
+</script>
+</html>

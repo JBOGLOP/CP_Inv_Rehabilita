@@ -193,9 +193,18 @@
       ],
       "lecturas": [
         "Tapper y Curseen (2021)",
-        "Cecatto y Battistella (2021)"
+        "Lecturas semilla por grupo en el entregable"
       ],
-      "material": null
+      "material": {
+        "tipo": "material",
+        "archivo": "clase.html",
+        "etiqueta": "Abrir el material de la sesión"
+      },
+      "preparacion": {
+        "archivo": "preparacion.html",
+        "cierra": "viernes 30 de octubre, 1:00 p. m.",
+        "sesionToken": "S05"
+      }
     },
     {
       "num": 6,

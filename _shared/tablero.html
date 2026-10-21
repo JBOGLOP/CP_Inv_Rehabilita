@@ -208,9 +208,8 @@ body.proyeccion .no-proyectar{display:none}
       <option value="S02">S02 · Cáncer</option>
       <option value="S03">S03 · Falla de órgano</option>
       <option value="S04">S04 · Neurodegenerativos</option>
-      <option value="S05">S05 · Demencia y fragilidad</option>
-      <option value="S06">S06 · Eventos catastróficos</option>
-      <option value="S07">S07 · Seminario integrador</option>
+      <option value="S05">S05 · Eventos catastróficos (en grupo)</option>
+      <option value="S06">S06 · Seminario integrador</option>
     </select>
     <span class="cuentas" id="cuentas">—</span>
     <button type="button" id="recargar" title="Volver a leer las entregas">Recargar</button>
@@ -296,6 +295,18 @@ body.proyeccion .no-proyectar{display:none}
       p3: 'Desenlace e instrumento: qué mide la ALSFRS-R, qué deja fuera y qué medirías tú',
       p4: 'Límites: cuál es el más serio y qué harías distinto si repitieras el estudio',
       p5: 'La pregunta de investigación que te deja la lectura, con instrumento'
+    },
+    // S05: una entrega por grupo (revisión rápida). grupo, integrantes y enlace
+    // viajan como respuestas para que el tablero los muestre.
+    S05: {
+      grupo: 'Grupo y tema',
+      integrantes: 'Integrantes del grupo',
+      p1: 'C1 · La pregunta estructurada (PICO) y por qué importa',
+      p2: 'C2 · Estrategia de búsqueda reproducible y flujo',
+      p3: 'C3 · Los estudios clave y lo que muestran',
+      p4: 'C4 · Certeza GRADE, ámbito y aplicabilidad en Colombia',
+      p5: 'C5 · El vacío y la pregunta de investigación',
+      enlace: 'Enlace a la presentación'
     }
   };
 

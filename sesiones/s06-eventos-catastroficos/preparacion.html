@@ -1,0 +1,739 @@
+<!doctype html>
+<html lang="es">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Antes de la sesión 5 · Investigación en CP y Rehabilitación</title>
+<meta name="description" content="Entregable previo en grupo a la sesión 5 (eventos catastróficos: ictus severo, fractura de cadera, espasticidad) de Investigación en Cuidados Paliativos y Rehabilitación (37543013), Universidad Antonio Nariño. Revisión rápida de evidencia, exposición y discusión entre grupos.">
+
+<!-- ===========================================================================
+     ENTREGABLE PREVIO EN GRUPO · SESIÓN 5 · Eventos catastróficos
+     Se entrega antes del viernes 30 de octubre de 2026, 1:00 p. m.
+
+     Tres grupos (asignados por sorteo; la lista vive en PRIVADO_grupos-S05.md,
+     nunca aquí). Cada grupo hace una revisión rápida de evidencia sobre su
+     pregunta, la expone 20 min y discute la de otro grupo. Entrega UNA persona
+     por grupo; los campos grupo, integrantes y enlace viajan como respuestas.
+
+     PORTABILIDAD. Se lee, se responde y se guarda SIN CONEXIÓN. Cero recursos
+     externos. DATOS PERSONALES: no lleva la lista del curso; el servidor valida
+     el correo contra el roster, que nunca sale de la hoja.
+
+     ANTES DE ABRIR: en la pestaña Config (Apps Script), fila S05, cambiar el
+     título a «Rehabilitación paliativa en eventos catastróficos», poner Apertura,
+     Cierre 30/10/2026 13:00 y Activa = Sí. El token ya está puesto abajo.
+     =========================================================================== -->
+
+<style>
+:root{
+  --u6:#7A5FC0; --u6-dark:#574097; --u6-soft:#E9E3F7;
+  --marca:#22415C; --marca-dark:#163049; --marca-soft:#E3EAF0;
+  --ok:#0E8A80; --ok-soft:#D2EAE7;
+  --aviso:#B7791F; --aviso-soft:#F6EBD5; --aviso-dark:#7A5212;
+  --alerta:#C0392B; --alerta-soft:#F7DDD9; --alerta-dark:#8E2A20;
+  --tinta:#14202B; --gris:#4E6274; --gris-claro:#94A5B5; --resalte:#EDF2F7;
+  --blanco:#FFFFFF; --nieve:#F4F7FA;
+  --shadow-soft:0 1px 2px rgba(20,32,43,.06), 0 6px 18px rgba(20,32,43,.06);
+  --shadow-medium:0 6px 20px rgba(20,32,43,.10);
+  --radius:14px; --radius-sm:9px;
+  --sans:system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  --mono:ui-monospace,'Cascadia Mono','Segoe UI Mono',Consolas,monospace;
+  --serif:'Iowan Old Style','Palatino Linotype',Palatino,'Book Antiqua',Georgia,serif;
+  /* Unidad 6 → glicina */
+  --acento:var(--u6); --acento-dark:var(--u6-dark); --acento-soft:var(--u6-soft);
+}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;font-family:var(--sans);color:var(--tinta);background:var(--nieve);line-height:1.62}
+:focus-visible{outline:3px solid var(--acento);outline-offset:2px}
+a{color:var(--acento-dark)}
+.envoltura{max-width:48rem;margin:0 auto;padding:0 1.25rem}
+.saltar{position:absolute;left:-9999px;background:var(--tinta);color:var(--nieve);padding:.6rem 1rem;z-index:20}
+.saltar:focus{left:0}
+
+.nav-sesion{background:var(--tinta);color:var(--nieve);padding:.55rem 1rem;font-size:.82rem;
+  display:flex;flex-wrap:wrap;align-items:center;gap:.3rem .9rem}
+.nav-sesion a{color:var(--gris-claro);text-decoration:none;border-bottom:1px solid transparent}
+.nav-sesion a:hover,.nav-sesion a:focus{border-bottom-color:var(--gris-claro)}
+.nav-sesion .ns-curso{font-weight:700}
+@media print{.nav-sesion,.saltar{display:none}}
+
+.hero{background:linear-gradient(160deg,var(--nieve) 0%,var(--u6-soft) 100%);
+  padding:clamp(1.8rem,5vw,3rem) 0 clamp(1.3rem,3vw,2rem);border-bottom:1px solid rgba(20,32,43,.08)}
+.hero__eyebrow{font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--acento-dark);font-weight:700;margin:0 0 .5rem}
+h1{font-family:var(--serif);font-size:clamp(1.5rem,4vw,2.3rem);line-height:1.15;letter-spacing:-.01em;margin:0 0 .6rem}
+.hero__sub{font-size:1rem;color:var(--gris);max-width:54ch;margin:0}
+.meta{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:1.1rem}
+.chip{background:var(--blanco);border:1px solid rgba(20,32,43,.1);border-radius:999px;padding:.28rem .85rem;font-size:.82rem;box-shadow:var(--shadow-soft)}
+
+section{padding:clamp(1.5rem,3.5vw,2.4rem) 0}
+h2{font-family:var(--serif);font-size:clamp(1.15rem,2.6vw,1.5rem);margin:0 0 .3rem;line-height:1.25}
+h3{font-size:1rem;margin:0 0 .35rem;color:var(--acento-dark)}
+p{max-width:62ch}
+.intro{color:var(--gris);max-width:62ch;margin:0 0 1.2rem}
+
+.estado{border-radius:var(--radius);padding:.9rem 1.15rem;margin:1.2rem 0 0;font-size:.92rem;
+  border-left:4px solid var(--gris-claro);background:var(--blanco);box-shadow:var(--shadow-soft);max-width:62ch}
+.estado--ok{border-left-color:var(--ok);background:var(--ok-soft)}
+.estado--aviso{border-left-color:var(--aviso);background:var(--aviso-soft);color:var(--aviso-dark)}
+.estado--malo{border-left-color:var(--alerta);background:var(--alerta-soft);color:var(--alerta-dark)}
+.estado strong{display:block;margin-bottom:.2rem}
+
+.pasos{list-style:none;padding:0;margin:1rem 0 0;display:grid;gap:.55rem;max-width:62ch;counter-reset:p}
+.pasos li{background:var(--blanco);border-radius:var(--radius-sm);padding:.75rem 1rem .75rem 2.6rem;
+  box-shadow:var(--shadow-soft);position:relative;font-size:.94rem}
+.pasos li::before{counter-increment:p;content:counter(p);position:absolute;left:.85rem;top:.75rem;
+  width:1.3rem;height:1.3rem;border-radius:50%;background:var(--acento);color:var(--blanco);
+  font-size:.75rem;font-weight:700;display:flex;align-items:center;justify-content:center}
+
+.tecno{background:var(--blanco);border-radius:var(--radius);padding:1.2rem 1.35rem;
+  box-shadow:var(--shadow-soft);border-left:4px solid var(--marca);max-width:62ch}
+.tecno ul.lista{list-style:none;padding:0;margin:.9rem 0 0;display:grid;grid-template-columns:repeat(2,1fr);gap:.4rem}
+@media (max-width:560px){.tecno ul.lista{grid-template-columns:1fr}}
+.tecno ul.lista li{background:var(--nieve);border-radius:var(--radius-sm);padding:.45rem .7rem;font-size:.88rem}
+.tecno .num{font-family:var(--mono);font-weight:700;color:var(--marca-dark);margin-right:.35rem}
+
+.identidad{background:var(--blanco);border-radius:var(--radius);padding:1.1rem 1.25rem;
+  box-shadow:var(--shadow-soft);border-top:3px solid var(--acento);max-width:62ch}
+.campo{margin-bottom:.9rem}
+.campo:last-child{margin-bottom:0}
+label{display:block;font-size:.85rem;font-weight:600;margin-bottom:.3rem}
+.pista{font-size:.8rem;color:var(--gris);font-weight:400;margin:.15rem 0 .4rem}
+input[type=text],input[type=email],input[type=number],textarea{
+  width:100%;font:inherit;font-size:.95rem;padding:.55rem .7rem;border:1px solid #B9CADA;
+  border-radius:var(--radius-sm);background:var(--blanco);color:var(--tinta)}
+textarea{min-height:9rem;resize:vertical;line-height:1.6}
+input:focus,textarea:focus{border-color:var(--acento)}
+
+.pregunta{background:var(--blanco);border-radius:var(--radius);padding:1.2rem 1.35rem;
+  box-shadow:var(--shadow-soft);border-left:4px solid var(--acento);margin-bottom:1.3rem}
+.pregunta__n{font-family:var(--mono);font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--acento-dark);margin:0 0 .3rem}
+.pregunta h3{font-size:1.08rem;color:var(--tinta);margin-bottom:.5rem;line-height:1.3}
+.pregunta__ctx{font-size:.93rem;color:var(--gris);margin:0 0 .8rem;max-width:60ch}
+.pregunta__q{font-family:var(--serif);font-size:1.04rem;color:var(--acento-dark);
+  border-left:3px solid var(--acento-soft);padding:.3em 0 .3em .9em;margin:0 0 .9rem;max-width:58ch}
+.espera{background:var(--resalte);border-radius:var(--radius-sm);padding:.7rem .9rem;font-size:.86rem;color:var(--marca-dark);margin:0 0 .9rem;max-width:60ch}
+.espera strong{display:block;margin-bottom:.2rem}
+.espera ul{margin:.3rem 0 0;padding-left:1.05rem}
+.espera li{margin-bottom:.2rem}
+.contador{font-family:var(--mono);font-size:.78rem;color:var(--gris);text-align:right;margin:.35rem 0 0}
+.contador.corto{color:var(--aviso-dark)}
+.contador.bien{color:var(--ok);font-weight:700}
+
+.envio{background:var(--blanco);border-radius:var(--radius);padding:1.2rem 1.35rem;box-shadow:var(--shadow-medium);border-top:4px solid var(--marca)}
+.botones{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1rem}
+button{font:inherit;font-weight:600;cursor:pointer;border-radius:999px;padding:.55rem 1.3rem;border:1px solid var(--acento);background:var(--blanco);color:var(--acento-dark)}
+button:hover{background:var(--acento-soft)}
+button.primario{background:var(--acento-dark);color:var(--blanco);border-color:var(--acento-dark)}
+button.primario:hover{background:var(--acento)}
+button[disabled]{opacity:.5;cursor:default}
+.autoguardado{font-size:.8rem;color:var(--gris);margin:.7rem 0 0;font-family:var(--mono)}
+
+.nota{background:var(--blanco);border-left:4px solid var(--marca);border-radius:var(--radius-sm);
+  padding:.95rem 1.15rem;box-shadow:var(--shadow-soft);font-size:.9rem;color:var(--gris);max-width:62ch}
+.nota strong{color:var(--tinta)}
+
+.lecturas{list-style:none;padding:0;margin:1rem 0 0;display:grid;gap:.55rem;max-width:62ch}
+.lecturas li{background:var(--blanco);border-radius:var(--radius-sm);padding:.8rem 1rem;box-shadow:var(--shadow-soft);border-left:3px solid var(--marca);font-size:.92rem}
+.lecturas li{overflow-wrap:anywhere}
+.lecturas .tipo{display:block;font-family:var(--mono);font-size:.71rem;letter-spacing:.05em;text-transform:uppercase;color:var(--marca-dark);font-weight:700;margin-bottom:.2rem}
+
+footer{background:var(--tinta);color:var(--nieve);margin-top:2rem;padding:2rem 0;font-size:.86rem}
+footer a{color:var(--gris-claro)}
+footer p{margin:0 0 .5rem;max-width:62ch}
+.footer__legal{color:#AEBAC6;font-size:.79rem;margin-top:.9rem}
+@media (prefers-reduced-motion:reduce){*{transition:none !important}}
+</style>
+
+<a class="saltar" href="#formulario">Saltar al formulario</a>
+
+<nav class="nav-sesion" aria-label="Navegación del curso">
+  <a class="ns-curso" href="../../index.html">← Investigación en CP y Rehabilitación</a>
+  <a href="index.html">Guía de la sesión</a>
+</nav>
+
+<header class="hero">
+  <div class="envoltura">
+    <p class="hero__eyebrow">Sesión 5 · Antes del encuentro · En grupo</p>
+    <h1>Antes de la sesión 5 · Eventos catastróficos</h1>
+    <p class="hero__sub">
+      Esta vez trabajan <strong>en grupo</strong> y con método: cada grupo responde una pregunta
+      clínica real sobre ictus severo, fractura de cadera o espasticidad con una <strong>revisión
+      rápida de la evidencia</strong>, la presenta en el encuentro y discute la de otro grupo. Lo que
+      se busca no es un resumen de capítulos, sino lo que haría un equipo de investigación: buscar
+      de forma reproducible, valorar la certeza, decir qué falta y convertir el vacío en una pregunta.
+    </p>
+    <div class="meta">
+      <span class="chip">Cierra: viernes 30 de octubre, 1:00 p. m.</span>
+      <span class="chip">Encuentro sincrónico · 2:00–5:00 p. m.</span>
+      <span class="chip">3 grupos · revisión rápida + exposición</span>
+      <span class="chip">Tercer corte · 20 %</span>
+    </div>
+    <div id="estado" class="estado">
+      <strong>Comprobando el plazo…</strong>
+      Si no tienes conexión, tranquilo: puedes leer y escribir igual, y enviar cuando la tengas.
+    </div>
+  </div>
+</header>
+
+<main>
+
+<section>
+  <div class="envoltura">
+    <h2>Cómo funciona esta vez</h2>
+    <ol class="pasos">
+      <li><strong>Los grupos ya están armados</strong>, por sorteo. El docente envía por correo quién está en cada grupo y qué grupo discute a cuál. Aquí no aparece ningún nombre.</li>
+      <li><strong>Cada grupo responde su pregunta</strong> con una revisión rápida: pregunta estructurada, búsqueda reproducible, tabla de evidencia, certeza y vacíos. Las lecturas semilla de abajo son un punto de partida, no el techo.</li>
+      <li><strong>Una sola persona entrega por el grupo</strong>, en este formulario, con los nombres de todos los integrantes y el enlace a la presentación. Se puede reenviar hasta el viernes 30 de octubre a la 1:00 p. m.; cada envío reemplaza al anterior.</li>
+      <li><strong>En el encuentro</strong>, cada grupo expone 20 minutos y otro grupo actúa como <strong>discutidor crítico</strong> durante 15 minutos. Por eso conviene leer también la pregunta de los otros dos grupos.</li>
+    </ol>
+  </div>
+</section>
+
+<section>
+  <div class="envoltura">
+    <h2>Las tres preguntas</h2>
+    <p class="intro">
+      Cada grupo tiene una pregunta de partida. Pueden afinarla, pero sin cambiar de tema. Las tres
+      comparten una exigencia transversal, que es el Tema 2 de la unidad: <strong>dónde y con quién</strong>
+      ocurre esa rehabilitación (institución, domicilio o comunidad) y qué tan aplicable es lo que
+      encontraron al sistema de salud colombiano.
+    </p>
+
+    <article class="pregunta">
+      <p class="pregunta__n">Grupo 1 · ictus severo</p>
+      <h3>¿Rehabilitar, adecuar el esfuerzo o las dos cosas?</h3>
+      <p class="pregunta__q">
+        En las primeras semanas tras un ictus severo, ¿cómo se decide cuándo rehabilitar, cuándo
+        adecuar el esfuerzo terapéutico y cómo se integran los cuidados paliativos, incluidas las
+        decisiones sobre disfagia y alimentación?
+      </p>
+      <div class="espera">
+        <strong>Lecturas semilla (verificadas)</strong>
+        <ul>
+          <li>Creutzfeldt CJ, Bu J, Comer A, et al. Palliative and End-of-Life Care in Stroke: A Scientific Statement From the American Heart Association. <em>Stroke</em>. 2025;56(2):e75-e86. DOI: 10.1161/STR.0000000000000479. PMID 39676661.</li>
+          <li>Ximénez-Carrillo Á, López Fernández JC, Alonso de Leciñana M, et al. Palliative care in stroke: Guidelines of the Spanish Society of Neurology's Stroke Study Group. <em>Neurologia (Engl Ed)</em>. 2026;41(7):502035. DOI: 10.1016/j.nrleng.2026.502035. PMID 42190798.</li>
+          <li>Yang M, Li N, Mei Y. Advance Care Planning in Patients With Stroke: A Scoping Review. <em>Nurs Health Sci</em>. 2025;27(2):e70085. DOI: 10.1111/nhs.70085. PMID 40132648.</li>
+          <li>Zahuranec DB, Brown DL, Lisabeth LD, et al. Early care limitations independently predict mortality after intracerebral hemorrhage. <em>Neurology</em>. 2007;68(20):1651-1657. DOI: 10.1212/01.wnl.0000261906.93238.72. PMID 17502545. <em>Estudio fundacional sobre la «profecía autocumplida» del mal pronóstico.</em></li>
+          <li>Eastman P, Le B. Palliative Care and Stroke. En: <em>Textbook of Palliative Care</em>, 2.ª ed., cap. 60 (carpeta de lecturas del curso).</li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="pregunta">
+      <p class="pregunta__n">Grupo 2 · fractura de cadera en la persona frágil o con demencia</p>
+      <h3>¿Operar, no operar o paliar, y qué rehabilitación después?</h3>
+      <p class="pregunta__q">
+        En personas mayores frágiles o con demencia avanzada que sufren una fractura de cadera, ¿qué
+        dice la evidencia sobre el manejo quirúrgico, el no quirúrgico y el paliativo, y qué
+        rehabilitación, con qué metas, corresponde después?
+      </p>
+      <div class="espera">
+        <strong>Lecturas semilla (verificadas)</strong>
+        <ul>
+          <li>Loggers SAI, Willems HC, Van Balen R, et al. Evaluation of Quality of Life After Nonoperative or Operative Management of Proximal Femoral Fractures in Frail Institutionalized Patients: The FRAIL-HIP Study. <em>JAMA Surg</em>. 2022;157(5):424-434. DOI: 10.1001/jamasurg.2022.0089. PMID 35234817.</li>
+          <li>Loggers SAI, Van Balen R, Willems HC, et al. The Quality of Dying in Frail Institutionalized Older Patients After Nonoperative and Operative Management of a Proximal Femoral Fracture: An In-Depth Analysis. <em>Am J Hosp Palliat Care</em>. 2024;41(6):583-591. DOI: 10.1177/10499091231180556. PMID 37403839.</li>
+          <li>Smith TO, Gilbert AW, Sreekanta A, et al. Enhanced rehabilitation and care models for adults with dementia following hip fracture surgery. <em>Cochrane Database Syst Rev</em>. 2020;2:CD010569. DOI: 10.1002/14651858.CD010569.pub3. PMID 32031676.</li>
+          <li>Tremblay A, Pelet S, Belzile É, et al. Strategies to improve end-of-life decision-making and palliative care following hip fracture in frail older adults: a scoping review. <em>Age Ageing</em>. 2024;53(7):afae134. DOI: 10.1093/ageing/afae134. PMID 38970548.</li>
+          <li>Tremblay A, Pelet S, Belzile É, et al. Pain Management in Frail Hip Fracture Patients Receiving Palliative Care: A Descriptive Study. <em>J Pain Symptom Manage</em>. 2025;70(2):149-159.e6. DOI: 10.1016/j.jpainsymman.2025.04.012. PMID 40339671.</li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="pregunta">
+      <p class="pregunta__n">Grupo 3 · espasticidad y medición de resultados</p>
+      <h3>¿Cómo se mide el éxito cuando no se espera recuperar la función?</h3>
+      <p class="pregunta__q">
+        En adultos mayores con espasticidad o pérdida funcional tras un evento catastrófico, ¿cómo
+        se fijan y se miden metas de rehabilitación centradas en la persona (confort, cuidado,
+        participación), con qué instrumentos y con qué cambio mínimo importante?
+      </p>
+      <div class="espera">
+        <strong>Lecturas semilla (verificadas)</strong>
+        <ul>
+          <li>Maddocks M, Fettes L, Takemura N, et al. Functional goals and outcomes of rehabilitation within palliative care: a multicentre prospective cohort study. <em>BMC Palliat Care</em>. 2025;24(1):172. DOI: 10.1186/s12904-025-01816-0. PMID 40597966.</li>
+          <li>Smit EB, Bouwstra H, Hertogh CM, et al. Goal-setting in geriatric rehabilitation: a systematic review and meta-analysis. <em>Clin Rehabil</em>. 2019;33(3):395-407. DOI: 10.1177/0269215518818224. PMID 30537854.</li>
+          <li>Ashford S, Williams H, Nair A, et al. Categorisation of goals set using Goal Attainment Scaling for treatment of leg spasticity: a multicentre analysis. <em>Disabil Rehabil</em>. 2019;41(16):1925-1930. DOI: 10.1080/09638288.2018.1451927. PMID 29558228.</li>
+          <li>Lam K, Lau KK, So KK, et al. Can botulinum toxin decrease carer burden in long term care residents with upper limb spasticity? A randomized controlled study. <em>J Am Med Dir Assoc</em>. 2012;13(5):477-484. DOI: 10.1016/j.jamda.2012.03.005. PMID 22521630. <em>Fundacional: metas de cuidado, no de función.</em></li>
+          <li>Arcolin I, Godi M, Giardini M, et al. Minimal clinically important difference of the functional independence measure in older adults with hip fracture. <em>Disabil Rehabil</em>. 2024;46(4):812-819. DOI: 10.1080/09638288.2023.2175386. PMID 36750763.</li>
+        </ul>
+      </div>
+    </article>
+
+    <div class="nota">
+      <strong>Lectura común del syllabus.</strong> Tapper CX, Curseen K. Rehabilitation Concerns in the
+      Geriatric Critically Ill and Injured - Part 1. <em>Crit Care Clin</em>. 2021;37(1):117-134.
+      DOI: 10.1016/j.ccc.2020.08.012. PMID 33190765. La segunda lectura del syllabus (Cecatto y
+      Battistella, 2021) no se pudo verificar en PubMed: si la usan, citen la fuente exacta que encuentren.
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="envoltura">
+    <h2>El método que se espera</h2>
+    <p class="intro">Una revisión rápida, no una revisión sistemática completa: lo importante es que cualquiera pueda repetir lo que hicieron y que digan con honestidad qué tan sólida es la evidencia.</p>
+    <ol class="pasos">
+      <li><strong>Pregunta estructurada</strong> (PICO o PICo si es cualitativa), con el porqué clínico.</li>
+      <li><strong>Búsqueda en al menos dos bases</strong> (por ejemplo PubMed y BVS/LILACS, o Cochrane), de 2019 a 2026, con los términos exactos, los filtros y la fecha. Incluyan al menos una fuente latinoamericana o en español si existe; si no existe, ese es un hallazgo.</li>
+      <li><strong>Flujo</strong>: cuántos registros encontraron, cuántos revisaron y cuántos incluyeron, y por qué.</li>
+      <li><strong>Tabla de evidencia</strong> de los estudios clave: diseño, población, intervención o exposición, desenlace e instrumento, resultado y limitaciones.</li>
+      <li><strong>Certeza</strong> por desenlace con los criterios GRADE (riesgo de sesgo, inconsistencia, evidencia indirecta, imprecisión, sesgo de publicación).</li>
+      <li><strong>Transferencia</strong>: ámbito (institución, domicilio, comunidad) y aplicabilidad en Colombia.</li>
+      <li><strong>Vacío y pregunta de investigación</strong>: lo que falta, convertido en una pregunta con población, desenlace, instrumento y diseño. Puede ser la semilla del producto final del 20 de noviembre.</li>
+      <li><strong>Citas verificadas</strong> con DOI o PMID, en estilo Vancouver, y declaración de uso de IA.</li>
+    </ol>
+  </div>
+</section>
+
+<section>
+  <div class="envoltura">
+    <h2>La exposición y la discusión</h2>
+    <ol class="pasos">
+      <li><strong>20 minutos por grupo</strong>, con máximo 12 diapositivas. Hablan todos los integrantes.</li>
+      <li><strong>15 minutos de discusión</strong> que abre el grupo discutidor con tres preguntas preparadas: una sobre el método, una sobre la certeza y una sobre la aplicabilidad. Luego se abre al resto.</li>
+      <li><strong>Rotación de discutidores</strong>: el grupo 3 discute al 1, el 1 al 2 y el 2 al 3.</li>
+      <li>Al cierre, una síntesis entre todos: <strong>qué vacíos se repiten</strong> en los tres temas.</li>
+    </ol>
+    <div class="espera" style="margin-top:1rem">
+      <strong>Cómo se califica · 20 % del tercer corte</strong>
+      <ul>
+        <li><strong>Apropiación conceptual (30 %)</strong>: la pregunta está bien planteada y el encuadre es de rehabilitación paliativa, no solo de rehabilitación.</li>
+        <li><strong>Uso de la evidencia (30 %)</strong>: búsqueda reproducible, tabla de evidencia y certeza GRADE bien justificadas.</li>
+        <li><strong>Postura crítica y ética (20 %)</strong>: vacíos, aplicabilidad al contexto, y la calidad de las preguntas que hacen como grupo discutidor.</li>
+        <li><strong>Comunicación y citación (20 %)</strong>: exposición clara en el tiempo, citas verificadas en Vancouver y declaración de IA. Una fuente inventada resta.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="formulario">
+  <div class="envoltura">
+    <h2>Quién entrega</h2>
+    <div class="identidad">
+      <div class="campo">
+        <label for="correo">Correo institucional de quien envía</label>
+        <p class="pista">El que la maestría tiene registrado. Entrega una sola persona por grupo.</p>
+        <input type="email" id="correo" autocomplete="email" placeholder="nombre@uan.edu.co">
+      </div>
+      <div class="campo">
+        <label for="nombre">Nombre completo de quien envía</label>
+        <input type="text" id="nombre" autocomplete="name" placeholder="Apellidos y nombres">
+      </div>
+      <div class="campo">
+        <label for="grupo">Grupo</label>
+        <select id="grupo" style="width:100%;font:inherit;font-size:.95rem;padding:.55rem .7rem;border:1px solid #B9CADA;border-radius:var(--radius-sm);background:var(--blanco)">
+          <option value="">Elige el grupo</option>
+          <option>Grupo 1 · Ictus severo</option>
+          <option>Grupo 2 · Fractura de cadera en la persona frágil o con demencia</option>
+          <option>Grupo 3 · Espasticidad y medición de resultados</option>
+        </select>
+      </div>
+      <div class="campo">
+        <label for="integrantes">Integrantes del grupo</label>
+        <p class="pista">Nombres de todos, incluida la persona que envía. Solo los ve el docente.</p>
+        <input type="text" id="integrantes" placeholder="Nombre 1; Nombre 2; Nombre 3">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="envoltura">
+    <h2>Los cinco componentes</h2>
+    <p class="intro">
+      Escriban aquí lo esencial de cada parte: la presentación completa va en el enlace del final.
+      Las extensiones son orientativas.
+    </p>
+
+    <article class="pregunta">
+      <p class="pregunta__n">Componente 1 · la pregunta</p>
+      <h3>La pregunta estructurada y por qué importa</h3>
+      <p class="pregunta__ctx">Partan de la pregunta de su grupo y estructúrenla en PICO (o PICo). Digan por qué importa en el hospital o el servicio donde trabajan.</p>
+      <textarea id="p1" data-min="80" placeholder="P: … · I: … · C: … · O: … · Por qué importa…"></textarea>
+      <p class="contador" data-para="p1">0 palabras</p>
+    </article>
+
+    <article class="pregunta">
+      <p class="pregunta__n">Componente 2 · la búsqueda</p>
+      <h3>Estrategia reproducible y flujo</h3>
+      <p class="pregunta__ctx">Bases consultadas, términos exactos (con operadores), filtros, fecha de búsqueda, y cuántos registros identificaron, revisaron e incluyeron.</p>
+      <textarea id="p2" data-min="80" placeholder="PubMed (fecha): (… AND …) · filtros … · n identificados → n incluidos. BVS/LILACS: …"></textarea>
+      <p class="contador" data-para="p2">0 palabras</p>
+    </article>
+
+    <article class="pregunta">
+      <p class="pregunta__n">Componente 3 · la evidencia</p>
+      <h3>Los estudios clave y lo que muestran</h3>
+      <p class="pregunta__ctx">Resuman los estudios principales: diseño, población, intervención o exposición, desenlace e instrumento, resultado. Pueden pegar la tabla o enlazarla.</p>
+      <textarea id="p3" data-min="150" placeholder="Estudio 1 (diseño, n, población): resultado principal · Estudio 2: …"></textarea>
+      <p class="contador" data-para="p3">0 palabras</p>
+    </article>
+
+    <article class="pregunta">
+      <p class="pregunta__n">Componente 4 · certeza y transferencia</p>
+      <h3>¿Qué tan sólida es, y sirve aquí?</h3>
+      <p class="pregunta__ctx">La certeza GRADE por desenlace, con sus razones; en qué ámbito (institución, domicilio, comunidad) aplica, y qué tan transferible es al sistema de salud colombiano.</p>
+      <textarea id="p4" data-min="120" placeholder="Desenlace A: certeza baja porque … · Ámbito … · Aplicabilidad en Colombia …"></textarea>
+      <p class="contador" data-para="p4">0 palabras</p>
+    </article>
+
+    <article class="pregunta">
+      <p class="pregunta__n">Componente 5 · del vacío a la pregunta</p>
+      <h3>El vacío y la pregunta de investigación que deja</h3>
+      <p class="pregunta__ctx">Qué no responde la evidencia, y una pregunta investigable con población, desenlace, instrumento y diseño. Digan quién tendría los datos.</p>
+      <textarea id="p5" data-min="100" placeholder="Vacío: … · Pregunta: en [población], ¿[intervención/exposición] … [desenlace medido con instrumento]? · Diseño: …"></textarea>
+      <p class="contador" data-para="p5">0 palabras</p>
+    </article>
+
+    <div class="identidad">
+      <div class="campo">
+        <label for="enlace">Enlace a la presentación</label>
+        <p class="pista">Diapositivas en Drive, OneDrive o similar, con permiso de lectura para el docente.</p>
+        <input type="text" id="enlace" inputmode="url" placeholder="https://…">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="envoltura">
+    <h2>Antes de enviar</h2>
+    <div class="identidad" style="margin-bottom:1.3rem">
+      <div class="campo">
+        <label for="ia">Declaración de uso de inteligencia artificial</label>
+        <p class="pista">
+          Qué herramienta usó el grupo y para qué: buscar, ordenar ideas, traducir, redactar, nada.
+          <strong>Declararlo suma; una fuente inventada resta.</strong> Verificar lo que se cita es
+          justamente la competencia que este curso trabaja.
+        </p>
+        <textarea id="ia" style="min-height:5rem" placeholder="Ej.: usamos un asistente para proponer términos de búsqueda y ordenar la tabla. Cada estudio citado lo verificamos en PubMed o en el texto completo."></textarea>
+      </div>
+      <div class="campo">
+        <label for="minutos">¿Cuántos minutos le llevó al grupo en total, sumando a todos?</label>
+        <p class="pista">Sirve para calibrar la carga de las siguientes sesiones. No afecta la nota.</p>
+        <input type="number" id="minutos" min="0" max="1500" step="10" placeholder="120">
+      </div>
+    </div>
+
+    <div class="envio">
+      <h3 style="margin-top:0">Enviar el entregable</h3>
+      <p style="font-size:.92rem;color:var(--gris);margin:0">
+        Se puede reenviar cuantas veces haga falta hasta el viernes 30 de octubre a la 1:00 p. m. Cada
+        envío reemplaza al anterior y queda registrado como una versión nueva.
+      </p>
+      <div class="botones">
+        <button type="button" id="enviar" class="primario">Enviar</button>
+        <button type="button" id="copiar">Copiar todo</button>
+        <button type="button" id="borrar">Borrar el borrador</button>
+      </div>
+      <div id="resultado" class="estado" style="display:none"></div>
+      <p class="autoguardado" id="autoguardado">Borrador vacío</p>
+
+      <p class="nota" style="margin-top:1.1rem">
+        <strong>Si no tienes conexión.</strong> «Copiar todo» pone el entregable completo en el
+        portapapeles. Pégalo en un correo a
+        <a href="mailto:jbogoya63@uan.edu.co">jbogoya63@uan.edu.co</a> y cuenta igual.
+      </p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="envoltura">
+    <p>
+      <strong>Antes de la sesión 5 · Eventos catastróficos</strong><br>
+      Investigación en Cuidados Paliativos y Rehabilitación · código 37543013 ·
+      Maestría en Cuidados Paliativos · Facultad de Enfermería · Universidad Antonio Nariño · 2026-II
+    </p>
+    <p>
+      Docente: Jorge Wilhem Bogoya López ·
+      <a href="mailto:jbogoya63@uan.edu.co">jbogoya63@uan.edu.co</a> ·
+      <a href="index.html">Guía de la sesión</a>
+    </p>
+    <p class="footer__legal">
+      <strong>Tratamiento de datos.</strong> Se recogen el nombre y el correo institucional de quien envía, los nombres de los integrantes del grupo y las
+      respuestas, con la única finalidad de desarrollar y evaluar este espacio académico. Se guardan
+      en una hoja de cálculo privada del docente y no se publican ni se comparten con terceros
+      (Ley 1581 de 2012 y Decreto 1377 de 2013). En clase las respuestas se proyectan
+      <strong>sin nombre ni correo</strong>, identificadas solo por el grupo. Puedes pedir consulta,
+      corrección o supresión escribiendo al correo del docente.
+    </p>
+  </div>
+</footer>
+
+<script>
+/* ===========================================================================
+   CONFIG · S05. El token es el de la fila S05 de la pestaña Config.
+   Para abrir la entrega: fila S05 con título actualizado, Apertura, Cierre
+   30/10/2026 13:00 y Activa = Sí (ver scripts/apps-script/INSTALACION.md).
+   =========================================================================== */
+var CONFIG = {
+  ENDPOINT: 'https://script.google.com/macros/s/AKfycbyp3Ihy_qKs5R1PQweMYUd1lQnXYqFmE7itCrLt1TTF6QR3HvrkPTQ-XXj9Ws3hxG5idw/exec',
+  TOKEN:    'S05_INV_REHAB_2026II_cthg7s',
+  SESION:   'S05',
+  CIERRE_LEGIBLE: 'viernes 30 de octubre, 1:00 p. m.'
+};
+
+(function () {
+  'use strict';
+
+  var CLAVE = 'INV_REHAB_2026II_S05_borrador';
+  var IDS_TEXTO = ['p1', 'p2', 'p3', 'p4', 'p5'];
+  var IDS_EXTRA = ['grupo', 'integrantes', 'enlace'];   // viajan como respuestas
+  var IDS_TODOS = IDS_TEXTO.concat(IDS_EXTRA, ['correo', 'nombre', 'ia', 'minutos']);
+  var $ = function (id) { return document.getElementById(id); };
+
+  var configurado = CONFIG.ENDPOINT.indexOf('http') === 0 &&
+                    CONFIG.TOKEN.indexOf('PEGAR') === -1;
+
+  /* ── Borrador local ─────────────────────────────────────────────── */
+  function guardar() {
+    var d = {};
+    IDS_TODOS.forEach(function (id) { var el = $(id); if (el) d[id] = el.value; });
+    try {
+      localStorage.setItem(CLAVE, JSON.stringify({ datos: d, cuando: Date.now() }));
+      var h = new Date().toLocaleTimeString('es-CO', { hour: '2-digit', minute: '2-digit' });
+      $('autoguardado').textContent = 'Borrador guardado en este navegador · ' + h;
+    } catch (err) {
+      $('autoguardado').textContent = 'No se pudo guardar el borrador en este navegador.';
+    }
+  }
+
+  function restaurar() {
+    var crudo;
+    try { crudo = localStorage.getItem(CLAVE); } catch (err) { return; }
+    if (!crudo) return;
+    try {
+      var d = JSON.parse(crudo).datos || {};
+      IDS_TODOS.forEach(function (id) { var el = $(id); if (el && d[id]) el.value = d[id]; });
+      $('autoguardado').textContent = 'Borrador recuperado de este navegador.';
+    } catch (err) { /* borrador ilegible: se ignora */ }
+  }
+
+  /* ── Contadores de palabras ─────────────────────────────────────── */
+  function contar(t) {
+    var limpio = (t || '').trim();
+    return limpio ? limpio.split(/\s+/).length : 0;
+  }
+  function actualizarContador(id) {
+    var area = $(id);
+    var salida = document.querySelector('.contador[data-para="' + id + '"]');
+    if (!area || !salida) return;
+    var n = contar(area.value);
+    var min = parseInt(area.getAttribute('data-min'), 10) || 0;
+    salida.textContent = n + (n === 1 ? ' palabra' : ' palabras') + (n < min ? ' · orientativo: ' + min + '+' : '');
+    salida.className = 'contador' + (n === 0 ? '' : n < min ? ' corto' : ' bien');
+  }
+
+  /* ── Estado del plazo ───────────────────────────────────────────── */
+  function pintarEstado(clase, titulo, texto) {
+    var el = $('estado');
+    el.className = 'estado ' + clase;
+    el.innerHTML = '<strong></strong>';
+    el.firstChild.textContent = titulo;
+    el.appendChild(document.createTextNode(' ' + texto));
+  }
+
+  function consultarEstado() {
+    if (!configurado) {
+      pintarEstado('estado--aviso', 'Entregable todavía sin conectar.',
+        'Puedes leerlo y escribir; el envío se habilita cuando el docente publique la conexión. ' +
+        'Mientras tanto, «Copiar todo» funciona.');
+      return;
+    }
+    if (!navigator.onLine) {
+      pintarEstado('estado--aviso', 'Sin conexión.',
+        'Puedes leer y escribir con normalidad: el borrador se guarda en este navegador. ' +
+        'Envíalo cuando recuperes la red, o usa «Copiar todo». Cierra el ' + CONFIG.CIERRE_LEGIBLE + '.');
+      return;
+    }
+    var url = CONFIG.ENDPOINT + '?action=estado&token=' + encodeURIComponent(CONFIG.TOKEN);
+    fetch(url)
+      .then(function (r) { return r.json(); })
+      .then(function (d) {
+        if (!d.ok) {
+          pintarEstado('estado--malo', 'El servidor no reconoce este entregable.', 'Avísale al docente: ' + (d.error || '') + '.');
+        } else if (d.abierta) {
+          pintarEstado('estado--ok', 'Entrega abierta.', 'Cierra el ' + CONFIG.CIERRE_LEGIBLE + '. Puedes reenviar hasta esa hora.');
+        } else if (!d.activa) {
+          pintarEstado('estado--aviso', 'Todavía no está habilitada.', 'El docente la abre unos días antes de la sesión.');
+        } else if (d.apertura && d.ahora && d.ahora < d.apertura) {
+          pintarEstado('estado--aviso', 'Todavía no abre.',
+            'La entrega se habilita el ' + d.apertura + ' y cierra el ' + d.cierre +
+            '. Puedes ir leyendo y escribiendo desde ya: el borrador se guarda solo.');
+        } else {
+          pintarEstado('estado--malo', 'El plazo se cerró.',
+            'La ventana era ' + (d.apertura || '') + ' – ' + (d.cierre || '') + '. Escríbele al docente.');
+        }
+      })
+      .catch(function () {
+        pintarEstado('estado--aviso', 'No se pudo comprobar el plazo.',
+          'Puedes escribir igual: el borrador se guarda aquí. Intenta enviar más tarde, o usa «Copiar todo».');
+      });
+  }
+
+  /* ── Envío ──────────────────────────────────────────────────────── */
+  function mostrarResultado(clase, titulo, texto) {
+    var el = $('resultado');
+    el.style.display = 'block';
+    el.className = 'estado ' + clase;
+    el.innerHTML = '<strong></strong>';
+    el.firstChild.textContent = titulo;
+    el.appendChild(document.createTextNode(' ' + texto));
+  }
+
+  var ERRORES = {
+    token_invalido:       'El entregable no está bien conectado. Avísale al docente.',
+    sesion_cerrada:       'La entrega de esta sesión no está habilitada.',
+    aun_no_abre:          'La entrega todavía no abre.',
+    plazo_vencido:        'El plazo se cerró. Escríbele al docente.',
+    correo_no_reconocido: 'Ese correo no aparece en la lista del curso. Revisa que sea el institucional registrado; si está bien, avísale al docente.',
+    sin_respuestas:       'No se envió ninguna respuesta.',
+    ocupado:              'El servidor estaba ocupado. Vuelve a intentarlo.'
+  };
+
+  function enviar() {
+    var correo = $('correo').value.trim();
+    var nombre = $('nombre').value.trim();
+
+    if (!correo || correo.indexOf('@') < 1) { mostrarResultado('estado--malo', 'Falta el correo.', 'Escribe tu correo institucional arriba.'); $('correo').focus(); return; }
+    if (!nombre)                            { mostrarResultado('estado--malo', 'Falta el nombre.', 'Escribe tu nombre completo arriba.'); $('nombre').focus(); return; }
+    if (!$('grupo').value)                  { mostrarResultado('estado--malo', 'Falta el grupo.', 'Elige el grupo arriba.'); $('grupo').focus(); return; }
+
+    var vacias = IDS_TEXTO.filter(function (id) { return !contar($(id).value); });
+    if (vacias.length === IDS_TEXTO.length) { mostrarResultado('estado--malo', 'Está todo vacío.', 'Completa al menos un componente antes de enviar.'); return; }
+    if (vacias.length && !confirm('Quedan ' + vacias.length + ' componente(s) sin completar (' + vacias.join(', ') + ').\n\n¿Enviar de todas formas? Podrás reenviar hasta el cierre.')) return;
+
+    if (!configurado) { mostrarResultado('estado--aviso', 'El envío no está conectado todavía.', 'Usa «Copiar todo» y mándalo por correo.'); return; }
+
+    var respuestas = {};
+    IDS_EXTRA.concat(IDS_TEXTO).forEach(function (id) { respuestas[id] = $(id).value.trim(); });
+
+    var boton = $('enviar');
+    boton.disabled = true;
+    boton.textContent = 'Enviando…';
+    mostrarResultado('estado', 'Enviando…', 'No cierres la página.');
+
+    fetch(CONFIG.ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify({
+        token: CONFIG.TOKEN,
+        sesion: CONFIG.SESION,
+        correo: correo,
+        nombre: nombre,
+        minutos: $('minutos').value,
+        declaracionIA: $('ia').value.trim(),
+        respuestas: respuestas
+      })
+    })
+      .then(function (r) { return r.json(); })
+      .then(function (d) {
+        if (d.ok) {
+          mostrarResultado('estado--ok',
+            d.version > 1 ? 'Entrega actualizada (versión ' + d.version + ').' : 'Entrega registrada.',
+            'Quedó a nombre de ' + d.nombre + ', por el ' + $('grupo').value + '. Se puede seguir corrigiendo y reenviar hasta el cierre.');
+        } else {
+          mostrarResultado('estado--malo', 'No se pudo registrar.', ERRORES[d.error] || ('Error: ' + (d.error || 'desconocido') + '.'));
+        }
+      })
+      .catch(function () {
+        mostrarResultado('estado--malo', 'No se pudo conectar.',
+          'Tu borrador está guardado aquí. Intenta de nuevo, o usa «Copiar todo» y mándalo por correo.');
+      })
+      .finally(function () {
+        boton.disabled = false;
+        boton.textContent = 'Enviar';
+      });
+  }
+
+  /* ── Copiar todo · salida de emergencia sin conexión ────────────── */
+  function textoPlano() {
+    var l = [];
+    l.push('ANTES DE LA SESIÓN 5 · Eventos catastróficos · entrega en grupo');
+    l.push('Investigación en Cuidados Paliativos y Rehabilitación · 37543013 · UAN · 2026-II');
+    l.push('');
+    l.push('Nombre: ' + $('nombre').value.trim());
+    l.push('Correo: ' + $('correo').value.trim());
+    l.push('Grupo: ' + ($('grupo').value || '—'));
+    l.push('Integrantes: ' + ($('integrantes').value.trim() || '—'));
+    l.push('Enlace a la presentación: ' + ($('enlace').value.trim() || '—'));
+    l.push('Minutos dedicados: ' + ($('minutos').value || '—'));
+    l.push('');
+    var titulos = {
+      p1: 'C1 · La pregunta estructurada y por qué importa',
+      p2: 'C2 · Estrategia de búsqueda reproducible y flujo',
+      p3: 'C3 · Los estudios clave y lo que muestran',
+      p4: 'C4 · Certeza GRADE, ámbito y aplicabilidad en Colombia',
+      p5: 'C5 · El vacío y la pregunta de investigación'
+    };
+    IDS_TEXTO.forEach(function (id) {
+      l.push('─────────────────────────────────────────────');
+      l.push(titulos[id]);
+      l.push('');
+      l.push($(id).value.trim() || '(sin responder)');
+      l.push('');
+    });
+    l.push('─────────────────────────────────────────────');
+    l.push('Declaración de uso de IA:');
+    l.push($('ia').value.trim() || '(sin declarar)');
+    return l.join('\n');
+  }
+
+  function copiar() {
+    var texto = textoPlano();
+    var listo = function () {
+      mostrarResultado('estado--ok', 'Copiado.', 'Pégalo en un correo a jbogoya63@uan.edu.co y cuenta como entrega.');
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(texto).then(listo, respaldoCopiar);
+    } else {
+      respaldoCopiar();
+    }
+    function respaldoCopiar() {
+      var ta = document.createElement('textarea');
+      ta.value = texto;
+      ta.style.position = 'fixed';
+      ta.style.top = '-1000px';
+      document.body.appendChild(ta);
+      ta.select();
+      var ok = false;
+      try { ok = document.execCommand('copy'); } catch (err) { ok = false; }
+      document.body.removeChild(ta);
+      ok ? listo() : mostrarResultado('estado--aviso', 'No se pudo copiar solo.', 'Selecciona tus respuestas con el ratón y cópialas a mano.');
+    }
+  }
+
+  /* ── Arranque ───────────────────────────────────────────────────── */
+  restaurar();
+  IDS_TEXTO.forEach(actualizarContador);
+
+  IDS_TODOS.forEach(function (id) {
+    var el = $(id);
+    if (!el) return;
+    el.addEventListener('change', function () { clearTimeout(el._t); el._t = setTimeout(guardar, 300); });
+    el.addEventListener('input', function () {
+      if (IDS_TEXTO.indexOf(id) !== -1) actualizarContador(id);
+      clearTimeout(el._t);
+      el._t = setTimeout(guardar, 700);
+    });
+  });
+
+  $('enviar').addEventListener('click', enviar);
+  $('copiar').addEventListener('click', copiar);
+  $('borrar').addEventListener('click', function () {
+    if (!confirm('Esto borra el borrador guardado en este navegador y vacía el formulario.\n\nSi ya enviaste, la entrega registrada NO se borra.')) return;
+    try { localStorage.removeItem(CLAVE); } catch (err) { /* nada que borrar */ }
+    IDS_TODOS.forEach(function (id) { var el = $(id); if (el) el.value = ''; });
+    IDS_TEXTO.forEach(actualizarContador);
+    $('autoguardado').textContent = 'Borrador vacío';
+    mostrarResultado('estado', 'Borrador borrado.', 'El formulario quedó en blanco.');
+  });
+
+  window.addEventListener('online', consultarEstado);
+  window.addEventListener('offline', consultarEstado);
+  consultarEstado();
+})();
+</script>
+</html>
