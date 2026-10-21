@@ -1,6 +1,6 @@
 # Primer corte — 35 %
 
-**Sesiones:** S01 – S06 · **Unidades:** 1 y 2 · **Cierre:** sesión 06
+**Sesiones:** S01 – S02 · **Unidades:** 1 y 2 · **Cierre:** sesión 02 (viernes 18 de septiembre)
 
 ## Resultados de aprendizaje evaluados
 
@@ -9,16 +9,19 @@
 
 ## Instrumentos
 
-| Instrumento | Peso dentro del corte | Sesión |
-|---|---|---|
-| Fichas de lectura crítica (S01–S05) | 30 % | Continuo |
-| Informe de exploración de tecnología (Wysa / RV) | 20 % | S03 |
-| Análisis de caso — dolor oncológico | 25 % | S04 |
-| Taller de interpretación de resultados funcionales | 25 % | S06 |
+| Instrumento | Peso dentro del corte | Peso en la nota final | Sesión |
+|---|---|---|---|
+| Entregable previo · cinco preguntas sobre trayectorias y desenlaces | 30 % | 10,5 % | S01 |
+| Mapa de trayectoria · taller | 15 % | 5,25 % | S01 |
+| Entregable previo · parte B, cinco preguntas sobre cáncer | 35 % | 12,25 % | S02 |
+| Parte A · tecnología preparada y presentada en clase | 20 % | 7 % | S02 |
+
+Los escritos se califican con la rúbrica de cuatro criterios descrita en el
+[plan de evaluación](../../docs/plan-de-evaluacion.md#cómo-se-califica).
 
 ## Contenido de esta carpeta
 
-- `consolidado-notas.md` — registro de notas del corte (pendiente de crear).
+- `consolidado-notas.md` — registro de notas del corte (pendiente de crear, **sin nombres**).
 - Instrumentos aplicados y sus versiones definitivas.
 
 > Las evidencias entregadas por los estudiantes **no se versionan en Git** (ver `.gitignore`).

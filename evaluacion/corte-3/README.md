@@ -1,6 +1,6 @@
 # Tercer corte — 30 %
 
-**Sesiones:** S12 – S16 · **Unidades:** 5 (temas 2-3) y 6 · **Cierre:** sesión 16
+**Sesiones:** S05 – S06 · **Unidades:** 6 e integrador · **Cierre:** sesión 06 (viernes 20 de noviembre)
 
 > ⚠️ El contenido programático oficial declara 30 % y 35 % para este corte en columnas
 > distintas. Aquí se usa **30 %**, que es el valor que completa el 100 %.
@@ -8,25 +8,28 @@
 
 ## Resultados de aprendizaje evaluados
 
-- **U5** (temas 2-3) — Ámbitos de rehabilitación y medición de resultados (cambio mínimo importante).
 - **U6** — Analizar la evidencia científica en segunda lengua e integrarla con conocimientos de rehabilitación en personas con eventos catastróficos.
+- **Integración** — Formular y sustentar una pregunta de investigación en rehabilitación paliativa.
 
 ## Instrumentos
 
-| Instrumento | Peso dentro del corte | Sesión |
-|---|---|---|
-| Taller de cambio mínimo importante | 15 % | S12 |
-| Caso de ictus severo — decisión compartida | 15 % | S13 |
-| Ruta de continuidad hospital–domicilio–comunidad | 15 % | S14 |
-| **Producto final** (ensayo o protocolo) + sustentación | 45 % | S15–S16 |
-| Coevaluación y autoevaluación | 10 % | S16 |
+| Instrumento | Peso dentro del corte | Peso en la nota final | Sesión |
+|---|---|---|---|
+| Revisión rápida de evidencia en grupo · entrega, exposición y discusión | 20 % | 6 % | S05 |
+| **Producto final** · documento (ensayo o protocolo) | 45 % | 13,5 % | S06 |
+| Sustentación del producto final | 25 % | 7,5 % | S06 |
+| Coevaluación y autoevaluación | 10 % | 3 % | S05–S06 |
+
+El trabajo en grupo de la sesión 05 se califica con la rúbrica de cuatro criterios; el papel de
+cada grupo como discutidor cuenta dentro de «Postura crítica y ética». Consigna completa en
+[`sesiones/s06-eventos-catastroficos/preparacion.html`](../../sesiones/s06-eventos-catastroficos/preparacion.html).
 
 Guía del producto final:
 [`recursos/plantillas/producto-final.md`](../../recursos/plantillas/producto-final.md).
 
 ## Contenido de esta carpeta
 
-- `consolidado-notas.md` — registro de notas del corte (pendiente de crear).
+- `consolidado-notas.md` — registro de notas del corte (pendiente de crear, **sin nombres**).
 - Instrumentos aplicados y sus versiones definitivas.
 
 > Las evidencias entregadas por los estudiantes **no se versionan en Git** (ver `.gitignore`).
