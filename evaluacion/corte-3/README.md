@@ -24,8 +24,10 @@ El trabajo en grupo de la sesión 05 se califica con la rúbrica de cuatro crite
 cada grupo como discutidor cuenta dentro de «Postura crítica y ética». Consigna completa en
 [`sesiones/s06-eventos-catastroficos/preparacion.html`](../../sesiones/s06-eventos-catastroficos/preparacion.html).
 
-Guía del producto final:
-[`recursos/plantillas/producto-final.md`](../../recursos/plantillas/producto-final.md).
+Guía del producto final para estudiantes:
+[`sesiones/s07-seminario-integrador/producto-final.html`](../../sesiones/s07-seminario-integrador/producto-final.html).
+Plantilla: [`recursos/plantillas/producto-final.md`](../../recursos/plantillas/producto-final.md).
+Entrega del documento: miércoles 18 de noviembre, 11:59 p. m., en PDF; sustentación el 20 de noviembre.
 
 ## Contenido de esta carpeta
 

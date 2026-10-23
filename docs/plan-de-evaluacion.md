@@ -76,6 +76,9 @@ Reglas que la nota respeta, porque los entregables ya las anuncian:
 
 ## Producto final (tercer corte)
 
+Documento individual, máximo 4000 palabras, entregado en PDF antes del miércoles 18 de noviembre
+(11:59 p. m.) y sustentado el viernes 20. Guía completa en
+[`sesiones/s07-seminario-integrador/producto-final.html`](../sesiones/s07-seminario-integrador/producto-final.html).
 Ensayo o protocolo de investigación en rehabilitación paliativa que:
 
 1. Formule una pregunta de investigación en una de las seis trayectorias de la asignatura.

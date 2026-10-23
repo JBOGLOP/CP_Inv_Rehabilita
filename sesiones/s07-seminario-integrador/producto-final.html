@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="es">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Producto final · Investigación en CP y Rehabilitación</title>
+<meta name="description" content="Guía del producto final (ensayo o protocolo de investigación) de Investigación en Cuidados Paliativos y Rehabilitación (37543013), Universidad Antonio Nariño, 2026-II: requisitos, estructura, rúbricas, calendario y sustentación del 20 de noviembre.">
+
+<!-- ===========================================================================
+     GUÍA DEL PRODUCTO FINAL · Tercer corte · Sesión 6 (20 de noviembre)
+     Versión para estudiantes de recursos/plantillas/producto-final.md.
+     Pesos según docs/plan-de-evaluacion.md: documento 45 %, sustentación 25 %,
+     coevaluación y autoevaluación 10 % del tercer corte (el 20 % restante es
+     el trabajo en grupo de la sesión 5).
+     Portable (regla 1): tokens en línea, cero recursos externos, abre offline.
+     La lista de chequeo se guarda solo en el navegador de quien la usa.
+     =========================================================================== -->
+
+<style>
+:root{
+  --u6:#7A5FC0; --u6-dark:#574097; --u6-soft:#E9E3F7;
+  --marca:#22415C; --marca-dark:#163049; --marca-soft:#E3EAF0;
+  --ok:#0E8A80; --ok-soft:#D2EAE7;
+  --aviso:#B7791F; --aviso-soft:#F6EBD5; --aviso-dark:#7A5212;
+  --tinta:#14202B; --gris:#4E6274; --gris-claro:#94A5B5;
+  --linea:#D9E3EC; --blanco:#FFFFFF; --nieve:#F4F7FA;
+  --shadow-soft:0 1px 2px rgba(20,32,43,.06), 0 6px 18px rgba(20,32,43,.06);
+  --radius:12px; --radius-sm:8px;
+  --sans:system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  --serif:'Iowan Old Style','Palatino Linotype',Palatino,'Book Antiqua',Georgia,serif;
+  --mono:ui-monospace,'Cascadia Mono','Segoe UI Mono',Consolas,monospace;
+  /* Unidad 6 → glicina (la sesión integradora cierra la unidad 6) */
+  --acento:var(--u6); --acento-dark:var(--u6-dark); --acento-soft:var(--u6-soft);
+}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;font-family:var(--sans);color:var(--tinta);background:var(--nieve);line-height:1.6}
+:focus-visible{outline:3px solid var(--acento);outline-offset:2px}
+a{color:var(--acento-dark)}
+.envoltura{max-width:58rem;margin:0 auto;padding:0 clamp(1rem,4vw,2rem)}
+.saltar{position:absolute;left:-9999px;background:var(--tinta);color:var(--blanco);padding:.6rem 1rem;z-index:20}
+.saltar:focus{left:0}
+.nav-sesion{background:var(--tinta);color:var(--nieve);padding:.55rem 1rem;font-size:.82rem;display:flex;flex-wrap:wrap;gap:.3rem .9rem}
+.nav-sesion a{color:var(--gris-claro);text-decoration:none;border-bottom:1px solid transparent}
+.nav-sesion a:hover{border-bottom-color:var(--gris-claro)}
+.nav-sesion .ns-curso{font-weight:700}
+
+.cabecera{background:linear-gradient(160deg,var(--nieve) 0%,var(--u6-soft) 100%);border-bottom:4px solid var(--acento);padding:clamp(1.8rem,5vw,3rem) 0 clamp(1.4rem,3vw,2rem)}
+.eyebrow{font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--acento-dark);font-weight:700;margin:0 0 .4rem}
+h1{font-family:var(--serif);font-size:clamp(1.7rem,4.5vw,2.6rem);line-height:1.15;margin:0 0 .6rem;max-width:26ch}
+.lede{font-size:1.05rem;color:var(--gris);max-width:62ch;margin:.4rem 0 0}
+.chips{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.1rem;padding:0;list-style:none}
+.chip{background:var(--blanco);border:1px solid var(--acento-soft);border-radius:999px;padding:.3rem .9rem;font-size:.83rem;box-shadow:var(--shadow-soft)}
+
+main{padding:clamp(1.6rem,4vw,2.6rem) 0}
+section{margin-bottom:clamp(2rem,4vw,2.8rem)}
+h2{font-family:var(--serif);font-size:clamp(1.3rem,2.8vw,1.7rem);color:var(--acento-dark);margin:0 0 .4rem;line-height:1.2}
+h3{font-size:1.02rem;margin:0 0 .35rem;color:var(--tinta)}
+p{max-width:66ch}
+.caja{background:var(--blanco);border-radius:var(--radius);box-shadow:var(--shadow-soft);border-left:4px solid var(--acento);padding:1.1rem 1.3rem;max-width:66ch}
+.caja p{margin:.3rem 0}
+.aviso{background:var(--aviso-soft);border-left:4px solid var(--aviso);border-radius:var(--radius-sm);padding:.8rem 1rem;max-width:66ch;color:var(--aviso-dark);font-size:.93rem;margin:.9rem 0}
+.aviso p{margin:.2rem 0}
+
+.tarjetas{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,18rem),1fr));gap:.8rem;margin:.9rem 0}
+.tarjeta{background:var(--blanco);border-radius:var(--radius-sm);box-shadow:var(--shadow-soft);border-top:3px solid var(--acento);padding:.9rem 1rem}
+.tarjeta h3{font-size:1rem;color:var(--acento-dark)}
+.tarjeta p,.tarjeta li{font-size:.9rem;margin:0}
+.tarjeta ol,.tarjeta ul{margin:.4rem 0 0;padding-left:1.15rem}
+.tarjeta li{margin-bottom:.25rem}
+
+.pasos{list-style:none;padding:0;margin:1rem 0 0;display:grid;gap:.55rem;max-width:66ch;counter-reset:p}
+.pasos li{background:var(--blanco);border-radius:var(--radius-sm);padding:.75rem 1rem .75rem 2.6rem;box-shadow:var(--shadow-soft);position:relative;font-size:.94rem}
+.pasos li::before{counter-increment:p;content:counter(p);position:absolute;left:.85rem;top:.75rem;width:1.3rem;height:1.3rem;border-radius:50%;background:var(--acento);color:var(--blanco);font-size:.75rem;font-weight:700;display:flex;align-items:center;justify-content:center}
+
+.tabla{overflow-x:auto;margin-top:.8rem}
+table{width:100%;border-collapse:collapse;font-size:.88rem;background:var(--blanco);box-shadow:var(--shadow-soft);border-radius:var(--radius-sm);overflow:hidden}
+th{background:var(--acento-dark);color:var(--blanco);text-align:left;padding:.5rem .6rem;font-weight:600}
+td{padding:.5rem .6rem;border-top:1px solid var(--linea);vertical-align:top}
+td.fecha{font-family:var(--mono);white-space:nowrap;color:var(--acento-dark);font-weight:700}
+
+.chequeo{list-style:none;padding:0;margin:.8rem 0 0;display:grid;gap:.4rem;max-width:66ch}
+.chequeo label{display:flex;gap:.6rem;align-items:flex-start;background:var(--blanco);border-radius:var(--radius-sm);box-shadow:var(--shadow-soft);padding:.55rem .8rem;cursor:pointer;font-size:.93rem}
+.chequeo input{width:1.15rem;height:1.15rem;margin-top:.2rem;accent-color:var(--acento);flex-shrink:0}
+.progreso{font-family:var(--mono);font-size:.85rem;color:var(--acento-dark);margin:.6rem 0 0}
+button{font:inherit;font-size:.85rem;font-weight:600;cursor:pointer;border-radius:999px;padding:.4rem .95rem;border:1px solid var(--acento);background:var(--blanco);color:var(--acento-dark);margin-top:.6rem}
+button:hover{background:var(--acento-soft)}
+footer{border-top:1px solid var(--linea);background:var(--blanco);padding:1.8rem 0;font-size:.85rem;color:var(--gris)}
+@media print{.nav-sesion,.saltar,button{display:none}}
+</style>
+
+<a class="saltar" href="#contenido">Saltar al contenido</a>
+
+<nav class="nav-sesion" aria-label="Navegación del curso">
+  <a class="ns-curso" href="../../index.html">← Investigación en CP y Rehabilitación</a>
+  <a href="index.html">Guía de la sesión 6</a>
+  <a href="../s06-eventos-catastroficos/preparacion.html">Trabajo en grupo de la sesión 5</a>
+</nav>
+
+<header class="cabecera">
+  <div class="envoltura">
+    <p class="eyebrow">Tercer corte · Producto final</p>
+    <h1>Ensayo o protocolo de investigación en rehabilitación paliativa</h1>
+    <p class="lede">El cierre del curso es un documento propio: una pregunta sobre rehabilitación paliativa en una de
+      las trayectorias que trabajamos, sostenida con evidencia y defendida en público. No parten de cero: en cada
+      entregable previo escribieron una pregunta investigable, y la sesión 5 les deja otra.</p>
+    <ul class="chips">
+      <li class="chip">Entrega: miércoles 18 de noviembre, 11:59 p. m.</li>
+      <li class="chip">Sustentación: viernes 20 de noviembre · presencial</li>
+      <li class="chip">Individual</li>
+      <li class="chip">Documento 45 % · sustentación 25 % · coevaluación 10 %</li>
+    </ul>
+  </div>
+</header>
+
+<main id="contenido">
+  <div class="envoltura">
+
+    <section aria-labelledby="h-que">
+      <h2 id="h-que">Qué se entrega</h2>
+      <div class="caja">
+        <p>Un documento <strong>individual</strong> de <strong>máximo 4000 palabras</strong> (sin contar referencias ni anexos),
+          en PDF, en uno de dos formatos. Elijan el que mejor sirva a su pregunta:</p>
+      </div>
+      <div class="tarjetas">
+        <article class="tarjeta">
+          <h3>Formato A · Protocolo de investigación</h3>
+          <p>Proponer un estudio que responda una pregunta que la evidencia deja abierta.</p>
+          <ol>
+            <li>Introducción y justificación: magnitud del problema funcional en la trayectoria elegida.</li>
+            <li>Pregunta de investigación en formato PICO, y objetivos.</li>
+            <li>Marco de referencia: concepto de rehabilitación paliativa y modelo de intervención.</li>
+            <li>Estado de la evidencia: síntesis crítica y vacío que justifica el estudio.</li>
+            <li>Metodología: diseño, población y criterios, intervención o exposición, desenlaces, instrumentos (con su cambio mínimo importante cuando exista), tamaño de muestra estimado y plan de análisis.</li>
+            <li>Consideraciones éticas.</li>
+            <li>Factibilidad: quién tiene los datos, qué recursos hacen falta y qué podría hacerlo fracasar.</li>
+            <li>Referencias.</li>
+          </ol>
+        </article>
+        <article class="tarjeta">
+          <h3>Formato B · Ensayo argumentativo</h3>
+          <p>Tomar postura ante un dilema de la rehabilitación paliativa y sostenerla con evidencia.</p>
+          <ol>
+            <li>Planteamiento del dilema y de la pregunta que lo ordena.</li>
+            <li>Tesis: la postura que el ensayo defiende.</li>
+            <li>Marco de referencia: rehabilitación paliativa y la trayectoria elegida.</li>
+            <li>Argumentos, cada uno sostenido con evidencia valorada críticamente.</li>
+            <li>Contraargumentos y respuesta a ellos.</li>
+            <li>Implicaciones para la práctica y la investigación en Colombia, con la pregunta investigable que se desprende.</li>
+            <li>Consideraciones éticas.</li>
+            <li>Referencias.</li>
+          </ol>
+        </article>
+      </div>
+      <p style="font-size:.9rem;color:var(--gris)">Trayectorias posibles: cáncer, falla de órgano, enfermedad neurodegenerativa,
+        demencia y fragilidad, o evento catastrófico. Pueden partir de la pregunta de su grupo de la sesión 5 o de la que
+        escribieron en cualquier entregable previo, pero el documento es individual y con redacción propia.</p>
+    </section>
+
+    <section aria-labelledby="h-req">
+      <h2 id="h-req">Requisitos que no se negocian</h2>
+      <ol class="pasos">
+        <li><strong>Una pregunta en una de las trayectorias del curso</strong>, centrada en la función, el confort o la participación de la persona, no solo en la supervivencia.</li>
+        <li><strong>Al menos 8 fuentes</strong>, de las cuales <strong>al menos 4 en inglés</strong>, preferiblemente de 2019 a 2026, jerarquizadas por diseño y certeza.</li>
+        <li><strong>La interpretación de los resultados estadísticos de al menos un estudio primario</strong>: tamaño del efecto, intervalo de confianza y si supera el cambio mínimo importante.</li>
+        <li><strong>Citación en estilo Vancouver</strong>, con DOI o PMID verificados. Una fuente inventada o mal atribuida es la falta más grave del documento.</li>
+        <li><strong>Declaración del uso de inteligencia artificial generativa</strong>, al final del documento: herramienta, propósito y alcance. Si no se usó, también se declara.</li>
+        <li><strong>Respeto por los derechos de autor</strong>: se cita y se parafrasea; no se copian tablas ni figuras sin permiso ni cita.</li>
+      </ol>
+    </section>
+
+    <section aria-labelledby="h-etica">
+      <h2 id="h-etica">Consideraciones éticas: el marco colombiano</h2>
+      <div class="caja">
+        <p>En los dos formatos se espera una sección ética que use las normas, no solo los principios. Como mínimo:</p>
+        <ul style="margin:.4rem 0 0;padding-left:1.2rem;font-size:.95rem">
+          <li><strong>Ley 1733 de 2014</strong>: derechos de las personas con enfermedad avanzada, incluido el de desistir de tratamientos desproporcionados.</li>
+          <li><strong>Resolución 2665 de 2018</strong>: documento de voluntad anticipada.</li>
+          <li><strong>Resolución 8430 de 1993</strong>: normas científicas, técnicas y administrativas para la investigación en salud, incluidos el consentimiento informado y la clasificación del riesgo.</li>
+          <li><strong>Ley 1581 de 2012</strong>: protección de datos personales, si el estudio maneja historias clínicas o registros.</li>
+        </ul>
+        <p>Y la reflexión propia de la población: capacidad para consentir, uso de representante, carga del estudio para quien tiene poco tiempo, y cómo se evita que la investigación desplace el cuidado.</p>
+      </div>
+      <div class="aviso"><p>Si el documento aborda la adecuación del esfuerzo terapéutico o el derecho a morir dignamente, citen la
+        resolución vigente a partir de su <strong>texto oficial</strong> del Ministerio de Salud. Las normas de esta materia
+        cambiaron en 2026; no se apoyen en resúmenes de prensa.</p>
+        <p>Lo mismo con la Resolución 8430 de 1993: en 2026 el Ministerio publicó un proyecto de resolución sobre investigación
+        en salud que la derogaría en parte. Antes de entregar, verifiquen si ese proyecto ya se adoptó y citen la norma vigente.</p></div>
+    </section>
+
+    <section aria-labelledby="h-rub">
+      <h2 id="h-rub">Cómo se califica el documento · 45 % del tercer corte</h2>
+      <div class="tabla"><table>
+        <thead><tr><th>Criterio</th><th>Peso</th><th>Superior (4,5–5,0)</th><th>Aceptable (3,0–4,4)</th><th>Insuficiente (&lt; 3,0)</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Pertinencia y claridad de la pregunta</strong></td><td>20 %</td><td>Pregunta PICO pertinente a la rehabilitación paliativa, factible y con un desenlace centrado en la persona.</td><td>Pregunta clara pero amplia, o con desenlace genérico.</td><td>Pregunta vaga, fuera del campo o no investigable.</td></tr>
+          <tr><td><strong>Calidad y jerarquización de la evidencia</strong></td><td>25 %</td><td>Ocho o más fuentes verificadas, al menos cuatro en inglés, jerarquizadas por diseño y certeza, con el vacío explícito.</td><td>Fuentes suficientes pero sin jerarquizar ni valorar la certeza.</td><td>Menos de ocho fuentes, sin inglés o con fuentes no verificables.</td></tr>
+          <tr><td><strong>Coherencia metodológica o argumentativa, e interpretación estadística</strong></td><td>25 %</td><td>Protocolo: diseño coherente con la pregunta, instrumentos con su cambio mínimo importante y plan de análisis. Ensayo: tesis, argumentos y contraargumentos que se sostienen. En ambos, interpreta bien el efecto y el intervalo de al menos un estudio.</td><td>Estructura plausible con huecos; la interpretación estadística es superficial.</td><td>Incoherencia entre pregunta y método o argumento; errores de interpretación.</td></tr>
+          <tr><td><strong>Consideraciones éticas y postura crítica</strong></td><td>15 %</td><td>Usa el marco normativo colombiano y reflexiona sobre la vulnerabilidad de la población; reconoce los límites de su propia propuesta.</td><td>Menciona normas o principios sin aplicarlos al caso.</td><td>Sin sección ética o con errores normativos.</td></tr>
+          <tr><td><strong>Escritura, citación y declaración de IA</strong></td><td>15 %</td><td>Redacción clara dentro del límite de palabras, Vancouver completo con DOI o PMID, declaración de IA precisa.</td><td>Errores de forma o citación incompleta.</td><td>Desorden, plagio, fuentes inventadas o sin declaración de IA.</td></tr>
+        </tbody>
+      </table></div>
+    </section>
+
+    <section aria-labelledby="h-sus">
+      <h2 id="h-sus">La sustentación · 25 % del tercer corte</h2>
+      <div class="tarjetas">
+        <article class="tarjeta">
+          <h3>Formato</h3>
+          <ul>
+            <li><strong>10 minutos</strong> de presentación y <strong>5 minutos</strong> de preguntas del docente y de los compañeros.</li>
+            <li>Máximo <strong>6 diapositivas</strong>: pregunta, evidencia clave, propuesta o tesis, ética, vacío y aporte.</li>
+            <li>Viernes 20 de noviembre, presencial, en el orden que se publique esa semana.</li>
+          </ul>
+        </article>
+        <article class="tarjeta">
+          <h3>Criterios</h3>
+          <ul>
+            <li>Claridad y estructura (30 %).</li>
+            <li>Dominio de la evidencia que cita (30 %).</li>
+            <li>Respuesta a las preguntas (25 %).</li>
+            <li>Uso del tiempo y del apoyo visual (15 %).</li>
+          </ul>
+        </article>
+        <article class="tarjeta">
+          <h3>Coevaluación y autoevaluación · 10 %</h3>
+          <p>En la sesión, cada persona valora la sustentación de dos compañeros con una pauta corta y hace su propia
+            autoevaluación del proceso del semestre. Incluye la valoración de su participación en el grupo de la sesión 5.</p>
+        </article>
+      </div>
+    </section>
+
+    <section aria-labelledby="h-cal">
+      <h2 id="h-cal">Calendario</h2>
+      <div class="tabla"><table>
+        <thead><tr><th>Fecha</th><th>Qué pasa</th></tr></thead>
+        <tbody>
+          <tr><td class="fecha">30 oct</td><td>Sesión 5: cada grupo deja una pregunta de investigación que puede servir de punto de partida.</td></tr>
+          <tr><td class="fecha">6 nov</td><td><strong>Opcional, recomendado:</strong> enviar al docente la pregunta en PICO y el formato elegido (A o B), en un párrafo. Se devuelve retroalimentación en una semana.</td></tr>
+          <tr><td class="fecha">18 nov</td><td><strong>Entrega del documento en PDF</strong>, antes de las 11:59 p. m., al correo <a href="mailto:jbogoya63@uan.edu.co">jbogoya63@uan.edu.co</a>, con el asunto «Producto final · Apellido Nombre».</td></tr>
+          <tr><td class="fecha">20 nov</td><td>Sesión 6, presencial: sustentaciones, coevaluación y cierre del curso.</td></tr>
+        </tbody>
+      </table></div>
+    </section>
+
+    <section aria-labelledby="h-chk">
+      <h2 id="h-chk">Antes de enviar · lista de chequeo</h2>
+      <p style="font-size:.92rem;color:var(--gris)">Para uso personal: lo que marquen queda guardado solo en este navegador.</p>
+      <ul class="chequeo" id="chequeo">
+        <li><label><input type="checkbox">La pregunta está en una de las trayectorias del curso y en formato PICO.</label></li>
+        <li><label><input type="checkbox">El desenlace principal habla de función, confort o participación de la persona.</label></li>
+        <li><label><input type="checkbox">Tengo al menos 8 fuentes, al menos 4 en inglés.</label></li>
+        <li><label><input type="checkbox">Verifiqué cada referencia con su DOI o PMID.</label></li>
+        <li><label><input type="checkbox">Interpreté el efecto y el intervalo de confianza de al menos un estudio primario.</label></li>
+        <li><label><input type="checkbox">Si propongo un instrumento, digo su cambio mínimo importante o que no existe.</label></li>
+        <li><label><input type="checkbox">La sección ética usa la Ley 1733, la Resolución 2665 y la Resolución 8430.</label></li>
+        <li><label><input type="checkbox">El texto tiene 4000 palabras o menos, sin contar referencias ni anexos.</label></li>
+        <li><label><input type="checkbox">Las referencias están en Vancouver.</label></li>
+        <li><label><input type="checkbox">Incluí la declaración de uso de IA (herramienta, propósito y alcance, o que no se usó).</label></li>
+        <li><label><input type="checkbox">El archivo es un PDF con mi nombre, y el asunto del correo es «Producto final · Apellido Nombre».</label></li>
+      </ul>
+      <p class="progreso" id="progreso" aria-live="polite">0 de 11</p>
+      <button type="button" id="borrar">Desmarcar todo</button>
+    </section>
+
+    <section aria-labelledby="h-plant">
+      <h2 id="h-plant">Plantilla</h2>
+      <div class="caja">
+        <p>La plantilla con los campos de datos y la tabla de declaración de IA está en el repositorio del curso:
+          <a href="https://github.com/JBOGLOP/CP_Inv_Rehabilita/blob/main/recursos/plantillas/producto-final.md">recursos/plantillas/producto-final.md</a>.
+          Pueden copiarla a su procesador de texto.</p>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<footer>
+  <div class="envoltura">
+    <p><strong>Investigación en Cuidados Paliativos y Rehabilitación</strong> · código 37543013 · Maestría en
+      Cuidados Paliativos · Facultad de Enfermería · Universidad Antonio Nariño · 2026-II. Docente: Jorge Wilhem
+      Bogoya López · <a href="mailto:jbogoya63@uan.edu.co">jbogoya63@uan.edu.co</a> · <a href="../../index.html">Volver a la portada</a>.</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+  var CLAVE = 'INV_REHAB_2026II_producto_final_chequeo';
+  var cajas = [].slice.call(document.querySelectorAll('#chequeo input'));
+  function contar() {
+    var n = cajas.filter(function (c) { return c.checked; }).length;
+    document.getElementById('progreso').textContent = n + ' de ' + cajas.length + (n === cajas.length ? ' · listo para enviar' : '');
+  }
+  function guardar() {
+    try { localStorage.setItem(CLAVE, JSON.stringify(cajas.map(function (c) { return c.checked; }))); } catch (e) {}
+  }
+  try {
+    var d = JSON.parse(localStorage.getItem(CLAVE) || '[]');
+    cajas.forEach(function (c, i) { c.checked = !!d[i]; });
+  } catch (e) { /* sin almacenamiento: la lista funciona igual */ }
+  cajas.forEach(function (c) { c.addEventListener('change', function () { guardar(); contar(); }); });
+  document.getElementById('borrar').addEventListener('click', function () {
+    cajas.forEach(function (c) { c.checked = false; }); guardar(); contar();
+  });
+  contar();
+})();
+</script>
+</html>
