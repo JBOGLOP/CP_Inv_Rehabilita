@@ -21,7 +21,9 @@
 | Coevaluación y autoevaluación | 10 % | 3 % | S05–S06 |
 
 El trabajo en grupo de la sesión 05 se califica con la rúbrica de cuatro criterios; el papel de
-cada grupo como discutidor cuenta dentro de «Postura crítica y ética». Consigna completa en
+cada grupo como discutidor cuenta dentro de «Postura crítica y ética». El 30 de octubre fue taller en
+clase (los grupos se conocieron ese día); la entrega cierra el 6 de noviembre a la 1:00 p. m. y la
+exposición (10 + 5 min por grupo) es el 20 de noviembre, antes de las sustentaciones. Consigna completa en
 [`sesiones/s06-eventos-catastroficos/preparacion.html`](../../sesiones/s06-eventos-catastroficos/preparacion.html).
 
 Guía del producto final para estudiantes:
