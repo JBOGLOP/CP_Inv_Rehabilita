@@ -2,7 +2,7 @@
 <html lang="es">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Antes de la sesión 5 · Investigación en CP y Rehabilitación</title>
+<title>Sesión 5 · Revisión rápida en grupo · Investigación en CP y Rehabilitación</title>
 <meta name="description" content="Entregable previo en grupo a la sesión 5 (eventos catastróficos: ictus severo, fractura de cadera, espasticidad) de Investigación en Cuidados Paliativos y Rehabilitación (37543013), Universidad Antonio Nariño. Revisión rápida de evidencia, exposición y discusión entre grupos.">
 
 <!-- ===========================================================================
@@ -153,19 +153,20 @@ footer p{margin:0 0 .5rem;max-width:62ch}
 
 <header class="hero">
   <div class="envoltura">
-    <p class="hero__eyebrow">Sesión 5 · Antes del encuentro · En grupo</p>
-    <h1>Antes de la sesión 5 · Eventos catastróficos</h1>
+    <p class="hero__eyebrow">Sesión 5 · Taller en grupo · Entrega 6 de noviembre</p>
+    <h1>Sesión 5 · Eventos catastróficos: revisión rápida en grupo</h1>
     <p class="hero__sub">
       Esta vez trabajan <strong>en grupo</strong> y con método: cada grupo responde una pregunta
       clínica real sobre ictus severo, fractura de cadera o espasticidad con una <strong>revisión
-      rápida de la evidencia</strong>, la presenta en el encuentro y discute la de otro grupo. Lo que
+      rápida de la evidencia</strong>, que empieza en el taller del 30 de octubre, se entrega el 6 de noviembre y se
+      presenta el 20 de noviembre, cuando además discute la de otro grupo. Lo que
       se busca no es un resumen de capítulos, sino lo que haría un equipo de investigación: buscar
       de forma reproducible, valorar la certeza, decir qué falta y convertir el vacío en una pregunta.
     </p>
     <div class="meta">
       <span class="chip">Cierra: viernes 6 de noviembre, 1:00 p. m.</span>
-      <span class="chip">Encuentro sincrónico · 2:00–5:00 p. m.</span>
-      <span class="chip">3 grupos · revisión rápida + exposición</span>
+      <span class="chip">Taller · vie 30 oct · 2:00–5:00 p. m.</span>
+      <span class="chip">Exposición · vie 20 nov · 10 + 7 min</span>
       <span class="chip">Tercer corte · 20 %</span>
     </div>
     <div id="estado" class="estado">
@@ -274,8 +275,8 @@ footer p{margin:0 0 .5rem;max-width:62ch}
     <h2>El método que se espera</h2>
     <p class="intro">Una revisión rápida, no una revisión sistemática completa: lo importante es que cualquiera pueda repetir lo que hicieron y que digan con honestidad qué tan sólida es la evidencia.</p>
     <ol class="pasos">
-      <li><strong>Pregunta estructurada</strong> (PICO o PICo si es cualitativa), con el porqué clínico.</li>
-      <li><strong>Búsqueda en al menos dos bases</strong> (por ejemplo PubMed y BVS/LILACS, o Cochrane), de 2019 a 2026, con los términos exactos, los filtros y la fecha. Incluyan al menos una fuente latinoamericana o en español si existe; si no existe, ese es un hallazgo.</li>
+      <li><strong>Pregunta estructurada</strong> en el formato que corresponda a su tipo: PICO si es de intervención, PFO si es de pronóstico, COSMIN si es de medición, PICo si es cualitativa (la tabla completa está en el <a href="clase.html">material de la clase</a>, Bloque 1), con el porqué clínico.</li>
+      <li><strong>Búsqueda en al menos dos bases</strong> (por ejemplo PubMed y BVS/LILACS, o Cochrane), de 2019 a 2026 (más los estudios fundacionales anteriores que justifiquen), con los términos exactos, los filtros y la fecha. Incluyan al menos una fuente latinoamericana o en español si existe; si no existe, ese es un hallazgo. UpToDate y otras fuentes terciarias sirven para ubicar guías y estudios, pero no entran a la tabla de evidencia.</li>
       <li><strong>Flujo</strong>: cuántos registros encontraron, cuántos revisaron y cuántos incluyeron, y por qué.</li>
       <li><strong>Tabla de evidencia</strong> de los estudios clave: diseño, población, intervención o exposición, desenlace e instrumento, resultado y limitaciones.</li>
       <li><strong>Certeza</strong> por desenlace con los criterios GRADE (riesgo de sesgo, inconsistencia, evidencia indirecta, imprecisión, sesgo de publicación).</li>
@@ -349,7 +350,7 @@ footer p{margin:0 0 .5rem;max-width:62ch}
     <article class="pregunta">
       <p class="pregunta__n">Componente 1 · la pregunta</p>
       <h3>La pregunta estructurada y por qué importa</h3>
-      <p class="pregunta__ctx">Partan de la pregunta de su grupo y estructúrenla en PICO (o PICo). Digan por qué importa en el hospital o el servicio donde trabajan.</p>
+      <p class="pregunta__ctx">Partan de la pregunta de su grupo y estructúrenla en el formato que corresponda (PICO, PFO, COSMIN, PICo…). Digan por qué importa en el hospital o el servicio donde trabajan.</p>
       <textarea id="p1" data-min="80" placeholder="P: … · I: … · C: … · O: … · Por qué importa…"></textarea>
       <p class="contador" data-para="p1">0 palabras</p>
     </article>
@@ -547,7 +548,7 @@ var CONFIG = {
     if (!navigator.onLine) {
       pintarEstado('estado--aviso', 'Sin conexión.',
         'Puedes leer y escribir con normalidad: el borrador se guarda en este navegador. ' +
-        'Envíalo cuando recuperes la red, o usa «Copiar todo». Cierra el ' + CONFIG.CIERRE_LEGIBLE + '.');
+        'Envíalo cuando recuperes la red, o usa «Copiar todo». Cierra el ' + CONFIG.CIERRE_LEGIBLE.replace(/\.?$/, '.'));
       return;
     }
     var url = CONFIG.ENDPOINT + '?action=estado&token=' + encodeURIComponent(CONFIG.TOKEN);
@@ -557,7 +558,7 @@ var CONFIG = {
         if (!d.ok) {
           pintarEstado('estado--malo', 'El servidor no reconoce este entregable.', 'Avísale al docente: ' + (d.error || '') + '.');
         } else if (d.abierta) {
-          pintarEstado('estado--ok', 'Entrega abierta.', 'Cierra el ' + CONFIG.CIERRE_LEGIBLE + '. Puedes reenviar hasta esa hora.');
+          pintarEstado('estado--ok', 'Entrega abierta.', 'Cierra el ' + CONFIG.CIERRE_LEGIBLE.replace(/\.?$/, '.') + ' Puedes reenviar hasta esa hora.');
         } else if (!d.activa) {
           pintarEstado('estado--aviso', 'Todavía no está habilitada.', 'El docente la abre unos días antes de la sesión.');
         } else if (d.apertura && d.ahora && d.ahora < d.apertura) {
