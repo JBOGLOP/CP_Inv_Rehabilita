@@ -81,6 +81,10 @@ p{max-width:66ch}
 .actividad h3{color:var(--aviso-dark)}
 .actividad ol,.actividad ul{margin:.3rem 0 0;padding-left:1.2rem;font-size:.93rem}
 .actividad li{margin-bottom:.3rem}
+.banco{border-top:1px solid rgba(183,121,31,.25);padding:.15rem 0}
+.banco summary{cursor:pointer;font-weight:600;font-size:.95rem;padding:.45rem 0;color:var(--aviso-dark)}
+.banco summary:focus-visible{outline:2px solid var(--aviso-dark);outline-offset:2px}
+.banco ul{margin:0 0 .6rem}
 
 .tabla{overflow-x:auto;margin-top:.8rem}
 table{width:100%;border-collapse:collapse;font-size:.88rem;background:var(--blanco);box-shadow:var(--shadow-soft);border-radius:var(--radius-sm);overflow:hidden}
@@ -277,13 +281,77 @@ footer{border-top:1px solid var(--linea);background:var(--blanco);padding:1.8rem
       </div>
       <div class="actividad">
         <h3>Banco de preguntas para el grupo discutidor</h3>
-        <ul>
-          <li><strong>Método:</strong> ¿la búsqueda se puede repetir? ¿Qué bases faltaron? ¿Por qué excluyeron lo que excluyeron?</li>
-          <li><strong>Certeza:</strong> ¿por qué esa certeza GRADE y no otra? ¿Qué la baja más: sesgo, imprecisión o evidencia indirecta?</li>
-          <li><strong>Aplicabilidad:</strong> ¿en qué ámbito se hizo la evidencia y en cuál la aplicarían aquí? ¿Qué cambia en un municipio sin rehabilitación domiciliaria?</li>
-          <li><strong>Ética:</strong> ¿qué decisión de adecuación del esfuerzo se desprende de lo que encontraron, y cómo se documentaría?</li>
-          <li><strong>El vacío:</strong> ¿la pregunta de investigación que proponen se puede responder con datos que existan en Colombia?</li>
-        </ul>
+        <p style="font-size:.93rem;margin:.3rem 0 .6rem">El grupo discutidor prepara <strong>tres preguntas</strong>: una de método, una de certeza y una de
+          aplicabilidad. Puede tomarlas de aquí, adaptarlas o escribir las suyas a partir de la revisión que le toca discutir.</p>
+        <details class="banco">
+          <summary>Método · ¿se puede repetir y está completa?</summary>
+          <ul>
+            <li>Si copio su estrategia en PubMed hoy, ¿obtengo los mismos resultados? ¿Qué términos MeSH o DeCS usaron y cuáles descartaron?</li>
+            <li>¿Por qué esas dos bases? ¿Buscaron en LILACS o en literatura gris (guías, tesis, documentos del Ministerio)?</li>
+            <li>¿Cuántos artículos encontraron, cuántos leyeron completos y por qué excluyeron el resto? ¿Seleccionó una persona o dos?</li>
+            <li>¿Pusieron límite de idioma o de fecha? ¿Pudieron quedar por fuera estudios en español o en portugués?</li>
+            <li>¿La pregunta PICO cambió durante la búsqueda? Si cambió, ¿por qué?</li>
+          </ul>
+        </details>
+        <details class="banco">
+          <summary>Certeza · ¿cuánto confiar en lo que encontraron?</summary>
+          <ul>
+            <li>¿Por qué esa certeza GRADE y no otra? ¿Qué dominio la bajó más: sesgo, inconsistencia, evidencia indirecta, imprecisión o sesgo de publicación?</li>
+            <li>Si la mayoría de los estudios son observacionales, ¿qué factores de confusión podrían explicar el resultado?</li>
+            <li>¿Los estudios midieron el desenlace que le importa a la persona o uno sustituto (tono en vez de función, supervivencia en vez de calidad de vida)?</li>
+            <li>¿El intervalo de confianza del estudio principal incluye la ausencia de efecto? ¿Cuántas personas tenía?</li>
+            <li>¿Algún estudio lo financió quien vende la intervención?</li>
+          </ul>
+        </details>
+        <details class="banco">
+          <summary>Aplicabilidad · ¿sirve aquí?</summary>
+          <ul>
+            <li>¿En qué país y en qué ámbito se hicieron los estudios (unidad de ictus, residencia, domicilio)? ¿Existe ese ámbito en el municipio donde trabajan?</li>
+            <li>¿Qué profesionales necesita la intervención? ¿Hay fisioterapia, terapia ocupacional o fonoaudiología fuera de la ciudad?</li>
+            <li>¿La EPS lo cubre? ¿Cuánto tarda una autorización?</li>
+            <li>¿Las personas de los estudios se parecen a las que atendemos en edad, escolaridad, cuidador disponible y comorbilidad?</li>
+            <li>¿Qué harían distinto mañana en su servicio con lo que encontraron? Si la respuesta es «nada», ¿por qué?</li>
+          </ul>
+        </details>
+        <details class="banco">
+          <summary>Ética y vacío · para cerrar</summary>
+          <ul>
+            <li>¿Qué decisión de adecuación del esfuerzo se desprende de lo que encontraron, y cómo quedaría documentada en la historia clínica?</li>
+            <li>¿La pregunta de investigación que proponen se puede responder con datos que existan en Colombia? ¿Quién los tiene?</li>
+            <li>¿Qué estudio harían ustedes, con qué diseño y con cuántas personas?</li>
+          </ul>
+        </details>
+        <h3 style="margin-top:1rem">Preguntas para cada cruce</h3>
+        <details class="banco">
+          <summary>El grupo 3 discute al grupo 1 · Ictus severo</summary>
+          <ul>
+            <li>Si se limita el tratamiento porque se espera un mal pronóstico, y la persona muere, ¿cómo saben que el pronóstico era correcto y no una profecía autocumplida?</li>
+            <li>¿En qué momento tras el ictus es razonable pronunciarse sobre el pronóstico funcional: 72 horas, una semana, un mes?</li>
+            <li>La gastrostomía, ¿la presentan como tratamiento, como cuidado o como decisión reversible? ¿Qué dice la evidencia sobre su beneficio en el ictus severo?</li>
+            <li>¿Qué recibe quien no tolera tres horas diarias de terapia y queda fuera de la rehabilitación intensiva?</li>
+            <li>¿Cómo midieron el éxito: Rankin, Barthel o algo que le importe a la familia?</li>
+          </ul>
+        </details>
+        <details class="banco">
+          <summary>El grupo 1 discute al grupo 2 · Fractura de cadera</summary>
+          <ul>
+            <li>En FRAIL-HIP, ¿quiénes eligieron no operarse? ¿Eran comparables con quienes se operaron, o el sesgo de selección explica la diferencia?</li>
+            <li>Si no operar se asocia a más mortalidad pero a una calidad de la muerte similar, ¿cuál de los dos desenlaces debería guiar la decisión?</li>
+            <li>¿Quién decide en una persona con demencia avanzada sin voluntad anticipada: la familia, el equipo o el comité de ética?</li>
+            <li>Si no hay guías específicas de rehabilitación tras fractura de cadera, ¿en qué se basa la meta de rehabilitación que proponen?</li>
+            <li>¿Cómo se valora el dolor en quien no puede decirlo? ¿Usaron PAINAD u otra escala observacional?</li>
+          </ul>
+        </details>
+        <details class="banco">
+          <summary>El grupo 2 discute al grupo 3 · Espasticidad y medición</summary>
+          <ul>
+            <li>Si un fármaco baja el tono pero no cambia las actividades de la vida diaria, ¿funcionó o no? ¿Para quién?</li>
+            <li>En los estudios con Goal Attainment Scaling, ¿quién fijó la meta: la persona, la familia o el terapeuta? ¿Cambia el resultado?</li>
+            <li>El cambio mínimo importante que usan, ¿se calculó en población paliativa o en rehabilitación orientada a la recuperación?</li>
+            <li>¿Un desenlace como «la higiene de la mano es más fácil para quien cuida» cabe en su instrumento? ¿Lo mide alguna escala validada en español?</li>
+            <li>Si la espasticidad ayuda a la persona a ponerse de pie para trasladarse, ¿cuándo conviene no tratarla?</li>
+          </ul>
+        </details>
       </div>
     </section>
 
