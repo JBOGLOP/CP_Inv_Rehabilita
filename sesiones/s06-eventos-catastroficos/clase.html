@@ -148,7 +148,7 @@ footer{border-top:1px solid var(--linea);background:var(--blanco);padding:1.8rem
       <div class="caja">
         <p style="margin:0">Hoy es un <strong>taller</strong>: cada grupo construye su revisión rápida en clase, con el
           docente pasando por los grupos. La <strong>entrega</strong> es hasta el <strong>viernes 6 de noviembre a la 1:00 p. m.</strong>
-          y la <strong>exposición</strong> es el <strong>20 de noviembre</strong>: 10 minutos por grupo y 5 de discusión que abre el grupo discutidor.</p>
+          y la <strong>exposición</strong> es el <strong>20 de noviembre</strong>: 10 minutos por grupo y 7 de discusión: abre el grupo discutidor con sus tres preguntas y luego participa el grupo que escucha.</p>
         <table class="crono">
           <tr><td>2:00–2:20</td><td>Encuadre</td><td>Hilo de la sesión, grupos, roles y consigna</td></tr>
           <tr><td>2:20–3:00</td><td>Bloque 1 · Pregunta</td><td>PICO y estrategia de búsqueda: términos MeSH/DeCS, sinónimos, filtros</td></tr>
@@ -216,6 +216,7 @@ footer{border-top:1px solid var(--linea);background:var(--blanco);padding:1.8rem
           <button type="button" data-min="40" aria-pressed="true">Bloque 40</button>
           <button type="button" data-min="5" aria-pressed="false">Ronda 5</button>
           <button type="button" data-min="10" aria-pressed="false">Exposición 10</button>
+          <button type="button" data-min="7" aria-pressed="false">Discusión 7</button>
           <button type="button" class="primario" id="btnReloj">Iniciar</button>
           <button type="button" id="btnReset">Reiniciar</button>
         </div>
@@ -382,7 +383,7 @@ footer{border-top:1px solid var(--linea);background:var(--blanco);padding:1.8rem
     b.addEventListener('click', function () {
       [].forEach.call(document.querySelectorAll('[data-min]'), function (o) { o.setAttribute('aria-pressed', o === b ? 'true' : 'false'); });
       parar(); total = Number(b.dataset.min) * 60; resta = total;
-      $('etqReloj').textContent = ({'40': 'Bloque de trabajo', '5': 'Ronda o discusión', '10': 'Exposición'}[b.dataset.min] || 'Turno') + ' · ' + b.dataset.min + ' minutos';
+      $('etqReloj').textContent = ({'40': 'Bloque de trabajo', '5': 'Ronda de avances', '10': 'Exposición', '7': 'Discusión'}[b.dataset.min] || 'Turno') + ' · ' + b.dataset.min + ' minutos';
       pintar();
     });
   });
