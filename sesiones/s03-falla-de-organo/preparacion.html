@@ -544,7 +544,7 @@ var CONFIG = {
     if (!navigator.onLine) {
       pintarEstado('estado--aviso', 'Sin conexión.',
         'Puedes leer y escribir con normalidad: el borrador se guarda en este navegador. ' +
-        'Envíalo cuando recuperes la red, o usa «Copiar todo». Cierra el ' + CONFIG.CIERRE_LEGIBLE + '.');
+        'Envíalo cuando recuperes la red, o usa «Copiar todo». Cierra el ' + CONFIG.CIERRE_LEGIBLE.replace(/\.?$/, '.'));
       return;
     }
     var url = CONFIG.ENDPOINT + '?action=estado&token=' + encodeURIComponent(CONFIG.TOKEN);
@@ -554,7 +554,7 @@ var CONFIG = {
         if (!d.ok) {
           pintarEstado('estado--malo', 'El servidor no reconoce este entregable.', 'Avísale al docente: ' + (d.error || '') + '.');
         } else if (d.abierta) {
-          pintarEstado('estado--ok', 'Entrega abierta.', 'Cierra el ' + CONFIG.CIERRE_LEGIBLE + '. Puedes reenviar hasta esa hora.');
+          pintarEstado('estado--ok', 'Entrega abierta.', 'Cierra el ' + CONFIG.CIERRE_LEGIBLE.replace(/\.?$/, '.') + ' Puedes reenviar hasta esa hora.');
         } else if (!d.activa) {
           pintarEstado('estado--aviso', 'Todavía no está habilitada.', 'El docente la abre unos días antes de la sesión.');
         } else if (d.apertura && d.ahora && d.ahora < d.apertura) {
