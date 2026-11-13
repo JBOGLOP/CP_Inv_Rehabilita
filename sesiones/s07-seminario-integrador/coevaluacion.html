@@ -1,0 +1,665 @@
+<!doctype html>
+<html lang="es">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sesión 6 · Coevaluación y autoevaluación · Investigación en CP y Rehabilitación</title>
+<meta name="description" content="Coevaluación y autoevaluación del cierre de Investigación en Cuidados Paliativos y Rehabilitación (37543013), Universidad Antonio Nariño, 2026-II.">
+
+<!-- ===========================================================================
+     COEVALUACIÓN Y AUTOEVALUACIÓN · SESIÓN 6 · cierre del curso
+     Individual. Vale el 10 % del tercer corte, junto con la observación del docente.
+     Se llena al final de la sesión del 20 de noviembre; abierta hasta el sábado 21, 11:59 p. m.
+     Conectado a la fila S07 de la pestaña Config (el seminario integrador usa esa fila).
+
+     DATOS PERSONALES: no lleva la lista del curso. Los nombres que escriba cada
+     estudiante viajan a la hoja privada del docente y no se proyectan.
+     PORTABILIDAD: se lee, se responde y se guarda sin conexión. Cero recursos externos.
+     =========================================================================== -->
+
+<style>
+:root{
+  --u6:#7A5FC0; --u6-dark:#574097; --u6-soft:#E9E3F7;
+  --marca:#22415C; --marca-dark:#163049; --marca-soft:#E3EAF0;
+  --ok:#0E8A80; --ok-soft:#D2EAE7;
+  --aviso:#B7791F; --aviso-soft:#F6EBD5; --aviso-dark:#7A5212;
+  --alerta:#C0392B; --alerta-soft:#F7DDD9; --alerta-dark:#8E2A20;
+  --tinta:#14202B; --gris:#4E6274; --gris-claro:#94A5B5; --resalte:#EDF2F7;
+  --blanco:#FFFFFF; --nieve:#F4F7FA;
+  --shadow-soft:0 1px 2px rgba(20,32,43,.06), 0 6px 18px rgba(20,32,43,.06);
+  --shadow-medium:0 6px 20px rgba(20,32,43,.10);
+  --radius:14px; --radius-sm:9px;
+  --sans:system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  --mono:ui-monospace,'Cascadia Mono','Segoe UI Mono',Consolas,monospace;
+  --serif:'Iowan Old Style','Palatino Linotype',Palatino,'Book Antiqua',Georgia,serif;
+  /* Unidad 6 → glicina */
+  --acento:var(--u6); --acento-dark:var(--u6-dark); --acento-soft:var(--u6-soft);
+}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;font-family:var(--sans);color:var(--tinta);background:var(--nieve);line-height:1.62}
+:focus-visible{outline:3px solid var(--acento);outline-offset:2px}
+a{color:var(--acento-dark)}
+.envoltura{max-width:48rem;margin:0 auto;padding:0 1.25rem}
+.saltar{position:absolute;left:-9999px;background:var(--tinta);color:var(--nieve);padding:.6rem 1rem;z-index:20}
+.saltar:focus{left:0}
+
+.nav-sesion{background:var(--tinta);color:var(--nieve);padding:.55rem 1rem;font-size:.82rem;
+  display:flex;flex-wrap:wrap;align-items:center;gap:.3rem .9rem}
+.nav-sesion a{color:var(--gris-claro);text-decoration:none;border-bottom:1px solid transparent}
+.nav-sesion a:hover,.nav-sesion a:focus{border-bottom-color:var(--gris-claro)}
+.nav-sesion .ns-curso{font-weight:700}
+@media print{.nav-sesion,.saltar{display:none}}
+
+.hero{background:linear-gradient(160deg,var(--nieve) 0%,var(--u6-soft) 100%);
+  padding:clamp(1.8rem,5vw,3rem) 0 clamp(1.3rem,3vw,2rem);border-bottom:1px solid rgba(20,32,43,.08)}
+.hero__eyebrow{font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--acento-dark);font-weight:700;margin:0 0 .5rem}
+h1{font-family:var(--serif);font-size:clamp(1.5rem,4vw,2.3rem);line-height:1.15;letter-spacing:-.01em;margin:0 0 .6rem}
+.hero__sub{font-size:1rem;color:var(--gris);max-width:54ch;margin:0}
+.meta{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:1.1rem}
+.chip{background:var(--blanco);border:1px solid rgba(20,32,43,.1);border-radius:999px;padding:.28rem .85rem;font-size:.82rem;box-shadow:var(--shadow-soft)}
+
+section{padding:clamp(1.5rem,3.5vw,2.4rem) 0}
+h2{font-family:var(--serif);font-size:clamp(1.15rem,2.6vw,1.5rem);margin:0 0 .3rem;line-height:1.25}
+h3{font-size:1rem;margin:0 0 .35rem;color:var(--acento-dark)}
+p{max-width:62ch}
+.intro{color:var(--gris);max-width:62ch;margin:0 0 1.2rem}
+
+.estado{border-radius:var(--radius);padding:.9rem 1.15rem;margin:1.2rem 0 0;font-size:.92rem;
+  border-left:4px solid var(--gris-claro);background:var(--blanco);box-shadow:var(--shadow-soft);max-width:62ch}
+.estado--ok{border-left-color:var(--ok);background:var(--ok-soft)}
+.estado--aviso{border-left-color:var(--aviso);background:var(--aviso-soft);color:var(--aviso-dark)}
+.estado--malo{border-left-color:var(--alerta);background:var(--alerta-soft);color:var(--alerta-dark)}
+.estado strong{display:block;margin-bottom:.2rem}
+
+.pasos{list-style:none;padding:0;margin:1rem 0 0;display:grid;gap:.55rem;max-width:62ch;counter-reset:p}
+.pasos li{background:var(--blanco);border-radius:var(--radius-sm);padding:.75rem 1rem .75rem 2.6rem;
+  box-shadow:var(--shadow-soft);position:relative;font-size:.94rem}
+.pasos li::before{counter-increment:p;content:counter(p);position:absolute;left:.85rem;top:.75rem;
+  width:1.3rem;height:1.3rem;border-radius:50%;background:var(--acento);color:var(--blanco);
+  font-size:.75rem;font-weight:700;display:flex;align-items:center;justify-content:center}
+
+.tecno{background:var(--blanco);border-radius:var(--radius);padding:1.2rem 1.35rem;
+  box-shadow:var(--shadow-soft);border-left:4px solid var(--marca);max-width:62ch}
+.tecno ul.lista{list-style:none;padding:0;margin:.9rem 0 0;display:grid;grid-template-columns:repeat(2,1fr);gap:.4rem}
+@media (max-width:560px){.tecno ul.lista{grid-template-columns:1fr}}
+.tecno ul.lista li{background:var(--nieve);border-radius:var(--radius-sm);padding:.45rem .7rem;font-size:.88rem}
+.tecno .num{font-family:var(--mono);font-weight:700;color:var(--marca-dark);margin-right:.35rem}
+
+.identidad{background:var(--blanco);border-radius:var(--radius);padding:1.1rem 1.25rem;
+  box-shadow:var(--shadow-soft);border-top:3px solid var(--acento);max-width:62ch}
+.campo{margin-bottom:.9rem}
+.campo:last-child{margin-bottom:0}
+label{display:block;font-size:.85rem;font-weight:600;margin-bottom:.3rem}
+.pista{font-size:.8rem;color:var(--gris);font-weight:400;margin:.15rem 0 .4rem}
+input[type=text],input[type=email],input[type=number],textarea{
+  width:100%;font:inherit;font-size:.95rem;padding:.55rem .7rem;border:1px solid #B9CADA;
+  border-radius:var(--radius-sm);background:var(--blanco);color:var(--tinta)}
+textarea{min-height:9rem;resize:vertical;line-height:1.6}
+input:focus,textarea:focus{border-color:var(--acento)}
+
+.pregunta{background:var(--blanco);border-radius:var(--radius);padding:1.2rem 1.35rem;
+  box-shadow:var(--shadow-soft);border-left:4px solid var(--acento);margin-bottom:1.3rem}
+.pregunta__n{font-family:var(--mono);font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--acento-dark);margin:0 0 .3rem}
+.pregunta h3{font-size:1.08rem;color:var(--tinta);margin-bottom:.5rem;line-height:1.3}
+.pregunta__ctx{font-size:.93rem;color:var(--gris);margin:0 0 .8rem;max-width:60ch}
+.pregunta__q{font-family:var(--serif);font-size:1.04rem;color:var(--acento-dark);
+  border-left:3px solid var(--acento-soft);padding:.3em 0 .3em .9em;margin:0 0 .9rem;max-width:58ch}
+.espera{background:var(--resalte);border-radius:var(--radius-sm);padding:.7rem .9rem;font-size:.86rem;color:var(--marca-dark);margin:0 0 .9rem;max-width:60ch}
+.espera strong{display:block;margin-bottom:.2rem}
+.espera ul{margin:.3rem 0 0;padding-left:1.05rem}
+.espera li{margin-bottom:.2rem}
+.contador{font-family:var(--mono);font-size:.78rem;color:var(--gris);text-align:right;margin:.35rem 0 0}
+.contador.corto{color:var(--aviso-dark)}
+.contador.bien{color:var(--ok);font-weight:700}
+
+.envio{background:var(--blanco);border-radius:var(--radius);padding:1.2rem 1.35rem;box-shadow:var(--shadow-medium);border-top:4px solid var(--marca)}
+.botones{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1rem}
+button{font:inherit;font-weight:600;cursor:pointer;border-radius:999px;padding:.55rem 1.3rem;border:1px solid var(--acento);background:var(--blanco);color:var(--acento-dark)}
+button:hover{background:var(--acento-soft)}
+button.primario{background:var(--acento-dark);color:var(--blanco);border-color:var(--acento-dark)}
+button.primario:hover{background:var(--acento)}
+button[disabled]{opacity:.5;cursor:default}
+.autoguardado{font-size:.8rem;color:var(--gris);margin:.7rem 0 0;font-family:var(--mono)}
+
+.nota{background:var(--blanco);border-left:4px solid var(--marca);border-radius:var(--radius-sm);
+  padding:.95rem 1.15rem;box-shadow:var(--shadow-soft);font-size:.9rem;color:var(--gris);max-width:62ch}
+.nota strong{color:var(--tinta)}
+
+.lecturas{list-style:none;padding:0;margin:1rem 0 0;display:grid;gap:.55rem;max-width:62ch}
+.lecturas li{background:var(--blanco);border-radius:var(--radius-sm);padding:.8rem 1rem;box-shadow:var(--shadow-soft);border-left:3px solid var(--marca);font-size:.92rem}
+.lecturas li{overflow-wrap:anywhere}
+.lecturas .tipo{display:block;font-family:var(--mono);font-size:.71rem;letter-spacing:.05em;text-transform:uppercase;color:var(--marca-dark);font-weight:700;margin-bottom:.2rem}
+
+footer{background:var(--tinta);color:var(--nieve);margin-top:2rem;padding:2rem 0;font-size:.86rem}
+footer a{color:var(--gris-claro)}
+footer p{margin:0 0 .5rem;max-width:62ch}
+.footer__legal{color:#AEBAC6;font-size:.79rem;margin-top:.9rem}
+.escala{width:100%;font:inherit;font-size:.95rem;padding:.55rem .7rem;border:1px solid #B9CADA;border-radius:var(--radius-sm);background:var(--blanco)}
+.fila2{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,13rem),1fr));gap:.7rem 1rem}
+.companero{border-top:1px solid var(--linea,#E1E7ED);padding-top:.9rem;margin-top:.9rem}
+.companero:first-of-type{border-top:0;padding-top:0;margin-top:0}
+@media (prefers-reduced-motion:reduce){*{transition:none !important}}
+</style>
+
+<a class="saltar" href="#formulario">Saltar al formulario</a>
+
+<nav class="nav-sesion" aria-label="Navegación del curso">
+  <a class="ns-curso" href="../../index.html">← Investigación en CP y Rehabilitación</a>
+  <a href="index.html">Guía de la sesión</a>
+  <a href="clase.html">Material de la sesión</a>
+</nav>
+
+<header class="hero">
+  <div class="envoltura">
+    <p class="hero__eyebrow">Sesión 6 · Cierre del curso · Individual</p>
+    <h1>Coevaluación y autoevaluación</h1>
+    <p class="hero__sub">
+      Al cerrar el curso, cada quien mira su propio trabajo y el de sus pares con los mismos criterios con que se
+      calificó todo el semestre. No es una votación de simpatía: se pide <strong>una razón</strong> para cada
+      valoración, y el docente la contrasta con lo que observó.
+    </p>
+    <div class="meta">
+      <span class="chip">Se llena al final de la sesión del 20 de noviembre</span>
+      <span class="chip">Cierra: sábado 21 de noviembre, 11:59 p. m.</span>
+      <span class="chip">Tercer corte · 10 %</span>
+    </div>
+    <div id="estado" class="estado">
+      <strong>Comprobando el plazo…</strong>
+      Si no tienes conexión, tranquilo: puedes leer y escribir igual, y enviar cuando la tengas.
+    </div>
+  </div>
+</header>
+
+<main>
+
+<section>
+  <div class="envoltura">
+    <h2>Cómo funciona</h2>
+    <ol class="pasos">
+      <li><strong>Es individual</strong> y se envía una sola vez por persona; si corriges algo, el último envío reemplaza al anterior.</li>
+      <li><strong>Tres partes</strong>: tu autoevaluación, la valoración de dos sustentaciones y la valoración de tu grupo de la sesión 5.</li>
+      <li><strong>Las sustentaciones que valoras</strong> son las de los dos turnos que siguen al tuyo (si tienes el turno 6, valoras el 7 y el 1; si tienes el 7, el 1 y el 2).</li>
+      <li><strong>Solo el docente ve lo que escribes.</strong> Nadie recibe la valoración con tu nombre. Las notas que propongas se contrastan con la observación del docente: no se suman tal cual.</li>
+    </ol>
+  </div>
+</section>
+
+<section id="formulario">
+  <div class="envoltura">
+    <h2>Quién responde</h2>
+    <div class="identidad">
+      <div class="campo">
+        <label for="correo">Correo institucional</label>
+        <p class="pista">El que la maestría tiene registrado.</p>
+        <input type="email" id="correo" autocomplete="email" placeholder="nombre@uan.edu.co">
+      </div>
+      <div class="campo">
+        <label for="nombre">Nombre completo</label>
+        <input type="text" id="nombre" autocomplete="name" placeholder="Apellidos y nombres">
+      </div>
+      <div class="fila2">
+        <div class="campo">
+          <label for="turno">Tu turno de sustentación</label>
+          <select id="turno" class="escala"><option value="">Elige tu turno</option><option>Turno 1</option><option>Turno 2</option><option>Turno 3</option><option>Turno 4</option><option>Turno 5</option><option>Turno 6</option><option>Turno 7</option></select>
+        </div>
+        <div class="campo">
+          <label for="grupo">Tu grupo de la sesión 5</label>
+          <select id="grupo" class="escala">
+            <option value="">Elige el grupo</option>
+            <option>Grupo 1 · Ictus severo</option>
+            <option>Grupo 2 · Fractura de cadera en la persona frágil o con demencia</option>
+            <option>Grupo 3 · Espasticidad y medición de resultados</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="envoltura">
+    <h2>Parte A · Tu autoevaluación</h2>
+    <p class="intro">Valora tu producto final con los cuatro criterios del curso, de 1,0 a 5,0, y di en pocas líneas en qué te basas.</p>
+    <div class="identidad">
+      <div class="fila2">
+      <div class="campo">
+        <label for="a1">Apropiación conceptual</label>
+        <p class="pista">La pregunta y el encuadre de rehabilitación paliativa.</p>
+        <select id="a1" class="escala"><option value="">Elige de 1,0 a 5,0</option><option>5,0</option><option>4,5</option><option>4,0</option><option>3,5</option><option>3,0</option><option>2,5</option><option>2,0</option><option>1,5</option><option>1,0</option></select>
+      </div>
+      <div class="campo">
+        <label for="a2">Uso de la evidencia</label>
+        <p class="pista">Fuentes verificadas, estadística interpretada.</p>
+        <select id="a2" class="escala"><option value="">Elige de 1,0 a 5,0</option><option>5,0</option><option>4,5</option><option>4,0</option><option>3,5</option><option>3,0</option><option>2,5</option><option>2,0</option><option>1,5</option><option>1,0</option></select>
+      </div>
+      <div class="campo">
+        <label for="a3">Postura crítica y ética</label>
+        <p class="pista">Vacíos, aplicabilidad, consideraciones éticas.</p>
+        <select id="a3" class="escala"><option value="">Elige de 1,0 a 5,0</option><option>5,0</option><option>4,5</option><option>4,0</option><option>3,5</option><option>3,0</option><option>2,5</option><option>2,0</option><option>1,5</option><option>1,0</option></select>
+      </div>
+      <div class="campo">
+        <label for="a4">Comunicación y citación</label>
+        <p class="pista">Escritura, Vancouver, declaración de IA.</p>
+        <select id="a4" class="escala"><option value="">Elige de 1,0 a 5,0</option><option>5,0</option><option>4,5</option><option>4,0</option><option>3,5</option><option>3,0</option><option>2,5</option><option>2,0</option><option>1,5</option><option>1,0</option></select>
+      </div>
+      </div>
+      <div class="campo">
+        <label for="a5">En qué te basas, y qué harías distinto si empezaras de nuevo</label>
+        <textarea id="a5" data-min="60" placeholder="Lo más sólido de mi trabajo fue… · Lo más débil… · Si empezara de nuevo…"></textarea>
+        <p class="contador" data-para="a5">0 palabras</p>
+      </div>
+      <div class="campo">
+        <label for="b1">Tu compromiso con el curso a lo largo del semestre</label>
+        <p class="pista">Entregables a tiempo, lecturas, participación en clase y en tu grupo.</p>
+        <select id="b1" class="escala"><option value="">Elige de 1,0 a 5,0</option><option>5,0</option><option>4,5</option><option>4,0</option><option>3,5</option><option>3,0</option><option>2,5</option><option>2,0</option><option>1,5</option><option>1,0</option></select>
+      </div>
+      <div class="campo">
+        <label for="b2">Una cosa del curso que ya cambió, o va a cambiar, tu práctica</label>
+        <textarea id="b2" data-min="40" placeholder="Antes yo… · Ahora…"></textarea>
+        <p class="contador" data-para="b2">0 palabras</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="envoltura">
+    <h2>Parte B · Dos sustentaciones</h2>
+    <p class="intro">Las de los dos turnos que siguen al tuyo. Se valoran tres de los cuatro criterios de la sustentación; el uso del tiempo lo registra el docente.</p>
+    <div class="identidad">
+      <div class="companero">
+        <div class="fila2">
+          <div class="campo"><label for="s1t">Turno de la sustentación</label>
+            <select id="s1t" class="escala"><option value="">Elige el turno</option><option>Turno 1</option><option>Turno 2</option><option>Turno 3</option><option>Turno 4</option><option>Turno 5</option><option>Turno 6</option><option>Turno 7</option></select></div>
+          <div class="campo"><label for="s1c">Claridad y estructura</label>
+            <select id="s1c" class="escala"><option value="">1,0 a 5,0</option><option>5,0</option><option>4,5</option><option>4,0</option><option>3,5</option><option>3,0</option><option>2,5</option><option>2,0</option><option>1,5</option><option>1,0</option></select></div>
+          <div class="campo"><label for="s1e">Dominio de la evidencia</label>
+            <select id="s1e" class="escala"><option value="">1,0 a 5,0</option><option>5,0</option><option>4,5</option><option>4,0</option><option>3,5</option><option>3,0</option><option>2,5</option><option>2,0</option><option>1,5</option><option>1,0</option></select></div>
+          <div class="campo"><label for="s1r">Respuesta a las preguntas</label>
+            <select id="s1r" class="escala"><option value="">1,0 a 5,0</option><option>5,0</option><option>4,5</option><option>4,0</option><option>3,5</option><option>3,0</option><option>2,5</option><option>2,0</option><option>1,5</option><option>1,0</option></select></div>
+        </div>
+        <div class="campo"><label for="s1x">Lo más fuerte y una sugerencia concreta</label>
+          <input type="text" id="s1x" placeholder="Lo más fuerte fue… · Le sugeriría…"></div>
+      </div>
+      <div class="companero">
+        <div class="fila2">
+          <div class="campo"><label for="s2t">Turno de la sustentación</label>
+            <select id="s2t" class="escala"><option value="">Elige el turno</option><option>Turno 1</option><option>Turno 2</option><option>Turno 3</option><option>Turno 4</option><option>Turno 5</option><option>Turno 6</option><option>Turno 7</option></select></div>
+          <div class="campo"><label for="s2c">Claridad y estructura</label>
+            <select id="s2c" class="escala"><option value="">1,0 a 5,0</option><option>5,0</option><option>4,5</option><option>4,0</option><option>3,5</option><option>3,0</option><option>2,5</option><option>2,0</option><option>1,5</option><option>1,0</option></select></div>
+          <div class="campo"><label for="s2e">Dominio de la evidencia</label>
+            <select id="s2e" class="escala"><option value="">1,0 a 5,0</option><option>5,0</option><option>4,5</option><option>4,0</option><option>3,5</option><option>3,0</option><option>2,5</option><option>2,0</option><option>1,5</option><option>1,0</option></select></div>
+          <div class="campo"><label for="s2r">Respuesta a las preguntas</label>
+            <select id="s2r" class="escala"><option value="">1,0 a 5,0</option><option>5,0</option><option>4,5</option><option>4,0</option><option>3,5</option><option>3,0</option><option>2,5</option><option>2,0</option><option>1,5</option><option>1,0</option></select></div>
+        </div>
+        <div class="campo"><label for="s2x">Lo más fuerte y una sugerencia concreta</label>
+          <input type="text" id="s2x" placeholder="Lo más fuerte fue… · Le sugeriría…"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="envoltura">
+    <h2>Parte C · Tu grupo de la sesión 5</h2>
+    <p class="intro">Valora a cada compañero o compañera con quien trabajaste la revisión rápida. Si tu grupo era de dos personas, deja vacío el segundo espacio.</p>
+    <div class="identidad">
+      <div class="companero">
+        <div class="fila2">
+          <div class="campo"><label for="g1n">Nombre del compañero o compañera</label>
+            <input type="text" id="g1n" placeholder="Nombre y apellido"></div>
+          <div class="campo"><label for="g1a">Aporte al trabajo</label>
+            <select id="g1a" class="escala"><option value="">1,0 a 5,0</option><option>5,0</option><option>4,5</option><option>4,0</option><option>3,5</option><option>3,0</option><option>2,5</option><option>2,0</option><option>1,5</option><option>1,0</option></select></div>
+          <div class="campo"><label for="g1c">Cumplimiento y comunicación</label>
+            <select id="g1c" class="escala"><option value="">1,0 a 5,0</option><option>5,0</option><option>4,5</option><option>4,0</option><option>3,5</option><option>3,0</option><option>2,5</option><option>2,0</option><option>1,5</option><option>1,0</option></select></div>
+        </div>
+        <div class="campo"><label for="g1x">Un comentario breve (opcional)</label>
+          <input type="text" id="g1x" placeholder="Qué aportó, qué faltó"></div>
+      </div>
+      <div class="companero">
+        <div class="fila2">
+          <div class="campo"><label for="g2n">Nombre del compañero o compañera</label>
+            <input type="text" id="g2n" placeholder="Nombre y apellido"></div>
+          <div class="campo"><label for="g2a">Aporte al trabajo</label>
+            <select id="g2a" class="escala"><option value="">1,0 a 5,0</option><option>5,0</option><option>4,5</option><option>4,0</option><option>3,5</option><option>3,0</option><option>2,5</option><option>2,0</option><option>1,5</option><option>1,0</option></select></div>
+          <div class="campo"><label for="g2c">Cumplimiento y comunicación</label>
+            <select id="g2c" class="escala"><option value="">1,0 a 5,0</option><option>5,0</option><option>4,5</option><option>4,0</option><option>3,5</option><option>3,0</option><option>2,5</option><option>2,0</option><option>1,5</option><option>1,0</option></select></div>
+        </div>
+        <div class="campo"><label for="g2x">Un comentario breve (opcional)</label>
+          <input type="text" id="g2x" placeholder="Qué aportó, qué faltó"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="envoltura">
+    <h2>Para el próximo semestre</h2>
+    <div class="identidad" style="margin-bottom:1.3rem">
+      <div class="campo">
+        <label for="d1">Qué conservarías del curso y qué cambiarías</label>
+        <p class="pista">Opcional y no se califica. Sirve para rediseñar el curso de 2027.</p>
+        <textarea id="d1" style="min-height:5rem" placeholder="Conservaría… · Cambiaría…"></textarea>
+      </div>
+    </div>
+
+    <div class="envio">
+      <h3 style="margin-top:0">Enviar</h3>
+      <p style="font-size:.92rem;color:var(--gris);margin:0">
+        Se puede reenviar hasta el sábado 21 de noviembre a las 11:59 p. m. Cada envío reemplaza al anterior.
+      </p>
+      <div class="botones">
+        <button type="button" id="enviar" class="primario">Enviar</button>
+        <button type="button" id="copiar">Copiar todo</button>
+        <button type="button" id="borrar">Borrar el borrador</button>
+      </div>
+      <div id="resultado" class="estado" style="display:none"></div>
+      <p class="autoguardado" id="autoguardado">Borrador vacío</p>
+
+      <p class="nota" style="margin-top:1.1rem">
+        <strong>Si no tienes conexión.</strong> «Copiar todo» pone tus respuestas en el portapapeles. Pégalas en un
+        correo a <a href="mailto:jbogoya63@uan.edu.co">jbogoya63@uan.edu.co</a> y cuenta igual.
+      </p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="envoltura">
+    <p>
+      <strong>Sesión 6 · Coevaluación y autoevaluación</strong><br>
+      Investigación en Cuidados Paliativos y Rehabilitación · código 37543013 ·
+      Maestría en Cuidados Paliativos · Facultad de Enfermería · Universidad Antonio Nariño · 2026-II
+    </p>
+    <p>
+      Docente: Jorge Wilhem Bogoya López ·
+      <a href="mailto:jbogoya63@uan.edu.co">jbogoya63@uan.edu.co</a> ·
+      <a href="index.html">Guía de la sesión</a>
+    </p>
+    <p class="footer__legal">
+      <strong>Tratamiento de datos.</strong> Se recogen tu nombre, tu correo institucional, los nombres que escribas de
+      tus compañeros y tus valoraciones, con la única finalidad de evaluar este espacio académico. Se guardan en una
+      hoja de cálculo privada del docente y no se publican, no se proyectan ni se comparten con terceros (Ley 1581 de
+      2012 y Decreto 1377 de 2013). Puedes pedir consulta, corrección o supresión escribiendo al correo del docente.
+    </p>
+  </div>
+</footer>
+<script>
+/* ===========================================================================
+   CONFIG · S07. El token es el de la fila S07 de la pestaña Config (seminario
+   integrador). Para abrir: Apertura 20/11/2026 14:00, Cierre 21/11/2026 23:59
+   y Activa = Sí (ver scripts/apps-script/INSTALACION.md).
+   =========================================================================== */
+var CONFIG = {
+  ENDPOINT: 'https://script.google.com/macros/s/AKfycbyp3Ihy_qKs5R1PQweMYUd1lQnXYqFmE7itCrLt1TTF6QR3HvrkPTQ-XXj9Ws3hxG5idw/exec',
+  TOKEN:    'S07_INV_REHAB_2026II_eg8es4',
+  SESION:   'S07',
+  CIERRE_LEGIBLE: 'sábado 21 de noviembre, 11:59 p. m.'
+};
+
+(function () {
+  'use strict';
+
+  var CLAVE = 'INV_REHAB_2026II_S07_coevaluacion';
+  var IDS_TEXTO = ['a5', 'b2'];
+  var IDS_EXTRA = ['turno', 'grupo', 'a1', 'a2', 'a3', 'a4', 'b1',
+                   's1t', 's1c', 's1e', 's1r', 's1x', 's2t', 's2c', 's2e', 's2r', 's2x',
+                   'g1n', 'g1a', 'g1c', 'g1x', 'g2n', 'g2a', 'g2c', 'g2x', 'd1'];   // viajan como respuestas
+  var IDS_TODOS = IDS_TEXTO.concat(IDS_EXTRA, ['correo', 'nombre']);
+  var $ = function (id) { return document.getElementById(id); };
+
+  var configurado = CONFIG.ENDPOINT.indexOf('http') === 0 &&
+                    CONFIG.TOKEN.indexOf('PEGAR') === -1;
+
+  /* ── Borrador local ─────────────────────────────────────────────── */
+  function guardar() {
+    var d = {};
+    IDS_TODOS.forEach(function (id) { var el = $(id); if (el) d[id] = el.value; });
+    try {
+      localStorage.setItem(CLAVE, JSON.stringify({ datos: d, cuando: Date.now() }));
+      var h = new Date().toLocaleTimeString('es-CO', { hour: '2-digit', minute: '2-digit' });
+      $('autoguardado').textContent = 'Borrador guardado en este navegador · ' + h;
+    } catch (err) {
+      $('autoguardado').textContent = 'No se pudo guardar el borrador en este navegador.';
+    }
+  }
+
+  function restaurar() {
+    var crudo;
+    try { crudo = localStorage.getItem(CLAVE); } catch (err) { return; }
+    if (!crudo) return;
+    try {
+      var d = JSON.parse(crudo).datos || {};
+      IDS_TODOS.forEach(function (id) { var el = $(id); if (el && d[id]) el.value = d[id]; });
+      $('autoguardado').textContent = 'Borrador recuperado de este navegador.';
+    } catch (err) { /* borrador ilegible: se ignora */ }
+  }
+
+  /* ── Contadores de palabras ─────────────────────────────────────── */
+  function contar(t) {
+    var limpio = (t || '').trim();
+    return limpio ? limpio.split(/\s+/).length : 0;
+  }
+  function actualizarContador(id) {
+    var area = $(id);
+    var salida = document.querySelector('.contador[data-para="' + id + '"]');
+    if (!area || !salida) return;
+    var n = contar(area.value);
+    var min = parseInt(area.getAttribute('data-min'), 10) || 0;
+    salida.textContent = n + (n === 1 ? ' palabra' : ' palabras') + (n < min ? ' · orientativo: ' + min + '+' : '');
+    salida.className = 'contador' + (n === 0 ? '' : n < min ? ' corto' : ' bien');
+  }
+
+  /* ── Estado del plazo ───────────────────────────────────────────── */
+  function pintarEstado(clase, titulo, texto) {
+    var el = $('estado');
+    el.className = 'estado ' + clase;
+    el.innerHTML = '<strong></strong>';
+    el.firstChild.textContent = titulo;
+    el.appendChild(document.createTextNode(' ' + texto));
+  }
+
+  function consultarEstado() {
+    if (!configurado) {
+      pintarEstado('estado--aviso', 'Entregable todavía sin conectar.',
+        'Puedes leerlo y escribir; el envío se habilita cuando el docente publique la conexión. ' +
+        'Mientras tanto, «Copiar todo» funciona.');
+      return;
+    }
+    if (!navigator.onLine) {
+      pintarEstado('estado--aviso', 'Sin conexión.',
+        'Puedes leer y escribir con normalidad: el borrador se guarda en este navegador. ' +
+        'Envíalo cuando recuperes la red, o usa «Copiar todo». Cierra el ' + CONFIG.CIERRE_LEGIBLE.replace(/\.?$/, '.'));
+      return;
+    }
+    var url = CONFIG.ENDPOINT + '?action=estado&token=' + encodeURIComponent(CONFIG.TOKEN);
+    fetch(url)
+      .then(function (r) { return r.json(); })
+      .then(function (d) {
+        if (!d.ok) {
+          pintarEstado('estado--malo', 'El servidor no reconoce este entregable.', 'Avísale al docente: ' + (d.error || '') + '.');
+        } else if (d.abierta) {
+          pintarEstado('estado--ok', 'Entrega abierta.', 'Cierra el ' + CONFIG.CIERRE_LEGIBLE.replace(/\.?$/, '.') + ' Puedes reenviar hasta esa hora.');
+        } else if (!d.activa) {
+          pintarEstado('estado--aviso', 'Todavía no está habilitada.', 'El docente la abre al final de la sesión del 20 de noviembre.');
+        } else if (d.apertura && d.ahora && d.ahora < d.apertura) {
+          pintarEstado('estado--aviso', 'Todavía no abre.',
+            'La entrega se habilita el ' + d.apertura + ' y cierra el ' + d.cierre +
+            '. Puedes ir leyendo y escribiendo desde ya: el borrador se guarda solo.');
+        } else {
+          pintarEstado('estado--malo', 'El plazo se cerró.',
+            'La ventana era ' + (d.apertura || '') + ' – ' + (d.cierre || '') + '. Escríbele al docente.');
+        }
+      })
+      .catch(function () {
+        pintarEstado('estado--aviso', 'No se pudo comprobar el plazo.',
+          'Puedes escribir igual: el borrador se guarda aquí. Intenta enviar más tarde, o usa «Copiar todo».');
+      });
+  }
+
+  /* ── Envío ──────────────────────────────────────────────────────── */
+  function mostrarResultado(clase, titulo, texto) {
+    var el = $('resultado');
+    el.style.display = 'block';
+    el.className = 'estado ' + clase;
+    el.innerHTML = '<strong></strong>';
+    el.firstChild.textContent = titulo;
+    el.appendChild(document.createTextNode(' ' + texto));
+  }
+
+  var ERRORES = {
+    token_invalido:       'El entregable no está bien conectado. Avísale al docente.',
+    sesion_cerrada:       'La entrega de esta sesión no está habilitada.',
+    aun_no_abre:          'La entrega todavía no abre.',
+    plazo_vencido:        'El plazo se cerró. Escríbele al docente.',
+    correo_no_reconocido: 'Ese correo no aparece en la lista del curso. Revisa que sea el institucional registrado; si está bien, avísale al docente.',
+    sin_respuestas:       'No se envió ninguna respuesta.',
+    ocupado:              'El servidor estaba ocupado. Vuelve a intentarlo.'
+  };
+
+  function enviar() {
+    var correo = $('correo').value.trim();
+    var nombre = $('nombre').value.trim();
+
+    if (!correo || correo.indexOf('@') < 1) { mostrarResultado('estado--malo', 'Falta el correo.', 'Escribe tu correo institucional arriba.'); $('correo').focus(); return; }
+    if (!nombre)                            { mostrarResultado('estado--malo', 'Falta el nombre.', 'Escribe tu nombre completo arriba.'); $('nombre').focus(); return; }
+    if (!$('turno').value)                  { mostrarResultado('estado--malo', 'Falta tu turno.', 'Elige tu turno de sustentación arriba.'); $('turno').focus(); return; }
+    if (!$('grupo').value)                  { mostrarResultado('estado--malo', 'Falta el grupo.', 'Elige tu grupo de la sesión 5 arriba.'); $('grupo').focus(); return; }
+
+    var auto = ['a1', 'a2', 'a3', 'a4', 'b1'].filter(function (id) { return !$(id).value; });
+    if (auto.length) { mostrarResultado('estado--malo', 'Falta parte de la autoevaluación.', 'Elige una valoración en cada criterio de la parte A.'); $(auto[0]).focus(); return; }
+    var vacias = IDS_TEXTO.filter(function (id) { return !contar($(id).value); });
+    if (vacias.length && !confirm('Quedan ' + vacias.length + ' respuesta(s) escrita(s) sin completar en la parte A.\n\n¿Enviar de todas formas? Podrás reenviar hasta el cierre.')) return;
+    var faltaPar = !$('s1t').value || !$('s2t').value || !$('g1n').value.trim();
+    if (faltaPar && !confirm('Falta valorar alguna sustentación o a tu grupo de la sesión 5.\n\n¿Enviar de todas formas? Podrás completarlo y reenviar hasta el cierre.')) return;
+
+    if (!configurado) { mostrarResultado('estado--aviso', 'El envío no está conectado todavía.', 'Usa «Copiar todo» y mándalo por correo.'); return; }
+
+    var respuestas = {};
+    IDS_EXTRA.concat(IDS_TEXTO).forEach(function (id) { respuestas[id] = $(id).value.trim(); });
+
+    var boton = $('enviar');
+    boton.disabled = true;
+    boton.textContent = 'Enviando…';
+    mostrarResultado('estado', 'Enviando…', 'No cierres la página.');
+
+    fetch(CONFIG.ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify({
+        token: CONFIG.TOKEN,
+        sesion: CONFIG.SESION,
+        correo: correo,
+        nombre: nombre,
+        minutos: '',
+        declaracionIA: '',
+        respuestas: respuestas
+      })
+    })
+      .then(function (r) { return r.json(); })
+      .then(function (d) {
+        if (d.ok) {
+          mostrarResultado('estado--ok',
+            d.version > 1 ? 'Respuestas actualizadas (versión ' + d.version + ').' : 'Respuestas registradas.',
+            'Quedaron a nombre de ' + d.nombre + '. Se puede corregir y reenviar hasta el cierre. Gracias por el semestre.');
+        } else {
+          mostrarResultado('estado--malo', 'No se pudo registrar.', ERRORES[d.error] || ('Error: ' + (d.error || 'desconocido') + '.'));
+        }
+      })
+      .catch(function () {
+        mostrarResultado('estado--malo', 'No se pudo conectar.',
+          'Tu borrador está guardado aquí. Intenta de nuevo, o usa «Copiar todo» y mándalo por correo.');
+      })
+      .finally(function () {
+        boton.disabled = false;
+        boton.textContent = 'Enviar';
+      });
+  }
+
+  /* ── Copiar todo · salida de emergencia sin conexión ────────────── */
+  function textoPlano() {
+    var v = function (id) { return ($(id).value || '').trim() || '—'; };
+    var l = [];
+    l.push('SESIÓN 6 · Coevaluación y autoevaluación');
+    l.push('Investigación en Cuidados Paliativos y Rehabilitación · 37543013 · UAN · 2026-II');
+    l.push('');
+    l.push('Nombre: ' + v('nombre') + ' · Correo: ' + v('correo'));
+    l.push('Turno: ' + v('turno') + ' · Grupo de la sesión 5: ' + v('grupo'));
+    l.push('');
+    l.push('PARTE A · AUTOEVALUACIÓN');
+    l.push('Apropiación ' + v('a1') + ' · Evidencia ' + v('a2') + ' · Postura crítica ' + v('a3') + ' · Comunicación ' + v('a4'));
+    l.push('En qué me baso: ' + v('a5'));
+    l.push('Compromiso con el curso: ' + v('b1'));
+    l.push('Lo que cambia mi práctica: ' + v('b2'));
+    l.push('');
+    l.push('PARTE B · SUSTENTACIONES');
+    [1, 2].forEach(function (n) {
+      l.push(v('s' + n + 't') + ': claridad ' + v('s' + n + 'c') + ' · evidencia ' + v('s' + n + 'e') + ' · preguntas ' + v('s' + n + 'r') + ' · ' + v('s' + n + 'x'));
+    });
+    l.push('');
+    l.push('PARTE C · GRUPO DE LA SESIÓN 5');
+    [1, 2].forEach(function (n) {
+      l.push(v('g' + n + 'n') + ': aporte ' + v('g' + n + 'a') + ' · cumplimiento ' + v('g' + n + 'c') + ' · ' + v('g' + n + 'x'));
+    });
+    l.push('');
+    l.push('Para el próximo semestre: ' + v('d1'));
+    return l.join('\n');
+  }
+
+  function copiar() {
+    var texto = textoPlano();
+    var listo = function () {
+      mostrarResultado('estado--ok', 'Copiado.', 'Pégalo en un correo a jbogoya63@uan.edu.co y cuenta igual.');
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(texto).then(listo, respaldoCopiar);
+    } else {
+      respaldoCopiar();
+    }
+    function respaldoCopiar() {
+      var ta = document.createElement('textarea');
+      ta.value = texto;
+      ta.style.position = 'fixed';
+      ta.style.top = '-1000px';
+      document.body.appendChild(ta);
+      ta.select();
+      var ok = false;
+      try { ok = document.execCommand('copy'); } catch (err) { ok = false; }
+      document.body.removeChild(ta);
+      ok ? listo() : mostrarResultado('estado--aviso', 'No se pudo copiar solo.', 'Selecciona tus respuestas con el ratón y cópialas a mano.');
+    }
+  }
+
+  /* ── Arranque ───────────────────────────────────────────────────── */
+  restaurar();
+  IDS_TEXTO.forEach(actualizarContador);
+
+  IDS_TODOS.forEach(function (id) {
+    var el = $(id);
+    if (!el) return;
+    el.addEventListener('change', function () { clearTimeout(el._t); el._t = setTimeout(guardar, 300); });
+    el.addEventListener('input', function () {
+      if (IDS_TEXTO.indexOf(id) !== -1) actualizarContador(id);
+      clearTimeout(el._t);
+      el._t = setTimeout(guardar, 700);
+    });
+  });
+
+  $('enviar').addEventListener('click', enviar);
+  $('copiar').addEventListener('click', copiar);
+  $('borrar').addEventListener('click', function () {
+    if (!confirm('Esto borra el borrador guardado en este navegador y vacía el formulario.\n\nSi ya enviaste, la entrega registrada NO se borra.')) return;
+    try { localStorage.removeItem(CLAVE); } catch (err) { /* nada que borrar */ }
+    IDS_TODOS.forEach(function (id) { var el = $(id); if (el) el.value = ''; });
+    IDS_TEXTO.forEach(actualizarContador);
+    $('autoguardado').textContent = 'Borrador vacío';
+    mostrarResultado('estado', 'Borrador borrado.', 'El formulario quedó en blanco.');
+  });
+
+  window.addEventListener('online', consultarEstado);
+  window.addEventListener('offline', consultarEstado);
+  consultarEstado();
+})();
+</script>
+</html>

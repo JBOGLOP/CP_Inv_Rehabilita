@@ -226,7 +226,11 @@
         "Timm, Thuesen y Clark (2021)",
         "Astudillo y Wilson (2021)"
       ],
-      "material": null
+      "material": {
+        "tipo": "material",
+        "archivo": "clase.html",
+        "etiqueta": "Abrir el material de la sesión"
+      }
     }
   ]
 }
