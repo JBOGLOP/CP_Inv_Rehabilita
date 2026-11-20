@@ -1,0 +1,403 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Escala de Rankin modificada · herramienta</title>
+<meta name="description" content="Herramienta docente sin conexión: puntuar la escala de Rankin modificada (mRS), comparar dos grupos como se hace en los ensayos de ictus y entender por qué la mRS es ordinal.">
+<style>
+/* Tokens copiados de _shared/tokens.css (regla 1: en línea, no enlazados). Unidad 6 · Eventos catastróficos. */
+:root{
+  --u6:#7A5FC0; --u6-dark:#574097; --u6-soft:#E9E3F7;
+  --marca:#22415C; --marca-dark:#163049; --marca-soft:#E3EAF0;
+  --tinta:#14202B; --tinta-2:#33475A; --gris:#4E6274; --gris-2:#6B7E8F; --gris-claro:#94A5B5;
+  --linea:#D9E3EC; --linea-fuerte:#BCCBD9; --blanco:#FFFFFF; --superficie:#FFFFFF; --nieve:#F4F7FA;
+  --ok:#0CA30C; --aviso:#B7791F; --alerta:#C0392B;
+  --shadow-soft:0 1px 2px rgba(20,32,43,.06), 0 6px 18px rgba(20,32,43,.06);
+  --radius:12px; --radius-sm:8px;
+  --sans:system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  --serif:'Iowan Old Style','Palatino Linotype',Palatino,'Book Antiqua',Georgia,serif;
+  --mono:ui-monospace,'Cascadia Mono','Segoe UI Mono',Consolas,'Liberation Mono',monospace;
+  --acento:var(--u6); --acento-dark:var(--u6-dark); --acento-soft:var(--u6-soft);
+  /* Rampa secuencial de la mRS: de claro (0, mejor) a oscuro (5); la muerte (6) en tinta. */
+  --m0:#EEE9FA; --m1:#D3C8F0; --m2:#B4A3E3; --m3:#927CD2; --m4:#6F56B8; --m5:#4B3690; --m6:#14202B;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--nieve);color:var(--tinta);font-family:var(--sans);line-height:1.55;font-size:16px}
+a{color:var(--acento-dark)}
+.saltar{position:absolute;left:-9999px}.saltar:focus{left:1rem;top:1rem;background:#fff;padding:.5rem;z-index:9}
+header.cab{background:var(--acento-dark);color:#fff;padding:1.4rem 1rem 1.2rem}
+.cab .in,main{max-width:60rem;margin:0 auto}
+.cab .kick{font-size:.78rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;opacity:.9;margin:0}
+.cab h1{font-family:var(--serif);font-size:clamp(1.5rem,4vw,2.1rem);margin:.2rem 0 .3rem;line-height:1.2}
+.cab p{margin:0;max-width:62ch;opacity:.95}
+.cab .volver{color:#fff;font-size:.9rem}
+main{padding:1rem 1rem 3rem}
+nav.tabs{display:flex;flex-wrap:wrap;gap:.4rem;margin:1rem 0}
+nav.tabs button{font:inherit;font-size:.95rem;padding:.5rem .9rem;border-radius:999px;border:1px solid var(--linea-fuerte);background:#fff;color:var(--tinta);cursor:pointer}
+nav.tabs button[aria-selected="true"]{background:var(--acento-dark);border-color:var(--acento-dark);color:#fff}
+button:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid var(--acento);outline-offset:2px}
+section.panel{display:none}section.panel.on{display:block}
+.card{background:var(--superficie);border:1px solid var(--linea);border-radius:var(--radius);box-shadow:var(--shadow-soft);padding:1rem 1.1rem;margin:0 0 1rem}
+h2{font-family:var(--serif);font-size:1.35rem;margin:.2rem 0 .6rem;color:var(--acento-dark)}
+h3{font-size:1.02rem;margin:1rem 0 .4rem}
+.muted{color:var(--gris)}
+.nota{font-size:.9rem;color:var(--gris)}
+.aviso{border-left:4px solid var(--aviso);background:#FFF7E8;padding:.6rem .8rem;border-radius:var(--radius-sm);font-size:.93rem;margin:.6rem 0}
+.clave{border-left:4px solid var(--acento);background:var(--acento-soft);padding:.6rem .8rem;border-radius:var(--radius-sm);margin:.6rem 0}
+table{border-collapse:collapse;width:100%;font-size:.93rem}
+th,td{border-bottom:1px solid var(--linea);padding:.45rem .5rem;text-align:left;vertical-align:top}
+th{color:var(--gris);font-weight:600;font-size:.85rem}
+.tabla-scroll{overflow-x:auto}
+.grado{display:inline-flex;align-items:center;justify-content:center;min-width:2rem;height:2rem;border-radius:8px;font-weight:700;font-variant-numeric:tabular-nums;border:1px solid var(--linea-fuerte)}
+/* Paso a paso */
+.paso{display:none}.paso.on{display:block}
+.pregunta{font-size:1.1rem;font-weight:600;margin:.2rem 0 .5rem}
+.ayuda{font-size:.9rem;color:var(--gris);margin:0 0 .8rem}
+.botones{display:flex;flex-wrap:wrap;gap:.5rem}
+.btn{font:inherit;padding:.55rem 1.1rem;border-radius:var(--radius-sm);border:1px solid var(--acento-dark);background:#fff;color:var(--acento-dark);cursor:pointer;font-weight:600}
+.btn.pri{background:var(--acento-dark);color:#fff}
+.btn.sec{border-color:var(--linea-fuerte);color:var(--tinta-2);font-weight:500}
+.progreso{font-size:.85rem;color:var(--gris);margin-bottom:.4rem}
+.resultado{display:grid;grid-template-columns:auto 1fr;gap:.8rem 1rem;align-items:center}
+.resultado .big{font-size:3rem;font-weight:800;line-height:1;width:4.5rem;height:4.5rem;border-radius:14px;display:flex;align-items:center;justify-content:center}
+.kv{display:grid;grid-template-columns:repeat(auto-fit,minmax(11rem,1fr));gap:.6rem;margin-top:.8rem}
+.kv div{background:var(--nieve);border:1px solid var(--linea);border-radius:var(--radius-sm);padding:.5rem .7rem}
+.kv b{display:block;font-size:1.15rem;font-variant-numeric:tabular-nums}
+.kv span{font-size:.8rem;color:var(--gris)}
+ol.camino{margin:.4rem 0 0 1.1rem;padding:0;font-size:.9rem;color:var(--tinta-2)}
+/* Grupos */
+.grid-in{display:grid;grid-template-columns:7.5rem repeat(7,minmax(2.9rem,1fr)) 4rem;gap:.3rem;align-items:center;min-width:34rem}
+.grid-in .h{font-size:.8rem;color:var(--gris);text-align:center;font-weight:600}
+.grid-in .lab{font-weight:600;font-size:.92rem}
+.grid-in input{width:100%;font:inherit;font-variant-numeric:tabular-nums;text-align:center;padding:.35rem .2rem;border:1px solid var(--linea-fuerte);border-radius:6px;background:#fff}
+.grid-in .tot{text-align:center;font-variant-numeric:tabular-nums;color:var(--gris)}
+.presets{display:flex;flex-wrap:wrap;gap:.4rem;margin:.6rem 0}
+.barra{display:flex;height:2.4rem;border-radius:6px;overflow:hidden;border:1px solid var(--linea-fuerte);margin:.25rem 0 .7rem}
+.barra span{display:flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap;overflow:hidden;min-width:0}
+.leyenda{display:flex;flex-wrap:wrap;gap:.3rem .8rem;font-size:.82rem;color:var(--gris);margin:.2rem 0 .8rem}
+.leyenda i{display:inline-block;width:.9rem;height:.9rem;border-radius:3px;vertical-align:-2px;margin-right:.25rem;border:1px solid var(--linea-fuerte)}
+.resumen td,.resumen th{text-align:right;font-variant-numeric:tabular-nums}
+.resumen td:first-child,.resumen th:first-child{text-align:left}
+.tachado{color:var(--gris-2)}
+details{border:1px solid var(--linea);border-radius:var(--radius-sm);padding:.5rem .8rem;margin:.5rem 0;background:#fff}
+summary{cursor:pointer;font-weight:600}
+footer{max-width:60rem;margin:0 auto;padding:0 1rem 2rem;font-size:.85rem;color:var(--gris)}
+@media (max-width:520px){.resultado{grid-template-columns:1fr}.cab h1{font-size:1.45rem}}
+@media print{nav.tabs,.botones,.presets,.saltar{display:none}section.panel{display:block}body{background:#fff}}
+</style>
+</head>
+<body>
+<a class="saltar" href="#main">Saltar al contenido</a>
+<header class="cab"><div class="in">
+  <p class="kick">Unidad 6 · Eventos catastróficos · Herramienta</p>
+  <h1>Escala de Rankin modificada (mRS)</h1>
+  <p>Puntuar a una persona, comparar dos grupos como lo hacen los ensayos de ictus y entender por qué un promedio de la mRS engaña.</p>
+  <p style="margin-top:.5rem"><a class="volver" href="../../index.html">← Investigación en CP y Rehabilitación</a></p>
+</div></header>
+
+<main id="main">
+<nav class="tabs" role="tablist" aria-label="Secciones">
+  <button role="tab" id="t-escala" aria-controls="p-escala" aria-selected="true">1 · La escala</button>
+  <button role="tab" id="t-puntuar" aria-controls="p-puntuar" aria-selected="false">2 · Puntuar a una persona</button>
+  <button role="tab" id="t-grupos" aria-controls="p-grupos" aria-selected="false">3 · Comparar dos grupos</button>
+  <button role="tab" id="t-paliativo" aria-controls="p-paliativo" aria-selected="false">4 · Leerla en rehabilitación paliativa</button>
+</nav>
+
+<!-- 1 · LA ESCALA -->
+<section class="panel on" id="p-escala" role="tabpanel" aria-labelledby="t-escala">
+  <div class="card">
+    <h2>Siete grados, un orden</h2>
+    <p>La mRS resume la <b>discapacidad global</b> después de un ictus en un solo número. Nació como la escala de Rankin (1957); la versión modificada (van Swieten y colaboradores, 1988) agregó el grado 0 y los ensayos clínicos sumaron el 6 para la muerte. Se mide casi siempre <b>a los 90 días</b>.</p>
+    <div class="tabla-scroll"><table>
+      <thead><tr><th>Grado</th><th>Descripción</th><th>En la práctica</th></tr></thead>
+      <tbody id="tabla-grados"></tbody>
+    </table></div>
+  </div>
+  <div class="card">
+    <h2>Por qué es ordinal y no numérica</h2>
+    <p>Los números indican <b>orden</b>, no distancias iguales. Pasar de 0 a 1 (aparecen síntomas sin discapacidad) no se parece a pasar de 4 a 5 (de necesitar ayuda a estar en cama) ni de 5 a 6 (morir). Por eso:</p>
+    <ul>
+      <li><b>No se promedia.</b> Un grupo con la mitad en 0 y la mitad en 6 tiene promedio 3, igual que un grupo con todos en 3. Clínicamente no se parecen en nada. Pruébelo en la pestaña 3 con el ejemplo «mismo promedio».</li>
+      <li><b>No se compara con <i>t</i> de Student.</b> Esa prueba compara promedios y supone distancias iguales. Se usa U de Mann-Whitney, chi cuadrado (si se dicotomiza) o regresión logística ordinal.</li>
+      <li><b>Excepción razonada:</b> la <b>mRS ponderada por utilidad (UW-mRS)</b> asigna a cada grado un valor de calidad de vida y entonces sí se puede promediar.</li>
+    </ul>
+    <h3>Tres maneras de analizarla</h3>
+    <div class="tabla-scroll"><table>
+      <thead><tr><th>Forma</th><th>Qué se compara</th><th>Ventaja</th><th>Costo</th></tr></thead>
+      <tbody>
+        <tr><td><b>Dicotomizada</b><br><span class="nota">0–1 «excelente», 0–2 «independencia funcional», 0–3</span></td><td>Proporción que logra el desenlace bueno</td><td>Fácil de explicar</td><td>Bota información: pasar de 5 a 4 no cuenta si el corte es 0–2. En ictus severo casi nadie llega a 0–2.</td></tr>
+        <tr><td><b>Ordinal («análisis de desplazamiento»)</b></td><td>Toda la distribución; da un <b>OR común</b></td><td>Usa todos los grados; estándar en los ensayos actuales</td><td>Supone que el efecto es parecido en todos los puntos de corte (odds proporcionales)</td></tr>
+        <tr><td><b>Ponderada por utilidad (UW-mRS)</b></td><td>Promedio de utilidades</td><td>Un número interpretable como calidad de vida</td><td>Depende de los valores de utilidad elegidos</td></tr>
+      </tbody>
+    </table></div>
+    <div class="clave"><b>Cómo se lee un OR común.</b> «OR común 1,5» significa que el grupo de intervención tiene 50 % más <i>odds</i> de quedar en un grado mejor de la mRS, en cualquier punto de corte. No es «50 % más probabilidad de mejorar».</div>
+  </div>
+  <div class="card">
+    <h2>Cambio mínimo importante y confiabilidad</h2>
+    <ul>
+      <li><b>Cambio mínimo importante:</b> en los ensayos de ictus suele aceptarse <b>un grado</b>. En ictus severo, pasar de 5 a 4 cambia la vida de la persona y de quien la cuida.</li>
+      <li><b>Confiabilidad:</b> entre evaluadores es solo moderada cuando se puntúa «a ojo». Mejora con <b>entrevistas estructuradas</b> o árboles de decisión (como el de la pestaña 2), y por eso los ensayos entrenan y certifican a sus evaluadores.</li>
+      <li><b>mRS previa:</b> conviene registrar el grado <b>antes</b> del ictus. Una persona que ya era 3 no puede «volver a 0».</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 2 · PUNTUAR -->
+<section class="panel" id="p-puntuar" role="tabpanel" aria-labelledby="t-puntuar">
+  <div class="card">
+    <h2>Árbol de decisión</h2>
+    <p class="muted">Preguntas en orden, de lo más grave a lo más leve. La primera respuesta afirmativa fija el grado. Es una guía docente basada en los criterios de la escala; en investigación se usa la entrevista estructurada validada que defina el protocolo.</p>
+    <div id="arbol" aria-live="polite"></div>
+  </div>
+</section>
+
+<!-- 3 · GRUPOS -->
+<section class="panel" id="p-grupos" role="tabpanel" aria-labelledby="t-grupos">
+  <div class="card">
+    <h2>Escriba cuántas personas hay en cada grado</h2>
+    <p class="muted">Dos grupos (por ejemplo, intervención y comparación). Los resultados se calculan al escribir.</p>
+    <div class="presets" aria-label="Ejemplos">
+      <button class="btn sec" data-preset="mismo">Ejemplo: mismo promedio, realidades opuestas</button>
+      <button class="btn sec" data-preset="desplazamiento">Ejemplo: desplazamiento pequeño en todos los grados</button>
+      <button class="btn sec" data-preset="severo">Ejemplo: ictus severo (casi nadie llega a 0–2)</button>
+      <button class="btn sec" data-preset="vacio">Vaciar</button>
+    </div>
+    <p class="nota">Los ejemplos son <b>datos ficticios</b> para enseñar; no corresponden a ningún estudio.</p>
+    <div class="tabla-scroll"><div class="grid-in" id="grid-in"></div></div>
+  </div>
+  <div class="card">
+    <h2>Distribución (gráfico de Grotta)</h2>
+    <p class="nota">Así presentan los ensayos de ictus la mRS: una barra por grupo, dividida por grado. El desplazamiento hacia la izquierda es mejoría.</p>
+    <div id="barras"></div>
+    <div class="leyenda" id="leyenda"></div>
+  </div>
+  <div class="card">
+    <h2>Resultados</h2>
+    <div class="tabla-scroll"><table class="resumen" id="resumen"></table></div>
+    <div id="interpreta"></div>
+    <details><summary>Cómo se calcula</summary>
+      <ul class="nota">
+        <li><b>U de Mann-Whitney</b> con corrección por empates; valor <i>p</i> bilateral por aproximación normal (adecuada con grupos de 20 o más).</li>
+        <li><b>Probabilidad de superioridad</b>: probabilidad de que una persona elegida al azar del grupo A tenga un grado mejor (más bajo) que una del grupo B, contando los empates como mitad.</li>
+        <li><b>Odds de Mann-Whitney</b> (OR generalizado) = superioridad / (1 − superioridad). Se parece al OR común del análisis de desplazamiento cuando el efecto es parejo entre grados; el OR común exacto requiere una regresión logística ordinal en un programa estadístico.</li>
+        <li><b>Dicotomías</b>: OR con IC95 % de Woolf (se suma 0,5 a cada celda si alguna es cero).</li>
+        <li><b>UW-mRS</b>: utilidades 0 = 1,00; 1 = 0,91; 2 = 0,76; 3 = 0,65; 4 = 0,33; 5 = 0; 6 = 0 (Chaisinanunkul y colaboradores, 2015).</li>
+      </ul>
+    </details>
+  </div>
+</section>
+
+<!-- 4 · PALIATIVO -->
+<section class="panel" id="p-paliativo" role="tabpanel" aria-labelledby="t-paliativo">
+  <div class="card">
+    <h2>Lo que la mRS ve y lo que no ve</h2>
+    <p>En ictus severo y en rehabilitación paliativa, la mRS sirve, pero no alcanza:</p>
+    <ul>
+      <li><b>Se amontona arriba.</b> Muchas personas quedan entre 4 y 6; la escala tiene poca resolución justo donde trabaja el cuidado paliativo.</li>
+      <li><b>El grado 5 agrupa vidas muy distintas.</b> Una persona en cama que se comunica, come por boca y no tiene dolor, y otra con dolor, disfagia y sin comunicación, son ambas «5».</li>
+      <li><b>No mide confort ni síntomas.</b> Dolor, disnea, ansiedad, comunicación o la carga de quien cuida no entran.</li>
+      <li><b>El 5 y el 6 no se valoran igual en todas partes.</b> En la UW-mRS ambos valen 0; algunas personas consideran ciertos estados de discapacidad grave peores que la muerte, y otras no. Esa diferencia es ética, no estadística.</li>
+      <li><b>Muerte y discapacidad mezcladas.</b> Si una intervención reduce la mortalidad pero deja más personas en grado 5, el análisis de desplazamiento puede verla como «mejoría». Hay que mirar la distribución, no solo el OR.</li>
+    </ul>
+    <div class="clave"><b>Por eso, en un protocolo de rehabilitación paliativa,</b> la mRS conviene acompañarla de un instrumento de función más fino (índice de Barthel), uno de síntomas y confort (IPOS u otro centrado en la persona) y, si aplica, uno de carga del cuidador (Zarit).</div>
+  </div>
+  <div class="card">
+    <h2>Preguntas para discutir</h2>
+    <ol>
+      <li>Si una intervención cambia a muchas personas de 6 (muerte) a 5 (cama, cuidado permanente), ¿es un éxito? ¿Para quién?</li>
+      <li>¿Qué punto de corte tiene sentido en ictus severo: 0–2, 0–3 o el análisis ordinal? Justifíquelo.</li>
+      <li>¿Qué información pierde un estudio que solo reporta el promedio de la mRS?</li>
+      <li>¿Con qué otros instrumentos completaría la mRS para que el desenlace hable de confort y participación?</li>
+    </ol>
+  </div>
+</section>
+</main>
+
+<footer>
+  Investigación en Cuidados Paliativos y Rehabilitación · Maestría en Cuidados Paliativos · Universidad Antonio Nariño · 2026-II.
+  Herramienta docente: no sustituye la evaluación clínica ni la entrevista estructurada de un protocolo. Funciona sin conexión.
+</footer>
+
+<script>
+(function () {
+  'use strict';
+  var COL = ['--m0','--m1','--m2','--m3','--m4','--m5','--m6'].map(function (v) { return getComputedStyle(document.documentElement).getPropertyValue(v).trim(); });
+  var TXT = ['#14202B','#14202B','#14202B','#FFFFFF','#FFFFFF','#FFFFFF','#FFFFFF'];
+  var UTIL = [1, 0.91, 0.76, 0.65, 0.33, 0, 0];
+  var GRADOS = [
+    ['Sin síntomas.', 'Nada cambió.'],
+    ['Sin discapacidad significativa a pesar de los síntomas: puede hacer todas sus actividades habituales.', 'Tiene algún síntoma (por ejemplo, torpeza leve), pero sigue haciendo todo lo de antes.'],
+    ['Discapacidad leve: no puede hacer todas las actividades de antes, pero se ocupa de sus asuntos sin ayuda.', 'Dejó alguna actividad (trabajo, afición), pero vive de forma independiente.'],
+    ['Discapacidad moderada: necesita alguna ayuda, pero camina sin ayuda de otra persona.', 'Necesita ayuda para compras, dinero, cocinar o transporte; camina solo (puede usar bastón).'],
+    ['Discapacidad moderadamente grave: no camina sin ayuda y no atiende sus necesidades corporales sin ayuda.', 'Necesita a otra persona para caminar, bañarse, vestirse o ir al baño.'],
+    ['Discapacidad grave: en cama, incontinente, requiere cuidado y atención permanentes.', 'Necesita cuidado de día y de noche.'],
+    ['Muerte.', 'En los ensayos se suma como el peor grado.']
+  ];
+  function chip(g) { return '<span class="grado" style="background:' + COL[g] + ';color:' + TXT[g] + '">' + g + '</span>'; }
+  function f(x, d) { return (x === null || isNaN(x)) ? '—' : x.toFixed(d === undefined ? 2 : d).replace('.', ','); }
+  function pct(x) { return (x === null || isNaN(x)) ? '—' : (100 * x).toFixed(0) + ' %'; }
+
+  // Tabla de grados
+  document.getElementById('tabla-grados').innerHTML = GRADOS.map(function (g, i) {
+    return '<tr><td>' + chip(i) + '</td><td>' + g[0] + '</td><td class="muted">' + g[1] + '</td></tr>';
+  }).join('');
+
+  // Pestañas
+  var tabs = document.querySelectorAll('[role="tab"]');
+  function abrir(id) {
+    tabs.forEach(function (t) {
+      var on = t.id === id; t.setAttribute('aria-selected', on);
+      document.getElementById(t.getAttribute('aria-controls')).classList.toggle('on', on);
+    });
+    try { localStorage.setItem('mrs_tab', id); } catch (e) {}
+  }
+  tabs.forEach(function (t) { t.addEventListener('click', function () { abrir(t.id); }); });
+  try { var g = localStorage.getItem('mrs_tab'); if (g && document.getElementById(g)) abrir(g); } catch (e) {}
+
+  // Árbol de decisión
+  var PREG = [
+    { q: '¿La persona falleció?', a: 'Si murió, el grado es 6.', si: 6 },
+    { q: '¿Está en cama y necesita cuidado y atención permanentes, de día y de noche?', a: 'Suele acompañarse de incontinencia. Sí → grado 5.', si: 5 },
+    { q: '¿Necesita la ayuda de otra persona para caminar, o para atender sus necesidades corporales (bañarse, vestirse, ir al baño, comer)?', a: 'Un bastón o caminador sin otra persona cuenta como «camina sin ayuda». Sí → grado 4.', si: 4 },
+    { q: '¿Necesita ayuda de otra persona para manejar sus asuntos: dinero, compras, cocinar, transporte, medicamentos?', a: 'Aunque camine y se asee solo. Sí → grado 3.', si: 3 },
+    { q: '¿Dejó de hacer alguna actividad habitual de antes del ictus (trabajo, aficiones, vida social, roles en la casa) por sus secuelas?', a: 'Pero se ocupa de sí mismo y de sus asuntos sin ayuda. Sí → grado 2.', si: 2 },
+    { q: '¿Tiene algún síntoma o secuela del ictus (debilidad, torpeza, dolor, cambios del habla, del ánimo o de la memoria)?', a: 'Aunque siga haciendo todo lo de antes. Sí → grado 1; No → grado 0.', si: 1, no: 0 }
+  ];
+  var arbol = document.getElementById('arbol'), camino = [];
+  function pintarPaso(i) {
+    var p = PREG[i];
+    arbol.innerHTML = '<div class="progreso">Pregunta ' + (i + 1) + ' de ' + PREG.length + '</div>' +
+      '<p class="pregunta">' + p.q + '</p><p class="ayuda">' + p.a + '</p>' +
+      '<div class="botones"><button class="btn pri" data-r="si">Sí</button><button class="btn" data-r="no">No</button>' +
+      (i > 0 ? '<button class="btn sec" data-r="atras">← Atrás</button>' : '') + '</div>';
+    arbol.querySelector('[data-r="si"]').focus();
+    arbol.onclick = function (e) {
+      var b = e.target.closest('button'); if (!b) return;
+      if (b.dataset.r === 'atras') { camino.pop(); pintarPaso(i - 1); return; }
+      camino.push({ q: p.q, r: b.dataset.r === 'si' ? 'Sí' : 'No' });
+      if (b.dataset.r === 'si') return resultado(p.si);
+      if (p.no !== undefined) return resultado(p.no);
+      pintarPaso(i + 1);
+    };
+  }
+  function resultado(g) {
+    var dic = function (c) { return g <= c ? 'Sí' : 'No'; };
+    arbol.innerHTML = '<div class="resultado"><div class="big" style="background:' + COL[g] + ';color:' + TXT[g] + '">' + g + '</div>' +
+      '<div><p class="pregunta" style="margin:0">mRS ' + g + '</p><p style="margin:.2rem 0 0">' + GRADOS[g][0] + '</p></div></div>' +
+      '<div class="kv"><div><span>UW-mRS (utilidad)</span><b>' + f(UTIL[g]) + '</b></div>' +
+      '<div><span>Excelente (0–1)</span><b>' + dic(1) + '</b></div><div><span>Independencia funcional (0–2)</span><b>' + dic(2) + '</b></div>' +
+      '<div><span>Camina sin ayuda (0–3)</span><b>' + dic(3) + '</b></div></div>' +
+      '<h3>Camino de respuestas</h3><ol class="camino">' + camino.map(function (c) { return '<li>' + c.q + ' <b>' + c.r + '</b></li>'; }).join('') + '</ol>' +
+      '<div class="aviso">Registre también la <b>mRS previa al ictus</b>: el cambio importa más que el número aislado. Una diferencia de <b>un grado</b> suele considerarse clínicamente importante.</div>' +
+      '<div class="botones"><button class="btn pri" id="otra">Puntuar a otra persona</button></div>';
+    document.getElementById('otra').onclick = function () { camino = []; pintarPaso(0); };
+  }
+  pintarPaso(0);
+
+  // Comparar grupos
+  var gi = document.getElementById('grid-in');
+  var html = '<div></div>' + [0,1,2,3,4,5,6].map(function (g) { return '<div class="h">' + chip(g) + '</div>'; }).join('') + '<div class="h">Total</div>';
+  ['A','B'].forEach(function (k) {
+    html += '<label class="lab" for="' + k + '0">' + (k === 'A' ? 'Grupo A<br><span class="nota">intervención</span>' : 'Grupo B<br><span class="nota">comparación</span>') + '</label>';
+    for (var g = 0; g < 7; g++) html += '<input id="' + k + g + '" type="number" min="0" step="1" inputmode="numeric" aria-label="Grupo ' + k + ', mRS ' + g + '" value="0">';
+    html += '<div class="tot" id="tot' + k + '">0</div>';
+  });
+  gi.innerHTML = html;
+  document.getElementById('leyenda').innerHTML = GRADOS.map(function (x, i) { return '<span><i style="background:' + COL[i] + '"></i>' + i + (i === 6 ? ' muerte' : '') + '</span>'; }).join('');
+
+  var PRESETS = {
+    mismo: [[25,0,0,0,0,0,25],[0,0,0,50,0,0,0]],
+    desplazamiento: [[6,14,20,20,18,12,10],[4,10,16,22,20,15,13]],
+    severo: [[0,1,4,10,25,30,30],[0,1,3,7,24,33,32]],
+    vacio: [[0,0,0,0,0,0,0],[0,0,0,0,0,0,0]]
+  };
+  document.querySelector('.presets').addEventListener('click', function (e) {
+    var b = e.target.closest('[data-preset]'); if (!b) return;
+    var p = PRESETS[b.dataset.preset];
+    for (var g = 0; g < 7; g++) { document.getElementById('A' + g).value = p[0][g]; document.getElementById('B' + g).value = p[1][g]; }
+    calcular(); guardar();
+  });
+  gi.addEventListener('input', function () { calcular(); guardar(); });
+
+  function leer(k) { var a = []; for (var g = 0; g < 7; g++) { var v = parseInt(document.getElementById(k + g).value, 10); a.push(isNaN(v) || v < 0 ? 0 : v); } return a; }
+  function suma(a) { return a.reduce(function (s, x) { return s + x; }, 0); }
+  function normCdf(z) { // Abramowitz-Stegun 7.1.26
+    var t = 1 / (1 + 0.3275911 * Math.abs(z) / Math.SQRT2);
+    var y = 1 - (((((1.061405429 * t - 1.453152027) * t) + 1.421413741) * t - 0.284496736) * t + 0.254829592) * t * Math.exp(-z * z / 2);
+    return z >= 0 ? (1 + y) / 2 : (1 - y) / 2;
+  }
+  function mannWhitney(a, b) {
+    var n1 = suma(a), n2 = suma(b), N = n1 + n2; if (!n1 || !n2) return null;
+    var rango = 0, R1 = 0, ties = 0;
+    for (var g = 0; g < 7; g++) {
+      var t = a[g] + b[g]; if (!t) continue;
+      var r = rango + (t + 1) / 2; R1 += a[g] * r; rango += t; ties += t * t * t - t;
+    }
+    var U1 = R1 - n1 * (n1 + 1) / 2;            // U del grupo A (rangos altos = peor)
+    var mu = n1 * n2 / 2;
+    var sd = Math.sqrt(n1 * n2 / 12 * ((N + 1) - ties / (N * (N - 1))));
+    var z = sd > 0 ? (U1 - mu) / sd : 0;
+    var p = sd > 0 ? 2 * (1 - normCdf(Math.abs(z))) : 1;
+    var sup = 1 - U1 / (n1 * n2);               // P(A mejor) + ½ P(empate)
+    return { U: Math.min(U1, n1 * n2 - U1), z: z, p: p, sup: sup, odds: sup / (1 - sup) };
+  }
+  function orDic(a, b, c) { // desenlace bueno: grado <= c
+    var x1 = 0, x2 = 0; for (var g = 0; g <= c; g++) { x1 += a[g]; x2 += b[g]; }
+    var n1 = suma(a), n2 = suma(b); if (!n1 || !n2) return null;
+    var A = x1, B = n1 - x1, C = x2, D = n2 - x2;
+    if (!A || !B || !C || !D) { A += .5; B += .5; C += .5; D += .5; }
+    var or = (A * D) / (B * C), se = Math.sqrt(1 / A + 1 / B + 1 / C + 1 / D);
+    return { p1: x1 / n1, p2: x2 / n2, or: or, lo: Math.exp(Math.log(or) - 1.96 * se), hi: Math.exp(Math.log(or) + 1.96 * se) };
+  }
+  function media(a, w) { var n = suma(a); if (!n) return null; var s = 0; for (var g = 0; g < 7; g++) s += a[g] * (w ? w[g] : g); return s / n; }
+  function enPos(a, k) { var acc = 0; for (var g = 0; g < 7; g++) { acc += a[g]; if (acc >= k) return g; } return 6; }
+  function mediana(a) { var n = suma(a); if (!n) return null; var m = (enPos(a, Math.floor((n + 1) / 2)) + enPos(a, Math.ceil((n + 1) / 2))) / 2; return String(m).replace('.', ','); }
+
+  function barra(a, nombre) {
+    var n = suma(a); if (!n) return '<p class="nota">' + nombre + ': sin datos.</p>';
+    return '<div><b>' + nombre + '</b> <span class="nota">(n = ' + n + ')</span><div class="barra" role="img" aria-label="' + nombre + ': ' +
+      a.map(function (x, g) { return 'grado ' + g + ' ' + Math.round(100 * x / n) + ' %'; }).join(', ') + '">' +
+      a.map(function (x, g) { var w = 100 * x / n; return x ? '<span style="width:' + w + '%;background:' + COL[g] + ';color:' + TXT[g] + '" title="mRS ' + g + ': ' + x + ' (' + w.toFixed(0) + ' %)">' + (w >= 7 ? w.toFixed(0) + '%' : '') + '</span>' : ''; }).join('') + '</div></div>';
+  }
+
+  function calcular() {
+    var a = leer('A'), b = leer('B');
+    document.getElementById('totA').textContent = suma(a); document.getElementById('totB').textContent = suma(b);
+    document.getElementById('barras').innerHTML = barra(a, 'Grupo A') + barra(b, 'Grupo B');
+    var mw = mannWhitney(a, b), d1 = orDic(a, b, 1), d2 = orDic(a, b, 2), d3 = orDic(a, b, 3);
+    var fila = function (lab, x, y, z) { return '<tr><td>' + lab + '</td><td>' + x + '</td><td>' + y + '</td><td>' + z + '</td></tr>'; };
+    var dicF = function (lab, d) { return d ? fila(lab, pct(d.p1), pct(d.p2), 'OR ' + f(d.or) + ' (' + f(d.lo) + '–' + f(d.hi) + ')') : fila(lab, '—', '—', '—'); };
+    var uA = media(a, UTIL), uB = media(b, UTIL);
+    document.getElementById('resumen').innerHTML =
+      '<thead><tr><th>Medida</th><th>Grupo A</th><th>Grupo B</th><th>Comparación</th></tr></thead><tbody>' +
+      fila('Mediana de la mRS', mediana(a) === null ? '—' : mediana(a), mediana(b) === null ? '—' : mediana(b), '') +
+      fila('<b>Análisis ordinal</b> · Mann-Whitney', '', '', mw ? 'z = ' + f(mw.z) + ' · p ' + (mw.p < 0.001 ? '&lt; 0,001' : '= ' + f(mw.p, 3)) : '—') +
+      fila('Probabilidad de que A esté mejor que B', '', '', mw ? pct(mw.sup) : '—') +
+      fila('Odds de Mann-Whitney (OR generalizado)', '', '', mw ? f(mw.odds) : '—') +
+      dicF('mRS 0–1 (excelente)', d1) + dicF('mRS 0–2 (independencia funcional)', d2) + dicF('mRS 0–3', d3) +
+      fila('UW-mRS (utilidad media)', f(uA), f(uB), (uA !== null && uB !== null) ? 'diferencia ' + f(uA - uB) : '—') +
+      fila('<span class="tachado">Promedio de la mRS (no usar)</span>', '<span class="tachado">' + f(media(a), 1) + '</span>', '<span class="tachado">' + f(media(b), 1) + '</span>', '<span class="tachado">ver nota</span>') +
+      '</tbody>';
+    var msg = '';
+    if (mw) {
+      var mA = media(a), mB = media(b);
+      if (Math.abs(mA - mB) < 0.05 && Math.abs(mw.sup - 0.5) > 0.05) {
+        msg += '<div class="aviso"><b>Mismo promedio, distribuciones distintas.</b> El promedio de la mRS es casi igual en los dos grupos, pero la distribución no. Por eso no se promedia una escala ordinal.</div>';
+      } else if (Math.abs(mA - mB) < 0.05) {
+        msg += '<div class="aviso"><b>El promedio es igual, pero mire las barras.</b> Un promedio de la mRS puede esconder grupos que no se parecen en nada clínicamente.</div>';
+      }
+      msg += '<div class="clave">Si se elige a una persona de cada grupo al azar, la del grupo A tiene un grado mejor en el <b>' + pct(mw.sup) + '</b> de los casos (contando empates como mitad). ' +
+        (mw.p < 0.05 ? 'La diferencia en la distribución es estadísticamente significativa (p ' + (mw.p < 0.001 ? '&lt; 0,001' : '= ' + f(mw.p, 3)) + ').' : 'La diferencia en la distribución no es estadísticamente significativa (p = ' + f(mw.p, 3) + '): no prueba ausencia de efecto, solo que no se puede afirmar.') + '</div>';
+      if (d2 && (d2.p1 < 0.1 && d2.p2 < 0.1)) msg += '<div class="aviso"><b>Casi nadie llega a 0–2.</b> En este escenario el corte 0–2 desperdicia la información: el análisis ordinal o un corte más alto describen mejor el efecto.</div>';
+    }
+    document.getElementById('interpreta').innerHTML = msg;
+  }
+  function guardar() { try { localStorage.setItem('mrs_grupos', JSON.stringify([leer('A'), leer('B')])); } catch (e) {} }
+  try { var s = JSON.parse(localStorage.getItem('mrs_grupos') || 'null'); if (s) for (var g = 0; g < 7; g++) { document.getElementById('A' + g).value = s[0][g]; document.getElementById('B' + g).value = s[1][g]; } else { PRESETS.desplazamiento.forEach(function (arr, i) { for (var g = 0; g < 7; g++) document.getElementById((i ? 'B' : 'A') + g).value = arr[g]; }); } } catch (e) {}
+  calcular();
+})();
+</script>
+</body>
+</html>
